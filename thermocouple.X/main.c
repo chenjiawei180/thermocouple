@@ -48,6 +48,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "mcc_generated_files/mcc.h"
 #include "mcc_generated_files/global.h"
 #include "mcc_generated_files/max31856.h"
+#include "mcc_generated_files/ht1621.h"
 #ifdef DEBUG
 #include "mcc_generated_files/debug.h"
 #endif
@@ -56,6 +57,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
                          Main application
  */
 void main(void) {
+    //unsigned char a[10];
+    //a[0]=0x51;a[1]=0x00;a[2]=0x00;a[3]=0x00;a[4]=0x00;
     // initialize the device
     SYSTEM_Initialize();
     LED1_SetLow();
@@ -63,9 +66,15 @@ void main(void) {
     CS1_SetLow();
     maxim_31856_init();
     DRDY_SetDigitalInput();
-
+    SendCmd_1621(BIAS);		//设置偏压和占空比
+    SendCmd_1621(0X28);
+    SendCmd_1621(SYSEN);	//打开系统振荡器
+    SendCmd_1621(LCDON);	//打开LCD偏压发生器
+    //Write_1621(0x24,0x01);	//0x24：(地址)的高6位有效，0x01：(数据)的低4位有效
+    WriteAll_1621(0,Dis_TAB,4);	//0：(起始地址)高6位有效，a：(写入数据的起始地址)8位
 #ifdef DEBUG
     //EUSART_SendString("hello pic16f1518 \n\r");
+    
 #endif
 	
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
@@ -95,15 +104,15 @@ void main(void) {
         uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
         uch_sr=uch_reg[5];
 #if 0
-	 EUSART_Write(uch_cjth);
-	 EUSART_Write(uch_cjtl);
-	 EUSART_Write(uch_ltcbh);
-	 EUSART_Write(uch_ltcbm);
-	 EUSART_Write(uch_ltcbl);
-	 EUSART_Write(uch_sr);
+        EUSART_Write(uch_cjth);
+        EUSART_Write(uch_cjtl);
+        EUSART_Write(uch_ltcbh);
+        EUSART_Write(uch_ltcbm);
+        EUSART_Write(uch_ltcbl);
+        EUSART_Write(uch_sr);
 #endif
 
-#if 1
+#if 0
         if(uch_sr==NO_Fault)                        //如果没有检测到故障
         {
             //计算冷端温度测量结果

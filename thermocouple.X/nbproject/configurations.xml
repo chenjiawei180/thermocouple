@@ -25,6 +25,8 @@
       <itemPath>mcc_generated_files/max31856.c</itemPath>
       <itemPath>mcc_generated_files/debug.c</itemPath>
       <itemPath>mcc_generated_files/debug.h</itemPath>
+      <itemPath>mcc_generated_files/ht1621.h</itemPath>
+      <itemPath>mcc_generated_files/ht1621.c</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript" displayName="链接器文件" projectFiles="true">
     </logicalFolder>

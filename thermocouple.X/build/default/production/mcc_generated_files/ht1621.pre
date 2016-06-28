@@ -1,5 +1,14 @@
 
-# 1 "main.c"
+# 1 "mcc_generated_files/ht1621.c"
+
+# 21 "mcc_generated_files/ht1621.h"
+extern unsigned char const Dis_TAB[];
+
+void SendBit_1621(unsigned char data,unsigned char cnt);
+void SendDataBit_1621(unsigned char data,unsigned char cnt);
+void SendCmd_1621(unsigned char command);
+void Write_1621(unsigned char addr,unsigned char data);
+void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2632,134 +2641,69 @@ void SYSTEM_Initialize(void);
 # 82
 void OSCILLATOR_Initialize(void);
 
-# 26 "mcc_generated_files/global.h"
- unsigned char uch_cr0;
- unsigned char uch_cr1;
- unsigned char uch_mask;
+# 10 "mcc_generated_files/ht1621.c"
+unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27};
 
- unsigned char uch_reg[8];
- unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
- unsigned long temperature_value;
- char s[64];
- float f_cold_junction_temperature;
- float f_linearized_tc_temperature;
-
-# 82 "mcc_generated_files/max31856.h"
-void maxim_31856_init(void);
-void maxim_stop_conversion(void);
-void maxim_start_conversion(uint8_t uch_conversion_mode);
-void maxim_disable_oc_fault_detection(void);
-void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable);
-void maxim_clear_fault_status(void);
-
-void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
-uint8_t maxim_31856_read_register(uint8_t uch_register_address);
-void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
-
-# 21 "mcc_generated_files/ht1621.h"
-extern unsigned char const Dis_TAB[];
-
-void SendBit_1621(unsigned char data,unsigned char cnt);
-void SendDataBit_1621(unsigned char data,unsigned char cnt);
-void SendCmd_1621(unsigned char command);
-void Write_1621(unsigned char addr,unsigned char data);
-void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-
-# 17 "mcc_generated_files/debug.h"
-void EUSART_SendString(char *s);
-
-# 7 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h"
-struct __prbuf
+# 17
+void SendBit_1621(unsigned char data,unsigned char cnt)
 {
-char * ptr;
-void (* func)(char);
-};
-
-# 29 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\errno.h"
-extern int errno;
-
-# 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\conio.h"
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 88 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 59 "main.c"
-void main(void) {
-
-
-
-SYSTEM_Initialize();
-do { LATA3 = 0; } while(0);
-do { LATA4 = 0; } while(0);
-do { LATA0 = 0; } while(0);
-maxim_31856_init();
-do { TRISB3 = 1; } while(0);
-SendCmd_1621(0x52);
-SendCmd_1621(0X28);
-SendCmd_1621(0x02);
-SendCmd_1621(0x06);
-
-WriteAll_1621(0,Dis_TAB,4);
-
-# 95
-while (1)
+unsigned char i;
+for(i =0; i <cnt; i ++)
 {
-
-_delay((unsigned long)((5000)*(16000000/4000.0)));
-
-maxim_start_conversion((uint8_t) 0x40);
-while(RB3);
-maxim_31856_read_nregisters(0x0A, uch_reg,6);
-uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
-uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
-uch_sr=uch_reg[5];
-
-# 182
+if((data&0x80)==0) do { LATC2 = 0; } while(0);
+else do { LATC2 = 1; } while(0);
+do { LATC1 = 0; } while(0);
+_delay((unsigned long)((1)*(16000000/4000.0)));
+do { LATC1 = 1; } while(0);
+data<<=1;
 }
+}
+
+# 37
+void SendDataBit_1621(unsigned char data,unsigned char cnt)
+{
+unsigned char i;
+for(i =0; i <cnt; i ++)
+{
+if((data&0x01)==0) do { LATC2 = 0; } while(0);
+else do { LATC2 = 1; } while(0);
+do { LATC1 = 0; } while(0);
+_delay((unsigned long)((1)*(16000000/4000.0)));
+do { LATC1 = 1; } while(0);
+data>>=1;
+}
+}
+
+# 57
+void SendCmd_1621(unsigned char command)
+{
+do { LATC0 = 0; } while(0);
+SendBit_1621(0x80,4);
+SendBit_1621(command,8);
+do { LATC0 = 1; } while(0);
+}
+
+# 71
+void Write_1621(unsigned char addr,unsigned char data)
+{
+do { LATC0 = 0; } while(0);
+SendBit_1621(0xa0,3);
+SendBit_1621(addr,6);
+SendDataBit_1621(data,4);
+do { LATC0 = 1; } while(0);
+}
+
+# 86
+void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt)
+{
+unsigned char i;
+do { LATC0 = 0; } while(0);
+SendBit_1621(0xa0,3);
+SendBit_1621(addr,6);
+for(i =0; i <cnt; i ++,p++)
+{
+SendDataBit_1621(*p,8);
+}
+do { LATC0 = 1; } while(0);
 }
 
