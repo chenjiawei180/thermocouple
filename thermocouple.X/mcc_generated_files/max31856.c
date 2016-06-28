@@ -158,5 +158,46 @@ void maxim_clear_fault_status(void)
     maxim_31856_write_register(0x80, uch_cr0);
 }
 
+/**
+  * @brief  This function is maxim_clear_fault_status.
+  * @param  None.
+  * @retval None
+  */
+  
+void tc_temperature_trans(void)
+{
+    temperature_value = 0;
+    temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
+    if(uch_ltcbh & 0x80)    temperature_value |=0x2000;
+    if((uch_ltcbh&0x80)==0x80)                                          //如果LTCBH最高位为1，则为负温度值
+    {
+        temperature_sign = 1; 
+        temperature_value=0x3FFF-temperature_value+1;
+        //f_linearized_tc_temperature=0-temperature_value*TC_Resolution;  //计算得到热电偶转换温度值(负值)
+        temperature_int = temperature_value>>3; //高10位为温度值的整数
+        temperature_decimal = temperature_value & 0x07;//低3位为温度值的小数
+        if(temperature_decimal > 3)    temperature_decimal++;  // 变为0123 5678
+        if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++; //变为 0123 4 5678 9
+    }
+    else
+    {
+        temperature_sign = 0; 
+        temperature_int = temperature_value>>3;
+        temperature_decimal = temperature_value & 0x07;
+        if(temperature_decimal > 3)    temperature_decimal++;// 变为0123 5678
+        if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;  //变为 0123 4 5678 9 
+    }
+        
+}
+
+
+
+
+
+
+
+
+
+
 
 

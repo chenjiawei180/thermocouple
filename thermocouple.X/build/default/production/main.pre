@@ -2640,6 +2640,9 @@ void OSCILLATOR_Initialize(void);
  unsigned char uch_reg[8];
  unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
  unsigned long temperature_value;
+ unsigned int temperature_int;
+ unsigned char temperature_decimal,temperature_sign;
+ unsigned char display_buff[4];
  char s[64];
  float f_cold_junction_temperature;
  float f_linearized_tc_temperature;
@@ -2655,6 +2658,7 @@ void maxim_clear_fault_status(void);
 void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
 uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+void tc_temperature_trans(void);
 
 # 21 "mcc_generated_files/ht1621.h"
 extern unsigned char const Dis_TAB[];
@@ -2664,6 +2668,31 @@ void SendDataBit_1621(unsigned char data,unsigned char cnt);
 void SendCmd_1621(unsigned char command);
 void Write_1621(unsigned char addr,unsigned char data);
 void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
+void Display(void);
+
+# 53 "mcc_generated_files/FLash.h"
+unsigned FLASH_read( unsigned address);
+
+# 62
+unsigned FLASH_readConfig( unsigned address);
+
+# 71
+void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
+
+# 82
+void FLASH_write( unsigned address, unsigned data, char latch);
+
+# 90
+void FLASH_erase( unsigned address);
+
+# 22 "mcc_generated_files/HEFLash.h"
+char HEFLASH_writeBlock( char radd, char* buffer, char count);
+
+# 33
+char HEFLASH_readBlock( char* buffer, char radd, char count);
+
+# 43
+char HEFLASH_readByte( char radd, char offset);
 
 # 17 "mcc_generated_files/debug.h"
 void EUSART_SendString(char *s);
@@ -2728,10 +2757,11 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 59 "main.c"
+# 60 "main.c"
 void main(void) {
 
 
+unsigned int data_temp=0;
 
 SYSTEM_Initialize();
 do { LATA3 = 0; } while(0);
@@ -2744,9 +2774,7 @@ SendCmd_1621(0X28);
 SendCmd_1621(0x02);
 SendCmd_1621(0x06);
 
-WriteAll_1621(0,Dis_TAB,4);
-
-# 95
+# 104
 while (1)
 {
 
@@ -2759,7 +2787,14 @@ uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
 uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
 uch_sr=uch_reg[5];
 
-# 182
+# 124
+if(uch_sr==(uint8_t)0x00)
+{
+tc_temperature_trans();
+Display();
+}
+
+# 194
 }
 }
 

@@ -9,6 +9,9 @@ extern unsigned char uch_mask;
 extern unsigned char uch_reg[8];
 extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
 extern unsigned long temperature_value;
+extern unsigned int temperature_int;
+extern unsigned char temperature_decimal,temperature_sign;
+extern unsigned char display_buff[4];
 extern char s[64];
 extern float f_cold_junction_temperature;
 extern float f_linearized_tc_temperature;
@@ -141,6 +144,7 @@ void maxim_clear_fault_status(void);
 void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
 uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+void tc_temperature_trans(void);
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2758,5 +2762,32 @@ void maxim_clear_fault_status(void)
 uch_cr0= maxim_31856_read_register(0x00);
 uch_cr0|= (uint8_t) 0x02 ;
 maxim_31856_write_register(0x80, uch_cr0);
+}
+
+# 167
+void tc_temperature_trans(void)
+{
+temperature_value = 0;
+temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
+if(uch_ltcbh & 0x80) temperature_value |=0x2000;
+if((uch_ltcbh&0x80)==0x80)
+{
+temperature_sign = 1;
+temperature_value=0x3FFF-temperature_value+1;
+
+temperature_int = temperature_value>>3;
+temperature_decimal = temperature_value & 0x07;
+if(temperature_decimal > 3) temperature_decimal++;
+if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++;
+}
+else
+{
+temperature_sign = 0;
+temperature_int = temperature_value>>3;
+temperature_decimal = temperature_value & 0x07;
+if(temperature_decimal > 3) temperature_decimal++;
+if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
+}
+
 }
 

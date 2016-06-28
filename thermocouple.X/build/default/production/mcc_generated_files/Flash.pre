@@ -1,15 +1,5 @@
 
-# 1 "mcc_generated_files/ht1621.c"
-
-# 21 "mcc_generated_files/ht1621.h"
-extern unsigned char const Dis_TAB[];
-
-void SendBit_1621(unsigned char data,unsigned char cnt);
-void SendDataBit_1621(unsigned char data,unsigned char cnt);
-void SendCmd_1621(unsigned char command);
-void Write_1621(unsigned char addr,unsigned char data);
-void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-void Display(void);
+# 1 "mcc_generated_files/Flash.c"
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2504,282 +2494,123 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 362 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize(void);
+# 53 "mcc_generated_files/FLash.h"
+unsigned FLASH_read( unsigned address);
 
-# 374
-void PIN_MANAGER_IOC(void);
-
-# 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
-typedef signed char int8_t;
-
-# 20
-typedef signed int int16_t;
-
-# 28
-typedef signed short long int int24_t;
-
-# 36
-typedef signed long int int32_t;
-
-# 43
-typedef unsigned char uint8_t;
-
-# 49
-typedef unsigned int uint16_t;
-
-# 56
-typedef unsigned short long int uint24_t;
-
-# 63
-typedef unsigned long int uint32_t;
+# 62
+unsigned FLASH_readConfig( unsigned address);
 
 # 71
-typedef signed char int_least8_t;
-
-# 78
-typedef signed int int_least16_t;
-
-# 90
-typedef signed short long int int_least24_t;
-
-# 98
-typedef signed long int int_least32_t;
-
-# 105
-typedef unsigned char uint_least8_t;
-
-# 111
-typedef unsigned int uint_least16_t;
-
-# 121
-typedef unsigned short long int uint_least24_t;
-
-# 128
-typedef unsigned long int uint_least32_t;
-
-# 137
-typedef signed char int_fast8_t;
-
-# 144
-typedef signed int int_fast16_t;
-
-# 156
-typedef signed short long int int_fast24_t;
-
-# 164
-typedef signed long int int_fast32_t;
-
-# 171
-typedef unsigned char uint_fast8_t;
-
-# 177
-typedef unsigned int uint_fast16_t;
-
-# 187
-typedef unsigned short long int uint_fast24_t;
-
-# 194
-typedef unsigned long int uint_fast32_t;
-
-# 200
-typedef int32_t intmax_t;
-
-
-
-
-typedef uint32_t uintmax_t;
-
-
-
-
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-
-# 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
-typedef unsigned char bool;
-
-# 4 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
-typedef unsigned size_t;
-
-# 6 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stddef.h"
-typedef int ptrdiff_t;
-
-# 117 "mcc_generated_files/spi.h"
-void SPI_Initialize(void);
-
-# 152
-uint8_t SPI_Exchange8bit(uint8_t data);
-
-# 192
-uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-
-# 215
-bool SPI_IsBufferFull(void);
-
-# 240
-bool SPI_HasWriteCollisionOccured(void);
-
-# 264
-void SPI_ClearWriteCollisionStatus(void);
-
-# 95 "mcc_generated_files/eusart.h"
-void EUSART_Initialize(void);
-
-# 115
-uint8_t EUSART_Read(void);
-
-# 135
-void EUSART_Write(uint8_t txData);
-
-# 69 "mcc_generated_files/mcc.h"
-void SYSTEM_Initialize(void);
+void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
 
 # 82
-void OSCILLATOR_Initialize(void);
+void FLASH_write( unsigned address, unsigned data, char latch);
 
-# 14 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
+# 90
+void FLASH_erase( unsigned address);
 
-
-
-extern void * __builtin_memcpy(void *, const void *, size_t);
-#pragma intrinsic(__builtin_memcpy)
-
-# 34
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-
-# 26 "mcc_generated_files/global.h"
-extern unsigned char uch_cr0;
-extern unsigned char uch_cr1;
-extern unsigned char uch_mask;
-
-extern unsigned char uch_reg[8];
-extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-extern unsigned long temperature_value;
-extern unsigned int temperature_int;
-extern unsigned char temperature_decimal,temperature_sign;
-extern unsigned char display_buff[4];
-extern char s[64];
-extern float f_cold_junction_temperature;
-extern float f_linearized_tc_temperature;
-
-# 12 "mcc_generated_files/ht1621.c"
-unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27};
-
-# 19
-void SendBit_1621(unsigned char data,unsigned char cnt)
+# 17 "mcc_generated_files/Flash.c"
+unsigned FLASH_readConfig( unsigned address)
 {
-unsigned char i;
-for(i =0; i <cnt; i ++)
+
+PMADR = address;
+PMCON1bits.CFGS = 1;
+PMCON1bits.RD = 1;
+__nop();
+__nop();
+
+
+return PMDAT;
+}
+
+
+unsigned FLASH_read( unsigned address)
 {
-if((data&0x80)==0) do { LATC2 = 0; } while(0);
-else do { LATC2 = 1; } while(0);
-do { LATC1 = 0; } while(0);
-_delay((unsigned long)((1)*(16000000/4000.0)));
-do { LATC1 = 1; } while(0);
-data<<=1;
+
+PMADR = address;
+PMCON1bits.CFGS = 0;
+PMCON1bits.RD = 1;
+__nop();
+__nop();
+
+
+return PMDAT;
+}
+
+
+void FLASH_readBlock( unsigned *buffer, unsigned address, char count)
+{
+while ( count > 0)
+{
+*buffer++ = FLASH_read( address++);
+count--;
 }
 }
 
-# 39
-void SendDataBit_1621(unsigned char data,unsigned char cnt)
+# 58
+void _unlock( void)
 {
-unsigned char i;
-for(i =0; i <cnt; i ++)
+
+# 60
+#asm
+        BANKSEL PMCON2
+        MOVLW 0x55
+        MOVWF PMCON2 & 0x7F
+        MOVLW 0xAA
+        MOVWF PMCON2 & 0x7F
+        BSF PMCON1 & 0x7F,1 ; set WR bit
+        NOP
+ NOP
+#endasm 
+# 69
+
+ }
+
+
+void FLASH_write( unsigned address, unsigned data, char latch)
 {
-if((data&0x01)==0) do { LATC2 = 0; } while(0);
-else do { LATC2 = 1; } while(0);
-do { LATC1 = 0; } while(0);
-_delay((unsigned long)((1)*(16000000/4000.0)));
-do { LATC1 = 1; } while(0);
-data>>=1;
-}
+
+char temp = INTCONbits.GIE;
+INTCONbits.GIE = 0;
+
+
+PMADR = address;
+PMDAT = data;
+PMCON1bits.LWLO = latch;
+PMCON1bits.CFGS = 0;
+PMCON1bits.FREE = 0;
+PMCON1bits.WREN = 1;
+
+
+_unlock();
+
+
+if ( temp)
+INTCONbits.GIE = 1;
+
 }
 
-# 59
-void SendCmd_1621(unsigned char command)
-{
-do { LATC0 = 0; } while(0);
-SendBit_1621(0x80,4);
-SendBit_1621(command,8);
-do { LATC0 = 1; } while(0);
-}
 
-# 73
-void Write_1621(unsigned char addr,unsigned char data)
+void FLASH_erase( unsigned address)
 {
-do { LATC0 = 0; } while(0);
-SendBit_1621(0xa0,3);
-SendBit_1621(addr,6);
-SendDataBit_1621(data,4);
-do { LATC0 = 1; } while(0);
-}
 
-# 88
-void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt)
-{
-unsigned char i;
-do { LATC0 = 0; } while(0);
-SendBit_1621(0xa0,3);
-SendBit_1621(addr,6);
-for(i =0; i <cnt; i ++,p++)
-{
-SendDataBit_1621(*p,8);
-}
-do { LATC0 = 1; } while(0);
-}
+char temp = INTCONbits.GIE;
+INTCONbits.GIE = 0;
 
-# 107
-void Display(void)
-{
-unsigned char count = 0;
-unsigned int data = temperature_int;
-memset(display_buff,0,4);
-while(data)
-{
-count++;
-data /=10;
-}
-switch(count)
-{
-case 3:display_buff[0] = Dis_TAB[temperature_int/100];
-case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
-case 1:display_buff[2] = Dis_TAB[temperature_int%10];
-default:break;
-}
-if(temperature_sign == 1) display_buff[0]|=0x08;
-display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
-WriteAll_1621(0,display_buff,4);
+
+
+PMADR = address;
+PMCON1bits.CFGS = 0;
+PMCON1bits.FREE = 1;
+PMCON1bits.WREN = 1;
+
+
+_unlock();
+
+
+PMCON1bits.WREN = 0;
+if ( temp)
+INTCONbits.GIE = 1;
+
 }
 

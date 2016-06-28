@@ -11,15 +11,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _uch_cr1 `uc ~T0 @X0 0 e ]
 "28
 [v _uch_mask `uc ~T0 @X0 0 e ]
+"32
+[v _temperature_value `ul ~T0 @X0 0 e ]
+"31
+[v _uch_ltcbh `uc ~T0 @X0 0 e ]
+[v _uch_ltcbm `uc ~T0 @X0 0 e ]
+"34
+[v _temperature_sign `uc ~T0 @X0 0 e ]
+"33
+[v _temperature_int `ui ~T0 @X0 0 e ]
+"34
+[v _temperature_decimal `uc ~T0 @X0 0 e ]
 [; ;global.h: 26: extern unsigned char uch_cr0;
 [; ;global.h: 27: extern unsigned char uch_cr1;
 [; ;global.h: 28: extern unsigned char uch_mask;
 [; ;global.h: 30: extern unsigned char uch_reg[8];
 [; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
 [; ;global.h: 32: extern unsigned long temperature_value;
-[; ;global.h: 33: extern char s[64];
-[; ;global.h: 34: extern float f_cold_junction_temperature;
-[; ;global.h: 35: extern float f_linearized_tc_temperature;
+[; ;global.h: 33: extern unsigned int temperature_int;
+[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 35: extern unsigned char display_buff[4];
+[; ;global.h: 36: extern char s[64];
+[; ;global.h: 37: extern float f_cold_junction_temperature;
+[; ;global.h: 38: extern float f_linearized_tc_temperature;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
@@ -66,6 +80,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;max31856.h: 89: void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
 [; ;max31856.h: 90: uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 [; ;max31856.h: 91: void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+[; ;max31856.h: 92: void tc_temperature_trans(void);
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2185,4 +2200,88 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;max31856.c: 159: }
 "159
 [e :UE 259 ]
+}
+"167
+[v _tc_temperature_trans `(v ~T0 @X0 1 ef ]
+"168
+{
+[; ;max31856.c: 167: void tc_temperature_trans(void)
+[; ;max31856.c: 168: {
+[e :U _tc_temperature_trans ]
+[f ]
+[; ;max31856.c: 169: temperature_value = 0;
+"169
+[e = _temperature_value -> -> -> 0 `i `l `ul ]
+[; ;max31856.c: 170: temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
+"170
+[e = _temperature_value -> -> >> | << & -> _uch_ltcbh `i -> 63 `i -> 8 `i -> _uch_ltcbm `i -> 1 `i `l `ul ]
+[; ;max31856.c: 171: if(uch_ltcbh & 0x80) temperature_value |=0x2000;
+"171
+[e $ ! != & -> _uch_ltcbh `i -> 128 `i -> 0 `i 261  ]
+[e =| _temperature_value -> -> -> 8192 `i `l `ul ]
+[e :U 261 ]
+[; ;max31856.c: 172: if((uch_ltcbh&0x80)==0x80)
+"172
+[e $ ! == & -> _uch_ltcbh `i -> 128 `i -> 128 `i 262  ]
+[; ;max31856.c: 173: {
+"173
+{
+[; ;max31856.c: 174: temperature_sign = 1;
+"174
+[e = _temperature_sign -> -> 1 `i `uc ]
+[; ;max31856.c: 175: temperature_value=0x3FFF-temperature_value+1;
+"175
+[e = _temperature_value + - -> -> -> 16383 `i `l `ul _temperature_value -> -> -> 1 `i `l `ul ]
+[; ;max31856.c: 177: temperature_int = temperature_value>>3;
+"177
+[e = _temperature_int -> >> _temperature_value -> 3 `i `ui ]
+[; ;max31856.c: 178: temperature_decimal = temperature_value & 0x07;
+"178
+[e = _temperature_decimal -> & _temperature_value -> -> -> 7 `i `l `ul `uc ]
+[; ;max31856.c: 179: if(temperature_decimal > 3) temperature_decimal++;
+"179
+[e $ ! > -> _temperature_decimal `i -> 3 `i 263  ]
+[e ++ _temperature_decimal -> -> 1 `i `uc ]
+[e :U 263 ]
+[; ;max31856.c: 180: if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++;
+"180
+[e $ ! && || == -> _temperature_decimal `i -> 3 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 264  ]
+[e ++ _temperature_decimal -> -> 1 `i `uc ]
+[e :U 264 ]
+"181
+}
+[; ;max31856.c: 181: }
+[e $U 265  ]
+"182
+[e :U 262 ]
+[; ;max31856.c: 182: else
+[; ;max31856.c: 183: {
+"183
+{
+[; ;max31856.c: 184: temperature_sign = 0;
+"184
+[e = _temperature_sign -> -> 0 `i `uc ]
+[; ;max31856.c: 185: temperature_int = temperature_value>>3;
+"185
+[e = _temperature_int -> >> _temperature_value -> 3 `i `ui ]
+[; ;max31856.c: 186: temperature_decimal = temperature_value & 0x07;
+"186
+[e = _temperature_decimal -> & _temperature_value -> -> -> 7 `i `l `ul `uc ]
+[; ;max31856.c: 187: if(temperature_decimal > 3) temperature_decimal++;
+"187
+[e $ ! > -> _temperature_decimal `i -> 3 `i 266  ]
+[e ++ _temperature_decimal -> -> 1 `i `uc ]
+[e :U 266 ]
+[; ;max31856.c: 188: if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
+"188
+[e $ ! && || == -> _temperature_decimal `i -> 4 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 267  ]
+[e ++ _temperature_decimal -> -> 1 `i `uc ]
+[e :U 267 ]
+"189
+}
+[e :U 265 ]
+[; ;max31856.c: 189: }
+[; ;max31856.c: 191: }
+"191
+[e :UE 260 ]
 }

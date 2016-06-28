@@ -9,9 +9,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 30: extern unsigned char uch_reg[8];
 [; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
 [; ;global.h: 32: extern unsigned long temperature_value;
-[; ;global.h: 33: extern char s[64];
-[; ;global.h: 34: extern float f_cold_junction_temperature;
-[; ;global.h: 35: extern float f_linearized_tc_temperature;
+[; ;global.h: 33: extern unsigned int temperature_int;
+[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 35: extern unsigned char display_buff[4];
+[; ;global.h: 36: extern char s[64];
+[; ;global.h: 37: extern float f_cold_junction_temperature;
+[; ;global.h: 38: extern float f_linearized_tc_temperature;
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);

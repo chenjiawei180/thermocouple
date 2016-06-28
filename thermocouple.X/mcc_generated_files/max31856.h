@@ -89,6 +89,7 @@ void maxim_clear_fault_status(void);
 void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
 uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+void tc_temperature_trans(void);
 
 
 #ifdef	__cplusplus

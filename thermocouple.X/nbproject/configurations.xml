@@ -27,6 +27,10 @@
       <itemPath>mcc_generated_files/debug.h</itemPath>
       <itemPath>mcc_generated_files/ht1621.h</itemPath>
       <itemPath>mcc_generated_files/ht1621.c</itemPath>
+      <itemPath>mcc_generated_files/FLash.h</itemPath>
+      <itemPath>mcc_generated_files/Flash.c</itemPath>
+      <itemPath>mcc_generated_files/HEFLash.h</itemPath>
+      <itemPath>mcc_generated_files/HEFlash.c</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript" displayName="链接器文件" projectFiles="true">
     </logicalFolder>

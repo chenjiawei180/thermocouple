@@ -7,6 +7,8 @@
 
 #include "ht1621.h"
 #include "mcc.h"
+#include "string.h"
+#include "global.h"
 unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27};//"0"-"f"
   /**
   * @brief  This function is SendBit_1621.
@@ -96,8 +98,33 @@ void WriteAll_1621(uchar addr,uchar *p,uchar cnt)
     HT_CS_SetHigh();
 }
 
-
-
+  /**
+  * @brief  This function is WriteAll_1621.
+  * @param uchar addr,uchar data.
+  * @retval None
+  */
+  
+void Display(void)
+{
+    unsigned char count = 0;
+    unsigned int data = temperature_int;
+    memset(display_buff,0,4);
+    while(data) //计算位数
+    {
+        count++;
+        data /=10;
+    }
+    switch(count) //整数幅值
+    {
+        case 3:display_buff[0] = Dis_TAB[temperature_int/100]; 
+        case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
+        case 1:display_buff[2] = Dis_TAB[temperature_int%10];
+        default:break;
+    }
+    if(temperature_sign == 1) display_buff[0]|=0x08; //赋值符号
+    display_buff[3] = Dis_TAB[temperature_decimal] | 0x08; //幅值小数与小数点
+    WriteAll_1621(0,display_buff,4);
+}
 
 
 

@@ -49,6 +49,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "mcc_generated_files/global.h"
 #include "mcc_generated_files/max31856.h"
 #include "mcc_generated_files/ht1621.h"
+#include "mcc_generated_files/HEFLash.h"
 #ifdef DEBUG
 #include "mcc_generated_files/debug.h"
 #endif
@@ -59,6 +60,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 void main(void) {
     //unsigned char a[10];
     //a[0]=0x51;a[1]=0x00;a[2]=0x00;a[3]=0x00;a[4]=0x00;
+    unsigned int data_temp=0;
     // initialize the device
     SYSTEM_Initialize();
     LED1_SetLow();
@@ -71,7 +73,14 @@ void main(void) {
     SendCmd_1621(SYSEN);	//打开系统振荡器
     SendCmd_1621(LCDON);	//打开LCD偏压发生器
     //Write_1621(0x24,0x01);	//0x24：(地址)的高6位有效，0x01：(数据)的低4位有效
-    WriteAll_1621(0,Dis_TAB,4);	//0：(起始地址)高6位有效，a：(写入数据的起始地址)8位
+    //WriteAll_1621(0,Dis_TAB,4);	//0：(起始地址)高6位有效，a：(写入数据的起始地址)8位
+#if 0
+    FLASH_write(0x3FFF, 0xFFFF, 0);
+    data_temp = FLASH_read(0X3FFF);
+    EUSART_Write(data_temp>>8);
+    EUSART_Write(data_temp&0XFF);
+#endif
+
 #ifdef DEBUG
     //EUSART_SendString("hello pic16f1518 \n\r");
     
@@ -111,6 +120,13 @@ void main(void) {
         EUSART_Write(uch_ltcbl);
         EUSART_Write(uch_sr);
 #endif
+#if 1
+        if(uch_sr==NO_Fault)  
+        {
+            tc_temperature_trans();
+	     Display();
+        }
+#endif
 
 #if 0
         if(uch_sr==NO_Fault)                        //如果没有检测到故障
@@ -130,23 +146,19 @@ void main(void) {
             EUSART_SendString("Cold_Junction temperature is: ");
             EUSART_SendString(s);
             EUSART_SendString("\n\r");
+         
             //计算热电偶测温结果
             temperature_value = 0;
            // temperature_value = (( (uch_ltcbh<<16) | (uch_ltcbm<<8) | uch_ltcbl ) >> 5) ;         //构造热电偶温度数据
-            temperature_value <<=8;
-            temperature_value |= uch_ltcbh ;
-            temperature_value <<=8;
-            temperature_value |= uch_ltcbm ;
-            temperature_value <<=8;
-            temperature_value |= uch_ltcbl ;
-            temperature_value>>=5;
+            temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
+	        if(uch_ltcbh & 0x80)    temperature_value |=0x2000;
             if((uch_ltcbh&0x80)==0x80)                                          //如果LTCBH最高位为1，则为负温度值
             {
                 temperature_value=0x7FFFF-temperature_value+1;
                 f_linearized_tc_temperature=0-temperature_value*TC_Resolution;  //计算得到热电偶转换温度值(负值)
             }
             else
-                f_linearized_tc_temperature=temperature_value*TC_Resolution;     //计算得到热电偶转换温度值(正值)
+                f_linearized_tc_temperature=temperature_value*0.125;     //计算得到热电偶转换温度值(正值)
             //f_linearized_tc_temperature = 1234.5678;
             //串口输出热电偶转换温度结果
             sprintf(s,"%f",f_linearized_tc_temperature);

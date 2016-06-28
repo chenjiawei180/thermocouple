@@ -14,10 +14,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TRISB3 `Vb ~T0 @X0 0 e@1131 ]
 "25 mcc_generated_files/ht1621.h
 [v _SendCmd_1621 `(v ~T0 @X0 0 ef1`uc ]
-"27
-[v _WriteAll_1621 `(v ~T0 @X0 0 ef3`uc`*uc`uc ]
-"21
-[v _Dis_TAB `Cuc ~T0 @X0 -> 0 `x e ]
 [v F1816 `(v ~T0 @X0 1 tf1`ul ]
 "152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
 [v __delay `JF1816 ~T0 @X0 0 e ]
@@ -28,6 +24,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RB3 `Vb ~T0 @X0 0 e@107 ]
 "91 mcc_generated_files/max31856.h
 [v _maxim_31856_read_nregisters `(v ~T0 @X0 0 ef3`uc`*uc`uc ]
+"92
+[v _tc_temperature_trans `(v ~T0 @X0 0 ef ]
+"28 mcc_generated_files/ht1621.h
+[v _Display `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1917,14 +1917,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _temperature_value `ul ~T0 @X0 1 e ]
 [; ;global.h: 32: unsigned long temperature_value;
 "33
-[v _s `uc ~T0 @X0 -> 64 `i e ]
-[; ;global.h: 33: char s[64];
+[v _temperature_int `ui ~T0 @X0 1 e ]
+[; ;global.h: 33: unsigned int temperature_int;
 "34
-[v _f_cold_junction_temperature `f ~T0 @X0 1 e ]
-[; ;global.h: 34: float f_cold_junction_temperature;
+[v _temperature_decimal `uc ~T0 @X0 1 e ]
+[v _temperature_sign `uc ~T0 @X0 1 e ]
+[; ;global.h: 34: unsigned char temperature_decimal,temperature_sign;
 "35
+[v _display_buff `uc ~T0 @X0 -> 4 `i e ]
+[; ;global.h: 35: unsigned char display_buff[4];
+"36
+[v _s `uc ~T0 @X0 -> 64 `i e ]
+[; ;global.h: 36: char s[64];
+"37
+[v _f_cold_junction_temperature `f ~T0 @X0 1 e ]
+[; ;global.h: 37: float f_cold_junction_temperature;
+"38
 [v _f_linearized_tc_temperature `f ~T0 @X0 1 e ]
-[; ;global.h: 35: float f_linearized_tc_temperature;
+[; ;global.h: 38: float f_linearized_tc_temperature;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
@@ -1934,12 +1944,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;max31856.h: 89: void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
 [; ;max31856.h: 90: uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 [; ;max31856.h: 91: void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+[; ;max31856.h: 92: void tc_temperature_trans(void);
 [; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
 [; ;ht1621.h: 23: void SendBit_1621(unsigned char data,unsigned char cnt);
 [; ;ht1621.h: 24: void SendDataBit_1621(unsigned char data,unsigned char cnt);
 [; ;ht1621.h: 25: void SendCmd_1621(unsigned char command);
 [; ;ht1621.h: 26: void Write_1621(unsigned char addr,unsigned char data);
 [; ;ht1621.h: 27: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
+[; ;ht1621.h: 28: void Display(void);
+[; ;FLash.h: 53: unsigned FLASH_read( unsigned address);
+[; ;FLash.h: 62: unsigned FLASH_readConfig( unsigned address);
+[; ;FLash.h: 71: void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
+[; ;FLash.h: 82: void FLASH_write( unsigned address, unsigned data, char latch);
+[; ;FLash.h: 90: void FLASH_erase( unsigned address);
+[; ;HEFLash.h: 22: char HEFLASH_writeBlock( char radd, char* buffer, char count);
+[; ;HEFLash.h: 33: char HEFLASH_readBlock( char* buffer, char radd, char count);
+[; ;HEFLash.h: 43: char HEFLASH_readByte( char radd, char offset);
 [; ;debug.h: 17: void EUSART_SendString(char *s);
 [; ;stdarg.h: 7: typedef void * va_list[1];
 [; ;stdarg.h: 10: extern void * __va_start(void);
@@ -1970,103 +1990,120 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
-"59 main.c
+"60 main.c
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 59: void main(void) {
+[; ;main.c: 60: void main(void) {
 [e :U _main ]
 [f ]
-[; ;main.c: 63: SYSTEM_Initialize();
 "63
+[v _data_temp `ui ~T0 @X0 1 a ]
+[; ;main.c: 63: unsigned int data_temp=0;
+[e = _data_temp -> -> 0 `i `ui ]
+[; ;main.c: 65: SYSTEM_Initialize();
+"65
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 64: do { LATA3 = 0; } while(0);
-"64
+[; ;main.c: 66: do { LATA3 = 0; } while(0);
+"66
 [e :U 237 ]
 {
 [e = _LATA3 -> -> 0 `i `b ]
 }
 [e :U 236 ]
-[; ;main.c: 65: do { LATA4 = 0; } while(0);
-"65
+[; ;main.c: 67: do { LATA4 = 0; } while(0);
+"67
 [e :U 240 ]
 {
 [e = _LATA4 -> -> 0 `i `b ]
 }
 [e :U 239 ]
-[; ;main.c: 66: do { LATA0 = 0; } while(0);
-"66
+[; ;main.c: 68: do { LATA0 = 0; } while(0);
+"68
 [e :U 243 ]
 {
 [e = _LATA0 -> -> 0 `i `b ]
 }
 [e :U 242 ]
-[; ;main.c: 67: maxim_31856_init();
-"67
+[; ;main.c: 69: maxim_31856_init();
+"69
 [e ( _maxim_31856_init ..  ]
-[; ;main.c: 68: do { TRISB3 = 1; } while(0);
-"68
+[; ;main.c: 70: do { TRISB3 = 1; } while(0);
+"70
 [e :U 246 ]
 {
 [e = _TRISB3 -> -> 1 `i `b ]
 }
 [e :U 245 ]
-[; ;main.c: 69: SendCmd_1621(0x52);
-"69
-[e ( _SendCmd_1621 (1 -> -> 82 `i `uc ]
-[; ;main.c: 70: SendCmd_1621(0X28);
-"70
-[e ( _SendCmd_1621 (1 -> -> 40 `i `uc ]
-[; ;main.c: 71: SendCmd_1621(0x02);
+[; ;main.c: 71: SendCmd_1621(0x52);
 "71
-[e ( _SendCmd_1621 (1 -> -> 2 `i `uc ]
-[; ;main.c: 72: SendCmd_1621(0x06);
+[e ( _SendCmd_1621 (1 -> -> 82 `i `uc ]
+[; ;main.c: 72: SendCmd_1621(0X28);
 "72
-[e ( _SendCmd_1621 (1 -> -> 6 `i `uc ]
-[; ;main.c: 74: WriteAll_1621(0,Dis_TAB,4);
+[e ( _SendCmd_1621 (1 -> -> 40 `i `uc ]
+[; ;main.c: 73: SendCmd_1621(0x02);
+"73
+[e ( _SendCmd_1621 (1 -> -> 2 `i `uc ]
+[; ;main.c: 74: SendCmd_1621(0x06);
 "74
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc -> &U _Dis_TAB `*uc -> -> 4 `i `uc ]
-[; ;main.c: 95: while (1)
-"95
+[e ( _SendCmd_1621 (1 -> -> 6 `i `uc ]
+[; ;main.c: 104: while (1)
+"104
 [e :U 248 ]
-[; ;main.c: 96: {
-"96
+[; ;main.c: 105: {
+"105
 {
-[; ;main.c: 98: _delay((unsigned long)((5000)*(16000000/4000.0)));
-"98
+[; ;main.c: 107: _delay((unsigned long)((5000)*(16000000/4000.0)));
+"107
 [e ( __delay (1 -> * -> -> 5000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;main.c: 100: maxim_start_conversion((uint8_t) 0x40);
-"100
+[; ;main.c: 109: maxim_start_conversion((uint8_t) 0x40);
+"109
 [e ( _maxim_start_conversion (1 -> -> 64 `i `uc ]
-[; ;main.c: 101: while(RB3);
-"101
+[; ;main.c: 110: while(RB3);
+"110
 [e $U 250  ]
 [e :U 251 ]
 [e :U 250 ]
 [e $ _RB3 251  ]
 [e :U 252 ]
-[; ;main.c: 102: maxim_31856_read_nregisters(0x0A, uch_reg,6);
-"102
+[; ;main.c: 111: maxim_31856_read_nregisters(0x0A, uch_reg,6);
+"111
 [e ( _maxim_31856_read_nregisters (3 , , -> -> 10 `i `uc &U _uch_reg -> -> 6 `i `uc ]
-[; ;main.c: 103: uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
-"103
+[; ;main.c: 112: uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
+"112
 [e = _uch_cjth *U + &U _uch_reg * -> -> -> 0 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
 [e = _uch_cjtl *U + &U _uch_reg * -> -> -> 1 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[; ;main.c: 104: uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
-"104
+[; ;main.c: 113: uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
+"113
 [e = _uch_ltcbh *U + &U _uch_reg * -> -> -> 2 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
 [e = _uch_ltcbm *U + &U _uch_reg * -> -> -> 3 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
 [e = _uch_ltcbl *U + &U _uch_reg * -> -> -> 4 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[; ;main.c: 105: uch_sr=uch_reg[5];
-"105
+[; ;main.c: 114: uch_sr=uch_reg[5];
+"114
 [e = _uch_sr *U + &U _uch_reg * -> -> -> 5 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-"182
+[; ;main.c: 124: if(uch_sr==(uint8_t)0x00)
+"124
+[e $ ! == -> _uch_sr `i -> -> -> 0 `i `uc `i 253  ]
+[; ;main.c: 125: {
+"125
+{
+[; ;main.c: 126: tc_temperature_trans();
+"126
+[e ( _tc_temperature_trans ..  ]
+[; ;main.c: 127: Display();
+"127
+[e ( _Display ..  ]
+"128
+}
+[e :U 253 ]
+"194
 }
 [e :U 247 ]
-"95
+"104
 [e $U 248  ]
 [e :U 249 ]
-[; ;main.c: 182: }
-[; ;main.c: 183: }
-"183
+[; ;main.c: 128: }
+[; ;main.c: 194: }
+[; ;main.c: 195: }
+"195
 [e :UE 234 ]
 }

@@ -1,30 +1,18 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"4471 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _LATC2 `Vb ~T0 @X0 0 e@2162 ]
-"4469
-[v _LATC1 `Vb ~T0 @X0 0 e@2161 ]
-[v F1834 `(v ~T0 @X0 1 tf1`ul ]
-"152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1834 ~T0 @X0 0 e ]
-[p i __delay ]
-"4467 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _LATC0 `Vb ~T0 @X0 0 e@2160 ]
-"33 mcc_generated_files/global.h
-[v _temperature_int `ui ~T0 @X0 0 e ]
-"16 D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h
-[v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
-"35 mcc_generated_files/global.h
-[v _display_buff `uc ~T0 @X0 -> 0 `x e ]
-"34
-[v _temperature_sign `uc ~T0 @X0 0 e ]
-[v _temperature_decimal `uc ~T0 @X0 0 e ]
-[; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
-[; ;ht1621.h: 23: void SendBit_1621(unsigned char data,unsigned char cnt);
-[; ;ht1621.h: 24: void SendDataBit_1621(unsigned char data,unsigned char cnt);
-[; ;ht1621.h: 25: void SendCmd_1621(unsigned char command);
-[; ;ht1621.h: 26: void Write_1621(unsigned char addr,unsigned char data);
-[; ;ht1621.h: 27: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-[; ;ht1621.h: 28: void Display(void);
+"90 mcc_generated_files/FLash.h
+[v _FLASH_erase `(v ~T0 @X0 0 ef1`ui ]
+"82
+[v _FLASH_write `(v ~T0 @X0 0 ef3`ui`ui`uc ]
+"2370 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[s S125 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S125 . RD WR WREN WRERR FREE LWLO CFGS ]
+"2369
+[u S124 `S125 1 ]
+[n S124 . . ]
+"2380
+[v _PMCON1bits `VS124 ~T0 @X0 0 e@405 ]
+"53 mcc_generated_files/FLash.h
+[v _FLASH_read `(ui ~T0 @X0 0 ef1`ui ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1846,485 +1834,147 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 186: extern unsigned char __resetbits;
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
-[; ;pin_manager.h: 362: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 374: void PIN_MANAGER_IOC(void);
-[; ;stdint.h: 13: typedef signed char int8_t;
-[; ;stdint.h: 20: typedef signed int int16_t;
-[; ;stdint.h: 28: typedef signed short long int int24_t;
-[; ;stdint.h: 36: typedef signed long int int32_t;
-[; ;stdint.h: 43: typedef unsigned char uint8_t;
-[; ;stdint.h: 49: typedef unsigned int uint16_t;
-[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
-[; ;stdint.h: 63: typedef unsigned long int uint32_t;
-[; ;stdint.h: 71: typedef signed char int_least8_t;
-[; ;stdint.h: 78: typedef signed int int_least16_t;
-[; ;stdint.h: 90: typedef signed short long int int_least24_t;
-[; ;stdint.h: 98: typedef signed long int int_least32_t;
-[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
-[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
-[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
-[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
-[; ;stdint.h: 137: typedef signed char int_fast8_t;
-[; ;stdint.h: 144: typedef signed int int_fast16_t;
-[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
-[; ;stdint.h: 164: typedef signed long int int_fast32_t;
-[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
-[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
-[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
-[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
-[; ;stdint.h: 200: typedef int32_t intmax_t;
-[; ;stdint.h: 205: typedef uint32_t uintmax_t;
-[; ;stdint.h: 210: typedef int16_t intptr_t;
-[; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;stddef.h: 6: typedef int ptrdiff_t;
-[; ;spi.h: 117: void SPI_Initialize(void);
-[; ;spi.h: 152: uint8_t SPI_Exchange8bit(uint8_t data);
-[; ;spi.h: 192: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-[; ;spi.h: 215: bool SPI_IsBufferFull(void);
-[; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
-[; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
-[; ;eusart.h: 95: void EUSART_Initialize(void);
-[; ;eusart.h: 115: uint8_t EUSART_Read(void);
-[; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
-[; ;mcc.h: 69: void SYSTEM_Initialize(void);
-[; ;mcc.h: 82: void OSCILLATOR_Initialize(void);
-[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
-[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
-[; ;string.h: 16: extern void * memset(void *, int, size_t);
-[; ;string.h: 20: extern void * __builtin_memcpy(void *, const void *, size_t);
-[; ;string.h: 34: extern char * strcat(char *, const char *);
-[; ;string.h: 35: extern char * strcpy(char *, const char *);
-[; ;string.h: 36: extern char * strncat(char *, const char *, size_t);
-[; ;string.h: 37: extern char * strncpy(char *, const char *, size_t);
-[; ;string.h: 38: extern char * strdup(const char *);
-[; ;string.h: 39: extern char * strtok(char *, const char *);
-[; ;string.h: 42: extern int memcmp(const void *, const void *, size_t);
-[; ;string.h: 43: extern int strcmp(const char *, const char *);
-[; ;string.h: 44: extern int stricmp(const char *, const char *);
-[; ;string.h: 45: extern int strncmp(const char *, const char *, size_t);
-[; ;string.h: 46: extern int strnicmp(const char *, const char *, size_t);
-[; ;string.h: 47: extern void * memchr(const void *, int, size_t);
-[; ;string.h: 48: extern size_t strcspn(const char *, const char *);
-[; ;string.h: 49: extern char * strpbrk(const char *, const char *);
-[; ;string.h: 50: extern size_t strspn(const char *, const char *);
-[; ;string.h: 51: extern char * strstr(const char *, const char *);
-[; ;string.h: 52: extern char * stristr(const char *, const char *);
-[; ;string.h: 53: extern char * strerror(int);
-[; ;string.h: 54: extern size_t strlen(const char *);
-[; ;string.h: 55: extern char * strchr(const char *, int);
-[; ;string.h: 56: extern char * strichr(const char *, int);
-[; ;string.h: 57: extern char * strrchr(const char *, int);
-[; ;string.h: 58: extern char * strrichr(const char *, int);
-[; ;global.h: 26: extern unsigned char uch_cr0;
-[; ;global.h: 27: extern unsigned char uch_cr1;
-[; ;global.h: 28: extern unsigned char uch_mask;
-[; ;global.h: 30: extern unsigned char uch_reg[8];
-[; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 32: extern unsigned long temperature_value;
-[; ;global.h: 33: extern unsigned int temperature_int;
-[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 35: extern unsigned char display_buff[4];
-[; ;global.h: 36: extern char s[64];
-[; ;global.h: 37: extern float f_cold_junction_temperature;
-[; ;global.h: 38: extern float f_linearized_tc_temperature;
-"12 mcc_generated_files/ht1621.c
-[v _Dis_TAB `Cuc ~T0 @X0 -> 0 `x e ]
-[i _Dis_TAB
-:U ..
--> -> 215 `i `uc
--> -> 80 `i `uc
--> -> 181 `i `uc
--> -> 241 `i `uc
--> -> 114 `i `uc
--> -> 227 `i `uc
--> -> 231 `i `uc
--> -> 81 `i `uc
--> -> 247 `i `uc
--> -> 243 `i `uc
--> -> 119 `i `uc
--> -> 230 `i `uc
--> -> 135 `i `uc
--> -> 244 `i `uc
--> -> 167 `i `uc
--> -> 39 `i `uc
-..
-]
-[; ;ht1621.c: 12: unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27};
-"19
-[v _SendBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
-"20
+[; ;FLash.h: 53: unsigned FLASH_read( unsigned address);
+[; ;FLash.h: 62: unsigned FLASH_readConfig( unsigned address);
+[; ;FLash.h: 71: void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
+[; ;FLash.h: 82: void FLASH_write( unsigned address, unsigned data, char latch);
+[; ;FLash.h: 90: void FLASH_erase( unsigned address);
+[; ;HEFLash.h: 22: char HEFLASH_writeBlock( char radd, char* buffer, char count);
+[; ;HEFLash.h: 33: char HEFLASH_readBlock( char* buffer, char radd, char count);
+[; ;HEFLash.h: 43: char HEFLASH_readByte( char radd, char offset);
+"17 mcc_generated_files/HEFlash.c
+[v _HEFLASH_writeBlock `(uc ~T0 @X0 1 ef3`uc`*uc`uc ]
+"18
 {
-[; ;ht1621.c: 19: void SendBit_1621(unsigned char data,unsigned char cnt)
-[; ;ht1621.c: 20: {
-[e :U _SendBit_1621 ]
-"19
-[v _data `uc ~T0 @X0 1 r1 ]
-[v _cnt `uc ~T0 @X0 1 r2 ]
-"20
+[; ;HEFlash.c: 17: char HEFLASH_writeBlock( char radd, char* data, char count)
+[; ;HEFlash.c: 18: {
+[e :U _HEFLASH_writeBlock ]
+"17
+[v _radd `uc ~T0 @X0 1 r1 ]
+[v _data `*uc ~T0 @X0 1 r2 ]
+[v _count `uc ~T0 @X0 1 r3 ]
+"18
 [f ]
-"21
-[v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 21: unsigned char i;
-[; ;ht1621.c: 22: for(i =0; i <cnt; i ++)
-"22
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 237  ]
+"20
+[v _add `ui ~T0 @X0 1 a ]
+[; ;HEFlash.c: 20: unsigned add = radd * 32 + 0x3F80;
+[e = _add -> + * -> _radd `i -> 32 `i -> 16256 `i `ui ]
+[; ;HEFlash.c: 23: if ( ( count > 32) || (radd >= (0x3FFF-0x3F80+1)/32))
 "23
-[e :U 234 ]
-[; ;ht1621.c: 23: {
-{
-[; ;ht1621.c: 24: if((data&0x80)==0) do { LATC2 = 0; } while(0);
+[e $ ! || > -> _count `i -> 32 `i >= -> _radd `i / + - -> 16383 `i -> 16256 `i -> 1 `i -> 32 `i 234  ]
+[; ;HEFlash.c: 24: return -1;
 "24
-[e $ ! == & -> _data `i -> 128 `i -> 0 `i 238  ]
-[e :U 241 ]
-{
-[e = _LATC2 -> -> 0 `i `b ]
-}
-[e :U 240 ]
-[e $U 242  ]
-"25
-[e :U 238 ]
-[; ;ht1621.c: 25: else do { LATC2 = 1; } while(0);
-[e :U 245 ]
-{
-[e = _LATC2 -> -> 1 `i `b ]
-}
-[e :U 244 ]
-[e :U 242 ]
-[; ;ht1621.c: 26: do { LATC1 = 0; } while(0);
-"26
-[e :U 248 ]
-{
-[e = _LATC1 -> -> 0 `i `b ]
-}
-[e :U 247 ]
-[; ;ht1621.c: 27: _delay((unsigned long)((1)*(16000000/4000.0)));
+[e ) -> -U -> 1 `i `uc ]
+[e $UE 233  ]
+[e :U 234 ]
+[; ;HEFlash.c: 27: FLASH_erase( add);
 "27
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;ht1621.c: 28: do { LATC1 = 1; } while(0);
-"28
-[e :U 251 ]
-{
-[e = _LATC1 -> -> 1 `i `b ]
-}
-[e :U 250 ]
-[; ;ht1621.c: 29: data<<=1;
-"29
-[e =<< _data -> 1 `i ]
+[e ( _FLASH_erase (1 _add ]
+[; ;HEFlash.c: 30: while( count > 1)
 "30
+[e $U 235  ]
+[e :U 236 ]
+[; ;HEFlash.c: 31: {
+"31
+{
+[; ;HEFlash.c: 33: FLASH_write( add++, (unsigned) *data++, 1);
+"33
+[e ( _FLASH_write (3 , , ++ _add -> -> 1 `i `ui -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `ui -> -> 1 `i `uc ]
+[; ;HEFlash.c: 34: count--;
+"34
+[e -- _count -> -> 1 `i `uc ]
+"35
 }
-"22
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 237 ]
-[e $ < -> _i `i -> _cnt `i 234  ]
 [e :U 235 ]
 "30
-}
-[; ;ht1621.c: 30: }
-[; ;ht1621.c: 31: }
-"31
+[e $ > -> _count `i -> 1 `i 236  ]
+[e :U 237 ]
+[; ;HEFlash.c: 35: }
+[; ;HEFlash.c: 39: FLASH_write( add, (unsigned) *data, 0);
+"39
+[e ( _FLASH_write (3 , , _add -> *U _data `ui -> -> 0 `i `uc ]
+[; ;HEFlash.c: 44: return PMCON1bits.WRERR;
+"44
+[e ) . . _PMCON1bits 0 3 ]
+[e $UE 233  ]
+[; ;HEFlash.c: 46: }
+"46
 [e :UE 233 ]
 }
-"39
-[v _SendDataBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
-"40
-{
-[; ;ht1621.c: 39: void SendDataBit_1621(unsigned char data,unsigned char cnt)
-[; ;ht1621.c: 40: {
-[e :U _SendDataBit_1621 ]
-"39
-[v _data `uc ~T0 @X0 1 r1 ]
-[v _cnt `uc ~T0 @X0 1 r2 ]
-"40
-[f ]
-"41
-[v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 41: unsigned char i;
-[; ;ht1621.c: 42: for(i =0; i <cnt; i ++)
-"42
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 256  ]
-"43
-[e :U 253 ]
-[; ;ht1621.c: 43: {
-{
-[; ;ht1621.c: 44: if((data&0x01)==0) do { LATC2 = 0; } while(0);
-"44
-[e $ ! == & -> _data `i -> 1 `i -> 0 `i 257  ]
-[e :U 260 ]
-{
-[e = _LATC2 -> -> 0 `i `b ]
-}
-[e :U 259 ]
-[e $U 261  ]
-"45
-[e :U 257 ]
-[; ;ht1621.c: 45: else do { LATC2 = 1; } while(0);
-[e :U 264 ]
-{
-[e = _LATC2 -> -> 1 `i `b ]
-}
-[e :U 263 ]
-[e :U 261 ]
-[; ;ht1621.c: 46: do { LATC1 = 0; } while(0);
-"46
-[e :U 267 ]
-{
-[e = _LATC1 -> -> 0 `i `b ]
-}
-[e :U 266 ]
-[; ;ht1621.c: 47: _delay((unsigned long)((1)*(16000000/4000.0)));
-"47
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;ht1621.c: 48: do { LATC1 = 1; } while(0);
-"48
-[e :U 270 ]
-{
-[e = _LATC1 -> -> 1 `i `b ]
-}
-[e :U 269 ]
-[; ;ht1621.c: 49: data>>=1;
 "49
-[e =>> _data -> 1 `i ]
+[v _HEFLASH_readBlock `(uc ~T0 @X0 1 ef3`*uc`uc`uc ]
 "50
-}
-"42
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 256 ]
-[e $ < -> _i `i -> _cnt `i 253  ]
-[e :U 254 ]
+{
+[; ;HEFlash.c: 49: char HEFLASH_readBlock( char *buffer, char radd, char count)
+[; ;HEFlash.c: 50: {
+[e :U _HEFLASH_readBlock ]
+"49
+[v _buffer `*uc ~T0 @X0 1 r1 ]
+[v _radd `uc ~T0 @X0 1 r2 ]
+[v _count `uc ~T0 @X0 1 r3 ]
 "50
-}
-[; ;ht1621.c: 50: }
-[; ;ht1621.c: 51: }
-"51
-[e :UE 252 ]
-}
+[f ]
+"52
+[v _add `ui ~T0 @X0 1 a ]
+[; ;HEFlash.c: 52: unsigned add = radd * 32 + 0x3F80;
+[e = _add -> + * -> _radd `i -> 32 `i -> 16256 `i `ui ]
+[; ;HEFlash.c: 55: if ( ( count > 32) || (radd >= (0x3FFF-0x3F80+1)/32))
+"55
+[e $ ! || > -> _count `i -> 32 `i >= -> _radd `i / + - -> 16383 `i -> 16256 `i -> 1 `i -> 32 `i 239  ]
+[; ;HEFlash.c: 56: return -1;
+"56
+[e ) -> -U -> 1 `i `uc ]
+[e $UE 238  ]
+[e :U 239 ]
+[; ;HEFlash.c: 59: while ( count > 0)
 "59
-[v _SendCmd_1621 `(v ~T0 @X0 1 ef1`uc ]
+[e $U 240  ]
+[e :U 241 ]
+[; ;HEFlash.c: 60: {
 "60
 {
-[; ;ht1621.c: 59: void SendCmd_1621(unsigned char command)
-[; ;ht1621.c: 60: {
-[e :U _SendCmd_1621 ]
-"59
-[v _command `uc ~T0 @X0 1 r1 ]
-"60
-[f ]
-[; ;ht1621.c: 61: do { LATC0 = 0; } while(0);
+[; ;HEFlash.c: 61: *buffer++ = (char) FLASH_read( add++);
 "61
-[e :U 274 ]
-{
-[e = _LATC0 -> -> 0 `i `b ]
-}
-[e :U 273 ]
-[; ;ht1621.c: 62: SendBit_1621(0x80,4);
+[e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x -> ( _FLASH_read (1 ++ _add -> -> 1 `i `ui `uc ]
+[; ;HEFlash.c: 62: count--;
 "62
-[e ( _SendBit_1621 (2 , -> -> 128 `i `uc -> -> 4 `i `uc ]
-[; ;ht1621.c: 63: SendBit_1621(command,8);
+[e -- _count -> -> 1 `i `uc ]
 "63
-[e ( _SendBit_1621 (2 , _command -> -> 8 `i `uc ]
-[; ;ht1621.c: 64: do { LATC0 = 1; } while(0);
-"64
-[e :U 277 ]
-{
-[e = _LATC0 -> -> 1 `i `b ]
 }
-[e :U 276 ]
-[; ;ht1621.c: 65: }
-"65
-[e :UE 271 ]
+[e :U 240 ]
+"59
+[e $ > -> _count `i -> 0 `i 241  ]
+[e :U 242 ]
+[; ;HEFlash.c: 63: }
+[; ;HEFlash.c: 66: return 0;
+"66
+[e ) -> -> 0 `i `uc ]
+[e $UE 238  ]
+[; ;HEFlash.c: 67: }
+"67
+[e :UE 238 ]
 }
-"73
-[v _Write_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
-"74
+"70
+[v _HEFLASH_readByte `(uc ~T0 @X0 1 ef2`uc`uc ]
+"71
 {
-[; ;ht1621.c: 73: void Write_1621(unsigned char addr,unsigned char data)
-[; ;ht1621.c: 74: {
-[e :U _Write_1621 ]
-"73
-[v _addr `uc ~T0 @X0 1 r1 ]
-[v _data `uc ~T0 @X0 1 r2 ]
-"74
+[; ;HEFlash.c: 70: char HEFLASH_readByte( char radd, char offset)
+[; ;HEFlash.c: 71: {
+[e :U _HEFLASH_readByte ]
+"70
+[v _radd `uc ~T0 @X0 1 r1 ]
+[v _offset `uc ~T0 @X0 1 r2 ]
+"71
 [f ]
-[; ;ht1621.c: 75: do { LATC0 = 0; } while(0);
-"75
-[e :U 281 ]
-{
-[e = _LATC0 -> -> 0 `i `b ]
-}
-[e :U 280 ]
-[; ;ht1621.c: 76: SendBit_1621(0xa0,3);
+"73
+[v _add `ui ~T0 @X0 1 a ]
+[; ;HEFlash.c: 73: unsigned add = radd * 32 + 0x3F80 + offset;
+[e = _add -> + + * -> _radd `i -> 32 `i -> 16256 `i -> _offset `i `ui ]
+[; ;HEFlash.c: 76: return (char) FLASH_read( add);
 "76
-[e ( _SendBit_1621 (2 , -> -> 160 `i `uc -> -> 3 `i `uc ]
-[; ;ht1621.c: 77: SendBit_1621(addr,6);
+[e ) -> ( _FLASH_read (1 _add `uc ]
+[e $UE 243  ]
+[; ;HEFlash.c: 77: }
 "77
-[e ( _SendBit_1621 (2 , _addr -> -> 6 `i `uc ]
-[; ;ht1621.c: 78: SendDataBit_1621(data,4);
-"78
-[e ( _SendDataBit_1621 (2 , _data -> -> 4 `i `uc ]
-[; ;ht1621.c: 79: do { LATC0 = 1; } while(0);
-"79
-[e :U 284 ]
-{
-[e = _LATC0 -> -> 1 `i `b ]
-}
-[e :U 283 ]
-[; ;ht1621.c: 80: }
-"80
-[e :UE 278 ]
-}
-"88
-[v _WriteAll_1621 `(v ~T0 @X0 1 ef3`uc`*uc`uc ]
-"89
-{
-[; ;ht1621.c: 88: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt)
-[; ;ht1621.c: 89: {
-[e :U _WriteAll_1621 ]
-"88
-[v _addr `uc ~T0 @X0 1 r1 ]
-[v _p `*uc ~T0 @X0 1 r2 ]
-[v _cnt `uc ~T0 @X0 1 r3 ]
-"89
-[f ]
-"90
-[v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 90: unsigned char i;
-[; ;ht1621.c: 91: do { LATC0 = 0; } while(0);
-"91
-[e :U 288 ]
-{
-[e = _LATC0 -> -> 0 `i `b ]
-}
-[e :U 287 ]
-[; ;ht1621.c: 92: SendBit_1621(0xa0,3);
-"92
-[e ( _SendBit_1621 (2 , -> -> 160 `i `uc -> -> 3 `i `uc ]
-[; ;ht1621.c: 93: SendBit_1621(addr,6);
-"93
-[e ( _SendBit_1621 (2 , _addr -> -> 6 `i `uc ]
-[; ;ht1621.c: 94: for(i =0; i <cnt; i ++,p++)
-"94
-{
-[e = _i -> -> 0 `i `uc ]
-[e $U 292  ]
-"95
-[e :U 289 ]
-[; ;ht1621.c: 95: {
-{
-[; ;ht1621.c: 96: SendDataBit_1621(*p,8);
-"96
-[e ( _SendDataBit_1621 (2 , *U _p -> -> 8 `i `uc ]
-"97
-}
-"94
-[e ; ++ _i -> -> 1 `i `uc ++ _p * -> -> 1 `i `x -> -> # *U _p `i `x ]
-[e :U 292 ]
-[e $ < -> _i `i -> _cnt `i 289  ]
-[e :U 290 ]
-"97
-}
-[; ;ht1621.c: 97: }
-[; ;ht1621.c: 98: do { LATC0 = 1; } while(0);
-"98
-[e :U 295 ]
-{
-[e = _LATC0 -> -> 1 `i `b ]
-}
-[e :U 294 ]
-[; ;ht1621.c: 99: }
-"99
-[e :UE 285 ]
-}
-"107
-[v _Display `(v ~T0 @X0 1 ef ]
-"108
-{
-[; ;ht1621.c: 107: void Display(void)
-[; ;ht1621.c: 108: {
-[e :U _Display ]
-[f ]
-"109
-[v _count `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 109: unsigned char count = 0;
-[e = _count -> -> 0 `i `uc ]
-"110
-[v _data `ui ~T0 @X0 1 a ]
-[; ;ht1621.c: 110: unsigned int data = temperature_int;
-[e = _data _temperature_int ]
-[; ;ht1621.c: 111: memset(display_buff,0,4);
-"111
-[e ( _memset (3 , , -> &U _display_buff `*v -> 0 `i -> -> 4 `i `ui ]
-[; ;ht1621.c: 112: while(data)
-"112
-[e $U 297  ]
-[e :U 298 ]
-[; ;ht1621.c: 113: {
-"113
-{
-[; ;ht1621.c: 114: count++;
-"114
-[e ++ _count -> -> 1 `i `uc ]
-[; ;ht1621.c: 115: data /=10;
-"115
-[e =/ _data -> -> 10 `uc `ui ]
-"116
-}
-[e :U 297 ]
-"112
-[e $ != _data -> -> 0 `i `ui 298  ]
-[e :U 299 ]
-[; ;ht1621.c: 116: }
-[; ;ht1621.c: 117: switch(count)
-"117
-[e $U 301  ]
-[; ;ht1621.c: 118: {
-"118
-{
-[; ;ht1621.c: 119: case 3:display_buff[0] = Dis_TAB[temperature_int/100];
-"119
-[e :U 302 ]
-[e = *U + &U _display_buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> / _temperature_int -> -> 100 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 120: case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
-"120
-[e :U 303 ]
-[e = *U + &U _display_buff * -> -> -> 1 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> / % _temperature_int -> -> 100 `i `ui -> -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 121: case 1:display_buff[2] = Dis_TAB[temperature_int%10];
-"121
-[e :U 304 ]
-[e = *U + &U _display_buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> % _temperature_int -> -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 122: default:break;
-"122
-[e :U 305 ]
-[e $U 300  ]
-"123
-}
-[; ;ht1621.c: 123: }
-[e $U 300  ]
-"117
-[e :U 301 ]
-[e [\ _count , $ -> -> 3 `i `uc 302
- , $ -> -> 2 `i `uc 303
- , $ -> -> 1 `i `uc 304
- 305 ]
-"123
-[e :U 300 ]
-[; ;ht1621.c: 124: if(temperature_sign == 1) display_buff[0]|=0x08;
-"124
-[e $ ! == -> _temperature_sign `i -> 1 `i 306  ]
-[e =| *U + &U _display_buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> -> 8 `i `uc ]
-[e :U 306 ]
-[; ;ht1621.c: 125: display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
-"125
-[e = *U + &U _display_buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> | -> *U + &U _Dis_TAB * -> _temperature_decimal `ux -> -> # *U &U _Dis_TAB `ui `ux `i -> 8 `i `uc ]
-[; ;ht1621.c: 126: WriteAll_1621(0,display_buff,4);
-"126
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _display_buff -> -> 4 `i `uc ]
-[; ;ht1621.c: 127: }
-"127
-[e :UE 296 ]
+[e :UE 243 ]
 }
