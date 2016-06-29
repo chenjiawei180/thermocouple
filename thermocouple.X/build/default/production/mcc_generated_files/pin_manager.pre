@@ -2494,10 +2494,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 362 "mcc_generated_files/pin_manager.h"
+# 379 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 374
+# 391
 void PIN_MANAGER_IOC(void);
 
 # 50 "mcc_generated_files/pin_manager.c"

@@ -36,6 +36,7 @@ OS_EXT unsigned char display_buff[4];
 OS_EXT char s[64];
 OS_EXT float  f_cold_junction_temperature;
 OS_EXT float  f_linearized_tc_temperature;
+OS_EXT unsigned char time_count;
 	
 #ifdef	__cplusplus
 }

@@ -219,6 +219,23 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define DRDY_ResetPullup()   do { WPUB3 = 0; } while(0)
 #define DRDY_SetAnalogMode()   do { ANSB3 = 1; } while(0)
 #define DRDY_SetDigitalMode()   do { ANSB3 = 0; } while(0)
+// get/set ADC aliases
+#define ADC_TRIS               TRISB4
+#define ADC_LAT                LATB4
+#define ADC_PORT               RB4
+#define ADC_WPU                WPUB4
+#define ADC_ANS                ANSB4
+#define ADC_SetHigh()    do { LATB4 = 1; } while(0)
+#define ADC_SetLow()   do { LATB4 = 0; } while(0)
+#define ADC_Toggle()   do { LATB4 = ~LATB4; } while(0)
+#define ADC_GetValue()         RB4
+#define ADC_SetDigitalInput()    do { TRISB4 = 1; } while(0)
+#define ADC_SetDigitalOutput()   do { TRISB4 = 0; } while(0)
+
+#define ADC_SetPullup()    do { WPUB4 = 1; } while(0)
+#define ADC_ResetPullup()   do { WPUB4 = 0; } while(0)
+#define ADC_SetAnalogMode()   do { ANSB4 = 1; } while(0)
+#define ADC_SetDigitalMode()   do { ANSB4 = 0; } while(0)
 // get/set KEY aliases
 #define KEY_TRIS               TRISB5
 #define KEY_LAT                LATB5

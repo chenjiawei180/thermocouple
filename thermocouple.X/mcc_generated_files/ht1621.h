@@ -25,7 +25,8 @@ void SendDataBit_1621(uchar data,uchar cnt);	//data的低cnt位写入HT1621，低位在前
 void SendCmd_1621(uchar command);
 void Write_1621(uchar addr,uchar data);
 void WriteAll_1621(uchar addr,uchar *p,uchar cnt);
-void Display(void);
+void Tc_Display(void);
+void Two_Display(unsigned char number);
 
 #ifdef	__cplusplus
 }

@@ -17,6 +17,7 @@
             <resource customName="SDA" digital="true" direction="OUTPUT" function="RB1" ioc="0" module="GPIO" name="RB1" start="false" type="pin" wpu="false"/>
             <resource customName="FAULT" digital="true" direction="INPUT" function="RB2" ioc="0" module="GPIO" name="RB2" start="false" type="pin" wpu="true"/>
             <resource customName="DRDY" digital="true" direction="INPUT" function="RB3" ioc="0" module="GPIO" name="RB3" start="false" type="pin" wpu="true"/>
+            <resource customName="ADC" digital="false" direction="INPUT" function="AN11" ioc="0" module="ADC" name="RB4" start="false" type="pin" wpu="false"/>
             <resource customName="KEY" digital="true" direction="INPUT" function="RB5" ioc="0" module="GPIO" name="RB5" start="false" type="pin" wpu="true"/>
             <resource customName="HT_CS" digital="true" direction="OUTPUT" function="RC0" module="GPIO" name="RC0" start="true" type="pin" wpu="false"/>
             <resource customName="HT_WR" digital="true" direction="OUTPUT" function="RC1" module="GPIO" name="RC1" start="true" type="pin" wpu="false"/>
@@ -27,7 +28,7 @@
             <resource customName="TX" digital="true" direction="INPUT" function="TX" module="EUSART" name="RC6" start="false" type="pin" wpu="false"/>
             <resource customName="RX" digital="true" direction="INPUT" function="RX" module="EUSART" name="RC7" start="false" type="pin" wpu="false"/>
             <file checksum="45323266" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
-            <file checksum="1923651819" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
+            <file checksum="4182337058" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
         </manager>
         <manager generated="true" name="System" reloadPin="manual">
             <initializer comment="" name="Initialize">
@@ -56,8 +57,16 @@
             <setting name="STVREN" option="ON"/>
             <setting name="BORV" option="LO"/>
             <setting name="generateConfigBits" option="true"/>
-            <file checksum="2425534204" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
-            <file checksum="3136491489" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
+            <file checksum="3231368207" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
+            <file checksum="3929025708" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
+        </manager>
+        <manager generated="true" name="Interrupt Manager" reloadPin="manual">
+            <setting name="preemptHigh" option="true"/>
+            <setting name="preemptLow" option="true"/>
+            <setting name="useIPEN" option="false"/>
+            <interrupt module="TMR0" name="TMRI" priority="2"/>
+            <file checksum="4188192186" modified="false" name="interrupt_manager.c" path="mcc_generated_files/interrupt_manager.c"/>
+            <file checksum="3142646631" modified="false" name="interrupt_manager.h" path="mcc_generated_files/interrupt_manager.h"/>
         </manager>
     </managers>
     <modules>
@@ -141,6 +150,44 @@
             <setting name="stdio" option="false"/>
             <file checksum="2603910451" modified="false" name="eusart.c" path="mcc_generated_files/eusart.c"/>
             <file checksum="1841324840" modified="false" name="eusart.h" path="mcc_generated_files/eusart.h"/>
+        </module>
+        <module generated="true" mode="Memory" name="MEMORY" order="3" reloadPin="manual" type="nvm">
+            <file checksum="1762203634" modified="false" name="memory.c" path="mcc_generated_files/memory.c"/>
+            <file checksum="878976993" modified="false" name="memory.h" path="mcc_generated_files/memory.h"/>
+        </module>
+        <module generated="true" mode="ADC" name="ADC" order="4" reloadPin="manual_auto" type="adc_sarcore_10bit">
+            <initializer comment="" name="Initialize">
+                <setting name="GO_nDONE" option="stop" register="ADCON0"/>
+                <setting name="ADON" option="enabled" register="ADCON0"/>
+                <setting name="CHS" option="AN0" register="ADCON0"/>
+                <setting name="ADFM" option="left" register="ADCON1"/>
+                <setting name="ADPREF" option="VDD" register="ADCON1"/>
+                <setting name="ADCS" option="FOSC/64" register="ADCON1"/>
+                <setting name="ADRESL" option="0x0" register="ADRESL"/>
+                <setting name="ADRESH" option="0x0" register="ADRESH"/>
+            </initializer>
+            <setting name="ADI" option="false"/>
+            <resource customName="ADC" function="AN11" name="RB4" type="pin"/>
+            <file checksum="354938639" modified="false" name="adc.c" path="mcc_generated_files/adc.c"/>
+            <file checksum="3187056092" modified="false" name="adc.h" path="mcc_generated_files/adc.h"/>
+        </module>
+        <module generated="true" mode="Timer" name="TMR0" order="5" reloadPin="manual" type="tmr_0">
+            <initializer comment="" name="Initialize">
+                <setting name="PS" option="1:256" register="OPTION_REG"/>
+                <setting name="TMR0SE" option="Increment_hi_lo" register="OPTION_REG"/>
+                <setting name="nWPUEN" option="disabled" register="OPTION_REG"/>
+                <setting name="TMR0CS" option="FOSC/4" register="OPTION_REG"/>
+                <setting name="INTEDG" option="rising" register="OPTION_REG"/>
+                <setting name="PSA" option="assigned" register="OPTION_REG"/>
+                <setting name="TMR0" option="100" register="TMR0"/>
+                <additionalSetting name="extfreq" option="100 kHz"/>
+                <additionalSetting name="periodChanged" option="10.0ms"/>
+                <additionalSetting name="timerstart" option="enabled"/>
+            </initializer>
+            <setting name="TMRI" option="true"/>
+            <setting name="ticker" option="200"/>
+            <file checksum="3671023" modified="false" name="tmr0.c" path="mcc_generated_files/tmr0.c"/>
+            <file checksum="1803704538" modified="false" name="tmr0.h" path="mcc_generated_files/tmr0.h"/>
         </module>
     </modules>
 </configuration>

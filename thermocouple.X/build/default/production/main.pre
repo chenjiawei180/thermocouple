@@ -2494,10 +2494,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 362 "mcc_generated_files/pin_manager.h"
+# 379 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 374
+# 391
 void PIN_MANAGER_IOC(void);
 
 # 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
@@ -2593,6 +2593,9 @@ typedef uint16_t uintptr_t;
 # 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
 typedef unsigned char bool;
 
+# 111 "mcc_generated_files/interrupt_manager.h"
+void interrupt INTERRUPT_InterruptManager(void);
+
 # 4 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
 typedef unsigned size_t;
 
@@ -2626,10 +2629,65 @@ uint8_t EUSART_Read(void);
 # 135
 void EUSART_Write(uint8_t txData);
 
-# 69 "mcc_generated_files/mcc.h"
+# 99 "mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+
+# 128
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+
+# 164
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+
+# 189
+void FLASH_EraseBlock(uint16_t startAddr);
+
+# 72 "mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+# 86
+typedef enum {
+channel_Temp = 0x1E,
+channel_FVR = 0x1F,
+ADC = 0x0B
+} adc_channel_t;
+
+# 125
+void ADC_Initialize(void);
+
+# 154
+void ADC_StartConversion(adc_channel_t channel);
+
+# 186
+bool ADC_IsConversionDone();
+
+# 219
+adc_result_t ADC_GetConversionResult(void);
+
+# 249
+adc_result_t ADC_GetConversion(adc_channel_t channel);
+
+# 104 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 137
+uint8_t TMR0_ReadTimer(void);
+
+# 176
+void TMR0_WriteTimer(uint8_t timerVal);
+
+# 212
+void TMR0_Reload(void);
+
+# 230
+void TMR0_ISR(void);
+
+# 248
+void TMR0_CallBack(void);
+
+# 73 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 82
+# 86
 void OSCILLATOR_Initialize(void);
 
 # 26 "mcc_generated_files/global.h"
@@ -2646,6 +2704,7 @@ void OSCILLATOR_Initialize(void);
  char s[64];
  float f_cold_junction_temperature;
  float f_linearized_tc_temperature;
+ unsigned char time_count;
 
 # 82 "mcc_generated_files/max31856.h"
 void maxim_31856_init(void);
@@ -2660,6 +2719,10 @@ uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
 void tc_temperature_trans(void);
 
+void one_temperature_trans(void);
+void temperature_display(void);
+void temperature_process(void);
+
 # 21 "mcc_generated_files/ht1621.h"
 extern unsigned char const Dis_TAB[];
 
@@ -2668,7 +2731,8 @@ void SendDataBit_1621(unsigned char data,unsigned char cnt);
 void SendCmd_1621(unsigned char command);
 void Write_1621(unsigned char addr,unsigned char data);
 void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-void Display(void);
+void Tc_Display(void);
+void Two_Display(unsigned char number);
 
 # 53 "mcc_generated_files/FLash.h"
 unsigned FLASH_read( unsigned address);
@@ -2766,7 +2830,6 @@ unsigned int data_temp=0;
 SYSTEM_Initialize();
 do { LATA3 = 0; } while(0);
 do { LATA4 = 0; } while(0);
-do { LATA0 = 0; } while(0);
 maxim_31856_init();
 do { TRISB3 = 1; } while(0);
 SendCmd_1621(0x52);
@@ -2774,27 +2837,24 @@ SendCmd_1621(0X28);
 SendCmd_1621(0x02);
 SendCmd_1621(0x06);
 
-# 104
+WriteAll_1621(0,Dis_TAB+16,4);
+
+time_count = 0;
+
+# 94
+(INTCONbits.GIE = 1);
+
+
+(INTCONbits.PEIE = 1);
+
+# 105
 while (1)
 {
 
-_delay((unsigned long)((5000)*(16000000/4000.0)));
 
-maxim_start_conversion((uint8_t) 0x40);
-while(RB3);
-maxim_31856_read_nregisters(0x0A, uch_reg,6);
-uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
-uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
-uch_sr=uch_reg[5];
+temperature_process();
 
-# 124
-if(uch_sr==(uint8_t)0x00)
-{
-tc_temperature_trans();
-Display();
-}
-
-# 194
+# 185
 }
 }
 

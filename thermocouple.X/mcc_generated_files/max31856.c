@@ -8,6 +8,7 @@
 #include "global.h"
 #include "max31856.h"
 #include "mcc.h"
+#include "ht1621.h"
 
 /**
   * @brief  This function is write a value to register of max31856.
@@ -159,7 +160,7 @@ void maxim_clear_fault_status(void)
 }
 
 /**
-  * @brief  This function is maxim_clear_fault_status.
+  * @brief  This function is tc_temperature_trans.
   * @param  None.
   * @retval None
   */
@@ -190,14 +191,70 @@ void tc_temperature_trans(void)
         
 }
 
+/**
+  * @brief  This function is one_temperature_trans.
+  * @param  None.
+  * @retval None
+  */
+  
+void one_temperature_trans(void)
+{
+    maxim_start_conversion(One_Shot_Conversion);  //使能单次转换
+    while(DRDY_GetValue());    //需要添加超时退出
+    maxim_31856_read_nregisters(0x0A, uch_reg,6);
+    uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];                //将读取到的结果赋值给对应的寄存器变量
+    uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
+    uch_sr=uch_reg[5];
 
+}
 
+/**
+  * @brief  This function is temperature_display.
+  * @param  None.
+  * @retval None
+  */
+  
+void temperature_display(void)
+{
+    if(uch_sr==NO_Fault)  
+    {
+        tc_temperature_trans();  //把寄存器的值进行转换
+        Tc_Display(); //显示温度
+    }
+    else
+    {
+        WriteAll_1621(0,Dis_TAB+16,4);//添加错误显示代码 暂定----
+    }
+}
 
+/**
+  * @brief  This function is maxim_clear_fault_status.
+  * @param  None.
+  * @retval None
+  */
 
-
-
-
-
+void temperature_process(void)
+{
+    switch(time_count)
+    {
+        case 0:    Two_Display(1);
+		        CS1_SetLow();
+		        CS2_SetHigh();
+		        one_temperature_trans();
+			 break;
+	 case 1:    temperature_display();break;
+	 case 2:    Two_Display(2);
+		        CS2_SetLow();
+		        CS1_SetHigh();
+		        one_temperature_trans();break;
+	 case 3:    temperature_display();break;
+	 case 5:break;
+	 case 6:break;
+	 case 7:break;
+	 case 8:break;
+	 default:break;
+    }
+}
 
 
 

@@ -91,6 +91,9 @@ uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
 void tc_temperature_trans(void);
 
+void one_temperature_trans(void);
+void temperature_display(void);
+void temperature_process(void);
 
 #ifdef	__cplusplus
 }

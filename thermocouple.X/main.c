@@ -65,7 +65,6 @@ void main(void) {
     SYSTEM_Initialize();
     LED1_SetLow();
     LED2_SetLow();
-    CS1_SetLow();
     maxim_31856_init();
     DRDY_SetDigitalInput();
     SendCmd_1621(BIAS);		//设置偏压和占空比
@@ -73,7 +72,9 @@ void main(void) {
     SendCmd_1621(SYSEN);	//打开系统振荡器
     SendCmd_1621(LCDON);	//打开LCD偏压发生器
     //Write_1621(0x24,0x01);	//0x24：(地址)的高6位有效，0x01：(数据)的低4位有效
-    //WriteAll_1621(0,Dis_TAB,4);	//0：(起始地址)高6位有效，a：(写入数据的起始地址)8位
+    WriteAll_1621(0,Dis_TAB+16,4);	//0：(起始地址)高6位有效，a：(写入数据的起始地址)8位 
+    //开机显示4 个 - - - -  
+    time_count = 0;
 #if 0
     FLASH_write(0x3FFF, 0xFFFF, 0);
     data_temp = FLASH_read(0X3FFF);
@@ -90,10 +91,10 @@ void main(void) {
     // Use the following macros to:
 
     // Enable the Global Interrupts
-    //INTERRUPT_GlobalInterruptEnable();
+    INTERRUPT_GlobalInterruptEnable();
 
     // Enable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptEnable();
+    INTERRUPT_PeripheralInterruptEnable();
 
     // Disable the Global Interrupts
     //INTERRUPT_GlobalInterruptDisable();
@@ -104,14 +105,8 @@ void main(void) {
     while (1) 
     {
     // Add your application code
-        __delay_ms(5000);
        // EUSART_SendString("ONE CYCLE \n\r");
-        maxim_start_conversion(One_Shot_Conversion);  //使能单次转换
-        while(DRDY_GetValue());
-        maxim_31856_read_nregisters(0x0A, uch_reg,6);
-        uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];                //将读取到的结果赋值给对应的寄存器变量
-        uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
-        uch_sr=uch_reg[5];
+        temperature_process();
 #if 0
         EUSART_Write(uch_cjth);
         EUSART_Write(uch_cjtl);
@@ -121,11 +116,7 @@ void main(void) {
         EUSART_Write(uch_sr);
 #endif
 #if 1
-        if(uch_sr==NO_Fault)  
-        {
-            tc_temperature_trans();
-	     Display();
-        }
+
 #endif
 
 #if 0

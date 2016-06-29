@@ -3,9 +3,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATC2 `Vb ~T0 @X0 0 e@2162 ]
 "4469
 [v _LATC1 `Vb ~T0 @X0 0 e@2161 ]
-[v F1834 `(v ~T0 @X0 1 tf1`ul ]
+[v F1836 `(v ~T0 @X0 1 tf1`ul ]
 "152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1834 ~T0 @X0 0 e ]
+[v __delay `JF1836 ~T0 @X0 0 e ]
 [p i __delay ]
 "4467 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATC0 `Vb ~T0 @X0 0 e@2160 ]
@@ -24,7 +24,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.h: 25: void SendCmd_1621(unsigned char command);
 [; ;ht1621.h: 26: void Write_1621(unsigned char addr,unsigned char data);
 [; ;ht1621.h: 27: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-[; ;ht1621.h: 28: void Display(void);
+[; ;ht1621.h: 28: void Tc_Display(void);
+[; ;ht1621.h: 29: void Two_Display(unsigned char number);
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1846,8 +1847,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 186: extern unsigned char __resetbits;
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
-[; ;pin_manager.h: 362: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 374: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 379: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 391: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -1877,6 +1878,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
 [; ;spi.h: 117: void SPI_Initialize(void);
@@ -1888,8 +1890,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 95: void EUSART_Initialize(void);
 [; ;eusart.h: 115: uint8_t EUSART_Read(void);
 [; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
-[; ;mcc.h: 69: void SYSTEM_Initialize(void);
-[; ;mcc.h: 82: void OSCILLATOR_Initialize(void);
+[; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
+[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+[; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;adc.h: 72: typedef uint16_t adc_result_t;
+[; ;adc.h: 86: typedef enum {
+[; ;adc.h: 87: channel_Temp = 0x1E,
+[; ;adc.h: 88: channel_FVR = 0x1F,
+[; ;adc.h: 89: ADC = 0x0B
+[; ;adc.h: 90: } adc_channel_t;
+[; ;adc.h: 125: void ADC_Initialize(void);
+[; ;adc.h: 154: void ADC_StartConversion(adc_channel_t channel);
+[; ;adc.h: 186: bool ADC_IsConversionDone();
+[; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
+[; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[; ;tmr0.h: 104: void TMR0_Initialize(void);
+[; ;tmr0.h: 137: uint8_t TMR0_ReadTimer(void);
+[; ;tmr0.h: 176: void TMR0_WriteTimer(uint8_t timerVal);
+[; ;tmr0.h: 212: void TMR0_Reload(void);
+[; ;tmr0.h: 230: void TMR0_ISR(void);
+[; ;tmr0.h: 248: void TMR0_CallBack(void);
+[; ;mcc.h: 73: void SYSTEM_Initialize(void);
+[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 16: extern void * memset(void *, int, size_t);
@@ -1929,6 +1952,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 36: extern char s[64];
 [; ;global.h: 37: extern float f_cold_junction_temperature;
 [; ;global.h: 38: extern float f_linearized_tc_temperature;
+[; ;global.h: 39: extern unsigned char time_count;
 "12 mcc_generated_files/ht1621.c
 [v _Dis_TAB `Cuc ~T0 @X0 -> 0 `x e ]
 [i _Dis_TAB
@@ -1949,9 +1973,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 244 `i `uc
 -> -> 167 `i `uc
 -> -> 39 `i `uc
+-> -> 32 `i `uc
+-> -> 32 `i `uc
+-> -> 32 `i `uc
+-> -> 32 `i `uc
 ..
 ]
-[; ;ht1621.c: 12: unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27};
+[; ;ht1621.c: 12: unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x20,0x20,0x20,0x20};
 "19
 [v _SendBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
 "20
@@ -2241,12 +2269,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 285 ]
 }
 "107
-[v _Display `(v ~T0 @X0 1 ef ]
+[v _Tc_Display `(v ~T0 @X0 1 ef ]
 "108
 {
-[; ;ht1621.c: 107: void Display(void)
+[; ;ht1621.c: 107: void Tc_Display(void)
 [; ;ht1621.c: 108: {
-[e :U _Display ]
+[e :U _Tc_Display ]
 [f ]
 "109
 [v _count `uc ~T0 @X0 1 a ]
@@ -2327,4 +2355,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 127: }
 "127
 [e :UE 296 ]
+}
+"135
+[v _Two_Display `(v ~T0 @X0 1 ef1`uc ]
+"136
+{
+[; ;ht1621.c: 135: void Two_Display(unsigned char number)
+[; ;ht1621.c: 136: {
+[e :U _Two_Display ]
+"135
+[v _number `uc ~T0 @X0 1 r1 ]
+"136
+[f ]
+[v F2067 `uc ~T0 @X0 -> 4 `i s ]
+[i F2067
+:U ..
+"137
+-> -> 0 `i `uc
+..
+]
+[v _num `uc ~T0 @X0 -> 4 `i a ]
+[; ;ht1621.c: 137: unsigned char num[4]={0};
+[e = _num F2067 ]
+[; ;ht1621.c: 139: num[0] = Dis_TAB[number/10];
+"139
+[e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> _number `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 140: num[1] = Dis_TAB[number%10];
+"140
+[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> _number `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 141: WriteAll_1621(0, num, 4);
+"141
+[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
+[; ;ht1621.c: 142: }
+"142
+[e :UE 307 ]
 }

@@ -15,6 +15,7 @@ extern unsigned char display_buff[4];
 extern char s[64];
 extern float f_cold_junction_temperature;
 extern float f_linearized_tc_temperature;
+extern unsigned char time_count;
 
 # 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
 typedef unsigned char bool;
@@ -145,6 +146,10 @@ void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_regist
 uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
 void tc_temperature_trans(void);
+
+void one_temperature_trans(void);
+void temperature_display(void);
+void temperature_process(void);
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2639,11 +2644,14 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 362 "mcc_generated_files/pin_manager.h"
+# 379 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 374
+# 391
 void PIN_MANAGER_IOC(void);
+
+# 111 "mcc_generated_files/interrupt_manager.h"
+void interrupt INTERRUPT_InterruptManager(void);
 
 # 95 "mcc_generated_files/eusart.h"
 void EUSART_Initialize(void);
@@ -2654,13 +2662,79 @@ uint8_t EUSART_Read(void);
 # 135
 void EUSART_Write(uint8_t txData);
 
-# 69 "mcc_generated_files/mcc.h"
+# 99 "mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+
+# 128
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+
+# 164
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+
+# 189
+void FLASH_EraseBlock(uint16_t startAddr);
+
+# 72 "mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+# 86
+typedef enum {
+channel_Temp = 0x1E,
+channel_FVR = 0x1F,
+ADC = 0x0B
+} adc_channel_t;
+
+# 125
+void ADC_Initialize(void);
+
+# 154
+void ADC_StartConversion(adc_channel_t channel);
+
+# 186
+bool ADC_IsConversionDone();
+
+# 219
+adc_result_t ADC_GetConversionResult(void);
+
+# 249
+adc_result_t ADC_GetConversion(adc_channel_t channel);
+
+# 104 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 137
+uint8_t TMR0_ReadTimer(void);
+
+# 176
+void TMR0_WriteTimer(uint8_t timerVal);
+
+# 212
+void TMR0_Reload(void);
+
+# 230
+void TMR0_ISR(void);
+
+# 248
+void TMR0_CallBack(void);
+
+# 73 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 82
+# 86
 void OSCILLATOR_Initialize(void);
 
-# 18 "mcc_generated_files/max31856.c"
+# 21 "mcc_generated_files/ht1621.h"
+extern unsigned char const Dis_TAB[];
+
+void SendBit_1621(unsigned char data,unsigned char cnt);
+void SendDataBit_1621(unsigned char data,unsigned char cnt);
+void SendCmd_1621(unsigned char command);
+void Write_1621(unsigned char addr,unsigned char data);
+void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
+void Tc_Display(void);
+void Two_Display(unsigned char number);
+
+# 19 "mcc_generated_files/max31856.c"
 void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value)
 {
 do { LATA5 = 0; } while(0);
@@ -2669,7 +2743,7 @@ SPI_Exchange8bit(uch_register_value);
 do { LATA5 = 1; } while(0);
 }
 
-# 32
+# 33
 uint8_t maxim_31856_read_register(uint8_t uch_register_address)
 {
 uint8_t uch_register_data;
@@ -2680,7 +2754,7 @@ do { LATA5 = 1; } while(0);
 return (uch_register_data);
 }
 
-# 48
+# 49
 void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes)
 {
 do { LATA5 = 0; } while(0);
@@ -2689,7 +2763,7 @@ SPI_Exchange8bitBuffer((0), uch_nBytes, uch_buff);
 do { LATA5 = 1; } while(0);
 }
 
-# 62
+# 63
 void maxim_31856_init(void)
 {
 
@@ -2722,7 +2796,7 @@ maxim_31856_write_register(0x8B,0x00);
 
 }
 
-# 100
+# 101
 void maxim_stop_conversion(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2730,7 +2804,7 @@ uch_cr0&=(uint8_t) 0x3F;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 113
+# 114
 void maxim_start_conversion(uint8_t uch_conversion_mode)
 {
 uch_cr0=maxim_31856_read_register(0x00);
@@ -2739,7 +2813,7 @@ uch_cr0|=uch_conversion_mode;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 127
+# 128
 void maxim_disable_oc_fault_detection(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2747,7 +2821,7 @@ uch_cr0&=(uint8_t) 0xCF;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 140
+# 141
 void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2756,7 +2830,7 @@ uch_cr0|=uch_oc_fault_enable;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 154
+# 155
 void maxim_clear_fault_status(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2764,7 +2838,7 @@ uch_cr0|= (uint8_t) 0x02 ;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 167
+# 168
 void tc_temperature_trans(void)
 {
 temperature_value = 0;
@@ -2789,5 +2863,55 @@ if(temperature_decimal > 3) temperature_decimal++;
 if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
 }
 
+}
+
+# 200
+void one_temperature_trans(void)
+{
+maxim_start_conversion((uint8_t) 0x40);
+while(RB3);
+maxim_31856_read_nregisters(0x0A, uch_reg,6);
+uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
+uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
+uch_sr=uch_reg[5];
+
+}
+
+# 217
+void temperature_display(void)
+{
+if(uch_sr==(uint8_t)0x00)
+{
+tc_temperature_trans();
+Tc_Display();
+}
+else
+{
+WriteAll_1621(0,Dis_TAB+16,4);
+}
+}
+
+# 236
+void temperature_process(void)
+{
+switch(time_count)
+{
+case 0: Two_Display(1);
+do { LATA0 = 0; } while(0);
+do { LATA1 = 1; } while(0);
+one_temperature_trans();
+break;
+case 1: temperature_display();break;
+case 2: Two_Display(2);
+do { LATA1 = 0; } while(0);
+do { LATA0 = 1; } while(0);
+one_temperature_trans();break;
+case 3: temperature_display();break;
+case 5:break;
+case 6:break;
+case 7:break;
+case 8:break;
+default:break;
+}
 }
 

@@ -9,7 +9,7 @@
 #include "mcc.h"
 #include "string.h"
 #include "global.h"
-unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27};//"0"-"f"
+unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x20,0x20,0x20,0x20};//"0"-"f" "----"
   /**
   * @brief  This function is SendBit_1621.
   * @param  uchar data,uchar cnt .
@@ -104,7 +104,7 @@ void WriteAll_1621(uchar addr,uchar *p,uchar cnt)
   * @retval None
   */
   
-void Display(void)
+void Tc_Display(void)
 {
     unsigned char count = 0;
     unsigned int data = temperature_int;
@@ -126,5 +126,18 @@ void Display(void)
     WriteAll_1621(0,display_buff,4);
 }
 
-
+  /**
+  * @brief  This function is display two number to LCD.
+  * @param uchar addr,uchar data.
+  * @retval None
+  */
+  
+void Two_Display(unsigned char number)
+{
+    unsigned char num[4]={0};
+    
+    num[0] = Dis_TAB[number/10];
+    num[1] = Dis_TAB[number%10];
+    WriteAll_1621(0, num, 4);
+}
 

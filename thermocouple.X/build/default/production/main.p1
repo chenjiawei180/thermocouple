@@ -1,33 +1,34 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"69 mcc_generated_files/mcc.h
+"73 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
 "4441 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
 "4443
 [v _LATA4 `Vb ~T0 @X0 0 e@2148 ]
-"4435
-[v _LATA0 `Vb ~T0 @X0 0 e@2144 ]
 "82 mcc_generated_files/max31856.h
 [v _maxim_31856_init `(v ~T0 @X0 0 ef ]
 "4723 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _TRISB3 `Vb ~T0 @X0 0 e@1131 ]
 "25 mcc_generated_files/ht1621.h
 [v _SendCmd_1621 `(v ~T0 @X0 0 ef1`uc ]
-[v F1816 `(v ~T0 @X0 1 tf1`ul ]
-"152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1816 ~T0 @X0 0 e ]
-[p i __delay ]
-"84 mcc_generated_files/max31856.h
-[v _maxim_start_conversion `(v ~T0 @X0 0 ef1`uc ]
-"4531 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _RB3 `Vb ~T0 @X0 0 e@107 ]
-"91 mcc_generated_files/max31856.h
-[v _maxim_31856_read_nregisters `(v ~T0 @X0 0 ef3`uc`*uc`uc ]
-"92
-[v _tc_temperature_trans `(v ~T0 @X0 0 ef ]
-"28 mcc_generated_files/ht1621.h
-[v _Display `(v ~T0 @X0 0 ef ]
+"27
+[v _WriteAll_1621 `(v ~T0 @X0 0 ef3`uc`*uc`uc ]
+"21
+[v _Dis_TAB `Cuc ~T0 @X0 -> 0 `x e ]
+"343 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[s S27 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S27 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
+"353
+[s S28 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S28 . . T0IF . T0IE ]
+"342
+[u S26 `S27 1 `S28 1 ]
+[n S26 . . . ]
+"360
+[v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
+"96 mcc_generated_files/max31856.h
+[v _temperature_process `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1849,8 +1850,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 186: extern unsigned char __resetbits;
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
-[; ;pin_manager.h: 362: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 374: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 379: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 391: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -1880,6 +1881,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
 [; ;spi.h: 117: void SPI_Initialize(void);
@@ -1891,8 +1893,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 95: void EUSART_Initialize(void);
 [; ;eusart.h: 115: uint8_t EUSART_Read(void);
 [; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
-[; ;mcc.h: 69: void SYSTEM_Initialize(void);
-[; ;mcc.h: 82: void OSCILLATOR_Initialize(void);
+[; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
+[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+[; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;adc.h: 72: typedef uint16_t adc_result_t;
+[; ;adc.h: 86: typedef enum {
+[; ;adc.h: 87: channel_Temp = 0x1E,
+[; ;adc.h: 88: channel_FVR = 0x1F,
+[; ;adc.h: 89: ADC = 0x0B
+[; ;adc.h: 90: } adc_channel_t;
+[; ;adc.h: 125: void ADC_Initialize(void);
+[; ;adc.h: 154: void ADC_StartConversion(adc_channel_t channel);
+[; ;adc.h: 186: bool ADC_IsConversionDone();
+[; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
+[; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[; ;tmr0.h: 104: void TMR0_Initialize(void);
+[; ;tmr0.h: 137: uint8_t TMR0_ReadTimer(void);
+[; ;tmr0.h: 176: void TMR0_WriteTimer(uint8_t timerVal);
+[; ;tmr0.h: 212: void TMR0_Reload(void);
+[; ;tmr0.h: 230: void TMR0_ISR(void);
+[; ;tmr0.h: 248: void TMR0_CallBack(void);
+[; ;mcc.h: 73: void SYSTEM_Initialize(void);
+[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
 "26 mcc_generated_files/global.h
 [v _uch_cr0 `uc ~T0 @X0 1 e ]
 [; ;global.h: 26: unsigned char uch_cr0;
@@ -1935,6 +1958,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "38
 [v _f_linearized_tc_temperature `f ~T0 @X0 1 e ]
 [; ;global.h: 38: float f_linearized_tc_temperature;
+"39
+[v _time_count `uc ~T0 @X0 1 e ]
+[; ;global.h: 39: unsigned char time_count;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
@@ -1945,13 +1971,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;max31856.h: 90: uint8_t maxim_31856_read_register(uint8_t uch_register_address);
 [; ;max31856.h: 91: void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
 [; ;max31856.h: 92: void tc_temperature_trans(void);
+[; ;max31856.h: 94: void one_temperature_trans(void);
+[; ;max31856.h: 95: void temperature_display(void);
+[; ;max31856.h: 96: void temperature_process(void);
 [; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
 [; ;ht1621.h: 23: void SendBit_1621(unsigned char data,unsigned char cnt);
 [; ;ht1621.h: 24: void SendDataBit_1621(unsigned char data,unsigned char cnt);
 [; ;ht1621.h: 25: void SendCmd_1621(unsigned char command);
 [; ;ht1621.h: 26: void Write_1621(unsigned char addr,unsigned char data);
 [; ;ht1621.h: 27: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-[; ;ht1621.h: 28: void Display(void);
+[; ;ht1621.h: 28: void Tc_Display(void);
+[; ;ht1621.h: 29: void Two_Display(unsigned char number);
 [; ;FLash.h: 53: unsigned FLASH_read( unsigned address);
 [; ;FLash.h: 62: unsigned FLASH_readConfig( unsigned address);
 [; ;FLash.h: 71: void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
@@ -2017,93 +2047,57 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _LATA4 -> -> 0 `i `b ]
 }
 [e :U 239 ]
-[; ;main.c: 68: do { LATA0 = 0; } while(0);
+[; ;main.c: 68: maxim_31856_init();
 "68
-[e :U 243 ]
-{
-[e = _LATA0 -> -> 0 `i `b ]
-}
-[e :U 242 ]
-[; ;main.c: 69: maxim_31856_init();
-"69
 [e ( _maxim_31856_init ..  ]
-[; ;main.c: 70: do { TRISB3 = 1; } while(0);
-"70
-[e :U 246 ]
+[; ;main.c: 69: do { TRISB3 = 1; } while(0);
+"69
+[e :U 243 ]
 {
 [e = _TRISB3 -> -> 1 `i `b ]
 }
-[e :U 245 ]
-[; ;main.c: 71: SendCmd_1621(0x52);
-"71
+[e :U 242 ]
+[; ;main.c: 70: SendCmd_1621(0x52);
+"70
 [e ( _SendCmd_1621 (1 -> -> 82 `i `uc ]
-[; ;main.c: 72: SendCmd_1621(0X28);
-"72
+[; ;main.c: 71: SendCmd_1621(0X28);
+"71
 [e ( _SendCmd_1621 (1 -> -> 40 `i `uc ]
-[; ;main.c: 73: SendCmd_1621(0x02);
-"73
+[; ;main.c: 72: SendCmd_1621(0x02);
+"72
 [e ( _SendCmd_1621 (1 -> -> 2 `i `uc ]
-[; ;main.c: 74: SendCmd_1621(0x06);
-"74
+[; ;main.c: 73: SendCmd_1621(0x06);
+"73
 [e ( _SendCmd_1621 (1 -> -> 6 `i `uc ]
-[; ;main.c: 104: while (1)
-"104
-[e :U 248 ]
-[; ;main.c: 105: {
+[; ;main.c: 75: WriteAll_1621(0,Dis_TAB+16,4);
+"75
+[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc -> + &U _Dis_TAB * -> -> 16 `i `x -> -> # *U &U _Dis_TAB `i `x `*uc -> -> 4 `i `uc ]
+[; ;main.c: 77: time_count = 0;
+"77
+[e = _time_count -> -> 0 `i `uc ]
+[; ;main.c: 94: (INTCONbits.GIE = 1);
+"94
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 97: (INTCONbits.PEIE = 1);
+"97
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 105: while (1)
 "105
+[e :U 245 ]
+[; ;main.c: 106: {
+"106
 {
-[; ;main.c: 107: _delay((unsigned long)((5000)*(16000000/4000.0)));
-"107
-[e ( __delay (1 -> * -> -> 5000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;main.c: 109: maxim_start_conversion((uint8_t) 0x40);
+[; ;main.c: 109: temperature_process();
 "109
-[e ( _maxim_start_conversion (1 -> -> 64 `i `uc ]
-[; ;main.c: 110: while(RB3);
-"110
-[e $U 250  ]
-[e :U 251 ]
-[e :U 250 ]
-[e $ _RB3 251  ]
-[e :U 252 ]
-[; ;main.c: 111: maxim_31856_read_nregisters(0x0A, uch_reg,6);
-"111
-[e ( _maxim_31856_read_nregisters (3 , , -> -> 10 `i `uc &U _uch_reg -> -> 6 `i `uc ]
-[; ;main.c: 112: uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
-"112
-[e = _uch_cjth *U + &U _uch_reg * -> -> -> 0 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[e = _uch_cjtl *U + &U _uch_reg * -> -> -> 1 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[; ;main.c: 113: uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
-"113
-[e = _uch_ltcbh *U + &U _uch_reg * -> -> -> 2 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[e = _uch_ltcbm *U + &U _uch_reg * -> -> -> 3 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[e = _uch_ltcbl *U + &U _uch_reg * -> -> -> 4 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[; ;main.c: 114: uch_sr=uch_reg[5];
-"114
-[e = _uch_sr *U + &U _uch_reg * -> -> -> 5 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[; ;main.c: 124: if(uch_sr==(uint8_t)0x00)
-"124
-[e $ ! == -> _uch_sr `i -> -> -> 0 `i `uc `i 253  ]
-[; ;main.c: 125: {
-"125
-{
-[; ;main.c: 126: tc_temperature_trans();
-"126
-[e ( _tc_temperature_trans ..  ]
-[; ;main.c: 127: Display();
-"127
-[e ( _Display ..  ]
-"128
+[e ( _temperature_process ..  ]
+"185
 }
-[e :U 253 ]
-"194
-}
-[e :U 247 ]
-"104
-[e $U 248  ]
-[e :U 249 ]
-[; ;main.c: 128: }
-[; ;main.c: 194: }
-[; ;main.c: 195: }
-"195
+[e :U 244 ]
+"105
+[e $U 245  ]
+[e :U 246 ]
+[; ;main.c: 185: }
+[; ;main.c: 186: }
+"186
 [e :UE 234 ]
 }

@@ -9,7 +9,8 @@ void SendDataBit_1621(unsigned char data,unsigned char cnt);
 void SendCmd_1621(unsigned char command);
 void Write_1621(unsigned char addr,unsigned char data);
 void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-void Display(void);
+void Tc_Display(void);
+void Two_Display(unsigned char number);
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2504,10 +2505,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 362 "mcc_generated_files/pin_manager.h"
+# 379 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 374
+# 391
 void PIN_MANAGER_IOC(void);
 
 # 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
@@ -2603,6 +2604,9 @@ typedef uint16_t uintptr_t;
 # 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
 typedef unsigned char bool;
 
+# 111 "mcc_generated_files/interrupt_manager.h"
+void interrupt INTERRUPT_InterruptManager(void);
+
 # 4 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
 typedef unsigned size_t;
 
@@ -2636,10 +2640,65 @@ uint8_t EUSART_Read(void);
 # 135
 void EUSART_Write(uint8_t txData);
 
-# 69 "mcc_generated_files/mcc.h"
+# 99 "mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+
+# 128
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+
+# 164
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+
+# 189
+void FLASH_EraseBlock(uint16_t startAddr);
+
+# 72 "mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+# 86
+typedef enum {
+channel_Temp = 0x1E,
+channel_FVR = 0x1F,
+ADC = 0x0B
+} adc_channel_t;
+
+# 125
+void ADC_Initialize(void);
+
+# 154
+void ADC_StartConversion(adc_channel_t channel);
+
+# 186
+bool ADC_IsConversionDone();
+
+# 219
+adc_result_t ADC_GetConversionResult(void);
+
+# 249
+adc_result_t ADC_GetConversion(adc_channel_t channel);
+
+# 104 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 137
+uint8_t TMR0_ReadTimer(void);
+
+# 176
+void TMR0_WriteTimer(uint8_t timerVal);
+
+# 212
+void TMR0_Reload(void);
+
+# 230
+void TMR0_ISR(void);
+
+# 248
+void TMR0_CallBack(void);
+
+# 73 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 82
+# 86
 void OSCILLATOR_Initialize(void);
 
 # 14 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
@@ -2693,9 +2752,10 @@ extern unsigned char display_buff[4];
 extern char s[64];
 extern float f_cold_junction_temperature;
 extern float f_linearized_tc_temperature;
+extern unsigned char time_count;
 
 # 12 "mcc_generated_files/ht1621.c"
-unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27};
+unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x20,0x20,0x20,0x20};
 
 # 19
 void SendBit_1621(unsigned char data,unsigned char cnt)
@@ -2761,7 +2821,7 @@ do { LATC0 = 1; } while(0);
 }
 
 # 107
-void Display(void)
+void Tc_Display(void)
 {
 unsigned char count = 0;
 unsigned int data = temperature_int;
@@ -2781,5 +2841,15 @@ default:break;
 if(temperature_sign == 1) display_buff[0]|=0x08;
 display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
 WriteAll_1621(0,display_buff,4);
+}
+
+# 135
+void Two_Display(unsigned char number)
+{
+unsigned char num[4]={0};
+
+num[0] = Dis_TAB[number/10];
+num[1] = Dis_TAB[number%10];
+WriteAll_1621(0, num, 4);
 }
 
