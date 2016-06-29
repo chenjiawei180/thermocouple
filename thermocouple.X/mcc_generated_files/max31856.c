@@ -224,6 +224,9 @@ void temperature_display(void)
     else
     {
         WriteAll_1621(0,Dis_TAB+16,4);//Ìí¼Ó´íÎóÏÔÊ¾´úÂë Ôİ¶¨----
+        maxim_31856_write_register(0x82, 0xFF);        //ÆÁ±Î/FAULTÊä³ö
+        maxim_clear_fault_status();                       //Çå³ı¹ÊÕÏ×´Ì¬
+        maxim_31856_write_register(0x82, 0x00);        //ÖØĞÂ½â³ıÆÁ±Î
     }
 }
 
@@ -237,17 +240,21 @@ void temperature_process(void)
 {
     switch(time_count)
     {
-        case 0:    Two_Display(1);
+        case 0:    CS2_SetHigh();
 		        CS1_SetLow();
-		        CS2_SetHigh();
-		        one_temperature_trans();
+			 Two_Display(1);
+			 __delay_ms(10);
+		        
 			 break;
-	 case 1:    temperature_display();break;
-	 case 2:    Two_Display(2);
+	 case 1:    one_temperature_trans();
+	 	        temperature_display();break;
+	 case 2:    CS1_SetHigh();
 		        CS2_SetLow();
-		        CS1_SetHigh();
-		        one_temperature_trans();break;
-	 case 3:    temperature_display();break;
+	 	        Two_Display(2);
+			 __delay_ms(10);
+		        break;
+	 case 3:    one_temperature_trans();
+	 	        temperature_display();break;
 	 case 5:break;
 	 case 6:break;
 	 case 7:break;
