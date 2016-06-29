@@ -16,6 +16,7 @@ extern char s[64];
 extern float f_cold_junction_temperature;
 extern float f_linearized_tc_temperature;
 extern unsigned char time_count;
+extern unsigned char tmr_flag;
 
 # 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
 typedef unsigned char bool;
@@ -2644,10 +2645,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 379 "mcc_generated_files/pin_manager.h"
+# 390 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 391
+# 402
 void PIN_MANAGER_IOC(void);
 
 # 111 "mcc_generated_files/interrupt_manager.h"
@@ -2733,6 +2734,8 @@ void Write_1621(unsigned char addr,unsigned char data);
 void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
 void Tc_Display(void);
 void Two_Display(unsigned char number);
+void err_Display(void);
+void time_Display(void);
 
 # 19 "mcc_generated_files/max31856.c"
 void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value)
@@ -2887,7 +2890,7 @@ Tc_Display();
 }
 else
 {
-WriteAll_1621(0,Dis_TAB+16,4);
+err_Display();
 maxim_31856_write_register(0x82, 0xFF);
 maxim_clear_fault_status();
 maxim_31856_write_register(0x82, 0x00);
@@ -2899,25 +2902,23 @@ void temperature_process(void)
 {
 switch(time_count)
 {
-case 0: do { LATA1 = 1; } while(0);
+case 0: Two_Display(1);
+do { LATA1 = 1; } while(0);
+do { LATA0 = 1; } while(0);
 do { LATA0 = 0; } while(0);
-Two_Display(1);
-_delay((unsigned long)((10)*(16000000/4000.0)));
-
+one_temperature_trans();
 break;
-case 1: one_temperature_trans();
+case 1:
 temperature_display();break;
-case 2: do { LATA0 = 1; } while(0);
+case 2: Two_Display(2);
+do { LATA0 = 1; } while(0);
+do { LATA1 = 1; } while(0);
 do { LATA1 = 0; } while(0);
-Two_Display(2);
-_delay((unsigned long)((10)*(16000000/4000.0)));
+one_temperature_trans();
 break;
-case 3: one_temperature_trans();
+case 3:
 temperature_display();break;
-case 5:break;
-case 6:break;
-case 7:break;
-case 8:break;
+case 5: time_Display();break;
 default:break;
 }
 }

@@ -1889,8 +1889,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 186: bool ADC_IsConversionDone();
 [; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;pin_manager.h: 379: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 391: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
 [; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;

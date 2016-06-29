@@ -27,6 +27,9 @@ void Write_1621(uchar addr,uchar data);
 void WriteAll_1621(uchar addr,uchar *p,uchar cnt);
 void Tc_Display(void);
 void Two_Display(unsigned char number);
+void err_Display(void);
+void time_Display(void);
+
 
 #ifdef	__cplusplus
 }

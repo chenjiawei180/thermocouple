@@ -223,7 +223,7 @@ void temperature_display(void)
     }
     else
     {
-        WriteAll_1621(0,Dis_TAB+16,4);//添加错误显示代码 暂定----
+        err_Display();//添加错误显示代码 暂定nc
         maxim_31856_write_register(0x82, 0xFF);        //屏蔽/FAULT输出
         maxim_clear_fault_status();                       //清除故障状态
         maxim_31856_write_register(0x82, 0x00);        //重新解除屏蔽
@@ -240,25 +240,23 @@ void temperature_process(void)
 {
     switch(time_count)
     {
-        case 0:    CS2_SetHigh();
+        case 0:    Two_Display(1);
+		        CS2_SetHigh();
+			 CS1_SetHigh();
 		        CS1_SetLow();
-			 Two_Display(1);
-			 __delay_ms(10);
-		        
+		        one_temperature_trans();
 			 break;
-	 case 1:    one_temperature_trans();
+	 case 1:   
 	 	        temperature_display();break;
-	 case 2:    CS1_SetHigh();
+	 case 2:   Two_Display(2);
+	 	        CS1_SetHigh();
+			 CS2_SetHigh();
 		        CS2_SetLow();
-	 	        Two_Display(2);
-			 __delay_ms(10);
+			 one_temperature_trans();
 		        break;
-	 case 3:    one_temperature_trans();
+	 case 3:   
 	 	        temperature_display();break;
-	 case 5:break;
-	 case 6:break;
-	 case 7:break;
-	 case 8:break;
+	 case 5:    time_Display();break;
 	 default:break;
     }
 }

@@ -151,6 +151,17 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define HT_RD_SetDigitalInput()    do { TRISA6 = 1; } while(0)
 #define HT_RD_SetDigitalOutput()   do { TRISA6 = 0; } while(0)
 
+// get/set KEY2 aliases
+#define KEY2_TRIS               TRISA7
+#define KEY2_LAT                LATA7
+#define KEY2_PORT               RA7
+#define KEY2_SetHigh()    do { LATA7 = 1; } while(0)
+#define KEY2_SetLow()   do { LATA7 = 0; } while(0)
+#define KEY2_Toggle()   do { LATA7 = ~LATA7; } while(0)
+#define KEY2_GetValue()         RA7
+#define KEY2_SetDigitalInput()    do { TRISA7 = 1; } while(0)
+#define KEY2_SetDigitalOutput()   do { TRISA7 = 0; } while(0)
+
 // get/set SCL aliases
 #define SCL_TRIS               TRISB0
 #define SCL_LAT                LATB0

@@ -13,6 +13,7 @@
             <resource customName="LED2" digital="true" direction="OUTPUT" function="RA4" module="GPIO" name="RA4" start="true" type="pin" wpu="false"/>
             <resource customName="SS" digital="true" direction="OUTPUT" function="RA5" module="GPIO" name="RA5" start="true" type="pin" wpu="false"/>
             <resource customName="HT_RD" digital="true" direction="OUTPUT" function="RA6" module="GPIO" name="RA6" start="true" type="pin" wpu="false"/>
+            <resource customName="KEY2" digital="true" direction="INPUT" function="RA7" module="GPIO" name="RA7" start="false" type="pin" wpu="false"/>
             <resource customName="SCL" digital="true" direction="OUTPUT" function="RB0" ioc="0" module="GPIO" name="RB0" start="false" type="pin" wpu="false"/>
             <resource customName="SDA" digital="true" direction="OUTPUT" function="RB1" ioc="0" module="GPIO" name="RB1" start="false" type="pin" wpu="false"/>
             <resource customName="FAULT" digital="true" direction="INPUT" function="RB2" ioc="0" module="GPIO" name="RB2" start="false" type="pin" wpu="true"/>
@@ -28,7 +29,7 @@
             <resource customName="TX" digital="true" direction="INPUT" function="TX" module="EUSART" name="RC6" start="false" type="pin" wpu="false"/>
             <resource customName="RX" digital="true" direction="INPUT" function="RX" module="EUSART" name="RC7" start="false" type="pin" wpu="false"/>
             <file checksum="45323266" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
-            <file checksum="4182337058" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
+            <file checksum="2217337881" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
         </manager>
         <manager generated="true" name="System" reloadPin="manual">
             <initializer comment="" name="Initialize">
@@ -86,6 +87,7 @@
             <resource customName="KEY" digital="true" direction="INPUT" function="RB5" ioc="0" module="GPIO" name="RB5" start="false" type="pin" wpu="true"/>
             <resource customName="DRDY" digital="true" direction="INPUT" function="RB3" ioc="0" module="GPIO" name="RB3" start="false" type="pin" wpu="true"/>
             <resource customName="FAULT" digital="true" direction="INPUT" function="RB2" ioc="0" module="GPIO" name="RB2" start="false" type="pin" wpu="true"/>
+            <resource customName="KEY2" digital="true" direction="INPUT" function="RA7" module="GPIO" name="RA7" start="false" type="pin" wpu="false"/>
         </module>
         <module generated="true" mode="SPI Master" name="MSSP" order="1" reloadPin="manual" type="mssp">
             <initializer comment="" name="Initialize">

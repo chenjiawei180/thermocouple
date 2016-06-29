@@ -9,7 +9,7 @@
 #include "mcc.h"
 #include "string.h"
 #include "global.h"
-unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x20,0x20,0x20,0x20};//"0"-"f" "----"
+unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x57,0x20,0x20,0x20,0x20};//"0"-"f" "n" "----"
   /**
   * @brief  This function is SendBit_1621.
   * @param  uchar data,uchar cnt .
@@ -135,9 +135,42 @@ void Tc_Display(void)
 void Two_Display(unsigned char number)
 {
     unsigned char num[4]={0};
-    
-    num[0] = Dis_TAB[number/10];
-    num[1] = Dis_TAB[number%10];
+    num[1] = Dis_TAB[0];
+    num[2] = Dis_TAB[number];
     WriteAll_1621(0, num, 4);
 }
+
+  /**
+  * @brief  This function is display nc number to LCD.
+  * @param None
+  * @retval None
+  */
+
+void err_Display(void)
+{
+    unsigned char num[4]={0};
+    num[1] = Dis_TAB[0x10];
+    num[2] = Dis_TAB[0x0c];
+    WriteAll_1621(0, num, 4);
+}
+
+  /**
+  * @brief  This function is display time to LCD.
+  * @param None
+  * @retval None
+  */
+
+void time_Display(void)
+{
+    unsigned char num[4]={0};
+    num[0] = Dis_TAB[0x0f];
+    num[1] = Dis_TAB[0x0f];
+    num[2] = Dis_TAB[0x0f];
+    num[3] = Dis_TAB[0x0f];
+    WriteAll_1621(0, num, 4);
+}
+
+
+
+
 

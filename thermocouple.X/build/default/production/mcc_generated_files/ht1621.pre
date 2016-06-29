@@ -11,6 +11,8 @@ void Write_1621(unsigned char addr,unsigned char data);
 void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
 void Tc_Display(void);
 void Two_Display(unsigned char number);
+void err_Display(void);
+void time_Display(void);
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2505,10 +2507,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 379 "mcc_generated_files/pin_manager.h"
+# 390 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 391
+# 402
 void PIN_MANAGER_IOC(void);
 
 # 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
@@ -2753,9 +2755,10 @@ extern char s[64];
 extern float f_cold_junction_temperature;
 extern float f_linearized_tc_temperature;
 extern unsigned char time_count;
+extern unsigned char tmr_flag;
 
 # 12 "mcc_generated_files/ht1621.c"
-unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x20,0x20,0x20,0x20};
+unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x57,0x20,0x20,0x20,0x20};
 
 # 19
 void SendBit_1621(unsigned char data,unsigned char cnt)
@@ -2847,9 +2850,28 @@ WriteAll_1621(0,display_buff,4);
 void Two_Display(unsigned char number)
 {
 unsigned char num[4]={0};
+num[1] = Dis_TAB[0];
+num[2] = Dis_TAB[number];
+WriteAll_1621(0, num, 4);
+}
 
-num[0] = Dis_TAB[number/10];
-num[1] = Dis_TAB[number%10];
+# 149
+void err_Display(void)
+{
+unsigned char num[4]={0};
+num[1] = Dis_TAB[0x10];
+num[2] = Dis_TAB[0x0c];
+WriteAll_1621(0, num, 4);
+}
+
+# 163
+void time_Display(void)
+{
+unsigned char num[4]={0};
+num[0] = Dis_TAB[0x0f];
+num[1] = Dis_TAB[0x0f];
+num[2] = Dis_TAB[0x0f];
+num[3] = Dis_TAB[0x0f];
 WriteAll_1621(0, num, 4);
 }
 

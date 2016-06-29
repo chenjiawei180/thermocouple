@@ -1,33 +1,28 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"4471 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _LATC2 `Vb ~T0 @X0 0 e@2162 ]
-"4469
-[v _LATC1 `Vb ~T0 @X0 0 e@2161 ]
-[v F1840 `(v ~T0 @X0 1 tf1`ul ]
+"4453 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _LATB1 `Vb ~T0 @X0 0 e@2153 ]
+[v F1836 `(v ~T0 @X0 1 tf1`ul ]
 "152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1840 ~T0 @X0 0 e ]
+[v __delay `JF1836 ~T0 @X0 0 e ]
 [p i __delay ]
-"4467 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _LATC0 `Vb ~T0 @X0 0 e@2160 ]
-"33 mcc_generated_files/global.h
-[v _temperature_int `ui ~T0 @X0 0 e ]
-"16 D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h
-[v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
-"35 mcc_generated_files/global.h
-[v _display_buff `uc ~T0 @X0 -> 0 `x e ]
-"34
-[v _temperature_sign `uc ~T0 @X0 0 e ]
-[v _temperature_decimal `uc ~T0 @X0 0 e ]
-[; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
-[; ;ht1621.h: 23: void SendBit_1621(unsigned char data,unsigned char cnt);
-[; ;ht1621.h: 24: void SendDataBit_1621(unsigned char data,unsigned char cnt);
-[; ;ht1621.h: 25: void SendCmd_1621(unsigned char command);
-[; ;ht1621.h: 26: void Write_1621(unsigned char addr,unsigned char data);
-[; ;ht1621.h: 27: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-[; ;ht1621.h: 28: void Tc_Display(void);
-[; ;ht1621.h: 29: void Two_Display(unsigned char number);
-[; ;ht1621.h: 30: void err_Display(void);
-[; ;ht1621.h: 31: void time_Display(void);
+"4451 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _LATB0 `Vb ~T0 @X0 0 e@2152 ]
+"4527
+[v _RB1 `Vb ~T0 @X0 0 e@105 ]
+[; ;global.h: 26: extern unsigned char uch_cr0;
+[; ;global.h: 27: extern unsigned char uch_cr1;
+[; ;global.h: 28: extern unsigned char uch_mask;
+[; ;global.h: 30: extern unsigned char uch_reg[8];
+[; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 32: extern unsigned long temperature_value;
+[; ;global.h: 33: extern unsigned int temperature_int;
+[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 35: extern unsigned char display_buff[4];
+[; ;global.h: 36: extern char s[64];
+[; ;global.h: 37: extern float f_cold_junction_temperature;
+[; ;global.h: 38: extern float f_linearized_tc_temperature;
+[; ;global.h: 39: extern unsigned char time_count;
+[; ;global.h: 40: extern unsigned char tmr_flag;
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1915,550 +1910,325 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
 [; ;mcc.h: 73: void SYSTEM_Initialize(void);
 [; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
-[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
-[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
-[; ;string.h: 16: extern void * memset(void *, int, size_t);
-[; ;string.h: 20: extern void * __builtin_memcpy(void *, const void *, size_t);
-[; ;string.h: 34: extern char * strcat(char *, const char *);
-[; ;string.h: 35: extern char * strcpy(char *, const char *);
-[; ;string.h: 36: extern char * strncat(char *, const char *, size_t);
-[; ;string.h: 37: extern char * strncpy(char *, const char *, size_t);
-[; ;string.h: 38: extern char * strdup(const char *);
-[; ;string.h: 39: extern char * strtok(char *, const char *);
-[; ;string.h: 42: extern int memcmp(const void *, const void *, size_t);
-[; ;string.h: 43: extern int strcmp(const char *, const char *);
-[; ;string.h: 44: extern int stricmp(const char *, const char *);
-[; ;string.h: 45: extern int strncmp(const char *, const char *, size_t);
-[; ;string.h: 46: extern int strnicmp(const char *, const char *, size_t);
-[; ;string.h: 47: extern void * memchr(const void *, int, size_t);
-[; ;string.h: 48: extern size_t strcspn(const char *, const char *);
-[; ;string.h: 49: extern char * strpbrk(const char *, const char *);
-[; ;string.h: 50: extern size_t strspn(const char *, const char *);
-[; ;string.h: 51: extern char * strstr(const char *, const char *);
-[; ;string.h: 52: extern char * stristr(const char *, const char *);
-[; ;string.h: 53: extern char * strerror(int);
-[; ;string.h: 54: extern size_t strlen(const char *);
-[; ;string.h: 55: extern char * strchr(const char *, int);
-[; ;string.h: 56: extern char * strichr(const char *, int);
-[; ;string.h: 57: extern char * strrchr(const char *, int);
-[; ;string.h: 58: extern char * strrichr(const char *, int);
-[; ;global.h: 26: extern unsigned char uch_cr0;
-[; ;global.h: 27: extern unsigned char uch_cr1;
-[; ;global.h: 28: extern unsigned char uch_mask;
-[; ;global.h: 30: extern unsigned char uch_reg[8];
-[; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 32: extern unsigned long temperature_value;
-[; ;global.h: 33: extern unsigned int temperature_int;
-[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 35: extern unsigned char display_buff[4];
-[; ;global.h: 36: extern char s[64];
-[; ;global.h: 37: extern float f_cold_junction_temperature;
-[; ;global.h: 38: extern float f_linearized_tc_temperature;
-[; ;global.h: 39: extern unsigned char time_count;
-[; ;global.h: 40: extern unsigned char tmr_flag;
-"12 mcc_generated_files/ht1621.c
-[v _Dis_TAB `Cuc ~T0 @X0 -> 0 `x e ]
-[i _Dis_TAB
-:U ..
--> -> 215 `i `uc
--> -> 80 `i `uc
--> -> 181 `i `uc
--> -> 241 `i `uc
--> -> 114 `i `uc
--> -> 227 `i `uc
--> -> 231 `i `uc
--> -> 81 `i `uc
--> -> 247 `i `uc
--> -> 243 `i `uc
--> -> 119 `i `uc
--> -> 230 `i `uc
--> -> 135 `i `uc
--> -> 244 `i `uc
--> -> 167 `i `uc
--> -> 39 `i `uc
--> -> 87 `i `uc
--> -> 32 `i `uc
--> -> 32 `i `uc
--> -> 32 `i `uc
--> -> 32 `i `uc
-..
-]
-[; ;ht1621.c: 12: unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x57,0x20,0x20,0x20,0x20};
-"19
-[v _SendBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
-"20
+[; ;i2c.h: 21: void I2C_Start(void);
+[; ;i2c.h: 22: unsigned char I2C_Send_Byte(unsigned char Data);
+[; ;i2c.h: 23: unsigned char I2C_Receive_Byte(void);
+[; ;i2c.h: 24: void I2C_Stop(void);
+"16 mcc_generated_files/i2c.c
+[v _I2C_Start `(v ~T0 @X0 1 ef ]
+"17
 {
-[; ;ht1621.c: 19: void SendBit_1621(unsigned char data,unsigned char cnt)
-[; ;ht1621.c: 20: {
-[e :U _SendBit_1621 ]
-"19
-[v _data `uc ~T0 @X0 1 r1 ]
-[v _cnt `uc ~T0 @X0 1 r2 ]
-"20
+[; ;i2c.c: 16: void I2C_Start(void)
+[; ;i2c.c: 17: {
+[e :U _I2C_Start ]
 [f ]
-"21
-[v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 21: unsigned char i;
-[; ;ht1621.c: 22: for(i =0; i <cnt; i ++)
-"22
+[; ;i2c.c: 18: do { LATB1 = 1; } while(0);
+"18
+[e :U 236 ]
 {
-[e = _i -> -> 0 `i `uc ]
-[e $U 237  ]
-"23
-[e :U 234 ]
-[; ;ht1621.c: 23: {
-{
-[; ;ht1621.c: 24: if((data&0x80)==0) do { LATC2 = 0; } while(0);
-"24
-[e $ ! == & -> _data `i -> 128 `i -> 0 `i 238  ]
-[e :U 241 ]
-{
-[e = _LATC2 -> -> 0 `i `b ]
+[e = _LATB1 -> -> 1 `i `b ]
 }
-[e :U 240 ]
-[e $U 242  ]
-"25
+[e :U 235 ]
+[; ;i2c.c: 19: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"19
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 20: do { LATB0 = 1; } while(0);
+"20
+[e :U 239 ]
+{
+[e = _LATB0 -> -> 1 `i `b ]
+}
 [e :U 238 ]
-[; ;ht1621.c: 25: else do { LATC2 = 1; } while(0);
+[; ;i2c.c: 21: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"21
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 22: do { LATB1 = 0; } while(0);
+"22
+[e :U 242 ]
+{
+[e = _LATB1 -> -> 0 `i `b ]
+}
+[e :U 241 ]
+[; ;i2c.c: 23: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"23
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 24: do { LATB0 = 0; } while(0);
+"24
 [e :U 245 ]
 {
-[e = _LATC2 -> -> 1 `i `b ]
+[e = _LATB0 -> -> 0 `i `b ]
 }
 [e :U 244 ]
-[e :U 242 ]
-[; ;ht1621.c: 26: do { LATC1 = 0; } while(0);
+[; ;i2c.c: 25: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"25
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 26: }
 "26
-[e :U 248 ]
-{
-[e = _LATC1 -> -> 0 `i `b ]
-}
-[e :U 247 ]
-[; ;ht1621.c: 27: _delay((unsigned long)((1)*(16000000/4000.0)));
-"27
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;ht1621.c: 28: do { LATC1 = 1; } while(0);
-"28
-[e :U 251 ]
-{
-[e = _LATC1 -> -> 1 `i `b ]
-}
-[e :U 250 ]
-[; ;ht1621.c: 29: data<<=1;
-"29
-[e =<< _data -> 1 `i ]
-"30
-}
-"22
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 237 ]
-[e $ < -> _i `i -> _cnt `i 234  ]
-[e :U 235 ]
-"30
-}
-[; ;ht1621.c: 30: }
-[; ;ht1621.c: 31: }
-"31
 [e :UE 233 ]
 }
-"39
-[v _SendDataBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
-"40
+"34
+[v _I2C_Send_Byte `(uc ~T0 @X0 1 ef1`uc ]
+"35
 {
-[; ;ht1621.c: 39: void SendDataBit_1621(unsigned char data,unsigned char cnt)
-[; ;ht1621.c: 40: {
-[e :U _SendDataBit_1621 ]
-"39
-[v _data `uc ~T0 @X0 1 r1 ]
-[v _cnt `uc ~T0 @X0 1 r2 ]
-"40
+[; ;i2c.c: 34: unsigned char I2C_Send_Byte(unsigned char Data)
+[; ;i2c.c: 35: {
+[e :U _I2C_Send_Byte ]
+"34
+[v _Data `uc ~T0 @X0 1 r1 ]
+"35
 [f ]
-"41
+"36
 [v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 41: unsigned char i;
-[; ;ht1621.c: 42: for(i =0; i <cnt; i ++)
-"42
+[; ;i2c.c: 36: unsigned char i;
+[; ;i2c.c: 37: for(i=0;i<8;i++)
+"37
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 256  ]
-"43
-[e :U 253 ]
-[; ;ht1621.c: 43: {
+[e $ < -> _i `i -> 8 `i 247  ]
+[e $U 248  ]
+"38
+[e :U 247 ]
+[; ;i2c.c: 38: {
 {
-[; ;ht1621.c: 44: if((data&0x01)==0) do { LATC2 = 0; } while(0);
+[; ;i2c.c: 39: if(Data&0x80)
+"39
+[e $ ! != & -> _Data `i -> 128 `i -> 0 `i 250  ]
+[; ;i2c.c: 40: do { LATB1 = 1; } while(0);
+"40
+[e :U 253 ]
+{
+[e = _LATB1 -> -> 1 `i `b ]
+}
+[e :U 252 ]
+[e $U 254  ]
+"41
+[e :U 250 ]
+[; ;i2c.c: 41: else
+[; ;i2c.c: 42: do { LATB1 = 0; } while(0);
+"42
+[e :U 257 ]
+{
+[e = _LATB1 -> -> 0 `i `b ]
+}
+[e :U 256 ]
+[e :U 254 ]
+[; ;i2c.c: 43: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"43
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 44: do { LATB0 = 1; } while(0);
 "44
-[e $ ! == & -> _data `i -> 1 `i -> 0 `i 257  ]
 [e :U 260 ]
 {
-[e = _LATC2 -> -> 0 `i `b ]
+[e = _LATB0 -> -> 1 `i `b ]
 }
 [e :U 259 ]
-[e $U 261  ]
+[; ;i2c.c: 45: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "45
-[e :U 257 ]
-[; ;ht1621.c: 45: else do { LATC2 = 1; } while(0);
-[e :U 264 ]
-{
-[e = _LATC2 -> -> 1 `i `b ]
-}
-[e :U 263 ]
-[e :U 261 ]
-[; ;ht1621.c: 46: do { LATC1 = 0; } while(0);
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 46: Data<<=1;
 "46
-[e :U 267 ]
-{
-[e = _LATC1 -> -> 0 `i `b ]
-}
-[e :U 266 ]
-[; ;ht1621.c: 47: _delay((unsigned long)((1)*(16000000/4000.0)));
+[e =<< _Data -> 1 `i ]
+[; ;i2c.c: 47: do { LATB0 = 0; } while(0);
 "47
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;ht1621.c: 48: do { LATC1 = 1; } while(0);
+[e :U 263 ]
+{
+[e = _LATB0 -> -> 0 `i `b ]
+}
+[e :U 262 ]
+[; ;i2c.c: 48: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "48
-[e :U 270 ]
-{
-[e = _LATC1 -> -> 1 `i `b ]
-}
-[e :U 269 ]
-[; ;ht1621.c: 49: data>>=1;
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 "49
-[e =>> _data -> 1 `i ]
-"50
 }
-"42
+"37
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 256 ]
-[e $ < -> _i `i -> _cnt `i 253  ]
-[e :U 254 ]
+[e $ < -> _i `i -> 8 `i 247  ]
+[e :U 248 ]
+"49
+}
+[; ;i2c.c: 49: }
+[; ;i2c.c: 50: do { LATB1 = 1; } while(0);
 "50
+[e :U 266 ]
+{
+[e = _LATB1 -> -> 1 `i `b ]
 }
-[; ;ht1621.c: 50: }
-[; ;ht1621.c: 51: }
+[e :U 265 ]
+[; ;i2c.c: 51: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "51
-[e :UE 252 ]
-}
-"59
-[v _SendCmd_1621 `(v ~T0 @X0 1 ef1`uc ]
-"60
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 52: do { LATB0 = 1; } while(0);
+"52
+[e :U 269 ]
 {
-[; ;ht1621.c: 59: void SendCmd_1621(unsigned char command)
-[; ;ht1621.c: 60: {
-[e :U _SendCmd_1621 ]
-"59
-[v _command `uc ~T0 @X0 1 r1 ]
-"60
-[f ]
-[; ;ht1621.c: 61: do { LATC0 = 0; } while(0);
-"61
-[e :U 274 ]
-{
-[e = _LATC0 -> -> 0 `i `b ]
+[e = _LATB0 -> -> 1 `i `b ]
 }
+[e :U 268 ]
+[; ;i2c.c: 53: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"53
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 54: if(RB1)
+"54
+[e $ ! _RB1 270  ]
+[; ;i2c.c: 55: return 0x01;
+"55
+[e ) -> -> 1 `i `uc ]
+[e $UE 246  ]
+[e :U 270 ]
+[; ;i2c.c: 57: do { LATB0 = 0; } while(0);
+"57
 [e :U 273 ]
-[; ;ht1621.c: 62: SendBit_1621(0x80,4);
-"62
-[e ( _SendBit_1621 (2 , -> -> 128 `i `uc -> -> 4 `i `uc ]
-[; ;ht1621.c: 63: SendBit_1621(command,8);
-"63
-[e ( _SendBit_1621 (2 , _command -> -> 8 `i `uc ]
-[; ;ht1621.c: 64: do { LATC0 = 1; } while(0);
-"64
-[e :U 277 ]
 {
-[e = _LATC0 -> -> 1 `i `b ]
+[e = _LATB0 -> -> 0 `i `b ]
 }
+[e :U 272 ]
+[; ;i2c.c: 58: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"58
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 59: do { LATB1 = 0; } while(0);
+"59
 [e :U 276 ]
-[; ;ht1621.c: 65: }
-"65
-[e :UE 271 ]
-}
-"73
-[v _Write_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
-"74
 {
-[; ;ht1621.c: 73: void Write_1621(unsigned char addr,unsigned char data)
-[; ;ht1621.c: 74: {
-[e :U _Write_1621 ]
-"73
-[v _addr `uc ~T0 @X0 1 r1 ]
-[v _data `uc ~T0 @X0 1 r2 ]
-"74
+[e = _LATB1 -> -> 0 `i `b ]
+}
+[e :U 275 ]
+[; ;i2c.c: 60: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"60
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 61: return 0x00;
+"61
+[e ) -> -> 0 `i `uc ]
+[e $UE 246  ]
+[; ;i2c.c: 62: }
+"62
+[e :UE 246 ]
+}
+"70
+[v _I2C_Receive_Byte `(uc ~T0 @X0 1 ef ]
+"71
+{
+[; ;i2c.c: 70: unsigned char I2C_Receive_Byte(void)
+[; ;i2c.c: 71: {
+[e :U _I2C_Receive_Byte ]
 [f ]
-[; ;ht1621.c: 75: do { LATC0 = 0; } while(0);
-"75
-[e :U 281 ]
-{
-[e = _LATC0 -> -> 0 `i `b ]
-}
-[e :U 280 ]
-[; ;ht1621.c: 76: SendBit_1621(0xa0,3);
-"76
-[e ( _SendBit_1621 (2 , -> -> 160 `i `uc -> -> 3 `i `uc ]
-[; ;ht1621.c: 77: SendBit_1621(addr,6);
-"77
-[e ( _SendBit_1621 (2 , _addr -> -> 6 `i `uc ]
-[; ;ht1621.c: 78: SendDataBit_1621(data,4);
-"78
-[e ( _SendDataBit_1621 (2 , _data -> -> 4 `i `uc ]
-[; ;ht1621.c: 79: do { LATC0 = 1; } while(0);
-"79
-[e :U 284 ]
-{
-[e = _LATC0 -> -> 1 `i `b ]
-}
-[e :U 283 ]
-[; ;ht1621.c: 80: }
-"80
-[e :UE 278 ]
-}
-"88
-[v _WriteAll_1621 `(v ~T0 @X0 1 ef3`uc`*uc`uc ]
-"89
-{
-[; ;ht1621.c: 88: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt)
-[; ;ht1621.c: 89: {
-[e :U _WriteAll_1621 ]
-"88
-[v _addr `uc ~T0 @X0 1 r1 ]
-[v _p `*uc ~T0 @X0 1 r2 ]
-[v _cnt `uc ~T0 @X0 1 r3 ]
-"89
-[f ]
-"90
+"72
 [v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 90: unsigned char i;
-[; ;ht1621.c: 91: do { LATC0 = 0; } while(0);
-"91
-[e :U 288 ]
+[v _Data `uc ~T0 @X0 1 a ]
+[; ;i2c.c: 72: unsigned char i,Data=0;
+[e = _Data -> -> 0 `i `uc ]
+[; ;i2c.c: 73: do { LATB1 = 1; } while(0);
+"73
+[e :U 280 ]
 {
-[e = _LATC0 -> -> 0 `i `b ]
+[e = _LATB1 -> -> 1 `i `b ]
 }
-[e :U 287 ]
-[; ;ht1621.c: 92: SendBit_1621(0xa0,3);
-"92
-[e ( _SendBit_1621 (2 , -> -> 160 `i `uc -> -> 3 `i `uc ]
-[; ;ht1621.c: 93: SendBit_1621(addr,6);
-"93
-[e ( _SendBit_1621 (2 , _addr -> -> 6 `i `uc ]
-[; ;ht1621.c: 94: for(i =0; i <cnt; i ++,p++)
-"94
+[e :U 279 ]
+[; ;i2c.c: 74: for(i=0;i<8;i++)
+"74
 {
 [e = _i -> -> 0 `i `uc ]
-[e $U 292  ]
-"95
-[e :U 289 ]
-[; ;ht1621.c: 95: {
+[e $ < -> _i `i -> 8 `i 281  ]
+[e $U 282  ]
+"75
+[e :U 281 ]
+[; ;i2c.c: 75: {
 {
-[; ;ht1621.c: 96: SendDataBit_1621(*p,8);
-"96
-[e ( _SendDataBit_1621 (2 , *U _p -> -> 8 `i `uc ]
-"97
+[; ;i2c.c: 76: Data <<= 1;
+"76
+[e =<< _Data -> 1 `i ]
+[; ;i2c.c: 77: do { LATB0 = 1; } while(0);
+"77
+[e :U 286 ]
+{
+[e = _LATB0 -> -> 1 `i `b ]
 }
-"94
-[e ; ++ _i -> -> 1 `i `uc ++ _p * -> -> 1 `i `x -> -> # *U _p `i `x ]
-[e :U 292 ]
-[e $ < -> _i `i -> _cnt `i 289  ]
+[e :U 285 ]
+[; ;i2c.c: 78: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"78
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 79: if(RB1)
+"79
+[e $ ! _RB1 287  ]
+[; ;i2c.c: 80: Data |= 0x01;
+"80
+[e =| _Data -> -> 1 `i `uc ]
+[e :U 287 ]
+[; ;i2c.c: 81: do { LATB0 = 0; } while(0);
+"81
 [e :U 290 ]
-"97
-}
-[; ;ht1621.c: 97: }
-[; ;ht1621.c: 98: do { LATC0 = 1; } while(0);
-"98
-[e :U 295 ]
 {
-[e = _LATC0 -> -> 1 `i `b ]
+[e = _LATB0 -> -> 0 `i `b ]
 }
+[e :U 289 ]
+[; ;i2c.c: 82: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"82
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+"83
+}
+"74
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 281  ]
+[e :U 282 ]
+"83
+}
+[; ;i2c.c: 83: }
+[; ;i2c.c: 84: return Data;
+"84
+[e ) _Data ]
+[e $UE 277  ]
+[; ;i2c.c: 85: }
+"85
+[e :UE 277 ]
+}
+"93
+[v _I2C_Stop `(v ~T0 @X0 1 ef ]
+"94
+{
+[; ;i2c.c: 93: void I2C_Stop(void)
+[; ;i2c.c: 94: {
+[e :U _I2C_Stop ]
+[f ]
+[; ;i2c.c: 95: do { LATB0 = 0; } while(0);
+"95
 [e :U 294 ]
-[; ;ht1621.c: 99: }
-"99
-[e :UE 285 ]
-}
-"107
-[v _Tc_Display `(v ~T0 @X0 1 ef ]
-"108
 {
-[; ;ht1621.c: 107: void Tc_Display(void)
-[; ;ht1621.c: 108: {
-[e :U _Tc_Display ]
-[f ]
-"109
-[v _count `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 109: unsigned char count = 0;
-[e = _count -> -> 0 `i `uc ]
-"110
-[v _data `ui ~T0 @X0 1 a ]
-[; ;ht1621.c: 110: unsigned int data = temperature_int;
-[e = _data _temperature_int ]
-[; ;ht1621.c: 111: memset(display_buff,0,4);
-"111
-[e ( _memset (3 , , -> &U _display_buff `*v -> 0 `i -> -> 4 `i `ui ]
-[; ;ht1621.c: 112: while(data)
-"112
-[e $U 297  ]
-[e :U 298 ]
-[; ;ht1621.c: 113: {
-"113
-{
-[; ;ht1621.c: 114: count++;
-"114
-[e ++ _count -> -> 1 `i `uc ]
-[; ;ht1621.c: 115: data /=10;
-"115
-[e =/ _data -> -> 10 `uc `ui ]
-"116
+[e = _LATB0 -> -> 0 `i `b ]
 }
+[e :U 293 ]
+[; ;i2c.c: 96: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"96
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 97: do { LATB1 = 0; } while(0);
+"97
 [e :U 297 ]
-"112
-[e $ != _data -> -> 0 `i `ui 298  ]
-[e :U 299 ]
-[; ;ht1621.c: 116: }
-[; ;ht1621.c: 117: switch(count)
-"117
-[e $U 301  ]
-[; ;ht1621.c: 118: {
-"118
 {
-[; ;ht1621.c: 119: case 3:display_buff[0] = Dis_TAB[temperature_int/100];
-"119
-[e :U 302 ]
-[e = *U + &U _display_buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> / _temperature_int -> -> 100 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 120: case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
-"120
-[e :U 303 ]
-[e = *U + &U _display_buff * -> -> -> 1 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> / % _temperature_int -> -> 100 `i `ui -> -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 121: case 1:display_buff[2] = Dis_TAB[temperature_int%10];
-"121
-[e :U 304 ]
-[e = *U + &U _display_buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> % _temperature_int -> -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 122: default:break;
-"122
-[e :U 305 ]
-[e $U 300  ]
-"123
+[e = _LATB1 -> -> 0 `i `b ]
 }
-[; ;ht1621.c: 123: }
-[e $U 300  ]
-"117
-[e :U 301 ]
-[e [\ _count , $ -> -> 3 `i `uc 302
- , $ -> -> 2 `i `uc 303
- , $ -> -> 1 `i `uc 304
- 305 ]
-"123
+[e :U 296 ]
+[; ;i2c.c: 98: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"98
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 99: do { LATB0 = 1; } while(0);
+"99
 [e :U 300 ]
-[; ;ht1621.c: 124: if(temperature_sign == 1) display_buff[0]|=0x08;
-"124
-[e $ ! == -> _temperature_sign `i -> 1 `i 306  ]
-[e =| *U + &U _display_buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> -> 8 `i `uc ]
-[e :U 306 ]
-[; ;ht1621.c: 125: display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
-"125
-[e = *U + &U _display_buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> | -> *U + &U _Dis_TAB * -> _temperature_decimal `ux -> -> # *U &U _Dis_TAB `ui `ux `i -> 8 `i `uc ]
-[; ;ht1621.c: 126: WriteAll_1621(0,display_buff,4);
-"126
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _display_buff -> -> 4 `i `uc ]
-[; ;ht1621.c: 127: }
-"127
-[e :UE 296 ]
-}
-"135
-[v _Two_Display `(v ~T0 @X0 1 ef1`uc ]
-"136
 {
-[; ;ht1621.c: 135: void Two_Display(unsigned char number)
-[; ;ht1621.c: 136: {
-[e :U _Two_Display ]
-"135
-[v _number `uc ~T0 @X0 1 r1 ]
-"136
-[f ]
-[v F2072 `uc ~T0 @X0 -> 4 `i s ]
-[i F2072
-:U ..
-"137
--> -> 0 `i `uc
-..
-]
-[v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 137: unsigned char num[4]={0};
-[e = _num F2072 ]
-[; ;ht1621.c: 138: num[1] = Dis_TAB[0];
-"138
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 139: num[2] = Dis_TAB[number];
-"139
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> _number `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 140: WriteAll_1621(0, num, 4);
-"140
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 141: }
-"141
-[e :UE 307 ]
+[e = _LATB0 -> -> 1 `i `b ]
 }
-"149
-[v _err_Display `(v ~T0 @X0 1 ef ]
-"150
+[e :U 299 ]
+[; ;i2c.c: 100: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"100
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 101: do { LATB1 = 1; } while(0);
+"101
+[e :U 303 ]
 {
-[; ;ht1621.c: 149: void err_Display(void)
-[; ;ht1621.c: 150: {
-[e :U _err_Display ]
-[f ]
-[v F2075 `uc ~T0 @X0 -> 4 `i s ]
-[i F2075
-:U ..
-"151
--> -> 0 `i `uc
-..
-]
-[v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 151: unsigned char num[4]={0};
-[e = _num F2075 ]
-[; ;ht1621.c: 152: num[1] = Dis_TAB[0x10];
-"152
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 153: num[2] = Dis_TAB[0x0c];
-"153
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 12 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 154: WriteAll_1621(0, num, 4);
-"154
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 155: }
-"155
-[e :UE 308 ]
+[e = _LATB1 -> -> 1 `i `b ]
 }
-"163
-[v _time_Display `(v ~T0 @X0 1 ef ]
-"164
-{
-[; ;ht1621.c: 163: void time_Display(void)
-[; ;ht1621.c: 164: {
-[e :U _time_Display ]
-[f ]
-[v F2078 `uc ~T0 @X0 -> 4 `i s ]
-[i F2078
-:U ..
-"165
--> -> 0 `i `uc
-..
-]
-[v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 165: unsigned char num[4]={0};
-[e = _num F2078 ]
-[; ;ht1621.c: 166: num[0] = Dis_TAB[0x0f];
-"166
-[e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 15 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 167: num[1] = Dis_TAB[0x0f];
-"167
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 15 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 168: num[2] = Dis_TAB[0x0f];
-"168
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 15 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 169: num[3] = Dis_TAB[0x0f];
-"169
-[e = *U + &U _num * -> -> -> 3 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 15 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 170: WriteAll_1621(0, num, 4);
-"170
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 171: }
-"171
-[e :UE 309 ]
+[e :U 302 ]
+[; ;i2c.c: 102: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"102
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 103: }
+"103
+[e :UE 291 ]
 }

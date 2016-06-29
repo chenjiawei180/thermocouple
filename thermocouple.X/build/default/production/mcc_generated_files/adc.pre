@@ -2612,10 +2612,10 @@ adc_result_t ADC_GetConversionResult(void);
 # 249
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
-# 379 "mcc_generated_files/pin_manager.h"
+# 390 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 391
+# 402
 void PIN_MANAGER_IOC(void);
 
 # 111 "mcc_generated_files/interrupt_manager.h"

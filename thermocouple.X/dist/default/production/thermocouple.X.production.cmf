@@ -13,51 +13,51 @@
 %PSECTS
 $dist/default/production\thermocouple.X.production.obj
 cinit CODE 0 15 15 14 2
-text1 CODE 0 30B 30B 3D 2
-text2 CODE 0 43D 43D 28 2
-text3 CODE 0 29 29 A8 2
-text4 CODE 0 584 584 10 2
-text5 CODE 0 D1 D1 A7 2
-text6 CODE 0 4C7 4C7 1A 2
-text7 CODE 0 3E5 3E5 2C 2
-text8 CODE 0 348 348 35 2
-text9 CODE 0 411 411 2C 2
+text1 CODE 0 178 178 64 2
+text2 CODE 0 4CF 4CF 15 2
+text3 CODE 0 4F9 4F9 12 2
+text4 CODE 0 52C 52C F 2
+text5 CODE 0 57A 57A 6 2
+text6 CODE 0 3D6 3D6 22 2
+text7 CODE 0 580 580 5 2
+text8 CODE 0 557 557 C 2
+text9 CODE 0 56C 56C 8 2
 nvCOMMON COMMON 1 7A 7A 1 1
-text10 CODE 0 4E1 4E1 18 2
-text11 CODE 0 573 573 11 2
-text12 CODE 0 4F9 4F9 18 2
-text13 CODE 0 22E 22E 4C 2
-text14 CODE 0 27A 27A 4C 2
-text15 CODE 0 2C6 2C6 45 2
-text16 CODE 0 1DC 1DC 52 2
-text17 CODE 0 37D 37D 35 2
-text18 CODE 0 487 487 20 2
-text19 CODE 0 178 178 64 2
-text20 CODE 0 5B2 5B2 D 2
-text21 CODE 0 5CB 5CB 9 2
-text22 CODE 0 511 511 15 2
-text23 CODE 0 4A7 4A7 20 2
-text24 CODE 0 561 561 12 2
-text25 CODE 0 594 594 F 2
-text26 CODE 0 5E2 5E2 6 2
-text27 CODE 0 465 465 22 2
-text28 CODE 0 5E8 5E8 5 2
-text29 CODE 0 5BF 5BF C 2
-text30 CODE 0 5D4 5D4 8 2
-text32 CODE 0 526 526 15 2
-text33 CODE 0 5A3 5A3 F 2
-nvBANK0 BANK0 1 59 59 1 1
-maintext CODE 0 3B2 3B2 33 2
+text10 CODE 0 456 456 1A 2
+text11 CODE 0 2FD 2FD 33 2
+text12 CODE 0 25E 25E 35 2
+text13 CODE 0 438 438 1E 2
+text14 CODE 0 29 29 A8 2
+text15 CODE 0 51C 51C 10 2
+text16 CODE 0 3B1 3B1 25 2
+text17 CODE 0 D1 D1 A7 2
+text18 CODE 0 470 470 1A 2
+text19 CODE 0 330 330 2C 2
+text20 CODE 0 293 293 35 2
+text21 CODE 0 35C 35C 2C 2
+text22 CODE 0 48A 48A 18 2
+text23 CODE 0 54A 54A D 2
+text24 CODE 0 50B 50B 11 2
+text25 CODE 0 4A2 4A2 18 2
+text26 CODE 0 1DC 1DC 4C 2
+text27 CODE 0 563 563 9 2
+text28 CODE 0 388 388 29 2
+text29 CODE 0 2C8 2C8 35 2
+text30 CODE 0 3F8 3F8 20 2
+text31 CODE 0 418 418 20 2
+text33 CODE 0 4E4 4E4 15 2
+text34 CODE 0 53B 53B F 2
+nvBANK0 BANK0 1 62 62 1 1
+maintext CODE 0 228 228 36 2
 cstackCOMMON COMMON 1 70 70 A 1
-cstackBANK0 BANK0 1 48 48 11 1
+cstackBANK0 BANK0 1 51 51 11 1
 intentry CODE 0 4 4 F 2
-bssBANK0 BANK0 1 20 20 28 1
+bssBANK0 BANK0 1 20 20 31 1
 bssBANK1 BANK1 1 A0 A0 40 1
-stringtext STRCODE 0 53B 53B 14 2
-swtext1 CONST 0 54F 54F 12 2
-clrtext CODE 0 5DC 5DC 6 2
+stringtext STRCODE 0 4BA 4BA 15 2
+clrtext CODE 0 574 574 6 2
 bssCOMMON COMMON 1 7B 7B 1 1
-$C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
+$C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
 reset_vec CODE 0 0 0 2 2
 end_init CODE 0 13 13 2 2
 config CONFIG 0 8007 8007 2 2
@@ -67,7 +67,7 @@ config CONFIG 0 8007 8007 2 2
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 5A-6F 1
+RAM 63-6F 1
 RAM E0-EF 1
 RAM 120-16F 1
 RAM 1A0-1EF 1
@@ -80,7 +80,7 @@ RAM 4A0-4EF 1
 RAM 520-56F 1
 RAM 5A0-5EF 1
 RAM 620-64F 1
-BANK0 5A-6F 1
+BANK0 63-6F 1
 BANK1 E0-EF 1
 BANK2 120-16F 1
 BANK3 1A0-1EF 1
@@ -91,9 +91,9 @@ BANK7 3A0-3EF 1
 BANK8 420-46F 1
 BANK9 4A0-4EF 1
 CONST 2-3 2
-CONST 5ED-3FFF 2
+CONST 585-3FFF 2
 ENTRY 2-3 2
-ENTRY 5ED-3FFF 2
+ENTRY 585-3FFF 2
 IDLOC 8000-8003 2
 SFR10 500-51F 1
 SFR11 580-59F 1
@@ -119,7 +119,7 @@ SFR30 F00-F6F 1
 SFR31 F80-FEF 1
 STACK 2090-23EF 1
 CODE 2-3 2
-CODE 5ED-3FFF 2
+CODE 585-3FFF 2
 SFR0 0-1F 1
 SFR1 80-9F 1
 SFR2 100-11F 1
@@ -136,9 +136,9 @@ BANK12 620-64F 1
 BIGRAM 2000-23EF 1
 COMMON 7C-7D 1
 STRCODE 2-3 2
-STRCODE 5ED-3FFF 2
+STRCODE 585-3FFF 2
 STRING 2-3 2
-STRING 5ED-3FFF 2
+STRING 585-3FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -153,365 +153,344 @@ STRING 5ED-3FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\thermocouple.X.production.obj
-15 cinit CODE >3417:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-15 cinit CODE >3420:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-15 cinit CODE >3507:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-16 cinit CODE >3511:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-17 cinit CODE >3512:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-18 cinit CODE >3513:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-19 cinit CODE >3514:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-1A cinit CODE >3515:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-1B cinit CODE >3516:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-1E cinit CODE >3520:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-1F cinit CODE >3521:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-20 cinit CODE >3522:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-21 cinit CODE >3523:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-22 cinit CODE >3524:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-23 cinit CODE >3525:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-25 cinit CODE >3531:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-25 cinit CODE >3533:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-26 cinit CODE >3534:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-27 cinit CODE >3535:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
+15 cinit CODE >3875:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+15 cinit CODE >3878:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+15 cinit CODE >3974:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+16 cinit CODE >3978:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+17 cinit CODE >3979:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+18 cinit CODE >3980:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+19 cinit CODE >3981:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+1A cinit CODE >3982:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+1B cinit CODE >3983:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+1E cinit CODE >3987:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+1F cinit CODE >3988:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+20 cinit CODE >3989:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+21 cinit CODE >3990:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+22 cinit CODE >3991:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+23 cinit CODE >3992:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+25 cinit CODE >3998:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+25 cinit CODE >4000:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+26 cinit CODE >4001:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+27 cinit CODE >4002:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+4 intentry CODE >31:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
 4 intentry CODE >52:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
 9 intentry CODE >54:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
 C intentry CODE >55:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
 E intentry CODE >59:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
-5A3 text33 CODE >123:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-5A3 text33 CODE >126:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-5A8 text33 CODE >127:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-526 text32 CODE >103:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-526 text32 CODE >107:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-527 text32 CODE >109:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-52A text32 CODE >112:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-535 text32 CODE >114:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-537 text32 CODE >117:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-5D4 text30 CODE >65:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
-5D4 text30 CODE >69:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
-5D7 text30 CODE >72:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
-5D9 text30 CODE >75:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
-5DA text30 CODE >78:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
-5DB text30 CODE >80:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
-5BF text29 CODE >56:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
-5BF text29 CODE >60:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
-5C2 text29 CODE >63:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
-5C4 text29 CODE >66:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
-5C6 text29 CODE >69:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
-5C8 text29 CODE >72:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
-5CA text29 CODE >74:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
-5E8 text28 CODE >79:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-5E8 text28 CODE >81:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-5EB text28 CODE >83:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-5EC text28 CODE >86:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-465 text27 CODE >50:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-465 text27 CODE >51:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-468 text27 CODE >52:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-46B text27 CODE >53:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-46D text27 CODE >55:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-46F text27 CODE >56:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-472 text27 CODE >57:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-475 text27 CODE >58:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-478 text27 CODE >60:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-47B text27 CODE >61:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-47E text27 CODE >62:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-480 text27 CODE >64:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-482 text27 CODE >66:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-484 text27 CODE >68:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-486 text27 CODE >71:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
-5E2 text26 CODE >64:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5E2 text26 CODE >68:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5E4 text26 CODE >71:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5E6 text26 CODE >74:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5E7 text26 CODE >75:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-594 text25 CODE >66:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-594 text25 CODE >70:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-599 text25 CODE >73:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-59C text25 CODE >76:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-5A0 text25 CODE >79:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-5A1 text25 CODE >82:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-5A2 text25 CODE >83:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
-561 text24 CODE >70:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-561 text24 CODE >71:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-564 text24 CODE >72:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-567 text24 CODE >73:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-56A text24 CODE >74:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-56D text24 CODE >75:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-570 text24 CODE >76:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-572 text24 CODE >77:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
-4A7 text23 CODE >19:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4A8 text23 CODE >22:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4AD text23 CODE >24:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4B2 text23 CODE >25:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4B4 text23 CODE >26:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4B5 text23 CODE >27:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4BE text23 CODE >28:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4C0 text23 CODE >29:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4C2 text23 CODE >22:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-511 text22 CODE >59:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-512 text22 CODE >61:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-514 text22 CODE >62:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-51C text22 CODE >63:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-523 text22 CODE >64:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-5CB text21 CODE >77:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5CC text21 CODE >79:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5CE text21 CODE >81:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5D0 text21 CODE >83:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5D0 text21 CODE >84:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5D2 text21 CODE >86:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-5B2 text20 CODE >19:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-5B3 text20 CODE >21:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-5B5 text20 CODE >22:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-5B9 text20 CODE >23:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-5BC text20 CODE >24:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-178 text19 CODE >63:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-178 text19 CODE >66:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-17C text19 CODE >68:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-181 text19 CODE >69:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-185 text19 CODE >71:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-186 text19 CODE >73:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-18E text19 CODE >74:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-197 text19 CODE >75:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1A0 text19 CODE >78:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1A8 text19 CODE >79:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1B0 text19 CODE >81:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1B8 text19 CODE >82:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1C0 text19 CODE >83:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1C8 text19 CODE >84:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1CD text19 CODE >86:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1D2 text19 CODE >90:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1D7 text19 CODE >91:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-1DB text19 CODE >93:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-487 text18 CODE >39:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-488 text18 CODE >42:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-48D text18 CODE >44:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-492 text18 CODE >45:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-494 text18 CODE >46:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-495 text18 CODE >47:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-49E text18 CODE >48:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4A0 text18 CODE >49:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-4A2 text18 CODE >42:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-37D text17 CODE >88:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-37F text17 CODE >91:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-381 text17 CODE >92:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-38A text17 CODE >93:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-393 text17 CODE >94:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-399 text17 CODE >96:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-3A5 text17 CODE >94:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-3AF text17 CODE >98:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-1DC text16 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1DC text16 CODE >14:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1DE text16 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1E0 text16 CODE >16:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1E5 text16 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1E7 text16 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1E9 text16 CODE >20:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1EE text16 CODE >21:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1F2 text16 CODE >23:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1F4 text16 CODE >24:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1F8 text16 CODE >25:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1FA text16 CODE >26:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-1FC text16 CODE >27:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-201 text16 CODE >28:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-205 text16 CODE >26:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-206 text16 CODE >31:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-20B text16 CODE >32:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-213 text16 CODE >33:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-217 text16 CODE >34:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-218 text16 CODE >36:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-21D text16 CODE >37:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-221 text16 CODE >39:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-224 text16 CODE >40:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-229 text16 CODE >41:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
-2C6 text15 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2C6 text15 CODE >13:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2C7 text15 CODE >14:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2C9 text15 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2CE text15 CODE >16:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2D0 text15 CODE >18:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2D2 text15 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2D7 text15 CODE >20:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2DB text15 CODE >21:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2DD text15 CODE >22:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2DF text15 CODE >23:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2E4 text15 CODE >24:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2E8 text15 CODE >22:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2E9 text15 CODE >27:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2F1 text15 CODE >28:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2F5 text15 CODE >29:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2FA text15 CODE >30:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-2FE text15 CODE >32:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-301 text15 CODE >33:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-306 text15 CODE >34:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
-27A text14 CODE >135:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-27C text14 CODE >137:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-284 text14 CODE >139:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-29F text14 CODE >140:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-2BA text14 CODE >141:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-2C5 text14 CODE >142:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-22E text13 CODE >89:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-22F text13 CODE >90:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-230 text13 CODE >92:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-233 text13 CODE >93:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-237 text13 CODE >95:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-23A text13 CODE >96:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-244 text13 CODE >97:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-245 text13 CODE >98:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-258 text13 CODE >101:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-25C text13 CODE >94:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-261 text13 CODE >104:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-264 text13 CODE >105:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-268 text13 CODE >106:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-275 text13 CODE >108:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-279 text13 CODE >105:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
-4F9 text12 CODE >49:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4FB text12 CODE >51:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4FD text12 CODE >52:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-502 text12 CODE >53:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-50E text12 CODE >54:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-573 text11 CODE >33:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-574 text11 CODE >36:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-576 text11 CODE >37:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-57A text11 CODE >38:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-580 text11 CODE >39:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-582 text11 CODE >40:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4E1 text10 CODE >114:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4E2 text10 CODE >116:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4E9 text10 CODE >117:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4ED text10 CODE >118:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4F1 text10 CODE >119:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4F8 text10 CODE >120:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-411 text9 CODE >200:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-411 text9 CODE >202:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-415 text9 CODE >203:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-418 text9 CODE >204:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-423 text9 CODE >205:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-42C text9 CODE >206:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-438 text9 CODE >207:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-43C text9 CODE >209:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-348 text8 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-348 text8 CODE >14:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-34B text8 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-34F text8 CODE >16:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-351 text8 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-353 text8 CODE >18:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-358 text8 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-35C text8 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-35D text8 CODE >22:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-362 text8 CODE >23:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-36A text8 CODE >24:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-36E text8 CODE >25:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-36F text8 CODE >27:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-374 text8 CODE >28:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-378 text8 CODE >30:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
-3E5 text7 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-3E5 text7 CODE >13:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-3E9 text7 CODE >14:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-3EB text7 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-3ED text7 CODE >16:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-3F2 text7 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-3F6 text7 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-3F7 text7 CODE >20:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-3FF text7 CODE >21:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-403 text7 CODE >22:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-408 text7 CODE >23:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-40C text7 CODE >25:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
-4C7 text6 CODE >8:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
-4C8 text6 CODE >18:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
-4CC text6 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
-4D5 text6 CODE >20:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
-4E0 text6 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
-D1 text5 CODE >107:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-D1 text5 CODE >109:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-D3 text5 CODE >110:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-D7 text5 CODE >111:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-E2 text5 CODE >112:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-E7 text5 CODE >114:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-EC text5 CODE >115:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-FC text5 CODE >112:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-FD text5 CODE >119:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-115 text5 CODE >120:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-139 text5 CODE >121:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-151 text5 CODE >123:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-152 text5 CODE >117:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-15D text5 CODE >124:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-160 text5 CODE >125:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-16C text5 CODE >126:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-177 text5 CODE >127:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
-584 text4 CODE >155:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-584 text4 CODE >157:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-58B text4 CODE >158:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-58C text4 CODE >159:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-593 text4 CODE >160:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-29 text3 CODE >168:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-29 text3 CODE >170:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-32 text3 CODE >171:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-45 text3 CODE >172:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-47 text3 CODE >173:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-49 text3 CODE >175:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-4B text3 CODE >176:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-72 text3 CODE >178:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-85 text3 CODE >179:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-8A text3 CODE >180:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-92 text3 CODE >181:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-A0 text3 CODE >182:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-A1 text3 CODE >185:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-A2 text3 CODE >186:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-B5 text3 CODE >187:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-BA text3 CODE >188:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-C2 text3 CODE >189:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-43D text2 CODE >217:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-43D text2 CODE >219:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-441 text2 CODE >221:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-444 text2 CODE >222:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-446 text2 CODE >223:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-447 text2 CODE >226:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-454 text2 CODE >227:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-45D text2 CODE >228:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-460 text2 CODE >229:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-54F swtext1 CONST >241:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-30B text1 CODE >239:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-30B text1 CODE >241:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-30C text1 CODE >243:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-30E text1 CODE >244:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-30F text1 CODE >245:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-313 text1 CODE >246:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-31D text1 CODE >248:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-31E text1 CODE >249:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-321 text1 CODE >250:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-324 text1 CODE >251:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-326 text1 CODE >252:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-327 text1 CODE >253:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-32B text1 CODE >254:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-335 text1 CODE >255:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-336 text1 CODE >256:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-339 text1 CODE >257:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-33B text1 CODE >263:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-33C text1 CODE >241:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-347 text1 CODE >264:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
-3B2 maintext CODE >60:D:\Github\thermocouple\thermocouple.X\main.c
-3B2 maintext CODE >63:D:\Github\thermocouple\thermocouple.X\main.c
-3B5 maintext CODE >65:D:\Github\thermocouple\thermocouple.X\main.c
-3B8 maintext CODE >66:D:\Github\thermocouple\thermocouple.X\main.c
-3BA maintext CODE >67:D:\Github\thermocouple\thermocouple.X\main.c
-3BB maintext CODE >68:D:\Github\thermocouple\thermocouple.X\main.c
-3BE maintext CODE >69:D:\Github\thermocouple\thermocouple.X\main.c
-3C0 maintext CODE >70:D:\Github\thermocouple\thermocouple.X\main.c
-3C4 maintext CODE >71:D:\Github\thermocouple\thermocouple.X\main.c
-3C8 maintext CODE >72:D:\Github\thermocouple\thermocouple.X\main.c
-3CC maintext CODE >73:D:\Github\thermocouple\thermocouple.X\main.c
-3D0 maintext CODE >75:D:\Github\thermocouple\thermocouple.X\main.c
-3DD maintext CODE >77:D:\Github\thermocouple\thermocouple.X\main.c
-3DF maintext CODE >94:D:\Github\thermocouple\thermocouple.X\main.c
-3E0 maintext CODE >97:D:\Github\thermocouple\thermocouple.X\main.c
-3E1 maintext CODE >109:D:\Github\thermocouple\thermocouple.X\main.c
-3E4 maintext CODE >105:D:\Github\thermocouple\thermocouple.X\main.c
-5DC clrtext CODE >3496:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-5DC clrtext CODE >3497:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-5DD clrtext CODE >3498:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-5DD clrtext CODE >3499:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-5DE clrtext CODE >3500:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-5DF clrtext CODE >3501:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-5E0 clrtext CODE >3502:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
-5E1 clrtext CODE >3503:C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.
+53B text34 CODE >123:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+53B text34 CODE >126:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+540 text34 CODE >127:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+4E4 text33 CODE >103:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+4E4 text33 CODE >107:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+4E5 text33 CODE >109:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+4E8 text33 CODE >112:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+4F3 text33 CODE >114:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+4F5 text33 CODE >117:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+418 text31 CODE >19:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+419 text31 CODE >22:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+41E text31 CODE >24:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+423 text31 CODE >25:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+425 text31 CODE >26:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+426 text31 CODE >27:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+42F text31 CODE >28:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+431 text31 CODE >29:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+433 text31 CODE >22:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3F8 text30 CODE >39:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3F9 text30 CODE >42:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3FE text30 CODE >44:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+403 text30 CODE >45:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+405 text30 CODE >46:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+406 text30 CODE >47:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+40F text30 CODE >48:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+411 text30 CODE >49:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+413 text30 CODE >42:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2C8 text29 CODE >88:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2CA text29 CODE >91:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2CC text29 CODE >92:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2D5 text29 CODE >93:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2DE text29 CODE >94:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2E4 text29 CODE >96:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2F0 text29 CODE >94:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2FA text29 CODE >98:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+388 text28 CODE >135:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+38A text28 CODE >137:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+392 text28 CODE >138:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+39A text28 CODE >139:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3A5 text28 CODE >140:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3B0 text28 CODE >141:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+563 text27 CODE >77:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+564 text27 CODE >79:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+566 text27 CODE >81:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+568 text27 CODE >83:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+568 text27 CODE >84:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+56A text27 CODE >86:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+1DC text26 CODE >89:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+1DD text26 CODE >90:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+1DE text26 CODE >92:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+1E1 text26 CODE >93:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+1E5 text26 CODE >95:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+1E8 text26 CODE >96:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+1F2 text26 CODE >97:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+1F3 text26 CODE >98:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+206 text26 CODE >101:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+20A text26 CODE >94:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+20F text26 CODE >104:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+212 text26 CODE >105:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+216 text26 CODE >106:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+223 text26 CODE >108:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+227 text26 CODE >105:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+4A2 text25 CODE >49:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+4A4 text25 CODE >51:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+4A6 text25 CODE >52:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+4AB text25 CODE >53:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+4B7 text25 CODE >54:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+50B text24 CODE >33:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+50C text24 CODE >36:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+50E text24 CODE >37:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+512 text24 CODE >38:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+518 text24 CODE >39:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+51A text24 CODE >40:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+54A text23 CODE >19:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+54B text23 CODE >21:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+54D text23 CODE >22:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+551 text23 CODE >23:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+554 text23 CODE >24:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+48A text22 CODE >114:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+48B text22 CODE >116:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+492 text22 CODE >117:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+496 text22 CODE >118:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+49A text22 CODE >119:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+4A1 text22 CODE >120:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+35C text21 CODE >200:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+35C text21 CODE >202:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+360 text21 CODE >203:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+363 text21 CODE >204:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+36E text21 CODE >205:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+377 text21 CODE >206:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+383 text21 CODE >207:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+387 text21 CODE >209:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+293 text20 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+293 text20 CODE >14:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+296 text20 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+29A text20 CODE >16:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+29C text20 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+29E text20 CODE >18:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2A3 text20 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2A7 text20 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2A8 text20 CODE >22:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2AD text20 CODE >23:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2B5 text20 CODE >24:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2B9 text20 CODE >25:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2BA text20 CODE >27:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2BF text20 CODE >28:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+2C3 text20 CODE >30:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
+330 text19 CODE >6:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+330 text19 CODE >13:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+334 text19 CODE >14:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+336 text19 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+338 text19 CODE >16:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+33D text19 CODE >17:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+341 text19 CODE >15:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+342 text19 CODE >20:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+34A text19 CODE >21:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+34E text19 CODE >22:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+353 text19 CODE >23:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+357 text19 CODE >25:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
+470 text18 CODE >8:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+471 text18 CODE >18:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+475 text18 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+47E text18 CODE >20:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+489 text18 CODE >19:D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
+D1 text17 CODE >107:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+D1 text17 CODE >109:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+D3 text17 CODE >110:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+D7 text17 CODE >111:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+E2 text17 CODE >112:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+E7 text17 CODE >114:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+EC text17 CODE >115:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+FC text17 CODE >112:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+FD text17 CODE >119:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+115 text17 CODE >120:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+139 text17 CODE >121:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+151 text17 CODE >123:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+152 text17 CODE >117:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+15D text17 CODE >124:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+160 text17 CODE >125:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+16C text17 CODE >126:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+177 text17 CODE >127:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3B1 text16 CODE >149:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3B1 text16 CODE >151:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3BA text16 CODE >152:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3C2 text16 CODE >153:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3CA text16 CODE >154:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+3D5 text16 CODE >155:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+51C text15 CODE >155:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+51C text15 CODE >157:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+523 text15 CODE >158:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+524 text15 CODE >159:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+52B text15 CODE >160:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+29 text14 CODE >168:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+29 text14 CODE >170:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+32 text14 CODE >171:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+45 text14 CODE >172:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+47 text14 CODE >173:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+49 text14 CODE >175:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+4B text14 CODE >176:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+72 text14 CODE >178:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+85 text14 CODE >179:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+8A text14 CODE >180:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+92 text14 CODE >181:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+A0 text14 CODE >182:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+A1 text14 CODE >185:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+A2 text14 CODE >186:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+B5 text14 CODE >187:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+BA text14 CODE >188:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+C2 text14 CODE >189:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+438 text13 CODE >217:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+438 text13 CODE >219:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+43C text13 CODE >221:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+43F text13 CODE >222:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+441 text13 CODE >223:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+442 text13 CODE >226:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+445 text13 CODE >227:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+44E text13 CODE >228:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+451 text13 CODE >229:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+25E text12 CODE >163:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+25E text12 CODE >165:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+267 text12 CODE >166:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+26F text12 CODE >167:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+277 text12 CODE >168:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+27F text12 CODE >169:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+287 text12 CODE >170:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+292 text12 CODE >171:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+2FD text11 CODE >239:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+2FD text11 CODE >241:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+2FE text11 CODE >243:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+302 text11 CODE >244:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+304 text11 CODE >245:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+305 text11 CODE >246:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+306 text11 CODE >247:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+308 text11 CODE >248:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+309 text11 CODE >250:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+30C text11 CODE >251:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+310 text11 CODE >252:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+312 text11 CODE >253:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+313 text11 CODE >254:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+314 text11 CODE >255:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+316 text11 CODE >256:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+317 text11 CODE >258:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+31A text11 CODE >259:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+31C text11 CODE >261:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+31D text11 CODE >241:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+32F text11 CODE >262:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+456 text10 CODE >16:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+456 text10 CODE >18:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+459 text10 CODE >20:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+462 text10 CODE >21:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+465 text10 CODE >23:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+469 text10 CODE >24:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+46C text10 CODE >25:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+56C text9 CODE >65:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
+56C text9 CODE >69:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
+56F text9 CODE >72:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
+571 text9 CODE >75:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
+572 text9 CODE >78:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
+573 text9 CODE >80:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
+557 text8 CODE >56:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
+557 text8 CODE >60:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
+55A text8 CODE >63:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
+55C text8 CODE >66:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
+55E text8 CODE >69:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
+560 text8 CODE >72:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
+562 text8 CODE >74:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
+580 text7 CODE >79:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+580 text7 CODE >81:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+583 text7 CODE >83:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+584 text7 CODE >86:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+3D6 text6 CODE >50:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3D6 text6 CODE >51:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3D9 text6 CODE >52:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3DC text6 CODE >53:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3DE text6 CODE >55:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3E0 text6 CODE >56:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3E3 text6 CODE >57:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3E6 text6 CODE >58:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3E9 text6 CODE >60:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3EC text6 CODE >61:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3EF text6 CODE >62:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3F1 text6 CODE >64:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3F3 text6 CODE >66:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3F5 text6 CODE >68:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+3F7 text6 CODE >71:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
+57A text5 CODE >64:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+57A text5 CODE >68:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+57C text5 CODE >71:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+57E text5 CODE >74:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+57F text5 CODE >75:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
+52C text4 CODE >66:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+52C text4 CODE >70:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+531 text4 CODE >73:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+534 text4 CODE >76:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+538 text4 CODE >79:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+539 text4 CODE >82:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+53A text4 CODE >83:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
+4F9 text3 CODE >70:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+4F9 text3 CODE >71:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+4FC text3 CODE >72:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+4FF text3 CODE >73:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+502 text3 CODE >74:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+505 text3 CODE >75:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+508 text3 CODE >76:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+50A text3 CODE >77:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+4CF text2 CODE >59:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+4D0 text2 CODE >61:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+4D2 text2 CODE >62:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+4DA text2 CODE >63:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+4E1 text2 CODE >64:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
+178 text1 CODE >63:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+178 text1 CODE >66:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+17C text1 CODE >68:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+181 text1 CODE >69:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+185 text1 CODE >71:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+186 text1 CODE >73:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+18E text1 CODE >74:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+197 text1 CODE >75:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1A0 text1 CODE >78:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1A8 text1 CODE >79:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1B0 text1 CODE >81:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1B8 text1 CODE >82:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1C0 text1 CODE >83:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1C8 text1 CODE >84:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1CD text1 CODE >86:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1D2 text1 CODE >90:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1D7 text1 CODE >91:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+1DB text1 CODE >93:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+228 maintext CODE >60:D:\Github\thermocouple\thermocouple.X\main.c
+228 maintext CODE >63:D:\Github\thermocouple\thermocouple.X\main.c
+22B maintext CODE >65:D:\Github\thermocouple\thermocouple.X\main.c
+22E maintext CODE >66:D:\Github\thermocouple\thermocouple.X\main.c
+230 maintext CODE >67:D:\Github\thermocouple\thermocouple.X\main.c
+231 maintext CODE >68:D:\Github\thermocouple\thermocouple.X\main.c
+234 maintext CODE >69:D:\Github\thermocouple\thermocouple.X\main.c
+236 maintext CODE >70:D:\Github\thermocouple\thermocouple.X\main.c
+23A maintext CODE >71:D:\Github\thermocouple\thermocouple.X\main.c
+23E maintext CODE >72:D:\Github\thermocouple\thermocouple.X\main.c
+242 maintext CODE >73:D:\Github\thermocouple\thermocouple.X\main.c
+246 maintext CODE >75:D:\Github\thermocouple\thermocouple.X\main.c
+253 maintext CODE >77:D:\Github\thermocouple\thermocouple.X\main.c
+255 maintext CODE >94:D:\Github\thermocouple\thermocouple.X\main.c
+256 maintext CODE >97:D:\Github\thermocouple\thermocouple.X\main.c
+257 maintext CODE >109:D:\Github\thermocouple\thermocouple.X\main.c
+25A maintext CODE >110:D:\Github\thermocouple\thermocouple.X\main.c
+25D maintext CODE >105:D:\Github\thermocouple\thermocouple.X\main.c
+574 clrtext CODE >3963:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+574 clrtext CODE >3964:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+575 clrtext CODE >3965:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+575 clrtext CODE >3966:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+576 clrtext CODE >3967:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+577 clrtext CODE >3968:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+578 clrtext CODE >3969:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
+579 clrtext CODE >3970:C:\Users\CHENJI~1\AppData\Local\Temp\s394.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -525,7 +504,6 @@ C2 text3 CODE >189:D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
 ___latbits 3 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-___awdiv@counter 48 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 ___lwmod@counter 77 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __Hspace_0 8009 0 ABS 0 - -
 __Hspace_1 E0 0 ABS 0 - -
@@ -533,12 +511,14 @@ __Hspace_2 0 0 ABS 0 - -
 __Hspace_3 0 0 ABS 0 - -
 _SSP1STATbits 214 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _PMCON1bits 195 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_Tc_Display 2F0 0 CODE 0 text5 dist/default/production\thermocouple.X.production.obj
+err_Display@F2075 28 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+__end_of_Tc_Display 2F0 0 CODE 0 text17 dist/default/production\thermocouple.X.production.obj
+_Key_Process 8AC 0 CODE 0 text10 dist/default/production\thermocouple.X.production.obj
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __CFG_MCLRE$ON 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_temperature_display 8CA 0 CODE 0 text2 dist/default/production\thermocouple.X.production.obj
-__end_of_WriteAll_1621 764 0 CODE 0 text17 dist/default/production\thermocouple.X.production.obj
-__end_of_SendDataBit_1621 94E 0 CODE 0 text18 dist/default/production\thermocouple.X.production.obj
+__end_of_temperature_display 8AC 0 CODE 0 text13 dist/default/production\thermocouple.X.production.obj
+__end_of_WriteAll_1621 5FA 0 CODE 0 text29 dist/default/production\thermocouple.X.production.obj
+__end_of_SendDataBit_1621 830 0 CODE 0 text30 dist/default/production\thermocouple.X.production.obj
 ltemp0 7E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 ltemp1 82 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 ltemp2 86 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
@@ -546,38 +526,37 @@ ltemp3 80 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __Lstringtext 0 0 ABS 0 stringtext -
 __Hstrings 0 0 ABS 0 strings -
 SendCmd_1621@command 78 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-maxim_31856_read_nregisters@uch_buff 48 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+maxim_31856_read_nregisters@uch_buff 51 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 _LATA 10C 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATB 10D 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATC 10E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _TMR0 15 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_maxim_31856_read_register AE6 0 CODE 0 text11 dist/default/production\thermocouple.X.production.obj
+_maxim_31856_read_register A16 0 CODE 0 text24 dist/default/production\thermocouple.X.production.obj
 _WPUB 20D 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _WPUE 210 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-___sp 0 0 STACK 2 stack C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
-_main 764 0 CODE 0 maintext dist/default/production\thermocouple.X.production.obj
-Two_Display@number 53 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+___sp 0 0 STACK 2 stack C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
+_main 450 0 CODE 0 maintext dist/default/production\thermocouple.X.production.obj
+Two_Display@number 59 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 btemp 7E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 ltemp 7E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-start 26 0 CODE 0 init C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
+start 26 0 CODE 0 init C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
 ttemp 7E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 wtemp 7E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__size_of___awdiv 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__size_of___awmod 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 maxim_start_conversion@uch_conversion_mode 77 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __size_of_main 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of___lwdiv 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of___lwmod 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of_SendDataBit_1621 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
-_temperature_sign 33 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
-_maxim_start_conversion 9C2 0 CODE 0 text10 dist/default/production\thermocouple.X.production.obj
+err_Display@num 55 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+_temperature_sign 3B 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_maxim_start_conversion 914 0 CODE 0 text22 dist/default/production\thermocouple.X.production.obj
 _OPTION_REGbits 95 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 maxim_31856_write_register@uch_register_address 74 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-__end_of_maxim_31856_init 3B8 0 CODE 0 text19 dist/default/production\thermocouple.X.production.obj
-__end_of_EUSART_Initialize B96 0 CODE 0 text29 dist/default/production\thermocouple.X.production.obj
+__end_of_maxim_31856_init 3B8 0 CODE 0 text1 dist/default/production\thermocouple.X.production.obj
+__end_of_EUSART_Initialize AC6 0 CODE 0 text8 dist/default/production\thermocouple.X.production.obj
 __Hpowerup 0 0 CODE 0 powerup -
-___awmod@sign 78 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
+time_Display@num 55 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 ttemp0 7E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 ttemp1 81 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 ttemp2 84 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
@@ -586,12 +565,12 @@ ttemp4 7F 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __LnvCOMMON 0 0 ABS 0 nvCOMMON -
 __size_of_SYSTEM_Initialize 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of_maxim_31856_init 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-intlevel0 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
-intlevel1 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
-intlevel2 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
-intlevel3 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
-intlevel4 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
-intlevel5 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
+intlevel0 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
+intlevel1 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
+intlevel2 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
+intlevel3 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
+intlevel4 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
+intlevel5 0 0 CODE 0 functab C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 __size_of_ADC_Initialize 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 wtemp0 7E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
@@ -601,12 +580,11 @@ wtemp3 84 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 wtemp4 86 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 wtemp5 88 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 wtemp6 7F 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_SendCmd_1621 A22 0 CODE 0 text22 dist/default/production\thermocouple.X.production.obj
+_SendCmd_1621 99E 0 CODE 0 text2 dist/default/production\thermocouple.X.production.obj
 __Hfunctab 0 0 CODE 0 functab -
-__end_of_Two_Display 58C 0 CODE 0 text14 dist/default/production\thermocouple.X.production.obj
-___awdiv@sign 49 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+__end_of_Two_Display 762 0 CODE 0 text28 dist/default/production\thermocouple.X.production.obj
 __Hclrtext 0 0 ABS 0 clrtext -
-_SendBit_1621 94E 0 CODE 0 text23 dist/default/production\thermocouple.X.production.obj
+_SendBit_1621 830 0 CODE 0 text31 dist/default/production\thermocouple.X.production.obj
 __size_of_SPI_Initialize 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of_maxim_31856_read_nregisters 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _ADCON0 9D 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
@@ -617,40 +595,37 @@ _ANSELA 18C 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _ANSELB 18D 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _ANSELC 18E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _APFCON 11D 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-___awdiv@dividend 74 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __end_of_INTERRUPT_InterruptManager 26 0 CODE 0 intentry dist/default/production\thermocouple.X.production.obj
 __size_of_tc_temperature_trans 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_Dis_TAB A9E 0 STRCODE 0 stringtext dist/default/production\thermocouple.X.production.obj
+__end_of_Dis_TAB 99E 0 STRCODE 0 stringtext dist/default/production\thermocouple.X.production.obj
 SPI_Exchange8bitBuffer@dataOut 74 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __Lmaintext 0 0 ABS 0 maintext -
-__end_of_maxim_31856_read_nregisters A22 0 CODE 0 text12 dist/default/production\thermocouple.X.production.obj
-WriteAll_1621@addr 49 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+__end_of_maxim_31856_read_nregisters 974 0 CODE 0 text25 dist/default/production\thermocouple.X.production.obj
+WriteAll_1621@addr 52 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 __LnvBANK0 0 0 ABS 0 nvBANK0 -
 __size_of_SendCmd_1621 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-___awdiv@divisor 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 ___lwmod@divisor 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-__end_of___awdiv 45C 0 CODE 0 text16 dist/default/production\thermocouple.X.production.obj
-__end_of___awmod 616 0 CODE 0 text15 dist/default/production\thermocouple.X.production.obj
-__end_of___lwdiv 6FA 0 CODE 0 text8 dist/default/production\thermocouple.X.production.obj
-__end_of___lwmod 822 0 CODE 0 text7 dist/default/production\thermocouple.X.production.obj
+__end_of___lwdiv 590 0 CODE 0 text20 dist/default/production\thermocouple.X.production.obj
+__end_of___lwmod 6B8 0 CODE 0 text19 dist/default/production\thermocouple.X.production.obj
 __size_of_one_temperature_trans 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_tc_temperature_trans 1A2 0 CODE 0 text3 dist/default/production\thermocouple.X.production.obj
+__end_of_tc_temperature_trans 1A2 0 CODE 0 text14 dist/default/production\thermocouple.X.production.obj
 __size_of_SendBit_1621 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _uch_cr0 7A 0 COMMON 1 nvCOMMON dist/default/production\thermocouple.X.production.obj
-_uch_cr1 37 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
-_uch_reg 3C 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_uch_cr1 40 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_uch_reg 45 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 _OPTION_REG 95 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of_SPI_Exchange8bitBuffer 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_EUSART_Initialize B7E 0 CODE 0 text29 dist/default/production\thermocouple.X.production.obj
-maxim_31856_read_nregisters@uch_register_address 4C 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
-___lwdiv@quotient 4D 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+_EUSART_Initialize AAE 0 CODE 0 text8 dist/default/production\thermocouple.X.production.obj
+maxim_31856_read_nregisters@uch_register_address 55 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+___lwdiv@quotient 56 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 SPI_Exchange8bitBuffer@bufLen 73 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 SendBit_1621@data 75 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __HnvCOMMON 0 0 ABS 0 nvCOMMON -
 ___lwmod@dividend 74 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
+__end_of_err_Display 7AC 0 CODE 0 text16 dist/default/production\thermocouple.X.production.obj
 SPI_Exchange8bitBuffer@dataIn 78 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-__end_of_SendCmd_1621 A4C 0 CODE 0 text22 dist/default/production\thermocouple.X.production.obj
-_PIN_MANAGER_Initialize 8CA 0 CODE 0 text27 dist/default/production\thermocouple.X.production.obj
+__end_of_SendCmd_1621 9C8 0 CODE 0 text2 dist/default/production\thermocouple.X.production.obj
+_PIN_MANAGER_Initialize 7AC 0 CODE 0 text6 dist/default/production\thermocouple.X.production.obj
 start_initialization 2A 0 CODE 0 cinit dist/default/production\thermocouple.X.production.obj
 _OSCCON 99 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _PMADRH 192 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
@@ -658,20 +633,20 @@ _PMADRL 191 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _PMCON2 196 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _PMDATH 194 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _PMDATL 193 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_SendBit_1621 98E 0 CODE 0 text23 dist/default/production\thermocouple.X.production.obj
+__end_of_SendBit_1621 870 0 CODE 0 text31 dist/default/production\thermocouple.X.production.obj
 __size_of_Tc_Display 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_memset 9C2 0 CODE 0 text6 dist/default/production\thermocouple.X.production.obj
-__end_of_SYSTEM_Initialize AE6 0 CODE 0 text24 dist/default/production\thermocouple.X.production.obj
-clear_ram0 BB8 0 CODE 0 clrtext dist/default/production\thermocouple.X.production.obj
+__end_of_memset 914 0 CODE 0 text18 dist/default/production\thermocouple.X.production.obj
+__end_of_SYSTEM_Initialize A16 0 CODE 0 text3 dist/default/production\thermocouple.X.production.obj
+clear_ram0 AE8 0 CODE 0 clrtext dist/default/production\thermocouple.X.production.obj
 _SPBRGH 19C 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _SPBRGL 19B 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__pcstackBANK0 48 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+__pcstackBANK0 51 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 SendDataBit_1621@data 75 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 _SSPBUF 211 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _TRISB3 46B 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-Tc_Display@count 50 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
-__end_of_maxim_start_conversion 9F2 0 CODE 0 text10 dist/default/production\thermocouple.X.production.obj
-___int_sp 0 0 STACK 2 stack C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
+Tc_Display@count 59 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+__end_of_maxim_start_conversion 944 0 CODE 0 text22 dist/default/production\thermocouple.X.production.obj
+___int_sp 0 0 STACK 2 stack C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -708,8 +683,8 @@ __Hsfr29 0 0 ABS 0 sfr29 -
 __Hsfr30 0 0 ABS 0 sfr30 -
 __Hsfr31 0 0 ABS 0 sfr31 -
 __Hstack 0 0 STACK 2 stack -
-___lwdiv@counter 4C 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
-_maxim_clear_fault_status B08 0 CODE 0 text4 dist/default/production\thermocouple.X.production.obj
+___lwdiv@counter 55 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+_maxim_clear_fault_status A38 0 CODE 0 text15 dist/default/production\thermocouple.X.production.obj
 __Hbank10 0 0 ABS 0 bank10 -
 __Hbank11 0 0 ABS 0 bank11 -
 __Hbank12 0 0 ABS 0 bank12 -
@@ -734,12 +709,13 @@ __Hbank30 0 0 BANK30 1 bank30 -
 __Hbank31 0 0 BANK31 1 bank31 -
 __Hbigram 0 0 ABS 0 bigram -
 __Hmaintext 0 0 ABS 0 maintext -
-__end_of_maxim_31856_write_register B7E 0 CODE 0 text20 dist/default/production\thermocouple.X.production.obj
+__end_of_maxim_31856_write_register AAE 0 CODE 0 text23 dist/default/production\thermocouple.X.production.obj
 __size_of_temperature_process 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 SPI_Exchange8bitBuffer@bytesWritten 79 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __CFG_FOSC$INTOSC 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __Hcommon 0 0 ABS 0 common -
 __Hconfig 10012 0 CONFIG 0 config -
+__end_of_Key_Process 8E0 0 CODE 0 text10 dist/default/production\thermocouple.X.production.obj
 __size_of_Two_Display 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __Lbank0 0 0 ABS 0 bank0 -
 __Lbank1 0 0 ABS 0 bank1 -
@@ -753,7 +729,7 @@ __Lbank8 0 0 ABS 0 bank8 -
 __Lbank9 0 0 ABS 0 bank9 -
 __Lcinit 2A 0 CODE 0 cinit -
 __Lidloc 0 0 IDLOC 0 idloc -
-_display_buff 44 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_display_buff 4D 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 __Lsfr10 0 0 ABS 0 sfr10 -
 __Lsfr11 0 0 ABS 0 sfr11 -
 __Lsfr12 0 0 ABS 0 sfr12 -
@@ -777,8 +753,8 @@ __Lsfr29 0 0 ABS 0 sfr29 -
 __Lsfr30 0 0 ABS 0 sfr30 -
 __Lsfr31 0 0 ABS 0 sfr31 -
 __Lstack 0 0 STACK 2 stack -
-_SPI_Exchange8bit B96 0 CODE 0 text21 dist/default/production\thermocouple.X.production.obj
-Two_Display@num 4F 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+_SPI_Exchange8bit AC6 0 CODE 0 text27 dist/default/production\thermocouple.X.production.obj
+Two_Display@num 55 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 _INTCONbits B 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __Habs1 0 0 ABS 0 abs1 -
 __Hcode 0 0 ABS 0 code -
@@ -808,7 +784,7 @@ __Lsfr7 0 0 ABS 0 sfr7 -
 __Lsfr8 0 0 ABS 0 sfr8 -
 __Lsfr9 0 0 ABS 0 sfr9 -
 __Ltext 0 0 ABS 0 text -
-__pnvBANK0 59 0 BANK0 1 nvBANK0 dist/default/production\thermocouple.X.production.obj
+__pnvBANK0 62 0 BANK0 1 nvBANK0 dist/default/production\thermocouple.X.production.obj
 _SSP1CON1 215 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _SSP1STAT 214 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 memset@c 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
@@ -818,9 +794,11 @@ __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 int$flags 7E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _uch_ltcbh 7B 0 COMMON 1 bssCOMMON dist/default/production\thermocouple.X.production.obj
-_uch_ltcbl 38 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
-_uch_ltcbm 39 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_uch_ltcbl 41 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_uch_ltcbm 42 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 __size_of_INTERRUPT_InterruptManager 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
+_RA7 67 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
+_RB1 69 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _RB3 6B 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __S0 8009 0 ABS 0 - -
 __S1 E0 0 ABS 0 - -
@@ -829,59 +807,60 @@ __size_of_TMR0_ISR 0 0 ABS 0 - dist/default/production\thermocouple.X.production
 WriteAll_1621@cnt 79 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __pnvCOMMON 7A 0 COMMON 1 nvCOMMON dist/default/production\thermocouple.X.production.obj
 maxim_31856_read_register@uch_register_data 75 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-_TMR0_CallBack B46 0 CODE 0 text33 dist/default/production\thermocouple.X.production.obj
-_temperature_process 616 0 CODE 0 text1 dist/default/production\thermocouple.X.production.obj
-_SYSTEM_Initialize AC2 0 CODE 0 text24 dist/default/production\thermocouple.X.production.obj
+_TMR0_CallBack A76 0 CODE 0 text34 dist/default/production\thermocouple.X.production.obj
+_temperature_process 5FA 0 CODE 0 text11 dist/default/production\thermocouple.X.production.obj
+_SYSTEM_Initialize 9F2 0 CODE 0 text3 dist/default/production\thermocouple.X.production.obj
 __CFG_BOREN$ON 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
+_time_Display 4BC 0 CODE 0 text12 dist/default/production\thermocouple.X.production.obj
 __HnvBANK0 0 0 ABS 0 nvBANK0 -
 __Lintentry 8 0 CODE 0 intentry -
-main@data_temp 57 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
-reset_vec 0 0 CODE 0 reset_vec C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
+main@data_temp 60 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+reset_vec 0 0 CODE 0 reset_vec C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
+time_Display@F2078 2C 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+__size_of_err_Display 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __LbssBANK0 0 0 ABS 0 bssBANK0 -
 __LbssBANK1 0 0 ABS 0 bssBANK1 -
 __CFG_FCMEN$ON 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _INTERRUPT_InterruptManager 8 0 CODE 0 intentry dist/default/production\thermocouple.X.production.obj
-_ADC_Initialize BA8 0 CODE 0 text30 dist/default/production\thermocouple.X.production.obj
+_ADC_Initialize AD8 0 CODE 0 text9 dist/default/production\thermocouple.X.production.obj
 maxim_31856_write_register@uch_register_value 73 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-_Dis_TAB A76 0 STRCODE 0 stringtext dist/default/production\thermocouple.X.production.obj
-___awmod@counter 77 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
+_Dis_TAB 974 0 STRCODE 0 stringtext dist/default/production\thermocouple.X.production.obj
 _RCSTAbits 19D 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-Two_Display@F2067 20 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+Two_Display@F2072 20 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 SendBit_1621@i 76 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-_memset 98E 0 CODE 0 text6 dist/default/production\thermocouple.X.production.obj
+_memset 8E0 0 CODE 0 text18 dist/default/production\thermocouple.X.production.obj
 memset@p1 77 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-_TMR0_ISR A4C 0 CODE 0 text32 dist/default/production\thermocouple.X.production.obj
-__ptext10 9C2 0 CODE 0 text10 dist/default/production\thermocouple.X.production.obj
-__ptext11 AE6 0 CODE 0 text11 dist/default/production\thermocouple.X.production.obj
-__ptext12 9F2 0 CODE 0 text12 dist/default/production\thermocouple.X.production.obj
-__ptext13 45C 0 CODE 0 text13 dist/default/production\thermocouple.X.production.obj
-__ptext14 4F4 0 CODE 0 text14 dist/default/production\thermocouple.X.production.obj
-__ptext15 58C 0 CODE 0 text15 dist/default/production\thermocouple.X.production.obj
-__ptext16 3B8 0 CODE 0 text16 dist/default/production\thermocouple.X.production.obj
-__ptext17 6FA 0 CODE 0 text17 dist/default/production\thermocouple.X.production.obj
-__ptext18 90E 0 CODE 0 text18 dist/default/production\thermocouple.X.production.obj
-__ptext19 2F0 0 CODE 0 text19 dist/default/production\thermocouple.X.production.obj
-__ptext20 B64 0 CODE 0 text20 dist/default/production\thermocouple.X.production.obj
-__ptext21 B96 0 CODE 0 text21 dist/default/production\thermocouple.X.production.obj
-__ptext22 A22 0 CODE 0 text22 dist/default/production\thermocouple.X.production.obj
-__ptext23 94E 0 CODE 0 text23 dist/default/production\thermocouple.X.production.obj
-__ptext24 AC2 0 CODE 0 text24 dist/default/production\thermocouple.X.production.obj
-__ptext25 B28 0 CODE 0 text25 dist/default/production\thermocouple.X.production.obj
-__ptext26 BC4 0 CODE 0 text26 dist/default/production\thermocouple.X.production.obj
-__ptext27 8CA 0 CODE 0 text27 dist/default/production\thermocouple.X.production.obj
-__ptext28 BD0 0 CODE 0 text28 dist/default/production\thermocouple.X.production.obj
-__ptext29 B7E 0 CODE 0 text29 dist/default/production\thermocouple.X.production.obj
-__ptext30 BA8 0 CODE 0 text30 dist/default/production\thermocouple.X.production.obj
-__ptext32 A4C 0 CODE 0 text32 dist/default/production\thermocouple.X.production.obj
-__ptext33 B46 0 CODE 0 text33 dist/default/production\thermocouple.X.production.obj
-__end_of_PIN_MANAGER_Initialize 90E 0 CODE 0 text27 dist/default/production\thermocouple.X.production.obj
-___awdiv 3B8 0 CODE 0 text16 dist/default/production\thermocouple.X.production.obj
-___awmod 58C 0 CODE 0 text15 dist/default/production\thermocouple.X.production.obj
+_TMR0_ISR 9C8 0 CODE 0 text33 dist/default/production\thermocouple.X.production.obj
+__ptext10 8AC 0 CODE 0 text10 dist/default/production\thermocouple.X.production.obj
+__ptext11 5FA 0 CODE 0 text11 dist/default/production\thermocouple.X.production.obj
+__ptext12 4BC 0 CODE 0 text12 dist/default/production\thermocouple.X.production.obj
+__ptext13 870 0 CODE 0 text13 dist/default/production\thermocouple.X.production.obj
+__ptext14 52 0 CODE 0 text14 dist/default/production\thermocouple.X.production.obj
+__ptext15 A38 0 CODE 0 text15 dist/default/production\thermocouple.X.production.obj
+__ptext16 762 0 CODE 0 text16 dist/default/production\thermocouple.X.production.obj
+__ptext17 1A2 0 CODE 0 text17 dist/default/production\thermocouple.X.production.obj
+__ptext18 8E0 0 CODE 0 text18 dist/default/production\thermocouple.X.production.obj
+__ptext19 660 0 CODE 0 text19 dist/default/production\thermocouple.X.production.obj
+__ptext20 526 0 CODE 0 text20 dist/default/production\thermocouple.X.production.obj
+__ptext21 6B8 0 CODE 0 text21 dist/default/production\thermocouple.X.production.obj
+__ptext22 914 0 CODE 0 text22 dist/default/production\thermocouple.X.production.obj
+__ptext23 A94 0 CODE 0 text23 dist/default/production\thermocouple.X.production.obj
+__ptext24 A16 0 CODE 0 text24 dist/default/production\thermocouple.X.production.obj
+__ptext25 944 0 CODE 0 text25 dist/default/production\thermocouple.X.production.obj
+__ptext26 3B8 0 CODE 0 text26 dist/default/production\thermocouple.X.production.obj
+__ptext27 AC6 0 CODE 0 text27 dist/default/production\thermocouple.X.production.obj
+__ptext28 710 0 CODE 0 text28 dist/default/production\thermocouple.X.production.obj
+__ptext29 590 0 CODE 0 text29 dist/default/production\thermocouple.X.production.obj
+__ptext30 7F0 0 CODE 0 text30 dist/default/production\thermocouple.X.production.obj
+__ptext31 830 0 CODE 0 text31 dist/default/production\thermocouple.X.production.obj
+__ptext33 9C8 0 CODE 0 text33 dist/default/production\thermocouple.X.production.obj
+__ptext34 A76 0 CODE 0 text34 dist/default/production\thermocouple.X.production.obj
+__end_of_PIN_MANAGER_Initialize 7F0 0 CODE 0 text6 dist/default/production\thermocouple.X.production.obj
 SendDataBit_1621@cnt 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-__end_of_TMR0_Initialize B46 0 CODE 0 text25 dist/default/production\thermocouple.X.production.obj
+__end_of_TMR0_Initialize A76 0 CODE 0 text4 dist/default/production\thermocouple.X.production.obj
 _BAUDCON 19F 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-___lwdiv 690 0 CODE 0 text8 dist/default/production\thermocouple.X.production.obj
-___lwmod 7CA 0 CODE 0 text7 dist/default/production\thermocouple.X.production.obj
+___lwdiv 526 0 CODE 0 text20 dist/default/production\thermocouple.X.production.obj
+___lwmod 660 0 CODE 0 text19 dist/default/production\thermocouple.X.production.obj
 __Lbank10 0 0 ABS 0 bank10 -
 __Lbank11 0 0 ABS 0 bank11 -
 __Lbank12 0 0 ABS 0 bank12 -
@@ -904,46 +883,49 @@ __Lbank28 0 0 BANK28 1 bank28 -
 __Lbank29 0 0 BANK29 1 bank29 -
 __Lbank30 0 0 BANK30 1 bank30 -
 __Lbank31 0 0 BANK31 1 bank31 -
-__pmaintext 764 0 CODE 0 maintext dist/default/production\thermocouple.X.production.obj
+__pmaintext 450 0 CODE 0 maintext dist/default/production\thermocouple.X.production.obj
 __Lbigram 0 0 ABS 0 bigram -
 maxim_31856_read_register@uch_register_address 74 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __CFG_BORV$LO 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_SPI_Initialize BC4 0 CODE 0 text26 dist/default/production\thermocouple.X.production.obj
-__end_of_SPI_Exchange8bit BA8 0 CODE 0 text21 dist/default/production\thermocouple.X.production.obj
+_SPI_Initialize AF4 0 CODE 0 text5 dist/default/production\thermocouple.X.production.obj
+__end_of_SPI_Exchange8bit AD8 0 CODE 0 text27 dist/default/production\thermocouple.X.production.obj
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 1000E 0 CONFIG 0 config -
 __CFG_CP$OFF 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __CFG_IESO$ON 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_TMR0_ISR A76 0 CODE 0 text32 dist/default/production\thermocouple.X.production.obj
+__end_of_TMR0_ISR 9F2 0 CODE 0 text33 dist/default/production\thermocouple.X.production.obj
 __CFG_WDTE$OFF 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-TMR0_ISR@CountCallBack 2E 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+__size_of_time_Display 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
+TMR0_ISR@CountCallBack 36 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 __size_of_SPI_Exchange8bit 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of_maxim_clear_fault_status 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-___lwdiv@divisor 48 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
-_SPI_Exchange8bitBuffer 45C 0 CODE 0 text13 dist/default/production\thermocouple.X.production.obj
-_uch_sr 3B 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+___lwdiv@divisor 51 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+_SPI_Exchange8bitBuffer 3B8 0 CODE 0 text26 dist/default/production\thermocouple.X.production.obj
+_uch_sr 44 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 __CFG_VCAPEN$OFF 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-stackhi 23EF 0 ABS 0 - C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
-stacklo 2090 0 ABS 0 - C:\Users\CHENJI~1\AppData\Local\Temp\s3h8.obj
+stackhi 23EF 0 ABS 0 - C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
+stacklo 2090 0 ABS 0 - C:\Users\CHENJI~1\AppData\Local\Temp\s394.obj
 SPI_Exchange8bit@data 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-__end_of_maxim_31856_read_register B08 0 CODE 0 text11 dist/default/production\thermocouple.X.production.obj
+__end_of_maxim_31856_read_register A38 0 CODE 0 text24 dist/default/production\thermocouple.X.production.obj
 _OSCSTAT 9A 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_maxim_31856_read_nregisters 9F2 0 CODE 0 text12 dist/default/production\thermocouple.X.production.obj
+_maxim_31856_read_nregisters 944 0 CODE 0 text25 dist/default/production\thermocouple.X.production.obj
 _ADCON0bits 9D 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-WriteAll_1621@i 4A 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+WriteAll_1621@i 53 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 WriteAll_1621@p 77 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __size_of_maxim_31856_write_register 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __CFG_LVP$OFF 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_tc_temperature_trans 52 0 CODE 0 text3 dist/default/production\thermocouple.X.production.obj
-_temperature_int 30 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_tc_temperature_trans 52 0 CODE 0 text14 dist/default/production\thermocouple.X.production.obj
+_temperature_int 38 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 __Lspace_0 0 0 ABS 0 - -
 __Lspace_1 0 0 ABS 0 - -
 __Lspace_2 0 0 ABS 0 - -
 __Lspace_3 0 0 ABS 0 - -
+__size_of_Key_Process 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __pbssCOMMON 7B 0 COMMON 1 bssCOMMON dist/default/production\thermocouple.X.production.obj
 __size_of_maxim_start_conversion 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of_memset 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_ADC_Initialize BB8 0 CODE 0 text30 dist/default/production\thermocouple.X.production.obj
+__end_of_time_Display 526 0 CODE 0 text12 dist/default/production\thermocouple.X.production.obj
+__end_of_ADC_Initialize AE8 0 CODE 0 text9 dist/default/production\thermocouple.X.production.obj
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 -
 _temperature_value 24 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 _PIR1bits 11 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
@@ -951,71 +933,69 @@ __Lend_init 26 0 CODE 0 end_init -
 __size_of_TMR0_CallBack 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 end_of_initialization 4A 0 CODE 0 cinit dist/default/production\thermocouple.X.production.obj
-__end_of_temperature_process 690 0 CODE 0 text1 dist/default/production\thermocouple.X.production.obj
-_TMR0_Initialize B28 0 CODE 0 text25 dist/default/production\thermocouple.X.production.obj
+__end_of_temperature_process 660 0 CODE 0 text11 dist/default/production\thermocouple.X.production.obj
+_TMR0_Initialize A58 0 CODE 0 text4 dist/default/production\thermocouple.X.production.obj
 __Hintentry 26 0 CODE 0 intentry -
 __size_of_temperature_display 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __CFG_STVREN$ON 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_SPI_Initialize BD0 0 CODE 0 text26 dist/default/production\thermocouple.X.production.obj
+__end_of_SPI_Initialize B00 0 CODE 0 text5 dist/default/production\thermocouple.X.production.obj
 __Lstrings 0 0 ABS 0 strings -
-___awdiv@quotient 4A 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
-?___awdiv 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-?___awmod 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-___lwdiv@dividend 4A 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
-?___lwdiv 48 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+___lwdiv@dividend 53 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+?___lwdiv 51 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 ?___lwmod 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __Hreset_vec 4 0 CODE 0 reset_vec -
 __HbssBANK0 0 0 ABS 0 bssBANK0 -
 __HbssBANK1 0 0 ABS 0 bssBANK1 -
-___awmod@dividend 74 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-_Two_Display 4F4 0 CODE 0 text14 dist/default/production\thermocouple.X.production.obj
-_WriteAll_1621 6FA 0 CODE 0 text17 dist/default/production\thermocouple.X.production.obj
-__ptext1 616 0 CODE 0 text1 dist/default/production\thermocouple.X.production.obj
-__ptext2 87A 0 CODE 0 text2 dist/default/production\thermocouple.X.production.obj
-__ptext3 52 0 CODE 0 text3 dist/default/production\thermocouple.X.production.obj
-__ptext4 B08 0 CODE 0 text4 dist/default/production\thermocouple.X.production.obj
-__ptext5 1A2 0 CODE 0 text5 dist/default/production\thermocouple.X.production.obj
-__ptext6 98E 0 CODE 0 text6 dist/default/production\thermocouple.X.production.obj
-__ptext7 7CA 0 CODE 0 text7 dist/default/production\thermocouple.X.production.obj
-__ptext8 690 0 CODE 0 text8 dist/default/production\thermocouple.X.production.obj
-__ptext9 822 0 CODE 0 text9 dist/default/production\thermocouple.X.production.obj
-__end_of_one_temperature_trans 87A 0 CODE 0 text9 dist/default/production\thermocouple.X.production.obj
-__end_of_TMR0_CallBack B64 0 CODE 0 text33 dist/default/production\thermocouple.X.production.obj
-_maxim_31856_write_register B64 0 CODE 0 text20 dist/default/production\thermocouple.X.production.obj
+_Two_Display 710 0 CODE 0 text28 dist/default/production\thermocouple.X.production.obj
+_WriteAll_1621 590 0 CODE 0 text29 dist/default/production\thermocouple.X.production.obj
+__ptext1 2F0 0 CODE 0 text1 dist/default/production\thermocouple.X.production.obj
+__ptext2 99E 0 CODE 0 text2 dist/default/production\thermocouple.X.production.obj
+__ptext3 9F2 0 CODE 0 text3 dist/default/production\thermocouple.X.production.obj
+__ptext4 A58 0 CODE 0 text4 dist/default/production\thermocouple.X.production.obj
+__ptext5 AF4 0 CODE 0 text5 dist/default/production\thermocouple.X.production.obj
+__ptext6 7AC 0 CODE 0 text6 dist/default/production\thermocouple.X.production.obj
+__ptext7 B00 0 CODE 0 text7 dist/default/production\thermocouple.X.production.obj
+__ptext8 AAE 0 CODE 0 text8 dist/default/production\thermocouple.X.production.obj
+__ptext9 AD8 0 CODE 0 text9 dist/default/production\thermocouple.X.production.obj
+__end_of_one_temperature_trans 710 0 CODE 0 text21 dist/default/production\thermocouple.X.production.obj
+__end_of_TMR0_CallBack A94 0 CODE 0 text34 dist/default/production\thermocouple.X.production.obj
+_maxim_31856_write_register A94 0 CODE 0 text23 dist/default/production\thermocouple.X.production.obj
 __Lpowerup 0 0 CODE 0 powerup -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-_temperature_decimal 32 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
-__pstringtext A76 0 STRCODE 0 stringtext dist/default/production\thermocouple.X.production.obj
+_temperature_decimal 3A 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+__pstringtext 974 0 STRCODE 0 stringtext dist/default/production\thermocouple.X.production.obj
 __Lreset_vec 0 0 CODE 0 reset_vec -
 __CFG_LPBOR$OFF 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_maxim_clear_fault_status B28 0 CODE 0 text4 dist/default/production\thermocouple.X.production.obj
+__end_of_maxim_clear_fault_status A58 0 CODE 0 text15 dist/default/production\thermocouple.X.production.obj
 __CFG_CLKOUTEN$OFF 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __end_of__initialization 4A 0 CODE 0 cinit dist/default/production\thermocouple.X.production.obj
-___awmod@divisor 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 __size_of_maxim_31856_read_register 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_temperature_display 87A 0 CODE 0 text2 dist/default/production\thermocouple.X.production.obj
+_temperature_display 870 0 CODE 0 text13 dist/default/production\thermocouple.X.production.obj
 __Lfunctab 0 0 CODE 0 functab -
-_one_temperature_trans 822 0 CODE 0 text9 dist/default/production\thermocouple.X.production.obj
-_timer0ReloadVal 59 0 BANK0 1 nvBANK0 dist/default/production\thermocouple.X.production.obj
+_one_temperature_trans 6B8 0 CODE 0 text21 dist/default/production\thermocouple.X.production.obj
+_timer0ReloadVal 62 0 BANK0 1 nvBANK0 dist/default/production\thermocouple.X.production.obj
 __Lclrtext 0 0 ABS 0 clrtext -
 _SSP1CON1bits 215 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_SendDataBit_1621 90E 0 CODE 0 text18 dist/default/production\thermocouple.X.production.obj
+_SendDataBit_1621 7F0 0 CODE 0 text30 dist/default/production\thermocouple.X.production.obj
 __size_of_EUSART_Initialize 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_time_count 34 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_time_count 3C 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 __pcstackCOMMON 70 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
 SendBit_1621@cnt 72 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-_Tc_Display 1A2 0 CODE 0 text5 dist/default/production\thermocouple.X.production.obj
+_Tc_Display 1A2 0 CODE 0 text17 dist/default/production\thermocouple.X.production.obj
 _SSP1ADD 212 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-_uch_cjth 35 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
-_uch_cjtl 36 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
-_uch_mask 3A 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_uch_cjth 3E 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_uch_cjtl 3F 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
+_uch_mask 43 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 __Hend_init 2A 0 CODE 0 end_init -
-__end_of_main 7CA 0 CODE 0 maintext dist/default/production\thermocouple.X.production.obj
+__end_of_main 4BC 0 CODE 0 maintext dist/default/production\thermocouple.X.production.obj
+_err_Display 762 0 CODE 0 text16 dist/default/production\thermocouple.X.production.obj
 _LATA0 860 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATA1 861 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATA3 863 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATA4 864 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATA5 865 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
+_LATB0 868 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
+_LATB1 869 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATC0 870 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATC1 871 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 _LATC2 872 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
@@ -1031,23 +1011,22 @@ _TXSTA 19E 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __size_of_TMR0_Initialize 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_maxim_31856_init 2F0 0 CODE 0 text19 dist/default/production\thermocouple.X.production.obj
+_maxim_31856_init 2F0 0 CODE 0 text1 dist/default/production\thermocouple.X.production.obj
 __size_of_PIN_MANAGER_Initialize 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __pintentry 8 0 CODE 0 intentry dist/default/production\thermocouple.X.production.obj
-__end_of_OSCILLATOR_Initialize BDA 0 CODE 0 text28 dist/default/production\thermocouple.X.production.obj
+__end_of_OSCILLATOR_Initialize B0A 0 CODE 0 text7 dist/default/production\thermocouple.X.production.obj
 SendDataBit_1621@i 76 0 COMMON 1 cstackCOMMON dist/default/production\thermocouple.X.production.obj
-maxim_31856_read_nregisters@uch_nBytes 49 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+maxim_31856_read_nregisters@uch_nBytes 52 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
 __initialization 2A 0 CODE 0 cinit dist/default/production\thermocouple.X.production.obj
 __CFG_PWRTE$OFF 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
 __pbssBANK0 20 0 BANK0 1 bssBANK0 dist/default/production\thermocouple.X.production.obj
 __pbssBANK1 A0 0 BANK1 1 bssBANK1 dist/default/production\thermocouple.X.production.obj
 __Hstringtext 0 0 ABS 0 stringtext -
 __CFG_WRT$OFF 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-__end_of_SPI_Exchange8bitBuffer 4F4 0 CODE 0 text13 dist/default/production\thermocouple.X.production.obj
+__end_of_SPI_Exchange8bitBuffer 450 0 CODE 0 text26 dist/default/production\thermocouple.X.production.obj
 __size_of_WriteAll_1621 0 0 ABS 0 - dist/default/production\thermocouple.X.production.obj
-Tc_Display@data 51 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
-__pswtext1 A9E 0 CONST 0 swtext1 dist/default/production\thermocouple.X.production.obj
-_OSCILLATOR_Initialize BD0 0 CODE 0 text28 dist/default/production\thermocouple.X.production.obj
+Tc_Display@data 5A 0 BANK0 1 cstackBANK0 dist/default/production\thermocouple.X.production.obj
+_OSCILLATOR_Initialize B00 0 CODE 0 text7 dist/default/production\thermocouple.X.production.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -1073,12 +1052,11 @@ _OSCILLATOR_Initialize BD0 0 CODE 0 text28 dist/default/production\thermocouple.
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text24 0 561 AC2 8C 2
+text2 0 4CF 99E B6 2
 cstackCOMMON 1 70 70 C 1
-intentry 0 4 8 537 2
+intentry 0 4 8 4B6 2
 reset_vec 0 0 0 2 2
-bssBANK0 1 20 20 3A 1
+bssBANK0 1 20 20 43 1
 bssBANK1 1 A0 A0 40 1
-stringtext 0 53B A76 14 2
-swtext1 0 54F A9E 12 2
+stringtext 0 4BA 974 15 2
 config 0 8007 1000E 2 2
