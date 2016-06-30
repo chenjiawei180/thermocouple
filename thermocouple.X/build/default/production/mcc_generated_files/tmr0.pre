@@ -2707,6 +2707,8 @@ extern float f_linearized_tc_temperature;
 extern unsigned char time_count;
 extern unsigned char tmr_flag;
 
+extern unsigned char LongPressSec;
+
 # 60 "mcc_generated_files/tmr0.c"
 volatile uint8_t timer0ReloadVal;
 
@@ -2757,7 +2759,7 @@ INTCONbits.TMR0IF = 0;
 TMR0 = timer0ReloadVal;
 
 
-if (++CountCallBack >= 200) {
+if (++CountCallBack >= 100) {
 
 TMR0_CallBack();
 
@@ -2773,6 +2775,6 @@ void TMR0_CallBack(void) {
 
 time_count++;
 if(time_count == 4 || time_count > 8) time_count = 0;
-
+LongPressSec++;
 }
 

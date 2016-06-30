@@ -2,10 +2,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
 "73 mcc_generated_files/mcc.h
 [v _SYSTEM_Initialize `(v ~T0 @X0 0 ef ]
-"4441 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v F1816 `(v ~T0 @X0 1 tf1`ul ]
+"152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
+[v __delay `JF1816 ~T0 @X0 0 e ]
+[p i __delay ]
+"4535 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _RB5 `Vb ~T0 @X0 0 e@109 ]
+"4439
+[v _LATA2 `Vb ~T0 @X0 0 e@2146 ]
+"4441
 [v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
-"4443
-[v _LATA4 `Vb ~T0 @X0 0 e@2148 ]
 "82 mcc_generated_files/max31856.h
 [v _maxim_31856_init `(v ~T0 @X0 0 ef ]
 "4723 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
@@ -29,7 +35,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
 "96 mcc_generated_files/max31856.h
 [v _temperature_process `(v ~T0 @X0 0 ef ]
-"110 main.c
+"113 main.c
 [v _Key_Process `(i ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1966,6 +1972,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "40
 [v _tmr_flag `uc ~T0 @X0 1 e ]
 [; ;global.h: 40: unsigned char tmr_flag;
+"42
+[v _LongPressSec `uc ~T0 @X0 1 e ]
+[; ;global.h: 42: unsigned char LongPressSec;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
@@ -2040,74 +2049,88 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 65: SYSTEM_Initialize();
 "65
 [e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 66: do { LATA3 = 0; } while(0);
+[; ;main.c: 66: _delay((unsigned long)((3000)*(16000000/4000.0)));
 "66
+[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;main.c: 67: if(RB5 == 0 ) do { LATA2 = 1; } while(0);
+"67
+[e $ ! == -> _RB5 `i -> 0 `i 235  ]
+[e :U 238 ]
+{
+[e = _LATA2 -> -> 1 `i `b ]
+}
 [e :U 237 ]
+[e $U 239  ]
+"68
+[e :U 235 ]
+[; ;main.c: 68: else do { LATA2 = 0; } while(0);
+[e :U 242 ]
+{
+[e = _LATA2 -> -> 0 `i `b ]
+}
+[e :U 241 ]
+[e :U 239 ]
+[; ;main.c: 69: do { LATA3 = 0; } while(0);
+"69
+[e :U 245 ]
 {
 [e = _LATA3 -> -> 0 `i `b ]
 }
-[e :U 236 ]
-[; ;main.c: 67: do { LATA4 = 0; } while(0);
-"67
-[e :U 240 ]
-{
-[e = _LATA4 -> -> 0 `i `b ]
-}
-[e :U 239 ]
-[; ;main.c: 68: maxim_31856_init();
-"68
+[e :U 244 ]
+[; ;main.c: 71: maxim_31856_init();
+"71
 [e ( _maxim_31856_init ..  ]
-[; ;main.c: 69: do { TRISB3 = 1; } while(0);
-"69
-[e :U 243 ]
+[; ;main.c: 72: do { TRISB3 = 1; } while(0);
+"72
+[e :U 248 ]
 {
 [e = _TRISB3 -> -> 1 `i `b ]
 }
-[e :U 242 ]
-[; ;main.c: 70: SendCmd_1621(0x52);
-"70
-[e ( _SendCmd_1621 (1 -> -> 82 `i `uc ]
-[; ;main.c: 71: SendCmd_1621(0X28);
-"71
-[e ( _SendCmd_1621 (1 -> -> 40 `i `uc ]
-[; ;main.c: 72: SendCmd_1621(0x02);
-"72
-[e ( _SendCmd_1621 (1 -> -> 2 `i `uc ]
-[; ;main.c: 73: SendCmd_1621(0x06);
+[e :U 247 ]
+[; ;main.c: 73: SendCmd_1621(0x52);
 "73
-[e ( _SendCmd_1621 (1 -> -> 6 `i `uc ]
-[; ;main.c: 75: WriteAll_1621(0,Dis_TAB+17,4);
+[e ( _SendCmd_1621 (1 -> -> 82 `i `uc ]
+[; ;main.c: 74: SendCmd_1621(0X28);
+"74
+[e ( _SendCmd_1621 (1 -> -> 40 `i `uc ]
+[; ;main.c: 75: SendCmd_1621(0x02);
 "75
+[e ( _SendCmd_1621 (1 -> -> 2 `i `uc ]
+[; ;main.c: 76: SendCmd_1621(0x06);
+"76
+[e ( _SendCmd_1621 (1 -> -> 6 `i `uc ]
+[; ;main.c: 78: WriteAll_1621(0,Dis_TAB+17,4);
+"78
 [e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc -> + &U _Dis_TAB * -> -> 17 `i `x -> -> # *U &U _Dis_TAB `i `x `*uc -> -> 4 `i `uc ]
-[; ;main.c: 77: time_count = 0;
-"77
+[; ;main.c: 80: time_count = 0;
+"80
 [e = _time_count -> -> 0 `i `uc ]
-[; ;main.c: 94: (INTCONbits.GIE = 1);
-"94
-[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 97: (INTCONbits.PEIE = 1);
+[; ;main.c: 97: (INTCONbits.GIE = 1);
 "97
+[e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 100: (INTCONbits.PEIE = 1);
+"100
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 105: while (1)
-"105
-[e :U 245 ]
-[; ;main.c: 106: {
-"106
-{
-[; ;main.c: 109: temperature_process();
+[; ;main.c: 108: while (1)
+"108
+[e :U 250 ]
+[; ;main.c: 109: {
 "109
+{
+[; ;main.c: 112: temperature_process();
+"112
 [e ( _temperature_process ..  ]
-[; ;main.c: 110: Key_Process();
-"110
+[; ;main.c: 113: Key_Process();
+"113
 [e ( _Key_Process ..  ]
-"186
+"189
 }
-[e :U 244 ]
-"105
-[e $U 245  ]
-[e :U 246 ]
-[; ;main.c: 186: }
-[; ;main.c: 187: }
-"187
+[e :U 249 ]
+"108
+[e $U 250  ]
+[e :U 251 ]
+[; ;main.c: 189: }
+[; ;main.c: 190: }
+"190
 [e :UE 234 ]
 }

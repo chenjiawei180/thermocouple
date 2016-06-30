@@ -8,7 +8,7 @@
             <setting name="sorting" option="true"/>
             <resource customName="CS1" digital="true" direction="OUTPUT" function="RA0" module="GPIO" name="RA0" start="true" type="pin" wpu="false"/>
             <resource customName="CS2" digital="true" direction="OUTPUT" function="RA1" module="GPIO" name="RA1" start="true" type="pin" wpu="false"/>
-            <resource customName="POWER" digital="true" direction="OUTPUT" function="RA2" module="GPIO" name="RA2" start="true" type="pin" wpu="false"/>
+            <resource customName="POWER" digital="true" direction="OUTPUT" function="RA2" module="GPIO" name="RA2" start="false" type="pin" wpu="false"/>
             <resource customName="LED1" digital="true" direction="OUTPUT" function="RA3" module="GPIO" name="RA3" start="true" type="pin" wpu="false"/>
             <resource customName="LED2" digital="true" direction="OUTPUT" function="RA4" module="GPIO" name="RA4" start="true" type="pin" wpu="false"/>
             <resource customName="SS" digital="true" direction="OUTPUT" function="RA5" module="GPIO" name="RA5" start="true" type="pin" wpu="false"/>
@@ -28,7 +28,7 @@
             <resource customName="SDO" digital="true" direction="OUTPUT" function="SDO" module="MSSP" name="RC5" start="false" type="pin" wpu="false"/>
             <resource customName="TX" digital="true" direction="INPUT" function="TX" module="EUSART" name="RC6" start="false" type="pin" wpu="false"/>
             <resource customName="RX" digital="true" direction="INPUT" function="RX" module="EUSART" name="RC7" start="false" type="pin" wpu="false"/>
-            <file checksum="45323266" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
+            <file checksum="4264072190" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
             <file checksum="2217337881" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
         </manager>
         <manager generated="true" name="System" reloadPin="manual">
@@ -76,7 +76,7 @@
             <resource customName="LED2" digital="true" direction="OUTPUT" function="RA4" module="GPIO" name="RA4" start="true" type="pin" wpu="false"/>
             <resource customName="CS1" digital="true" direction="OUTPUT" function="RA0" module="GPIO" name="RA0" start="true" type="pin" wpu="false"/>
             <resource customName="CS2" digital="true" direction="OUTPUT" function="RA1" module="GPIO" name="RA1" start="true" type="pin" wpu="false"/>
-            <resource customName="POWER" digital="true" direction="OUTPUT" function="RA2" module="GPIO" name="RA2" start="true" type="pin" wpu="false"/>
+            <resource customName="POWER" digital="true" direction="OUTPUT" function="RA2" module="GPIO" name="RA2" start="false" type="pin" wpu="false"/>
             <resource customName="SS" digital="true" direction="OUTPUT" function="RA5" module="GPIO" name="RA5" start="true" type="pin" wpu="false"/>
             <resource customName="HT_RD" digital="true" direction="OUTPUT" function="RA6" module="GPIO" name="RA6" start="true" type="pin" wpu="false"/>
             <resource customName="HT_CS" digital="true" direction="OUTPUT" function="RC0" module="GPIO" name="RC0" start="true" type="pin" wpu="false"/>

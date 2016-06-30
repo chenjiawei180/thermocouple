@@ -56,6 +56,8 @@ ADC 11
 "52 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 "16 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+[v _Key_Scan Key_Scan `(uc  1 e 1 0 ]
+"38
 [v _Key_Process Key_Process `(i  1 e 2 0 ]
 "19 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _maxim_31856_write_register maxim_31856_write_register `(v  1 e 1 0 ]
@@ -294,6 +296,8 @@ ADC 11
 [v _LATA0 LATA0 `VEb  1 e 0 @2144 ]
 "4437
 [v _LATA1 LATA1 `VEb  1 e 0 @2145 ]
+"4439
+[v _LATA2 LATA2 `VEb  1 e 0 @2146 ]
 "4441
 [v _LATA3 LATA3 `VEb  1 e 0 @2147 ]
 "4443
@@ -316,6 +320,8 @@ ADC 11
 [v _RB1 RB1 `VEb  1 e 0 @105 ]
 "4531
 [v _RB3 RB3 `VEb  1 e 0 @107 ]
+"4535
+[v _RB5 RB5 `VEb  1 e 0 @109 ]
 "4723
 [v _TRISB3 TRISB3 `VEb  1 e 0 @1131 ]
 "26 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/global.h
@@ -344,6 +350,8 @@ ADC 11
 [v _display_buff display_buff `[4]uc  1 e 4 0 ]
 "39
 [v _time_count time_count `uc  1 e 1 0 ]
+"42
+[v _LongPressSec LongPressSec `uc  1 e 1 0 ]
 "12 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
 [v _Dis_TAB Dis_TAB `DCC[21]uc  1 e 21 0 ]
 "60 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
@@ -352,8 +360,8 @@ ADC 11
 [v _main main `(v  1 e 1 0 ]
 {
 "63
-[v main@data_temp data_temp `ui  1 a 2 15 ]
-"187
+[v main@data_temp data_temp `ui  1 a 2 17 ]
+"190
 } 0
 "63 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _maxim_31856_init maxim_31856_init `(v  1 e 1 0 ]
@@ -404,10 +412,12 @@ ADC 11
 {
 "80
 } 0
-"16 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+"38 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
 [v _Key_Process Key_Process `(i  1 e 2 0 ]
 {
-"28
+"40
+[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 13 ]
+"71
 } 0
 "239 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _temperature_process temperature_process `(v  1 e 1 0 ]
@@ -420,7 +430,7 @@ ADC 11
 "165
 [v time_Display@num num `[4]uc  1 a 4 4 ]
 "164
-[v time_Display@F2078 F2078 `[4]uc  1 s 4 F2078 ]
+[v time_Display@F2079 F2079 `[4]uc  1 s 4 F2079 ]
 "171
 } 0
 "217 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
@@ -444,7 +454,7 @@ ADC 11
 "151
 [v err_Display@num num `[4]uc  1 a 4 4 ]
 "150
-[v err_Display@F2075 F2075 `[4]uc  1 s 4 F2075 ]
+[v err_Display@F2076 F2076 `[4]uc  1 s 4 F2076 ]
 "155
 } 0
 "107
@@ -570,7 +580,7 @@ ADC 11
 "135
 [v Two_Display@number number `uc  1 a 1 wreg ]
 "136
-[v Two_Display@F2072 F2072 `[4]uc  1 s 4 F2072 ]
+[v Two_Display@F2073 F2073 `[4]uc  1 s 4 F2073 ]
 [v Two_Display@number number `uc  1 a 1 8 ]
 "141
 } 0
@@ -613,6 +623,13 @@ ADC 11
 "22
 [v SendBit_1621@data data `uc  1 a 1 5 ]
 "31
+} 0
+"16 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+[v _Key_Scan Key_Scan `(uc  1 e 1 0 ]
+{
+"18
+[v Key_Scan@Key_val Key_val `uc  1 a 1 4 ]
+"29
 } 0
 "52 D:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]

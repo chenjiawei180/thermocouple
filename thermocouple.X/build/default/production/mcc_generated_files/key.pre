@@ -18,6 +18,8 @@ extern float f_linearized_tc_temperature;
 extern unsigned char time_count;
 extern unsigned char tmr_flag;
 
+extern unsigned char LongPressSec;
+
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -2707,20 +2709,58 @@ void SYSTEM_Initialize(void);
 # 86
 void OSCILLATOR_Initialize(void);
 
-# 18 "mcc_generated_files/key.h"
+# 21 "mcc_generated_files/key.h"
+unsigned char Key_Scan(void);
 void Key_Process(void);
 
 # 16 "mcc_generated_files/key.c"
-void Key_Process(void)
+unsigned char Key_Scan(void)
 {
-if(RA7 == 0)
+unsigned char Key_val=0xff;
+if( RA7 == 0 || RB5 == 0 )
 {
 _delay((unsigned long)((10)*(16000000/4000.0)));
-if(RA7 == 0)
+if( RA7 == 0 || RB5 == 0)
+{
+if(RB5 == 0 ) Key_val = 0x01;
+if(RA7 == 0 ) Key_val = 0x02;
+}
+}
+return Key_val;
+}
+
+# 38
+void Key_Process(void)
+{
+unsigned char gKeyValue=0;
+LongPressSec = 0;
+gKeyValue=Key_Scan();
+if(gKeyValue)
+{
+switch(gKeyValue)
+{
+case 0x01:
+while( !(LongPressSec > 2 || RB5 == 1) );
+if(LongPressSec > 2)
+{
+do { LATA2 = 0; } while(0);
+}
+while(RB5 == 0);
+break;
+case 0x02:
+while( !(LongPressSec > 2 || RA7 == 1) );
+if(LongPressSec > 2)
+{
+do { LATA4 = ~LATA4; } while(0);
+}
+else
 {
 time_count = 5;
 temperature_process();
+}
 while(RA7 == 0);
+break;
+default:break;
 }
 }
 }

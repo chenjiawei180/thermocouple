@@ -1,13 +1,21 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "4523 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _RA7 `Vb ~T0 @X0 0 e@103 ]
-[v F1836 `(v ~T0 @X0 1 tf1`ul ]
+"4535
+[v _RB5 `Vb ~T0 @X0 0 e@109 ]
+[v F1837 `(v ~T0 @X0 1 tf1`ul ]
 "152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1836 ~T0 @X0 0 e ]
+[v __delay `JF1837 ~T0 @X0 0 e ]
 [p i __delay ]
+"42 mcc_generated_files/global.h
+[v _LongPressSec `uc ~T0 @X0 0 e ]
+"4439 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _LATA2 `Vb ~T0 @X0 0 e@2146 ]
+"4443
+[v _LATA4 `Vb ~T0 @X0 0 e@2148 ]
 "39 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
-"24 mcc_generated_files/key.c
+"64 mcc_generated_files/key.c
 [v _temperature_process `(i ~T0 @X0 0 ef ]
 [; ;global.h: 26: extern unsigned char uch_cr0;
 [; ;global.h: 27: extern unsigned char uch_cr1;
@@ -23,6 +31,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 38: extern float f_linearized_tc_temperature;
 [; ;global.h: 39: extern unsigned char time_count;
 [; ;global.h: 40: extern unsigned char tmr_flag;
+[; ;global.h: 42: extern unsigned char LongPressSec;
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1910,43 +1919,45 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
 [; ;mcc.h: 73: void SYSTEM_Initialize(void);
 [; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
-[; ;key.h: 18: void Key_Process(void);
+[; ;key.h: 21: unsigned char Key_Scan(void);
+[; ;key.h: 22: void Key_Process(void);
 "16 mcc_generated_files/key.c
-[v _Key_Process `(v ~T0 @X0 1 ef ]
+[v _Key_Scan `(uc ~T0 @X0 1 ef ]
 "17
 {
-[; ;key.c: 16: void Key_Process(void)
+[; ;key.c: 16: unsigned char Key_Scan(void)
 [; ;key.c: 17: {
-[e :U _Key_Process ]
+[e :U _Key_Scan ]
 [f ]
-[; ;key.c: 18: if(RA7 == 0)
 "18
-[e $ ! == -> _RA7 `i -> 0 `i 234  ]
-[; ;key.c: 19: {
+[v _Key_val `uc ~T0 @X0 1 a ]
+[; ;key.c: 18: unsigned char Key_val=0xff;
+[e = _Key_val -> -> 255 `i `uc ]
+[; ;key.c: 19: if( RA7 == 0 || RB5 == 0 )
 "19
-{
-[; ;key.c: 20: _delay((unsigned long)((10)*(16000000/4000.0)));
+[e $ ! || == -> _RA7 `i -> 0 `i == -> _RB5 `i -> 0 `i 234  ]
+[; ;key.c: 20: {
 "20
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;key.c: 21: if(RA7 == 0)
-"21
-[e $ ! == -> _RA7 `i -> 0 `i 235  ]
-[; ;key.c: 22: {
-"22
 {
-[; ;key.c: 23: time_count = 5;
+[; ;key.c: 21: _delay((unsigned long)((10)*(16000000/4000.0)));
+"21
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;key.c: 22: if( RA7 == 0 || RB5 == 0)
+"22
+[e $ ! || == -> _RA7 `i -> 0 `i == -> _RB5 `i -> 0 `i 235  ]
+[; ;key.c: 23: {
 "23
-[e = _time_count -> -> 5 `i `uc ]
-[; ;key.c: 24: temperature_process();
+{
+[; ;key.c: 24: if(RB5 == 0 ) Key_val = 0x01;
 "24
-[e ( _temperature_process ..  ]
-[; ;key.c: 25: while(RA7 == 0);
-"25
-[e $U 236  ]
-[e :U 237 ]
+[e $ ! == -> _RB5 `i -> 0 `i 236  ]
+[e = _Key_val -> -> 1 `i `uc ]
 [e :U 236 ]
-[e $ == -> _RA7 `i -> 0 `i 237  ]
-[e :U 238 ]
+[; ;key.c: 25: if(RA7 == 0 ) Key_val = 0x02;
+"25
+[e $ ! == -> _RA7 `i -> 0 `i 237  ]
+[e = _Key_val -> -> 2 `i `uc ]
+[e :U 237 ]
 "26
 }
 [e :U 235 ]
@@ -1955,7 +1966,154 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 234 ]
 [; ;key.c: 26: }
 [; ;key.c: 27: }
-[; ;key.c: 28: }
+[; ;key.c: 28: return Key_val;
 "28
+[e ) _Key_val ]
+[e $UE 233  ]
+[; ;key.c: 29: }
+"29
 [e :UE 233 ]
+}
+"38
+[v _Key_Process `(v ~T0 @X0 1 ef ]
+"39
+{
+[; ;key.c: 38: void Key_Process(void)
+[; ;key.c: 39: {
+[e :U _Key_Process ]
+[f ]
+"40
+[v _gKeyValue `uc ~T0 @X0 1 a ]
+[; ;key.c: 40: unsigned char gKeyValue=0;
+[e = _gKeyValue -> -> 0 `i `uc ]
+[; ;key.c: 41: LongPressSec = 0;
+"41
+[e = _LongPressSec -> -> 0 `i `uc ]
+[; ;key.c: 42: gKeyValue=Key_Scan();
+"42
+[e = _gKeyValue ( _Key_Scan ..  ]
+[; ;key.c: 43: if(gKeyValue)
+"43
+[e $ ! != -> _gKeyValue `i -> -> -> 0 `i `uc `i 239  ]
+[; ;key.c: 44: {
+"44
+{
+[; ;key.c: 45: switch(gKeyValue)
+"45
+[e $U 241  ]
+[; ;key.c: 46: {
+"46
+{
+[; ;key.c: 47: case 0x01:
+"47
+[e :U 242 ]
+[; ;key.c: 48: while( !(LongPressSec > 2 || RB5 == 1) );
+"48
+[e $U 243  ]
+[e :U 244 ]
+[e :U 243 ]
+[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RB5 `i -> 1 `i 244  ]
+[e :U 245 ]
+[; ;key.c: 49: if(LongPressSec > 2)
+"49
+[e $ ! > -> _LongPressSec `i -> 2 `i 246  ]
+[; ;key.c: 50: {
+"50
+{
+[; ;key.c: 51: do { LATA2 = 0; } while(0);
+"51
+[e :U 249 ]
+{
+[e = _LATA2 -> -> 0 `i `b ]
+}
+[e :U 248 ]
+"52
+}
+[e :U 246 ]
+[; ;key.c: 52: }
+[; ;key.c: 53: while(RB5 == 0);
+"53
+[e $U 250  ]
+[e :U 251 ]
+[e :U 250 ]
+[e $ == -> _RB5 `i -> 0 `i 251  ]
+[e :U 252 ]
+[; ;key.c: 54: break;
+"54
+[e $U 240  ]
+[; ;key.c: 55: case 0x02:
+"55
+[e :U 253 ]
+[; ;key.c: 56: while( !(LongPressSec > 2 || RA7 == 1) );
+"56
+[e $U 254  ]
+[e :U 255 ]
+[e :U 254 ]
+[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RA7 `i -> 1 `i 255  ]
+[e :U 256 ]
+[; ;key.c: 57: if(LongPressSec > 2)
+"57
+[e $ ! > -> _LongPressSec `i -> 2 `i 257  ]
+[; ;key.c: 58: {
+"58
+{
+[; ;key.c: 59: do { LATA4 = ~LATA4; } while(0);
+"59
+[e :U 260 ]
+{
+[e = _LATA4 -> ~ -> _LATA4 `ui `b ]
+}
+[e :U 259 ]
+"60
+}
+[; ;key.c: 60: }
+[e $U 261  ]
+"61
+[e :U 257 ]
+[; ;key.c: 61: else
+[; ;key.c: 62: {
+"62
+{
+[; ;key.c: 63: time_count = 5;
+"63
+[e = _time_count -> -> 5 `i `uc ]
+[; ;key.c: 64: temperature_process();
+"64
+[e ( _temperature_process ..  ]
+"65
+}
+[e :U 261 ]
+[; ;key.c: 65: }
+[; ;key.c: 66: while(RA7 == 0);
+"66
+[e $U 262  ]
+[e :U 263 ]
+[e :U 262 ]
+[e $ == -> _RA7 `i -> 0 `i 263  ]
+[e :U 264 ]
+[; ;key.c: 67: break;
+"67
+[e $U 240  ]
+[; ;key.c: 68: default:break;
+"68
+[e :U 265 ]
+[e $U 240  ]
+"69
+}
+[; ;key.c: 69: }
+[e $U 240  ]
+"45
+[e :U 241 ]
+[e [\ _gKeyValue , $ -> -> 1 `i `uc 242
+ , $ -> -> 2 `i `uc 253
+ 265 ]
+"69
+[e :U 240 ]
+"70
+}
+[e :U 239 ]
+[; ;key.c: 70: }
+[; ;key.c: 71: }
+"71
+[e :UE 238 ]
 }

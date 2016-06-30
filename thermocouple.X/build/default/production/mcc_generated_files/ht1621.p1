@@ -1956,6 +1956,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 38: extern float f_linearized_tc_temperature;
 [; ;global.h: 39: extern unsigned char time_count;
 [; ;global.h: 40: extern unsigned char tmr_flag;
+[; ;global.h: 42: extern unsigned char LongPressSec;
 "12 mcc_generated_files/ht1621.c
 [v _Dis_TAB `Cuc ~T0 @X0 -> 0 `x e ]
 [i _Dis_TAB
@@ -2371,8 +2372,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _number `uc ~T0 @X0 1 r1 ]
 "136
 [f ]
-[v F2072 `uc ~T0 @X0 -> 4 `i s ]
-[i F2072
+[v F2073 `uc ~T0 @X0 -> 4 `i s ]
+[i F2073
 :U ..
 "137
 -> -> 0 `i `uc
@@ -2380,7 +2381,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 137: unsigned char num[4]={0};
-[e = _num F2072 ]
+[e = _num F2073 ]
 [; ;ht1621.c: 138: num[1] = Dis_TAB[0];
 "138
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2402,8 +2403,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 150: {
 [e :U _err_Display ]
 [f ]
-[v F2075 `uc ~T0 @X0 -> 4 `i s ]
-[i F2075
+[v F2076 `uc ~T0 @X0 -> 4 `i s ]
+[i F2076
 :U ..
 "151
 -> -> 0 `i `uc
@@ -2411,7 +2412,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 151: unsigned char num[4]={0};
-[e = _num F2075 ]
+[e = _num F2076 ]
 [; ;ht1621.c: 152: num[1] = Dis_TAB[0x10];
 "152
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2433,8 +2434,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 164: {
 [e :U _time_Display ]
 [f ]
-[v F2078 `uc ~T0 @X0 -> 4 `i s ]
-[i F2078
+[v F2079 `uc ~T0 @X0 -> 4 `i s ]
+[i F2079
 :U ..
 "165
 -> -> 0 `i `uc
@@ -2442,7 +2443,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 165: unsigned char num[4]={0};
-[e = _num F2078 ]
+[e = _num F2079 ]
 [; ;ht1621.c: 166: num[0] = Dis_TAB[0x0f];
 "166
 [e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 15 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]

@@ -15,6 +15,10 @@ extern "C" {
 #include "global.h"
 #include "mcc.h"
 
+#define KEY1 0x01
+#define KEY2 0x02
+
+unsigned char Key_Scan(void);
 void Key_Process(void);
 
 

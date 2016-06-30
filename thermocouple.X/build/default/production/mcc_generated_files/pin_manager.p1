@@ -1863,9 +1863,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pin_manager.c: 50: void PIN_MANAGER_Initialize(void) {
 [e :U _PIN_MANAGER_Initialize ]
 [f ]
-[; ;pin_manager.c: 51: LATA = 0x7F;
+[; ;pin_manager.c: 51: LATA = 0x7B;
 "51
-[e = _LATA -> -> 127 `i `uc ]
+[e = _LATA -> -> 123 `i `uc ]
 [; ;pin_manager.c: 52: TRISA = 0x80;
 "52
 [e = _TRISA -> -> 128 `i `uc ]

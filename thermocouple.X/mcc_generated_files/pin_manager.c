@@ -48,7 +48,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "pin_manager.h"
 
 void PIN_MANAGER_Initialize(void) {
-    LATA = 0x7F;
+    LATA = 0x7B;
     TRISA = 0x80;
     ANSELA = 0x00;
 

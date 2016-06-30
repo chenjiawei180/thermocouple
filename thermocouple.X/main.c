@@ -63,8 +63,11 @@ void main(void) {
     unsigned int data_temp=0;
     // initialize the device
     SYSTEM_Initialize();
+    __delay_ms(3000);
+    if(KEY_GetValue() == 0 ) POWER_SetHigh();
+    else POWER_SetLow();
     LED1_SetLow();
-    LED2_SetLow();
+    //LED2_SetLow();
     maxim_31856_init();
     DRDY_SetDigitalInput();
     SendCmd_1621(BIAS);		//设置偏压和占空比

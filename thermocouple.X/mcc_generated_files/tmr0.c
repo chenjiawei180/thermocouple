@@ -125,7 +125,7 @@ void TMR0_CallBack(void) {
     // this code executes every 200 TMR0 periods
     time_count++;
     if(time_count == 4 || time_count > 8)    time_count = 0;   // ¿ØÖÆÁ÷³Ì
-	
+    LongPressSec++;
 }
 /**
   End of File

@@ -18,6 +18,8 @@ extern float f_linearized_tc_temperature;
 extern unsigned char time_count;
 extern unsigned char tmr_flag;
 
+extern unsigned char LongPressSec;
+
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 

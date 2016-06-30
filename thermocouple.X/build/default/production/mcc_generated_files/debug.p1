@@ -17,6 +17,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 38: extern float f_linearized_tc_temperature;
 [; ;global.h: 39: extern unsigned char time_count;
 [; ;global.h: 40: extern unsigned char tmr_flag;
+[; ;global.h: 42: extern unsigned char LongPressSec;
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);

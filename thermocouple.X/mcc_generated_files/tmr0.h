@@ -64,7 +64,7 @@ extern "C" {
       Section: Macro Declarations
      */
 
-#define TMR0_INTERRUPT_TICKER_FACTOR    200
+#define TMR0_INTERRUPT_TICKER_FACTOR    100
 
     /**
       Section: TMR0 APIs

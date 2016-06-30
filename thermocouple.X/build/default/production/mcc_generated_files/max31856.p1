@@ -59,6 +59,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 38: extern float f_linearized_tc_temperature;
 [; ;global.h: 39: extern unsigned char time_count;
 [; ;global.h: 40: extern unsigned char tmr_flag;
+[; ;global.h: 42: extern unsigned char LongPressSec;
 [; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
