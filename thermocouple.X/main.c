@@ -54,19 +54,28 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "mcc_generated_files/debug.h"
 #endif
 #include <stdio.h>
+
+#define BAT_V 481
+
 /*
                          Main application
  */
 void main(void) {
     //unsigned char a[10];
     //a[0]=0x51;a[1]=0x00;a[2]=0x00;a[3]=0x00;a[4]=0x00;
-    unsigned int data_temp=0;
+    unsigned int  bat_data = 0;
     // initialize the device
     SYSTEM_Initialize();
     __delay_ms(3000);
     if(KEY_GetValue() == 0 ) POWER_SetHigh();
     else POWER_SetLow();
     LED1_SetLow();
+    bat_data = ADC_GetConversion(ADC);
+    if( bat_data <BAT_V)
+    {
+         POWER_SetLow();
+	  while(1);
+    }
     //LED2_SetLow();
     maxim_31856_init();
     DRDY_SetDigitalInput();
@@ -109,8 +118,14 @@ void main(void) {
     {
     // Add your application code
        // EUSART_SendString("ONE CYCLE \n\r");
-               temperature_process();
-               Key_Process();
+        bat_data = ADC_GetConversion(ADC);
+        if( bat_data < BAT_V)
+        {
+            POWER_SetLow();
+            while(1);
+        }
+        temperature_process();
+        Key_Process();
 #if 0
         EUSART_Write(uch_cjth);
         EUSART_Write(uch_cjtl);

@@ -20,6 +20,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _time_count `uc ~T0 @X0 0 e ]
 "42
 [v _LongPressSec `uc ~T0 @X0 0 e ]
+"43
+[v _MAX31856Sec `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1922,6 +1924,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 39: extern unsigned char time_count;
 [; ;global.h: 40: extern unsigned char tmr_flag;
 [; ;global.h: 42: extern unsigned char LongPressSec;
+[; ;global.h: 43: extern unsigned char MAX31856Sec;
 "60 mcc_generated_files/tmr0.c
 [v _timer0ReloadVal `Vuc ~T0 @X0 1 e ]
 [; ;tmr0.c: 60: volatile uint8_t timer0ReloadVal;
@@ -2004,8 +2007,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _TMR0_ISR ]
 [f ]
 "104
-[v F1948 `Vui ~T0 @X0 1 s CountCallBack ]
-[i F1948
+[v F1949 `Vui ~T0 @X0 1 s CountCallBack ]
+[i F1949
 -> -> 0 `i `ui
 ]
 [; ;tmr0.c: 104: static volatile unsigned int CountCallBack = 0;
@@ -2017,14 +2020,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TMR0 _timer0ReloadVal ]
 [; ;tmr0.c: 112: if (++CountCallBack >= 100) {
 "112
-[e $ ! >= =+ F1948 -> -> 1 `i `ui -> -> 100 `i `ui 238  ]
+[e $ ! >= =+ F1949 -> -> 1 `i `ui -> -> 100 `i `ui 238  ]
 {
 [; ;tmr0.c: 114: TMR0_CallBack();
 "114
 [e ( _TMR0_CallBack ..  ]
 [; ;tmr0.c: 117: CountCallBack = 0;
 "117
-[e = F1948 -> -> 0 `i `ui ]
+[e = F1949 -> -> 0 `i `ui ]
 "118
 }
 [e :U 238 ]
@@ -2050,7 +2053,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 128: LongPressSec++;
 "128
 [e ++ _LongPressSec -> -> 1 `i `uc ]
-[; ;tmr0.c: 129: }
+[; ;tmr0.c: 129: MAX31856Sec++;
 "129
+[e ++ _MAX31856Sec -> -> 1 `i `uc ]
+[; ;tmr0.c: 130: }
+"130
 [e :UE 239 ]
 }

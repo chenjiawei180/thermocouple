@@ -126,6 +126,7 @@ void TMR0_CallBack(void) {
     time_count++;
     if(time_count == 4 || time_count > 8)    time_count = 0;   // ¿ØÖÆÁ÷³Ì
     LongPressSec++;
+    MAX31856Sec++;
 }
 /**
   End of File

@@ -65,9 +65,9 @@
             <setting name="preemptHigh" option="true"/>
             <setting name="preemptLow" option="true"/>
             <setting name="useIPEN" option="false"/>
+            <file checksum="861387996" modified="false" name="interrupt_manager.c" path="mcc_generated_files/interrupt_manager.c"/>
+            <file checksum="1729886857" modified="false" name="interrupt_manager.h" path="mcc_generated_files/interrupt_manager.h"/>
             <interrupt module="TMR0" name="TMRI" priority="2"/>
-            <file checksum="4188192186" modified="false" name="interrupt_manager.c" path="mcc_generated_files/interrupt_manager.c"/>
-            <file checksum="3142646631" modified="false" name="interrupt_manager.h" path="mcc_generated_files/interrupt_manager.h"/>
         </manager>
     </managers>
     <modules>
@@ -162,7 +162,7 @@
                 <setting name="GO_nDONE" option="stop" register="ADCON0"/>
                 <setting name="ADON" option="enabled" register="ADCON0"/>
                 <setting name="CHS" option="AN0" register="ADCON0"/>
-                <setting name="ADFM" option="left" register="ADCON1"/>
+                <setting name="ADFM" option="right" register="ADCON1"/>
                 <setting name="ADPREF" option="VDD" register="ADCON1"/>
                 <setting name="ADCS" option="FOSC/64" register="ADCON1"/>
                 <setting name="ADRESL" option="0x0" register="ADRESL"/>
@@ -170,8 +170,8 @@
             </initializer>
             <setting name="ADI" option="false"/>
             <resource customName="ADC" function="AN11" name="RB4" type="pin"/>
-            <file checksum="354938639" modified="false" name="adc.c" path="mcc_generated_files/adc.c"/>
-            <file checksum="3187056092" modified="false" name="adc.h" path="mcc_generated_files/adc.h"/>
+            <file checksum="698674867" modified="false" name="adc.c" path="mcc_generated_files/adc.c"/>
+            <file checksum="3922828542" modified="false" name="adc.h" path="mcc_generated_files/adc.h"/>
         </module>
         <module generated="true" mode="Timer" name="TMR0" order="5" reloadPin="manual" type="tmr_0">
             <initializer comment="" name="Initialize">

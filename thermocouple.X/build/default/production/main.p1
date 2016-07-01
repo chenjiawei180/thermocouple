@@ -12,6 +12,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATA2 `Vb ~T0 @X0 0 e@2146 ]
 "4441
 [v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
+"73 main.c
+[c E1890 30 31 11 .. ]
+[n E1890 . channel_Temp channel_FVR ADC  ]
+"249 mcc_generated_files/adc.h
+[v _ADC_GetConversion `(ui ~T0 @X0 0 ef1`E1890 ]
 "82 mcc_generated_files/max31856.h
 [v _maxim_31856_init `(v ~T0 @X0 0 ef ]
 "4723 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
@@ -35,7 +40,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
 "96 mcc_generated_files/max31856.h
 [v _temperature_process `(v ~T0 @X0 0 ef ]
-"113 main.c
+"128 main.c
 [v _Key_Process `(i ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1975,6 +1980,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "42
 [v _LongPressSec `uc ~T0 @X0 1 e ]
 [; ;global.h: 42: unsigned char LongPressSec;
+"43
+[v _MAX31856Sec `uc ~T0 @X0 1 e ]
+[; ;global.h: 43: unsigned char MAX31856Sec;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
@@ -2036,24 +2044,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdio.h: 190: extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
 [; ;stdio.h: 194: extern int sprintf(char *, const char *, ...);
 [; ;stdio.h: 195: extern int printf(const char *, ...);
-"60 main.c
+"63 main.c
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 60: void main(void) {
+[; ;main.c: 63: void main(void) {
 [e :U _main ]
 [f ]
-"63
-[v _data_temp `ui ~T0 @X0 1 a ]
-[; ;main.c: 63: unsigned int data_temp=0;
-[e = _data_temp -> -> 0 `i `ui ]
-[; ;main.c: 65: SYSTEM_Initialize();
-"65
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 66: _delay((unsigned long)((3000)*(16000000/4000.0)));
 "66
+[v _bat_data `ui ~T0 @X0 1 a ]
+[; ;main.c: 66: unsigned int bat_data = 0;
+[e = _bat_data -> -> 0 `i `ui ]
+[; ;main.c: 68: SYSTEM_Initialize();
+"68
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 69: _delay((unsigned long)((3000)*(16000000/4000.0)));
+"69
 [e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;main.c: 67: if(RB5 == 0 ) do { LATA2 = 1; } while(0);
-"67
+[; ;main.c: 70: if(RB5 == 0 ) do { LATA2 = 1; } while(0);
+"70
 [e $ ! == -> _RB5 `i -> 0 `i 235  ]
 [e :U 238 ]
 {
@@ -2061,76 +2069,128 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 237 ]
 [e $U 239  ]
-"68
+"71
 [e :U 235 ]
-[; ;main.c: 68: else do { LATA2 = 0; } while(0);
+[; ;main.c: 71: else do { LATA2 = 0; } while(0);
 [e :U 242 ]
 {
 [e = _LATA2 -> -> 0 `i `b ]
 }
 [e :U 241 ]
 [e :U 239 ]
-[; ;main.c: 69: do { LATA3 = 0; } while(0);
-"69
+[; ;main.c: 72: do { LATA3 = 0; } while(0);
+"72
 [e :U 245 ]
 {
 [e = _LATA3 -> -> 0 `i `b ]
 }
 [e :U 244 ]
-[; ;main.c: 71: maxim_31856_init();
-"71
-[e ( _maxim_31856_init ..  ]
-[; ;main.c: 72: do { TRISB3 = 1; } while(0);
-"72
+[; ;main.c: 73: bat_data = ADC_GetConversion(ADC);
+"73
+[e = _bat_data ( _ADC_GetConversion (1 . `E1890 2 ]
+[; ;main.c: 74: if( bat_data <481)
+"74
+[e $ ! < _bat_data -> -> 481 `i `ui 246  ]
+[; ;main.c: 75: {
+"75
+{
+[; ;main.c: 76: do { LATA2 = 0; } while(0);
+"76
+[e :U 249 ]
+{
+[e = _LATA2 -> -> 0 `i `b ]
+}
 [e :U 248 ]
+[; ;main.c: 77: while(1);
+"77
+[e :U 251 ]
+[e :U 250 ]
+[e $U 251  ]
+[e :U 252 ]
+"78
+}
+[e :U 246 ]
+[; ;main.c: 78: }
+[; ;main.c: 80: maxim_31856_init();
+"80
+[e ( _maxim_31856_init ..  ]
+[; ;main.c: 81: do { TRISB3 = 1; } while(0);
+"81
+[e :U 255 ]
 {
 [e = _TRISB3 -> -> 1 `i `b ]
 }
-[e :U 247 ]
-[; ;main.c: 73: SendCmd_1621(0x52);
-"73
+[e :U 254 ]
+[; ;main.c: 82: SendCmd_1621(0x52);
+"82
 [e ( _SendCmd_1621 (1 -> -> 82 `i `uc ]
-[; ;main.c: 74: SendCmd_1621(0X28);
-"74
+[; ;main.c: 83: SendCmd_1621(0X28);
+"83
 [e ( _SendCmd_1621 (1 -> -> 40 `i `uc ]
-[; ;main.c: 75: SendCmd_1621(0x02);
-"75
+[; ;main.c: 84: SendCmd_1621(0x02);
+"84
 [e ( _SendCmd_1621 (1 -> -> 2 `i `uc ]
-[; ;main.c: 76: SendCmd_1621(0x06);
-"76
+[; ;main.c: 85: SendCmd_1621(0x06);
+"85
 [e ( _SendCmd_1621 (1 -> -> 6 `i `uc ]
-[; ;main.c: 78: WriteAll_1621(0,Dis_TAB+17,4);
-"78
+[; ;main.c: 87: WriteAll_1621(0,Dis_TAB+17,4);
+"87
 [e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc -> + &U _Dis_TAB * -> -> 17 `i `x -> -> # *U &U _Dis_TAB `i `x `*uc -> -> 4 `i `uc ]
-[; ;main.c: 80: time_count = 0;
-"80
+[; ;main.c: 89: time_count = 0;
+"89
 [e = _time_count -> -> 0 `i `uc ]
-[; ;main.c: 97: (INTCONbits.GIE = 1);
-"97
+[; ;main.c: 106: (INTCONbits.GIE = 1);
+"106
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 100: (INTCONbits.PEIE = 1);
-"100
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 108: while (1)
-"108
-[e :U 250 ]
-[; ;main.c: 109: {
+[; ;main.c: 109: (INTCONbits.PEIE = 1);
 "109
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 117: while (1)
+"117
+[e :U 257 ]
+[; ;main.c: 118: {
+"118
 {
-[; ;main.c: 112: temperature_process();
-"112
-[e ( _temperature_process ..  ]
-[; ;main.c: 113: Key_Process();
-"113
-[e ( _Key_Process ..  ]
-"189
+[; ;main.c: 121: bat_data = ADC_GetConversion(ADC);
+"121
+[e = _bat_data ( _ADC_GetConversion (1 . `E1890 2 ]
+[; ;main.c: 122: if( bat_data < 481)
+"122
+[e $ ! < _bat_data -> -> 481 `i `ui 259  ]
+[; ;main.c: 123: {
+"123
+{
+[; ;main.c: 124: do { LATA2 = 0; } while(0);
+"124
+[e :U 262 ]
+{
+[e = _LATA2 -> -> 0 `i `b ]
 }
-[e :U 249 ]
-"108
-[e $U 250  ]
-[e :U 251 ]
-[; ;main.c: 189: }
-[; ;main.c: 190: }
-"190
+[e :U 261 ]
+[; ;main.c: 125: while(1);
+"125
+[e :U 264 ]
+[e :U 263 ]
+[e $U 264  ]
+[e :U 265 ]
+"126
+}
+[e :U 259 ]
+[; ;main.c: 126: }
+[; ;main.c: 127: temperature_process();
+"127
+[e ( _temperature_process ..  ]
+[; ;main.c: 128: Key_Process();
+"128
+[e ( _Key_Process ..  ]
+"204
+}
+[e :U 256 ]
+"117
+[e $U 257  ]
+[e :U 258 ]
+[; ;main.c: 204: }
+[; ;main.c: 205: }
+"205
 [e :UE 234 ]
 }

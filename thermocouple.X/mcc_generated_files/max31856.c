@@ -200,11 +200,19 @@ void tc_temperature_trans(void)
 void one_temperature_trans(void)
 {
     maxim_start_conversion(One_Shot_Conversion);  //使能单次转换
-    while(DRDY_GetValue());    //需要添加超时退出
-    maxim_31856_read_nregisters(0x0A, uch_reg,6);
-    uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];                //将读取到的结果赋值给对应的寄存器变量
-    uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
-    uch_sr=uch_reg[5];
+    MAX31856Sec = 0;
+    while( !(DRDY_GetValue() == 0 || MAX31856Sec > 2) )  ;  //需要添加超时退出
+    if( MAX31856Sec > 2)
+    {
+        uch_sr = 0x01;
+    }
+    else
+    {
+        maxim_31856_read_nregisters(0x0A, uch_reg,6);
+        uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];                //将读取到的结果赋值给对应的寄存器变量
+        uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
+        uch_sr=uch_reg[5]; 
+    }
 
 }
 

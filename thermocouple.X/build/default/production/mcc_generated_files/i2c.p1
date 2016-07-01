@@ -1,9 +1,9 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "4453 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATB1 `Vb ~T0 @X0 0 e@2153 ]
-[v F1837 `(v ~T0 @X0 1 tf1`ul ]
+[v F1838 `(v ~T0 @X0 1 tf1`ul ]
 "152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1837 ~T0 @X0 0 e ]
+[v __delay `JF1838 ~T0 @X0 0 e ]
 [p i __delay ]
 "4451 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATB0 `Vb ~T0 @X0 0 e@2152 ]
@@ -24,6 +24,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 39: extern unsigned char time_count;
 [; ;global.h: 40: extern unsigned char tmr_flag;
 [; ;global.h: 42: extern unsigned char LongPressSec;
+[; ;global.h: 43: extern unsigned char MAX31856Sec;
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);

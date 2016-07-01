@@ -19,6 +19,7 @@ extern unsigned char time_count;
 extern unsigned char tmr_flag;
 
 extern unsigned char LongPressSec;
+extern unsigned char MAX31856Sec;
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2713,7 +2714,20 @@ void OSCILLATOR_Initialize(void);
 unsigned char Key_Scan(void);
 void Key_Process(void);
 
-# 16 "mcc_generated_files/key.c"
+# 21 "mcc_generated_files/ht1621.h"
+extern unsigned char const Dis_TAB[];
+
+void SendBit_1621(unsigned char data,unsigned char cnt);
+void SendDataBit_1621(unsigned char data,unsigned char cnt);
+void SendCmd_1621(unsigned char command);
+void Write_1621(unsigned char addr,unsigned char data);
+void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
+void Tc_Display(void);
+void Two_Display(unsigned char number);
+void err_Display(void);
+void time_Display(void);
+
+# 17 "mcc_generated_files/key.c"
 unsigned char Key_Scan(void)
 {
 unsigned char Key_val=0xff;
@@ -2729,7 +2743,7 @@ if(RA7 == 0 ) Key_val = 0x02;
 return Key_val;
 }
 
-# 38
+# 39
 void Key_Process(void)
 {
 unsigned char gKeyValue=0;
@@ -2744,6 +2758,8 @@ while( !(LongPressSec > 2 || RB5 == 1) );
 if(LongPressSec > 2)
 {
 do { LATA2 = 0; } while(0);
+do { LATA3 = 1; } while(0);
+SendCmd_1621(0x04);
 }
 while(RB5 == 0);
 break;

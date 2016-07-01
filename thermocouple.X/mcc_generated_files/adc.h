@@ -8,12 +8,12 @@
     adc.h
 
   @Summary
-    This is the generated header file for the ADC driver using MPLAB® Code Configurator
+    This is the generated header file for the ADC driver using MPLAB? Code Configurator
 
   @Description
     This header file provides APIs for driver for ADC.
     Generation Information :
-        Product Revision  :  MPLAB® Code Configurator - v2.25.2
+        Product Revision  :  MPLAB? Code Configurator - v2.25.2
         Device            :  PIC16F1518
         Driver Version    :  2.00
     The generated drivers are tested against the following:

@@ -40,6 +40,7 @@ OS_EXT unsigned char time_count;
 OS_EXT unsigned char tmr_flag;
 
 OS_EXT unsigned char LongPressSec;
+OS_EXT unsigned char MAX31856Sec;
 
 #ifdef	__cplusplus
 }

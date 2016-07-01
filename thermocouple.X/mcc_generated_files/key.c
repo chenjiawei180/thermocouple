@@ -6,6 +6,7 @@
   ******************************************************************************/
 
 #include "key.h"
+#include "ht1621.h"
 
 /**
   * @brief  This function is Key scan.
@@ -49,6 +50,8 @@ void Key_Process(void)
                 if(LongPressSec > 2)
                 {
                     POWER_SetLow();
+		      LED1_SetHigh(); //off led  off lcd
+		      SendCmd_1621(LCDOFF);
                 }
 		  while(KEY_GetValue() == 0);
 			break;

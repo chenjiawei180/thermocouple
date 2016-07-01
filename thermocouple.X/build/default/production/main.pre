@@ -2708,6 +2708,7 @@ void OSCILLATOR_Initialize(void);
  unsigned char tmr_flag;
 
  unsigned char LongPressSec;
+ unsigned char MAX31856Sec;
 
 # 82 "mcc_generated_files/max31856.h"
 void maxim_31856_init(void);
@@ -2826,17 +2827,23 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
 
-# 60 "main.c"
+# 63 "main.c"
 void main(void) {
 
 
-unsigned int data_temp=0;
+unsigned int bat_data = 0;
 
 SYSTEM_Initialize();
 _delay((unsigned long)((3000)*(16000000/4000.0)));
 if(RB5 == 0 ) do { LATA2 = 1; } while(0);
 else do { LATA2 = 0; } while(0);
 do { LATA3 = 0; } while(0);
+bat_data = ADC_GetConversion(ADC);
+if( bat_data <481)
+{
+do { LATA2 = 0; } while(0);
+while(1);
+}
 
 maxim_31856_init();
 do { TRISB3 = 1; } while(0);
@@ -2849,21 +2856,27 @@ WriteAll_1621(0,Dis_TAB+17,4);
 
 time_count = 0;
 
-# 97
+# 106
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 108
+# 117
 while (1)
 {
 
 
+bat_data = ADC_GetConversion(ADC);
+if( bat_data < 481)
+{
+do { LATA2 = 0; } while(0);
+while(1);
+}
 temperature_process();
 Key_Process();
 
-# 189
+# 204
 }
 }
 

@@ -8,12 +8,12 @@
     adc.c
 
   @Summary
-    This is the generated driver implementation file for the ADC driver using MPLAB® Code Configurator
+    This is the generated driver implementation file for the ADC driver using MPLAB? Code Configurator
 
   @Description
     This source file provides implementations for driver APIs for ADC.
     Generation Information :
-        Product Revision  :  MPLAB® Code Configurator - v2.25.2
+        Product Revision  :  MPLAB? Code Configurator - v2.25.2
         Device            :  PIC16F1518
         Driver Version    :  2.00
     The generated drivers are tested against the following:
@@ -68,8 +68,8 @@ void ADC_Initialize(void) {
     // GO_nDONE stop; ADON enabled; CHS AN0; 
     ADCON0 = 0x01;
 
-    // ADFM left; ADPREF VDD; ADCS FOSC/64; 
-    ADCON1 = 0x60;
+    // ADFM right; ADPREF VDD; ADCS FOSC/64; 
+    ADCON1 = 0xE0;
 
     // ADRESL 0x0; 
     ADRESL = 0x00;

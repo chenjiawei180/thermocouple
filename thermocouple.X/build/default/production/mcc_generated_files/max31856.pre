@@ -19,6 +19,7 @@ extern unsigned char time_count;
 extern unsigned char tmr_flag;
 
 extern unsigned char LongPressSec;
+extern unsigned char MAX31856Sec;
 
 # 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
 typedef unsigned char bool;
@@ -2874,15 +2875,23 @@ if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 
 void one_temperature_trans(void)
 {
 maxim_start_conversion((uint8_t) 0x40);
-while(RB3);
+MAX31856Sec = 0;
+while( !(RB3 == 0 || MAX31856Sec > 2) ) ;
+if( MAX31856Sec > 2)
+{
+uch_sr = 0x01;
+}
+else
+{
 maxim_31856_read_nregisters(0x0A, uch_reg,6);
 uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
 uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
 uch_sr=uch_reg[5];
+}
 
 }
 
-# 217
+# 225
 void temperature_display(void)
 {
 if(uch_sr==(uint8_t)0x00)
@@ -2899,7 +2908,7 @@ maxim_31856_write_register(0x82, 0x00);
 }
 }
 
-# 239
+# 247
 void temperature_process(void)
 {
 switch(time_count)
