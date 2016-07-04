@@ -1,26 +1,6 @@
 
 # 1 "mcc_generated_files/key.c"
 
-# 26 "mcc_generated_files/global.h"
-extern unsigned char uch_cr0;
-extern unsigned char uch_cr1;
-extern unsigned char uch_mask;
-
-extern unsigned char uch_reg[8];
-extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-extern unsigned long temperature_value;
-extern unsigned int temperature_int;
-extern unsigned char temperature_decimal,temperature_sign;
-extern unsigned char display_buff[4];
-extern char s[64];
-extern float f_cold_junction_temperature;
-extern float f_linearized_tc_temperature;
-extern unsigned char time_count;
-extern unsigned char tmr_flag;
-
-extern unsigned char LongPressSec;
-extern unsigned char MAX31856Sec;
-
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -2709,6 +2689,40 @@ void SYSTEM_Initialize(void);
 
 # 86
 void OSCILLATOR_Initialize(void);
+
+# 25 "mcc_generated_files/global.h"
+typedef struct bq32k_regs {
+uint8_t seconds;
+uint8_t minutes;
+uint8_t hours;
+uint8_t wday;
+uint8_t date;
+uint8_t month;
+uint8_t years;
+}bq32k_t;
+
+
+
+
+extern unsigned char uch_cr0;
+extern unsigned char uch_cr1;
+extern unsigned char uch_mask;
+
+extern unsigned char uch_reg[8];
+extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+extern unsigned long temperature_value;
+extern unsigned int temperature_int;
+extern unsigned char temperature_decimal,temperature_sign;
+extern unsigned char display_buff[4];
+extern char s[64];
+extern float f_cold_junction_temperature;
+extern float f_linearized_tc_temperature;
+extern unsigned char time_count;
+extern unsigned char tmr_flag;
+
+extern unsigned char LongPressSec;
+extern unsigned char MAX31856Sec;
+extern bq32k_t tm;
 
 # 21 "mcc_generated_files/key.h"
 unsigned char Key_Scan(void);

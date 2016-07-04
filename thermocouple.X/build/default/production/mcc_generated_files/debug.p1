@@ -3,22 +3,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _strlen `(ui ~T0 @X0 0 ef1`*Cuc ]
 "135 mcc_generated_files/eusart.h
 [v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
-[; ;global.h: 26: extern unsigned char uch_cr0;
-[; ;global.h: 27: extern unsigned char uch_cr1;
-[; ;global.h: 28: extern unsigned char uch_mask;
-[; ;global.h: 30: extern unsigned char uch_reg[8];
-[; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 32: extern unsigned long temperature_value;
-[; ;global.h: 33: extern unsigned int temperature_int;
-[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 35: extern unsigned char display_buff[4];
-[; ;global.h: 36: extern char s[64];
-[; ;global.h: 37: extern float f_cold_junction_temperature;
-[; ;global.h: 38: extern float f_linearized_tc_temperature;
-[; ;global.h: 39: extern unsigned char time_count;
-[; ;global.h: 40: extern unsigned char tmr_flag;
-[; ;global.h: 42: extern unsigned char LongPressSec;
-[; ;global.h: 43: extern unsigned char MAX31856Sec;
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1840,7 +1824,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 186: extern unsigned char __resetbits;
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
-[; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -1869,12 +1854,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;eusart.h: 95: void EUSART_Initialize(void);
-[; ;eusart.h: 115: uint8_t EUSART_Read(void);
-[; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
-[; ;debug.h: 17: void EUSART_SendString(char *s);
-[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
+[; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
@@ -1884,6 +1864,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;spi.h: 215: bool SPI_IsBufferFull(void);
 [; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
 [; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
+[; ;eusart.h: 95: void EUSART_Initialize(void);
+[; ;eusart.h: 115: uint8_t EUSART_Read(void);
+[; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
 [; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
@@ -1907,6 +1890,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
 [; ;mcc.h: 73: void SYSTEM_Initialize(void);
 [; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;global.h: 25: typedef struct bq32k_regs {
+[; ;global.h: 26: uint8_t seconds;
+[; ;global.h: 27: uint8_t minutes;
+[; ;global.h: 28: uint8_t hours;
+[; ;global.h: 29: uint8_t wday;
+[; ;global.h: 30: uint8_t date;
+[; ;global.h: 31: uint8_t month;
+[; ;global.h: 32: uint8_t years;
+[; ;global.h: 33: }bq32k_t;
+[; ;global.h: 38: extern unsigned char uch_cr0;
+[; ;global.h: 39: extern unsigned char uch_cr1;
+[; ;global.h: 40: extern unsigned char uch_mask;
+[; ;global.h: 42: extern unsigned char uch_reg[8];
+[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 44: extern unsigned long temperature_value;
+[; ;global.h: 45: extern unsigned int temperature_int;
+[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 47: extern unsigned char display_buff[4];
+[; ;global.h: 48: extern char s[64];
+[; ;global.h: 49: extern float f_cold_junction_temperature;
+[; ;global.h: 50: extern float f_linearized_tc_temperature;
+[; ;global.h: 51: extern unsigned char time_count;
+[; ;global.h: 52: extern unsigned char tmr_flag;
+[; ;global.h: 54: extern unsigned char LongPressSec;
+[; ;global.h: 55: extern unsigned char MAX31856Sec;
+[; ;global.h: 56: extern bq32k_t tm;
+[; ;debug.h: 17: void EUSART_SendString(char *s);
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 16: extern void * memset(void *, int, size_t);
@@ -1963,9 +1973,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "28
 {
 [e = _i -> 0 `i ]
-[e $U 237  ]
+[e $U 238  ]
 "29
-[e :U 234 ]
+[e :U 235 ]
 [; ;debug.c: 29: {
 {
 [; ;debug.c: 30: x=*pointer;
@@ -1981,13 +1991,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "28
 [e ++ _i -> 1 `i ]
-[e :U 237 ]
-[e $ < _i _length 234  ]
-[e :U 235 ]
+[e :U 238 ]
+[e $ < _i _length 235  ]
+[e :U 236 ]
 "33
 }
 [; ;debug.c: 33: }
 [; ;debug.c: 34: }
 "34
-[e :UE 233 ]
+[e :UE 234 ]
 }

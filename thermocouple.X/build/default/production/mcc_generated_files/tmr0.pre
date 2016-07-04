@@ -2690,7 +2690,20 @@ void SYSTEM_Initialize(void);
 # 86
 void OSCILLATOR_Initialize(void);
 
-# 26 "mcc_generated_files/global.h"
+# 25 "mcc_generated_files/global.h"
+typedef struct bq32k_regs {
+uint8_t seconds;
+uint8_t minutes;
+uint8_t hours;
+uint8_t wday;
+uint8_t date;
+uint8_t month;
+uint8_t years;
+}bq32k_t;
+
+
+
+
 extern unsigned char uch_cr0;
 extern unsigned char uch_cr1;
 extern unsigned char uch_mask;
@@ -2709,6 +2722,7 @@ extern unsigned char tmr_flag;
 
 extern unsigned char LongPressSec;
 extern unsigned char MAX31856Sec;
+extern bq32k_t tm;
 
 # 60 "mcc_generated_files/tmr0.c"
 volatile uint8_t timer0ReloadVal;

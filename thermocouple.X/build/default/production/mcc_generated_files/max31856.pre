@@ -1,160 +1,6 @@
 
 # 1 "mcc_generated_files/max31856.c"
 
-# 26 "mcc_generated_files/global.h"
-extern unsigned char uch_cr0;
-extern unsigned char uch_cr1;
-extern unsigned char uch_mask;
-
-extern unsigned char uch_reg[8];
-extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-extern unsigned long temperature_value;
-extern unsigned int temperature_int;
-extern unsigned char temperature_decimal,temperature_sign;
-extern unsigned char display_buff[4];
-extern char s[64];
-extern float f_cold_junction_temperature;
-extern float f_linearized_tc_temperature;
-extern unsigned char time_count;
-extern unsigned char tmr_flag;
-
-extern unsigned char LongPressSec;
-extern unsigned char MAX31856Sec;
-
-# 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
-typedef unsigned char bool;
-
-# 4 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
-typedef unsigned size_t;
-
-# 6 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stddef.h"
-typedef int ptrdiff_t;
-
-# 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
-typedef signed char int8_t;
-
-# 20
-typedef signed int int16_t;
-
-# 28
-typedef signed short long int int24_t;
-
-# 36
-typedef signed long int int32_t;
-
-# 43
-typedef unsigned char uint8_t;
-
-# 49
-typedef unsigned int uint16_t;
-
-# 56
-typedef unsigned short long int uint24_t;
-
-# 63
-typedef unsigned long int uint32_t;
-
-# 71
-typedef signed char int_least8_t;
-
-# 78
-typedef signed int int_least16_t;
-
-# 90
-typedef signed short long int int_least24_t;
-
-# 98
-typedef signed long int int_least32_t;
-
-# 105
-typedef unsigned char uint_least8_t;
-
-# 111
-typedef unsigned int uint_least16_t;
-
-# 121
-typedef unsigned short long int uint_least24_t;
-
-# 128
-typedef unsigned long int uint_least32_t;
-
-# 137
-typedef signed char int_fast8_t;
-
-# 144
-typedef signed int int_fast16_t;
-
-# 156
-typedef signed short long int int_fast24_t;
-
-# 164
-typedef signed long int int_fast32_t;
-
-# 171
-typedef unsigned char uint_fast8_t;
-
-# 177
-typedef unsigned int uint_fast16_t;
-
-# 187
-typedef unsigned short long int uint_fast24_t;
-
-# 194
-typedef unsigned long int uint_fast32_t;
-
-# 200
-typedef int32_t intmax_t;
-
-
-
-
-typedef uint32_t uintmax_t;
-
-
-
-
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-
-# 117 "mcc_generated_files/spi.h"
-void SPI_Initialize(void);
-
-# 152
-uint8_t SPI_Exchange8bit(uint8_t data);
-
-# 192
-uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-
-# 215
-bool SPI_IsBufferFull(void);
-
-# 240
-bool SPI_HasWriteCollisionOccured(void);
-
-# 264
-void SPI_ClearWriteCollisionStatus(void);
-
-# 82 "mcc_generated_files/max31856.h"
-void maxim_31856_init(void);
-void maxim_stop_conversion(void);
-void maxim_start_conversion(uint8_t uch_conversion_mode);
-void maxim_disable_oc_fault_detection(void);
-void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable);
-void maxim_clear_fault_status(void);
-
-void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
-uint8_t maxim_31856_read_register(uint8_t uch_register_address);
-void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
-void tc_temperature_trans(void);
-
-void one_temperature_trans(void);
-void temperature_display(void);
-void temperature_process(void);
-
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -2654,8 +2500,125 @@ void PIN_MANAGER_Initialize(void);
 # 402
 void PIN_MANAGER_IOC(void);
 
+# 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef signed short long int int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 43
+typedef unsigned char uint8_t;
+
+# 49
+typedef unsigned int uint16_t;
+
+# 56
+typedef unsigned short long int uint24_t;
+
+# 63
+typedef unsigned long int uint32_t;
+
+# 71
+typedef signed char int_least8_t;
+
+# 78
+typedef signed int int_least16_t;
+
+# 90
+typedef signed short long int int_least24_t;
+
+# 98
+typedef signed long int int_least32_t;
+
+# 105
+typedef unsigned char uint_least8_t;
+
+# 111
+typedef unsigned int uint_least16_t;
+
+# 121
+typedef unsigned short long int uint_least24_t;
+
+# 128
+typedef unsigned long int uint_least32_t;
+
+# 137
+typedef signed char int_fast8_t;
+
+# 144
+typedef signed int int_fast16_t;
+
+# 156
+typedef signed short long int int_fast24_t;
+
+# 164
+typedef signed long int int_fast32_t;
+
+# 171
+typedef unsigned char uint_fast8_t;
+
+# 177
+typedef unsigned int uint_fast16_t;
+
+# 187
+typedef unsigned short long int uint_fast24_t;
+
+# 194
+typedef unsigned long int uint_fast32_t;
+
+# 200
+typedef int32_t intmax_t;
+
+
+
+
+typedef uint32_t uintmax_t;
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
+# 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
+typedef unsigned char bool;
+
 # 111 "mcc_generated_files/interrupt_manager.h"
 void interrupt INTERRUPT_InterruptManager(void);
+
+# 4 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
+typedef unsigned size_t;
+
+# 6 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stddef.h"
+typedef int ptrdiff_t;
+
+# 117 "mcc_generated_files/spi.h"
+void SPI_Initialize(void);
+
+# 152
+uint8_t SPI_Exchange8bit(uint8_t data);
+
+# 192
+uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+
+# 215
+bool SPI_IsBufferFull(void);
+
+# 240
+bool SPI_HasWriteCollisionOccured(void);
+
+# 264
+void SPI_ClearWriteCollisionStatus(void);
 
 # 95 "mcc_generated_files/eusart.h"
 void EUSART_Initialize(void);
@@ -2726,6 +2689,57 @@ void SYSTEM_Initialize(void);
 
 # 86
 void OSCILLATOR_Initialize(void);
+
+# 25 "mcc_generated_files/global.h"
+typedef struct bq32k_regs {
+uint8_t seconds;
+uint8_t minutes;
+uint8_t hours;
+uint8_t wday;
+uint8_t date;
+uint8_t month;
+uint8_t years;
+}bq32k_t;
+
+
+
+
+extern unsigned char uch_cr0;
+extern unsigned char uch_cr1;
+extern unsigned char uch_mask;
+
+extern unsigned char uch_reg[8];
+extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+extern unsigned long temperature_value;
+extern unsigned int temperature_int;
+extern unsigned char temperature_decimal,temperature_sign;
+extern unsigned char display_buff[4];
+extern char s[64];
+extern float f_cold_junction_temperature;
+extern float f_linearized_tc_temperature;
+extern unsigned char time_count;
+extern unsigned char tmr_flag;
+
+extern unsigned char LongPressSec;
+extern unsigned char MAX31856Sec;
+extern bq32k_t tm;
+
+# 82 "mcc_generated_files/max31856.h"
+void maxim_31856_init(void);
+void maxim_stop_conversion(void);
+void maxim_start_conversion(uint8_t uch_conversion_mode);
+void maxim_disable_oc_fault_detection(void);
+void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable);
+void maxim_clear_fault_status(void);
+
+void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
+uint8_t maxim_31856_read_register(uint8_t uch_register_address);
+void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+void tc_temperature_trans(void);
+
+void one_temperature_trans(void);
+void temperature_display(void);
+void temperature_process(void);
 
 # 21 "mcc_generated_files/ht1621.h"
 extern unsigned char const Dis_TAB[];

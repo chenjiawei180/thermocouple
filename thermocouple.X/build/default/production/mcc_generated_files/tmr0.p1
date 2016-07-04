@@ -16,11 +16,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
 "248 mcc_generated_files/tmr0.h
 [v _TMR0_CallBack `(v ~T0 @X0 0 ef ]
-"39 mcc_generated_files/global.h
+"51 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
-"42
+"54
 [v _LongPressSec `uc ~T0 @X0 0 e ]
-"43
+"55
 [v _MAX31856Sec `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1909,22 +1909,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
 [; ;mcc.h: 73: void SYSTEM_Initialize(void);
 [; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
-[; ;global.h: 26: extern unsigned char uch_cr0;
-[; ;global.h: 27: extern unsigned char uch_cr1;
-[; ;global.h: 28: extern unsigned char uch_mask;
-[; ;global.h: 30: extern unsigned char uch_reg[8];
-[; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 32: extern unsigned long temperature_value;
-[; ;global.h: 33: extern unsigned int temperature_int;
-[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 35: extern unsigned char display_buff[4];
-[; ;global.h: 36: extern char s[64];
-[; ;global.h: 37: extern float f_cold_junction_temperature;
-[; ;global.h: 38: extern float f_linearized_tc_temperature;
-[; ;global.h: 39: extern unsigned char time_count;
-[; ;global.h: 40: extern unsigned char tmr_flag;
-[; ;global.h: 42: extern unsigned char LongPressSec;
-[; ;global.h: 43: extern unsigned char MAX31856Sec;
+[; ;global.h: 25: typedef struct bq32k_regs {
+[; ;global.h: 26: uint8_t seconds;
+[; ;global.h: 27: uint8_t minutes;
+[; ;global.h: 28: uint8_t hours;
+[; ;global.h: 29: uint8_t wday;
+[; ;global.h: 30: uint8_t date;
+[; ;global.h: 31: uint8_t month;
+[; ;global.h: 32: uint8_t years;
+[; ;global.h: 33: }bq32k_t;
+[; ;global.h: 38: extern unsigned char uch_cr0;
+[; ;global.h: 39: extern unsigned char uch_cr1;
+[; ;global.h: 40: extern unsigned char uch_mask;
+[; ;global.h: 42: extern unsigned char uch_reg[8];
+[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 44: extern unsigned long temperature_value;
+[; ;global.h: 45: extern unsigned int temperature_int;
+[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 47: extern unsigned char display_buff[4];
+[; ;global.h: 48: extern char s[64];
+[; ;global.h: 49: extern float f_cold_junction_temperature;
+[; ;global.h: 50: extern float f_linearized_tc_temperature;
+[; ;global.h: 51: extern unsigned char time_count;
+[; ;global.h: 52: extern unsigned char tmr_flag;
+[; ;global.h: 54: extern unsigned char LongPressSec;
+[; ;global.h: 55: extern unsigned char MAX31856Sec;
+[; ;global.h: 56: extern bq32k_t tm;
 "60 mcc_generated_files/tmr0.c
 [v _timer0ReloadVal `Vuc ~T0 @X0 1 e ]
 [; ;tmr0.c: 60: volatile uint8_t timer0ReloadVal;
@@ -1951,7 +1961,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 5 -> -> 1 `i `uc ]
 [; ;tmr0.c: 83: }
 "83
-[e :UE 233 ]
+[e :UE 234 ]
 }
 "85
 [v _TMR0_ReadTimer `(uc ~T0 @X0 1 ef ]
@@ -1968,10 +1978,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 90: return readVal;
 "90
 [e ) _readVal ]
-[e $UE 234  ]
+[e $UE 235  ]
 [; ;tmr0.c: 91: }
 "91
-[e :UE 234 ]
+[e :UE 235 ]
 }
 "93
 [v _TMR0_WriteTimer `(v ~T0 @X0 1 ef1`uc ]
@@ -1985,7 +1995,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TMR0 _timerVal ]
 [; ;tmr0.c: 96: }
 "96
-[e :UE 235 ]
+[e :UE 236 ]
 }
 "98
 [v _TMR0_Reload `(v ~T0 @X0 1 ef ]
@@ -1998,7 +2008,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TMR0 _timer0ReloadVal ]
 [; ;tmr0.c: 101: }
 "101
-[e :UE 236 ]
+[e :UE 237 ]
 }
 "103
 [v _TMR0_ISR `(v ~T0 @X0 1 ef ]
@@ -2007,8 +2017,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _TMR0_ISR ]
 [f ]
 "104
-[v F1949 `Vui ~T0 @X0 1 s CountCallBack ]
-[i F1949
+[v F1959 `Vui ~T0 @X0 1 s CountCallBack ]
+[i F1959
 -> -> 0 `i `ui
 ]
 [; ;tmr0.c: 104: static volatile unsigned int CountCallBack = 0;
@@ -2020,21 +2030,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _TMR0 _timer0ReloadVal ]
 [; ;tmr0.c: 112: if (++CountCallBack >= 100) {
 "112
-[e $ ! >= =+ F1949 -> -> 1 `i `ui -> -> 100 `i `ui 238  ]
+[e $ ! >= =+ F1959 -> -> 1 `i `ui -> -> 100 `i `ui 239  ]
 {
 [; ;tmr0.c: 114: TMR0_CallBack();
 "114
 [e ( _TMR0_CallBack ..  ]
 [; ;tmr0.c: 117: CountCallBack = 0;
 "117
-[e = F1949 -> -> 0 `i `ui ]
+[e = F1959 -> -> 0 `i `ui ]
 "118
 }
-[e :U 238 ]
+[e :U 239 ]
 [; ;tmr0.c: 118: }
 [; ;tmr0.c: 121: }
 "121
-[e :UE 237 ]
+[e :UE 238 ]
 }
 "123
 [v _TMR0_CallBack `(v ~T0 @X0 1 ef ]
@@ -2047,9 +2057,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _time_count -> -> 1 `i `uc ]
 [; ;tmr0.c: 127: if(time_count == 4 || time_count > 8) time_count = 0;
 "127
-[e $ ! || == -> _time_count `i -> 4 `i > -> _time_count `i -> 8 `i 240  ]
+[e $ ! || == -> _time_count `i -> 4 `i > -> _time_count `i -> 8 `i 241  ]
 [e = _time_count -> -> 0 `i `uc ]
-[e :U 240 ]
+[e :U 241 ]
 [; ;tmr0.c: 128: LongPressSec++;
 "128
 [e ++ _LongPressSec -> -> 1 `i `uc ]
@@ -2058,5 +2068,5 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _MAX31856Sec -> -> 1 `i `uc ]
 [; ;tmr0.c: 130: }
 "130
-[e :UE 239 ]
+[e :UE 240 ]
 }

@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Github/thermocouple/thermocouple.X/main.c</file>
+            <file>file:/E:/Github/thermocouple/thermocouple.X/main.c</file>
+            <file>file:/E:/Github/thermocouple/thermocouple.X/mcc_generated_files/bq32k.c</file>
+            <file>file:/E:/Github/thermocouple/thermocouple.X/mcc_generated_files/ht1621.c</file>
+            <file>file:/E:/Github/thermocouple/thermocouple.X/mcc_generated_files/global.h</file>
         </group>
     </open-files>
 </project-private>

@@ -1,5 +1,5 @@
 
-# 1 "main.c"
+# 1 "mcc_generated_files/bq32k.c"
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2704,79 +2704,25 @@ uint8_t years;
 
 
 
- unsigned char uch_cr0;
- unsigned char uch_cr1;
- unsigned char uch_mask;
+extern unsigned char uch_cr0;
+extern unsigned char uch_cr1;
+extern unsigned char uch_mask;
 
- unsigned char uch_reg[8];
- unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
- unsigned long temperature_value;
- unsigned int temperature_int;
- unsigned char temperature_decimal,temperature_sign;
- unsigned char display_buff[4];
- char s[64];
- float f_cold_junction_temperature;
- float f_linearized_tc_temperature;
- unsigned char time_count;
- unsigned char tmr_flag;
+extern unsigned char uch_reg[8];
+extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+extern unsigned long temperature_value;
+extern unsigned int temperature_int;
+extern unsigned char temperature_decimal,temperature_sign;
+extern unsigned char display_buff[4];
+extern char s[64];
+extern float f_cold_junction_temperature;
+extern float f_linearized_tc_temperature;
+extern unsigned char time_count;
+extern unsigned char tmr_flag;
 
- unsigned char LongPressSec;
- unsigned char MAX31856Sec;
- bq32k_t tm;
-
-# 82 "mcc_generated_files/max31856.h"
-void maxim_31856_init(void);
-void maxim_stop_conversion(void);
-void maxim_start_conversion(uint8_t uch_conversion_mode);
-void maxim_disable_oc_fault_detection(void);
-void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable);
-void maxim_clear_fault_status(void);
-
-void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
-uint8_t maxim_31856_read_register(uint8_t uch_register_address);
-void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
-void tc_temperature_trans(void);
-
-void one_temperature_trans(void);
-void temperature_display(void);
-void temperature_process(void);
-
-# 21 "mcc_generated_files/ht1621.h"
-extern unsigned char const Dis_TAB[];
-
-void SendBit_1621(unsigned char data,unsigned char cnt);
-void SendDataBit_1621(unsigned char data,unsigned char cnt);
-void SendCmd_1621(unsigned char command);
-void Write_1621(unsigned char addr,unsigned char data);
-void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-void Tc_Display(void);
-void Two_Display(unsigned char number);
-void err_Display(void);
-void time_Display(void);
-
-# 53 "mcc_generated_files/FLash.h"
-unsigned FLASH_read( unsigned address);
-
-# 62
-unsigned FLASH_readConfig( unsigned address);
-
-# 71
-void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
-
-# 82
-void FLASH_write( unsigned address, unsigned data, char latch);
-
-# 90
-void FLASH_erase( unsigned address);
-
-# 22 "mcc_generated_files/HEFLash.h"
-char HEFLASH_writeBlock( char radd, char* buffer, char count);
-
-# 33
-char HEFLASH_readBlock( char* buffer, char radd, char count);
-
-# 43
-char HEFLASH_readByte( char radd, char offset);
+extern unsigned char LongPressSec;
+extern unsigned char MAX31856Sec;
+extern bq32k_t tm;
 
 # 23 "mcc_generated_files/i2c.h"
 void I2C_Start(void);
@@ -2794,154 +2740,64 @@ void Bq32k_Rtc_Write_Time(bq32k_t *p);
 unsigned char bcd2bin(unsigned char val);
 unsigned char bin2bcd(unsigned char val);
 
-# 17 "mcc_generated_files/debug.h"
-void EUSART_SendString(char *s);
+# 21 "mcc_generated_files/ht1621.h"
+extern unsigned char const Dis_TAB[];
 
-# 7 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdarg.h"
-typedef void * va_list[1];
+void SendBit_1621(unsigned char data,unsigned char cnt);
+void SendDataBit_1621(unsigned char data,unsigned char cnt);
+void SendCmd_1621(unsigned char command);
+void Write_1621(unsigned char addr,unsigned char data);
+void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
+void Tc_Display(void);
+void Two_Display(unsigned char number);
+void err_Display(void);
+void time_Display(void);
 
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 43 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h"
-struct __prbuf
+# 17 "mcc_generated_files/bq32k.c"
+void Bq32k_Time_Init(void)
 {
-char * ptr;
-void (* func)(char);
-};
-
-# 29 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\errno.h"
-extern int errno;
-
-# 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\conio.h"
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 23
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 88 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 180
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...) __attribute__((unsupported("scanf() is not supported by this compiler")));
-extern int sscanf(const char *, const char *, ...) __attribute__((unsupported("sscanf() is not supported by this compiler")));
-extern int vprintf(const char *, va_list) __attribute__((unsupported("vprintf() is not supported by this compiler")));
-extern int vsprintf(char *, const char *, va_list) __attribute__((unsupported("vsprintf() is not supported by this compiler")));
-extern int vscanf(const char *, va_list ap) __attribute__((unsupported("vscanf() is not supported by this compiler")));
-extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupported("vsscanf() is not supported by this compiler")));
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 14 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-
-
-extern void * __builtin_memcpy(void *, const void *, size_t);
-#pragma intrinsic(__builtin_memcpy)
-
-# 34
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-
-# 65 "main.c"
-void main(void) {
-unsigned char a[10] = {0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01};
-unsigned char i=0;
-
-unsigned int bat_data = 0;
-
-SYSTEM_Initialize();
-_delay((unsigned long)((3000)*(16000000/4000.0)));
-if(RB5 == 0 ) do { LATA2 = 1; } while(0);
-else do { LATA2 = 0; } while(0);
-do { LATA3 = 0; } while(0);
-
-# 86
-maxim_31856_init();
-do { TRISB3 = 1; } while(0);
-Bq32k_Time_Init();
-SendCmd_1621(0x52);
-SendCmd_1621(0X28);
-SendCmd_1621(0x02);
-SendCmd_1621(0x06);
-
-WriteAll_1621(0,Dis_TAB+17,4);
-
-time_count = 0;
-
-# 113
-(INTCONbits.GIE = 1);
-
-
-(INTCONbits.PEIE = 1);
-
-# 124
-while (1)
-{
-
-
-
-bat_data = ADC_GetConversion(ADC);
-if( bat_data < 481)
-{
-do { LATA2 = 0; } while(0);
-while(1);
+bq32k_t time;
+unsigned char temp[10] = { 0x01,0x40,0x14,0x02,0x04,0x07,0x16 };
+I2C_Send_Buffer(0, temp, 7);
 }
-temperature_process();
-Key_Process();
 
-# 222
+# 30
+void Bq32k_Rtc_Read_Time(bq32k_t *p)
+{
+unsigned char temp[10] ;
+I2C_Read_Buffer( 0 , temp , 7);
+p->seconds = bcd2bin(temp[0] & 0x7F);
+p->minutes = bcd2bin(temp[1] & 0x7F);
+p->hours = bcd2bin(temp[2] & 0x3F);
+p->wday = bcd2bin(temp[3]);
+p->date = bcd2bin(temp[4]);
+p->month = bcd2bin(temp[5]);
+p->years= bcd2bin(temp[6]);
 }
+
+# 49
+void Bq32k_Rtc_Write_Time(bq32k_t *p)
+{
+unsigned char temp[10] ;
+temp[0] = bin2bcd(p->seconds);
+temp[1] = bin2bcd(p->minutes);
+temp[2] = bin2bcd(p->hours);
+temp[3] = bin2bcd(p->wday);
+temp[4] = bin2bcd(p->date);
+temp[5] = bin2bcd(p->month);
+temp[6] = bin2bcd(p->years);
+I2C_Send_Buffer( 0 , temp , 7);
+}
+
+
+unsigned char bcd2bin(unsigned char val)
+{
+return (val & 0x0f) + (val >> 4) * 10;
+}
+
+
+unsigned char bin2bcd(unsigned char val)
+{
+return ((val / 10) << 4) + val % 10;
 }
 

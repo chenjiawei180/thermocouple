@@ -12,6 +12,8 @@
 extern "C" {
 #endif
 
+#include "mcc.h"
+    
 #define DEBUG
 
 #ifdef OS_GLOBALS
@@ -19,6 +21,16 @@ extern "C" {
 #else
 #define OS_EXT extern
 #endif
+
+typedef struct bq32k_regs {
+	uint8_t		seconds;
+	uint8_t		minutes;
+	uint8_t		hours;
+	uint8_t		wday;
+	uint8_t		date;
+	uint8_t		month;
+	uint8_t		years;
+}bq32k_t;
 
 // ALL Global Variables Add to here.
 // such as OS_EXT unsigned char data;
@@ -41,6 +53,7 @@ OS_EXT unsigned char tmr_flag;
 
 OS_EXT unsigned char LongPressSec;
 OS_EXT unsigned char MAX31856Sec;
+OS_EXT bq32k_t tm;
 
 #ifdef	__cplusplus
 }

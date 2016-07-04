@@ -5,32 +5,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SPI_Exchange8bit `(uc ~T0 @X0 0 ef1`uc ]
 "192
 [v _SPI_Exchange8bitBuffer `(uc ~T0 @X0 0 ef3`*uc`uc`*uc ]
-"26 mcc_generated_files/global.h
+"38 mcc_generated_files/global.h
 [v _uch_cr0 `uc ~T0 @X0 0 e ]
-"27
+"39
 [v _uch_cr1 `uc ~T0 @X0 0 e ]
-"28
+"40
 [v _uch_mask `uc ~T0 @X0 0 e ]
-"32
+"44
 [v _temperature_value `ul ~T0 @X0 0 e ]
-"31
+"43
 [v _uch_ltcbh `uc ~T0 @X0 0 e ]
 [v _uch_ltcbm `uc ~T0 @X0 0 e ]
-"34
+"46
 [v _temperature_sign `uc ~T0 @X0 0 e ]
-"33
+"45
 [v _temperature_int `ui ~T0 @X0 0 e ]
-"34
+"46
 [v _temperature_decimal `uc ~T0 @X0 0 e ]
-"43
+"55
 [v _MAX31856Sec `uc ~T0 @X0 0 e ]
 "4531 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _RB3 `Vb ~T0 @X0 0 e@107 ]
-"31 mcc_generated_files/global.h
+"43 mcc_generated_files/global.h
 [v _uch_sr `uc ~T0 @X0 0 e ]
-"30
+"42
 [v _uch_reg `uc ~T0 @X0 -> 0 `x e ]
-"31
+"43
 [v _uch_cjth `uc ~T0 @X0 0 e ]
 [v _uch_cjtl `uc ~T0 @X0 0 e ]
 [v _uch_ltcbl `uc ~T0 @X0 0 e ]
@@ -46,74 +46,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATA0 `Vb ~T0 @X0 0 e@2144 ]
 "31 mcc_generated_files/ht1621.h
 [v _time_Display `(v ~T0 @X0 0 ef ]
-"39 mcc_generated_files/global.h
+"51 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
-[; ;global.h: 26: extern unsigned char uch_cr0;
-[; ;global.h: 27: extern unsigned char uch_cr1;
-[; ;global.h: 28: extern unsigned char uch_mask;
-[; ;global.h: 30: extern unsigned char uch_reg[8];
-[; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 32: extern unsigned long temperature_value;
-[; ;global.h: 33: extern unsigned int temperature_int;
-[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 35: extern unsigned char display_buff[4];
-[; ;global.h: 36: extern char s[64];
-[; ;global.h: 37: extern float f_cold_junction_temperature;
-[; ;global.h: 38: extern float f_linearized_tc_temperature;
-[; ;global.h: 39: extern unsigned char time_count;
-[; ;global.h: 40: extern unsigned char tmr_flag;
-[; ;global.h: 42: extern unsigned char LongPressSec;
-[; ;global.h: 43: extern unsigned char MAX31856Sec;
-[; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;stddef.h: 6: typedef int ptrdiff_t;
-[; ;stdint.h: 13: typedef signed char int8_t;
-[; ;stdint.h: 20: typedef signed int int16_t;
-[; ;stdint.h: 28: typedef signed short long int int24_t;
-[; ;stdint.h: 36: typedef signed long int int32_t;
-[; ;stdint.h: 43: typedef unsigned char uint8_t;
-[; ;stdint.h: 49: typedef unsigned int uint16_t;
-[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
-[; ;stdint.h: 63: typedef unsigned long int uint32_t;
-[; ;stdint.h: 71: typedef signed char int_least8_t;
-[; ;stdint.h: 78: typedef signed int int_least16_t;
-[; ;stdint.h: 90: typedef signed short long int int_least24_t;
-[; ;stdint.h: 98: typedef signed long int int_least32_t;
-[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
-[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
-[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
-[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
-[; ;stdint.h: 137: typedef signed char int_fast8_t;
-[; ;stdint.h: 144: typedef signed int int_fast16_t;
-[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
-[; ;stdint.h: 164: typedef signed long int int_fast32_t;
-[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
-[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
-[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
-[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
-[; ;stdint.h: 200: typedef int32_t intmax_t;
-[; ;stdint.h: 205: typedef uint32_t uintmax_t;
-[; ;stdint.h: 210: typedef int16_t intptr_t;
-[; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;spi.h: 117: void SPI_Initialize(void);
-[; ;spi.h: 152: uint8_t SPI_Exchange8bit(uint8_t data);
-[; ;spi.h: 192: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-[; ;spi.h: 215: bool SPI_IsBufferFull(void);
-[; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
-[; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
-[; ;max31856.h: 82: void maxim_31856_init(void);
-[; ;max31856.h: 83: void maxim_stop_conversion(void);
-[; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
-[; ;max31856.h: 85: void maxim_disable_oc_fault_detection(void);
-[; ;max31856.h: 86: void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable);
-[; ;max31856.h: 87: void maxim_clear_fault_status(void);
-[; ;max31856.h: 89: void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
-[; ;max31856.h: 90: uint8_t maxim_31856_read_register(uint8_t uch_register_address);
-[; ;max31856.h: 91: void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
-[; ;max31856.h: 92: void tc_temperature_trans(void);
-[; ;max31856.h: 94: void one_temperature_trans(void);
-[; ;max31856.h: 95: void temperature_display(void);
-[; ;max31856.h: 96: void temperature_process(void);
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1937,7 +1871,44 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 188: extern __bit __timeout;
 [; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
 [; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
+[; ;stdint.h: 13: typedef signed char int8_t;
+[; ;stdint.h: 20: typedef signed int int16_t;
+[; ;stdint.h: 28: typedef signed short long int int24_t;
+[; ;stdint.h: 36: typedef signed long int int32_t;
+[; ;stdint.h: 43: typedef unsigned char uint8_t;
+[; ;stdint.h: 49: typedef unsigned int uint16_t;
+[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
+[; ;stdint.h: 63: typedef unsigned long int uint32_t;
+[; ;stdint.h: 71: typedef signed char int_least8_t;
+[; ;stdint.h: 78: typedef signed int int_least16_t;
+[; ;stdint.h: 90: typedef signed short long int int_least24_t;
+[; ;stdint.h: 98: typedef signed long int int_least32_t;
+[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
+[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
+[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
+[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
+[; ;stdint.h: 137: typedef signed char int_fast8_t;
+[; ;stdint.h: 144: typedef signed int int_fast16_t;
+[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
+[; ;stdint.h: 164: typedef signed long int int_fast32_t;
+[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
+[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
+[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
+[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
+[; ;stdint.h: 200: typedef int32_t intmax_t;
+[; ;stdint.h: 205: typedef uint32_t uintmax_t;
+[; ;stdint.h: 210: typedef int16_t intptr_t;
+[; ;stdint.h: 215: typedef uint16_t uintptr_t;
+[; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stddef.h: 6: typedef int ptrdiff_t;
+[; ;spi.h: 117: void SPI_Initialize(void);
+[; ;spi.h: 152: uint8_t SPI_Exchange8bit(uint8_t data);
+[; ;spi.h: 192: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+[; ;spi.h: 215: bool SPI_IsBufferFull(void);
+[; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
+[; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
 [; ;eusart.h: 95: void EUSART_Initialize(void);
 [; ;eusart.h: 115: uint8_t EUSART_Read(void);
 [; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
@@ -1964,6 +1935,45 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
 [; ;mcc.h: 73: void SYSTEM_Initialize(void);
 [; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;global.h: 25: typedef struct bq32k_regs {
+[; ;global.h: 26: uint8_t seconds;
+[; ;global.h: 27: uint8_t minutes;
+[; ;global.h: 28: uint8_t hours;
+[; ;global.h: 29: uint8_t wday;
+[; ;global.h: 30: uint8_t date;
+[; ;global.h: 31: uint8_t month;
+[; ;global.h: 32: uint8_t years;
+[; ;global.h: 33: }bq32k_t;
+[; ;global.h: 38: extern unsigned char uch_cr0;
+[; ;global.h: 39: extern unsigned char uch_cr1;
+[; ;global.h: 40: extern unsigned char uch_mask;
+[; ;global.h: 42: extern unsigned char uch_reg[8];
+[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 44: extern unsigned long temperature_value;
+[; ;global.h: 45: extern unsigned int temperature_int;
+[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 47: extern unsigned char display_buff[4];
+[; ;global.h: 48: extern char s[64];
+[; ;global.h: 49: extern float f_cold_junction_temperature;
+[; ;global.h: 50: extern float f_linearized_tc_temperature;
+[; ;global.h: 51: extern unsigned char time_count;
+[; ;global.h: 52: extern unsigned char tmr_flag;
+[; ;global.h: 54: extern unsigned char LongPressSec;
+[; ;global.h: 55: extern unsigned char MAX31856Sec;
+[; ;global.h: 56: extern bq32k_t tm;
+[; ;max31856.h: 82: void maxim_31856_init(void);
+[; ;max31856.h: 83: void maxim_stop_conversion(void);
+[; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
+[; ;max31856.h: 85: void maxim_disable_oc_fault_detection(void);
+[; ;max31856.h: 86: void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable);
+[; ;max31856.h: 87: void maxim_clear_fault_status(void);
+[; ;max31856.h: 89: void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
+[; ;max31856.h: 90: uint8_t maxim_31856_read_register(uint8_t uch_register_address);
+[; ;max31856.h: 91: void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+[; ;max31856.h: 92: void tc_temperature_trans(void);
+[; ;max31856.h: 94: void one_temperature_trans(void);
+[; ;max31856.h: 95: void temperature_display(void);
+[; ;max31856.h: 96: void temperature_process(void);
 [; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
 [; ;ht1621.h: 23: void SendBit_1621(unsigned char data,unsigned char cnt);
 [; ;ht1621.h: 24: void SendDataBit_1621(unsigned char data,unsigned char cnt);
@@ -1988,11 +1998,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;max31856.c: 21: do { LATA5 = 0; } while(0);
 "21
-[e :U 236 ]
+[e :U 237 ]
 {
 [e = _LATA5 -> -> 0 `i `b ]
 }
-[e :U 235 ]
+[e :U 236 ]
 [; ;max31856.c: 22: SPI_Exchange8bit(uch_register_address);
 "22
 [e ( _SPI_Exchange8bit (1 _uch_register_address ]
@@ -2001,14 +2011,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _SPI_Exchange8bit (1 _uch_register_value ]
 [; ;max31856.c: 24: do { LATA5 = 1; } while(0);
 "24
-[e :U 239 ]
+[e :U 240 ]
 {
 [e = _LATA5 -> -> 1 `i `b ]
 }
-[e :U 238 ]
+[e :U 239 ]
 [; ;max31856.c: 25: }
 "25
-[e :UE 233 ]
+[e :UE 234 ]
 }
 "33
 [v _maxim_31856_read_register `(uc ~T0 @X0 1 ef1`uc ]
@@ -2026,11 +2036,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;max31856.c: 35: uint8_t uch_register_data;
 [; ;max31856.c: 36: do { LATA5 = 0; } while(0);
 "36
-[e :U 243 ]
+[e :U 244 ]
 {
 [e = _LATA5 -> -> 0 `i `b ]
 }
-[e :U 242 ]
+[e :U 243 ]
 [; ;max31856.c: 37: SPI_Exchange8bit(uch_register_address);
 "37
 [e ( _SPI_Exchange8bit (1 _uch_register_address ]
@@ -2039,18 +2049,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _uch_register_data ( _SPI_Exchange8bit (1 -> -> 255 `i `uc ]
 [; ;max31856.c: 39: do { LATA5 = 1; } while(0);
 "39
-[e :U 246 ]
+[e :U 247 ]
 {
 [e = _LATA5 -> -> 1 `i `b ]
 }
-[e :U 245 ]
+[e :U 246 ]
 [; ;max31856.c: 40: return (uch_register_data);
 "40
 [e ) _uch_register_data ]
-[e $UE 240  ]
+[e $UE 241  ]
 [; ;max31856.c: 41: }
 "41
-[e :UE 240 ]
+[e :UE 241 ]
 }
 "49
 [v _maxim_31856_read_nregisters `(v ~T0 @X0 1 ef3`uc`*uc`uc ]
@@ -2067,11 +2077,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;max31856.c: 51: do { LATA5 = 0; } while(0);
 "51
-[e :U 250 ]
+[e :U 251 ]
 {
 [e = _LATA5 -> -> 0 `i `b ]
 }
-[e :U 249 ]
+[e :U 250 ]
 [; ;max31856.c: 52: SPI_Exchange8bit(uch_register_address);
 "52
 [e ( _SPI_Exchange8bit (1 _uch_register_address ]
@@ -2080,14 +2090,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _SPI_Exchange8bitBuffer (3 , , -> -> 0 `i `*uc _uch_nBytes _uch_buff ]
 [; ;max31856.c: 54: do { LATA5 = 1; } while(0);
 "54
-[e :U 253 ]
+[e :U 254 ]
 {
 [e = _LATA5 -> -> 1 `i `b ]
 }
-[e :U 252 ]
+[e :U 253 ]
 [; ;max31856.c: 55: }
 "55
-[e :UE 247 ]
+[e :UE 248 ]
 }
 "63
 [v _maxim_31856_init `(v ~T0 @X0 1 ef ]
@@ -2147,7 +2157,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _maxim_31856_write_register (2 , -> -> 139 `i `uc -> -> 0 `i `uc ]
 [; ;max31856.c: 93: }
 "93
-[e :UE 254 ]
+[e :UE 255 ]
 }
 "101
 [v _maxim_stop_conversion `(v ~T0 @X0 1 ef ]
@@ -2168,7 +2178,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _maxim_31856_write_register (2 , -> -> 128 `i `uc _uch_cr0 ]
 [; ;max31856.c: 106: }
 "106
-[e :UE 255 ]
+[e :UE 256 ]
 }
 "114
 [v _maxim_start_conversion `(v ~T0 @X0 1 ef1`uc ]
@@ -2195,7 +2205,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _maxim_31856_write_register (2 , -> -> 128 `i `uc _uch_cr0 ]
 [; ;max31856.c: 120: }
 "120
-[e :UE 256 ]
+[e :UE 257 ]
 }
 "128
 [v _maxim_disable_oc_fault_detection `(v ~T0 @X0 1 ef ]
@@ -2216,7 +2226,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _maxim_31856_write_register (2 , -> -> 128 `i `uc _uch_cr0 ]
 [; ;max31856.c: 133: }
 "133
-[e :UE 257 ]
+[e :UE 258 ]
 }
 "141
 [v _maxim_set_oc_fault_detection `(v ~T0 @X0 1 ef1`uc ]
@@ -2243,7 +2253,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _maxim_31856_write_register (2 , -> -> 128 `i `uc _uch_cr0 ]
 [; ;max31856.c: 147: }
 "147
-[e :UE 258 ]
+[e :UE 259 ]
 }
 "155
 [v _maxim_clear_fault_status `(v ~T0 @X0 1 ef ]
@@ -2264,7 +2274,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _maxim_31856_write_register (2 , -> -> 128 `i `uc _uch_cr0 ]
 [; ;max31856.c: 160: }
 "160
-[e :UE 259 ]
+[e :UE 260 ]
 }
 "168
 [v _tc_temperature_trans `(v ~T0 @X0 1 ef ]
@@ -2282,12 +2292,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _temperature_value -> -> >> | << & -> _uch_ltcbh `i -> 63 `i -> 8 `i -> _uch_ltcbm `i -> 1 `i `l `ul ]
 [; ;max31856.c: 172: if(uch_ltcbh & 0x80) temperature_value |=0x2000;
 "172
-[e $ ! != & -> _uch_ltcbh `i -> 128 `i -> 0 `i 261  ]
+[e $ ! != & -> _uch_ltcbh `i -> 128 `i -> 0 `i 262  ]
 [e =| _temperature_value -> -> -> 8192 `i `l `ul ]
-[e :U 261 ]
+[e :U 262 ]
 [; ;max31856.c: 173: if((uch_ltcbh&0x80)==0x80)
 "173
-[e $ ! == & -> _uch_ltcbh `i -> 128 `i -> 128 `i 262  ]
+[e $ ! == & -> _uch_ltcbh `i -> 128 `i -> 128 `i 263  ]
 [; ;max31856.c: 174: {
 "174
 {
@@ -2305,20 +2315,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _temperature_decimal -> & _temperature_value -> -> -> 7 `i `l `ul `uc ]
 [; ;max31856.c: 180: if(temperature_decimal > 3) temperature_decimal++;
 "180
-[e $ ! > -> _temperature_decimal `i -> 3 `i 263  ]
-[e ++ _temperature_decimal -> -> 1 `i `uc ]
-[e :U 263 ]
-[; ;max31856.c: 181: if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++;
-"181
-[e $ ! && || == -> _temperature_decimal `i -> 3 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 264  ]
+[e $ ! > -> _temperature_decimal `i -> 3 `i 264  ]
 [e ++ _temperature_decimal -> -> 1 `i `uc ]
 [e :U 264 ]
+[; ;max31856.c: 181: if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++;
+"181
+[e $ ! && || == -> _temperature_decimal `i -> 3 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 265  ]
+[e ++ _temperature_decimal -> -> 1 `i `uc ]
+[e :U 265 ]
 "182
 }
 [; ;max31856.c: 182: }
-[e $U 265  ]
+[e $U 266  ]
 "183
-[e :U 262 ]
+[e :U 263 ]
 [; ;max31856.c: 183: else
 [; ;max31856.c: 184: {
 "184
@@ -2334,21 +2344,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _temperature_decimal -> & _temperature_value -> -> -> 7 `i `l `ul `uc ]
 [; ;max31856.c: 188: if(temperature_decimal > 3) temperature_decimal++;
 "188
-[e $ ! > -> _temperature_decimal `i -> 3 `i 266  ]
-[e ++ _temperature_decimal -> -> 1 `i `uc ]
-[e :U 266 ]
-[; ;max31856.c: 189: if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
-"189
-[e $ ! && || == -> _temperature_decimal `i -> 4 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 267  ]
+[e $ ! > -> _temperature_decimal `i -> 3 `i 267  ]
 [e ++ _temperature_decimal -> -> 1 `i `uc ]
 [e :U 267 ]
+[; ;max31856.c: 189: if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
+"189
+[e $ ! && || == -> _temperature_decimal `i -> 4 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 268  ]
+[e ++ _temperature_decimal -> -> 1 `i `uc ]
+[e :U 268 ]
 "190
 }
-[e :U 265 ]
+[e :U 266 ]
 [; ;max31856.c: 190: }
 [; ;max31856.c: 192: }
 "192
-[e :UE 260 ]
+[e :UE 261 ]
 }
 "200
 [v _one_temperature_trans `(v ~T0 @X0 1 ef ]
@@ -2366,14 +2376,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _MAX31856Sec -> -> 0 `i `uc ]
 [; ;max31856.c: 204: while( !(RB3 == 0 || MAX31856Sec > 2) ) ;
 "204
-[e $U 269  ]
-[e :U 270 ]
-[e :U 269 ]
-[e $ ! || == -> _RB3 `i -> 0 `i > -> _MAX31856Sec `i -> 2 `i 270  ]
+[e $U 270  ]
 [e :U 271 ]
+[e :U 270 ]
+[e $ ! || == -> _RB3 `i -> 0 `i > -> _MAX31856Sec `i -> 2 `i 271  ]
+[e :U 272 ]
 [; ;max31856.c: 205: if( MAX31856Sec > 2)
 "205
-[e $ ! > -> _MAX31856Sec `i -> 2 `i 272  ]
+[e $ ! > -> _MAX31856Sec `i -> 2 `i 273  ]
 [; ;max31856.c: 206: {
 "206
 {
@@ -2383,9 +2393,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "208
 }
 [; ;max31856.c: 208: }
-[e $U 273  ]
+[e $U 274  ]
 "209
-[e :U 272 ]
+[e :U 273 ]
 [; ;max31856.c: 209: else
 [; ;max31856.c: 210: {
 "210
@@ -2407,11 +2417,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _uch_sr *U + &U _uch_reg * -> -> -> 5 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
 "215
 }
-[e :U 273 ]
+[e :U 274 ]
 [; ;max31856.c: 215: }
 [; ;max31856.c: 217: }
 "217
-[e :UE 268 ]
+[e :UE 269 ]
 }
 "225
 [v _temperature_display `(v ~T0 @X0 1 ef ]
@@ -2423,7 +2433,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;max31856.c: 227: if(uch_sr==(uint8_t)0x00)
 "227
-[e $ ! == -> _uch_sr `i -> -> -> 0 `i `uc `i 275  ]
+[e $ ! == -> _uch_sr `i -> -> -> 0 `i `uc `i 276  ]
 [; ;max31856.c: 228: {
 "228
 {
@@ -2436,9 +2446,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "231
 }
 [; ;max31856.c: 231: }
-[e $U 276  ]
+[e $U 277  ]
 "232
-[e :U 275 ]
+[e :U 276 ]
 [; ;max31856.c: 232: else
 [; ;max31856.c: 233: {
 "233
@@ -2457,11 +2467,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _maxim_31856_write_register (2 , -> -> 130 `i `uc -> -> 0 `i `uc ]
 "238
 }
-[e :U 276 ]
+[e :U 277 ]
 [; ;max31856.c: 238: }
 [; ;max31856.c: 239: }
 "239
-[e :UE 274 ]
+[e :UE 275 ]
 }
 "247
 [v _temperature_process `(v ~T0 @X0 1 ef ]
@@ -2473,110 +2483,110 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;max31856.c: 249: switch(time_count)
 "249
-[e $U 279  ]
+[e $U 280  ]
 [; ;max31856.c: 250: {
 "250
 {
 [; ;max31856.c: 251: case 0: Two_Display(1);
 "251
-[e :U 280 ]
+[e :U 281 ]
 [e ( _Two_Display (1 -> -> 1 `i `uc ]
 [; ;max31856.c: 252: do { LATA1 = 1; } while(0);
 "252
-[e :U 283 ]
+[e :U 284 ]
 {
 [e = _LATA1 -> -> 1 `i `b ]
 }
-[e :U 282 ]
+[e :U 283 ]
 [; ;max31856.c: 253: do { LATA0 = 1; } while(0);
 "253
-[e :U 286 ]
+[e :U 287 ]
 {
 [e = _LATA0 -> -> 1 `i `b ]
 }
-[e :U 285 ]
+[e :U 286 ]
 [; ;max31856.c: 254: do { LATA0 = 0; } while(0);
 "254
-[e :U 289 ]
+[e :U 290 ]
 {
 [e = _LATA0 -> -> 0 `i `b ]
 }
-[e :U 288 ]
+[e :U 289 ]
 [; ;max31856.c: 255: one_temperature_trans();
 "255
 [e ( _one_temperature_trans ..  ]
 [; ;max31856.c: 256: break;
 "256
-[e $U 278  ]
+[e $U 279  ]
 [; ;max31856.c: 257: case 1:
 "257
-[e :U 290 ]
+[e :U 291 ]
 [; ;max31856.c: 258: temperature_display();break;
 "258
 [e ( _temperature_display ..  ]
-[e $U 278  ]
+[e $U 279  ]
 [; ;max31856.c: 259: case 2: Two_Display(2);
 "259
-[e :U 291 ]
+[e :U 292 ]
 [e ( _Two_Display (1 -> -> 2 `i `uc ]
 [; ;max31856.c: 260: do { LATA0 = 1; } while(0);
 "260
-[e :U 294 ]
+[e :U 295 ]
 {
 [e = _LATA0 -> -> 1 `i `b ]
 }
-[e :U 293 ]
+[e :U 294 ]
 [; ;max31856.c: 261: do { LATA1 = 1; } while(0);
 "261
-[e :U 297 ]
+[e :U 298 ]
 {
 [e = _LATA1 -> -> 1 `i `b ]
 }
-[e :U 296 ]
+[e :U 297 ]
 [; ;max31856.c: 262: do { LATA1 = 0; } while(0);
 "262
-[e :U 300 ]
+[e :U 301 ]
 {
 [e = _LATA1 -> -> 0 `i `b ]
 }
-[e :U 299 ]
+[e :U 300 ]
 [; ;max31856.c: 263: one_temperature_trans();
 "263
 [e ( _one_temperature_trans ..  ]
 [; ;max31856.c: 264: break;
 "264
-[e $U 278  ]
+[e $U 279  ]
 [; ;max31856.c: 265: case 3:
 "265
-[e :U 301 ]
+[e :U 302 ]
 [; ;max31856.c: 266: temperature_display();break;
 "266
 [e ( _temperature_display ..  ]
-[e $U 278  ]
+[e $U 279  ]
 [; ;max31856.c: 267: case 5: time_Display();break;
 "267
-[e :U 302 ]
+[e :U 303 ]
 [e ( _time_Display ..  ]
-[e $U 278  ]
+[e $U 279  ]
 [; ;max31856.c: 268: default:break;
 "268
-[e :U 303 ]
-[e $U 278  ]
+[e :U 304 ]
+[e $U 279  ]
 "269
 }
 [; ;max31856.c: 269: }
-[e $U 278  ]
+[e $U 279  ]
 "249
-[e :U 279 ]
-[e [\ _time_count , $ -> -> 0 `i `uc 280
- , $ -> -> 1 `i `uc 290
- , $ -> -> 2 `i `uc 291
- , $ -> -> 3 `i `uc 301
- , $ -> -> 5 `i `uc 302
- 303 ]
+[e :U 280 ]
+[e [\ _time_count , $ -> -> 0 `i `uc 281
+ , $ -> -> 1 `i `uc 291
+ , $ -> -> 2 `i `uc 292
+ , $ -> -> 3 `i `uc 302
+ , $ -> -> 5 `i `uc 303
+ 304 ]
 "269
-[e :U 278 ]
+[e :U 279 ]
 [; ;max31856.c: 270: }
 "270
-[e :UE 277 ]
+[e :UE 278 ]
 }

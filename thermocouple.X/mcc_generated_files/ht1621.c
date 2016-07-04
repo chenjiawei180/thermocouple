@@ -9,6 +9,8 @@
 #include "mcc.h"
 #include "string.h"
 #include "global.h"
+#include "bq32k.h"
+
 unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x57,0x20,0x20,0x20,0x20};//"0"-"f" "n" "----"
   /**
   * @brief  This function is SendBit_1621.
@@ -163,10 +165,11 @@ void err_Display(void)
 void time_Display(void)
 {
     unsigned char num[4]={0};
-    num[0] = Dis_TAB[0x0f];
-    num[1] = Dis_TAB[0x0f];
-    num[2] = Dis_TAB[0x0f];
-    num[3] = Dis_TAB[0x0f];
+    Bq32k_Rtc_Read_Time(&tm);
+    num[0] = Dis_TAB[tm.hours / 10];
+    num[1] = Dis_TAB[tm.hours % 10];
+    num[2] = Dis_TAB[tm.minutes / 10];
+    num[3] = Dis_TAB[tm.minutes % 10];
     WriteAll_1621(0, num, 4);
 }
 

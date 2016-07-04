@@ -2740,7 +2740,20 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 26 "mcc_generated_files/global.h"
+# 25 "mcc_generated_files/global.h"
+typedef struct bq32k_regs {
+uint8_t seconds;
+uint8_t minutes;
+uint8_t hours;
+uint8_t wday;
+uint8_t date;
+uint8_t month;
+uint8_t years;
+}bq32k_t;
+
+
+
+
 extern unsigned char uch_cr0;
 extern unsigned char uch_cr1;
 extern unsigned char uch_mask;
@@ -2759,11 +2772,28 @@ extern unsigned char tmr_flag;
 
 extern unsigned char LongPressSec;
 extern unsigned char MAX31856Sec;
+extern bq32k_t tm;
 
-# 12 "mcc_generated_files/ht1621.c"
+# 23 "mcc_generated_files/i2c.h"
+void I2C_Start(void);
+unsigned char I2C_Send_Byte(unsigned char Data);
+unsigned char I2C_Receive_Byte(void);
+void I2C_Stop(void);
+unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
+unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
+
+# 37 "mcc_generated_files/bq32k.h"
+void Bq32k_Time_Init(void);
+void Bq32k_Rtc_Read_Time(bq32k_t *p);
+void Bq32k_Rtc_Write_Time(bq32k_t *p);
+
+unsigned char bcd2bin(unsigned char val);
+unsigned char bin2bcd(unsigned char val);
+
+# 14 "mcc_generated_files/ht1621.c"
 unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x57,0x20,0x20,0x20,0x20};
 
-# 19
+# 21
 void SendBit_1621(unsigned char data,unsigned char cnt)
 {
 unsigned char i;
@@ -2778,7 +2808,7 @@ data<<=1;
 }
 }
 
-# 39
+# 41
 void SendDataBit_1621(unsigned char data,unsigned char cnt)
 {
 unsigned char i;
@@ -2793,7 +2823,7 @@ data>>=1;
 }
 }
 
-# 59
+# 61
 void SendCmd_1621(unsigned char command)
 {
 do { LATC0 = 0; } while(0);
@@ -2802,7 +2832,7 @@ SendBit_1621(command,8);
 do { LATC0 = 1; } while(0);
 }
 
-# 73
+# 75
 void Write_1621(unsigned char addr,unsigned char data)
 {
 do { LATC0 = 0; } while(0);
@@ -2812,7 +2842,7 @@ SendDataBit_1621(data,4);
 do { LATC0 = 1; } while(0);
 }
 
-# 88
+# 90
 void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt)
 {
 unsigned char i;
@@ -2826,7 +2856,7 @@ SendDataBit_1621(*p,8);
 do { LATC0 = 1; } while(0);
 }
 
-# 107
+# 109
 void Tc_Display(void)
 {
 unsigned char count = 0;
@@ -2849,7 +2879,7 @@ display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
 WriteAll_1621(0,display_buff,4);
 }
 
-# 135
+# 137
 void Two_Display(unsigned char number)
 {
 unsigned char num[4]={0};
@@ -2858,7 +2888,7 @@ num[2] = Dis_TAB[number];
 WriteAll_1621(0, num, 4);
 }
 
-# 149
+# 151
 void err_Display(void)
 {
 unsigned char num[4]={0};
@@ -2867,14 +2897,15 @@ num[2] = Dis_TAB[0x0c];
 WriteAll_1621(0, num, 4);
 }
 
-# 163
+# 165
 void time_Display(void)
 {
 unsigned char num[4]={0};
-num[0] = Dis_TAB[0x0f];
-num[1] = Dis_TAB[0x0f];
-num[2] = Dis_TAB[0x0f];
-num[3] = Dis_TAB[0x0f];
+Bq32k_Rtc_Read_Time(&tm);
+num[0] = Dis_TAB[tm.hours / 10];
+num[1] = Dis_TAB[tm.hours % 10];
+num[2] = Dis_TAB[tm.minutes / 10];
+num[3] = Dis_TAB[tm.minutes % 10];
 WriteAll_1621(0, num, 4);
 }
 

@@ -1,6 +1,8 @@
  build/default/production/main.d  \
  build/default/production/main.p1:  \
  main.c  \
+mcc_generated_files/bq32k.h  \
+mcc_generated_files/i2c.h  \
 mcc_generated_files/mcc.h  \
 mcc_generated_files/debug.h  \
 mcc_generated_files/global.h  \

@@ -50,18 +50,21 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "mcc_generated_files/max31856.h"
 #include "mcc_generated_files/ht1621.h"
 #include "mcc_generated_files/HEFLash.h"
+#include "mcc_generated_files/i2c.h"
+#include "mcc_generated_files/bq32k.h"
 #ifdef DEBUG
 #include "mcc_generated_files/debug.h"
 #endif
 #include <stdio.h>
-
+#include <string.h>
 #define BAT_V 481
 
 /*
                          Main application
  */
 void main(void) {
-    //unsigned char a[10];
+    unsigned char a[10] = {0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01};
+    unsigned char i=0;
     //a[0]=0x51;a[1]=0x00;a[2]=0x00;a[3]=0x00;a[4]=0x00;
     unsigned int  bat_data = 0;
     // initialize the device
@@ -70,15 +73,19 @@ void main(void) {
     if(KEY_GetValue() == 0 ) POWER_SetHigh();
     else POWER_SetLow();
     LED1_SetLow();
+
+#if 0
     bat_data = ADC_GetConversion(ADC);
     if( bat_data <BAT_V)
     {
          POWER_SetLow();
 	  while(1);
     }
+#endif
     //LED2_SetLow();
     maxim_31856_init();
     DRDY_SetDigitalInput();
+    Bq32k_Time_Init();
     SendCmd_1621(BIAS);		//设置偏压和占空比
     SendCmd_1621(0X28);
     SendCmd_1621(SYSEN);	//打开系统振荡器
@@ -118,6 +125,7 @@ void main(void) {
     {
     // Add your application code
        // EUSART_SendString("ONE CYCLE \n\r");
+#if 1
         bat_data = ADC_GetConversion(ADC);
         if( bat_data < BAT_V)
         {
@@ -126,6 +134,19 @@ void main(void) {
         }
         temperature_process();
         Key_Process();
+#endif
+
+#if 0
+        //memset(a,0xaa,10);
+        //I2C_Read_Buffer(0, a, 10);
+        Bq32k_Rtc_Read_Time(&tm);
+        __delay_ms(1000);
+        //for( i =0;i<10;i++)
+        //{
+        //    EUSART_Write(a[i]);
+        //}
+#endif
+
 #if 0
         EUSART_Write(uch_cjth);
         EUSART_Write(uch_cjtl);
@@ -133,9 +154,6 @@ void main(void) {
         EUSART_Write(uch_ltcbm);
         EUSART_Write(uch_ltcbl);
         EUSART_Write(uch_sr);
-#endif
-#if 1
-
 #endif
 
 #if 0

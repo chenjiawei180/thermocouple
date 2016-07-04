@@ -1,30 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "4453 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATB1 `Vb ~T0 @X0 0 e@2153 ]
-[v F1838 `(v ~T0 @X0 1 tf1`ul ]
+[v F1816 `(v ~T0 @X0 1 tf1`ul ]
 "152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1838 ~T0 @X0 0 e ]
+[v __delay `JF1816 ~T0 @X0 0 e ]
 [p i __delay ]
 "4451 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATB0 `Vb ~T0 @X0 0 e@2152 ]
+"4719
+[v _TRISB1 `Vb ~T0 @X0 0 e@1129 ]
 "4527
 [v _RB1 `Vb ~T0 @X0 0 e@105 ]
-[; ;global.h: 26: extern unsigned char uch_cr0;
-[; ;global.h: 27: extern unsigned char uch_cr1;
-[; ;global.h: 28: extern unsigned char uch_mask;
-[; ;global.h: 30: extern unsigned char uch_reg[8];
-[; ;global.h: 31: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 32: extern unsigned long temperature_value;
-[; ;global.h: 33: extern unsigned int temperature_int;
-[; ;global.h: 34: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 35: extern unsigned char display_buff[4];
-[; ;global.h: 36: extern char s[64];
-[; ;global.h: 37: extern float f_cold_junction_temperature;
-[; ;global.h: 38: extern float f_linearized_tc_temperature;
-[; ;global.h: 39: extern unsigned char time_count;
-[; ;global.h: 40: extern unsigned char tmr_flag;
-[; ;global.h: 42: extern unsigned char LongPressSec;
-[; ;global.h: 43: extern unsigned char MAX31856Sec;
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1912,10 +1898,38 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
 [; ;mcc.h: 73: void SYSTEM_Initialize(void);
 [; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
-[; ;i2c.h: 21: void I2C_Start(void);
-[; ;i2c.h: 22: unsigned char I2C_Send_Byte(unsigned char Data);
-[; ;i2c.h: 23: unsigned char I2C_Receive_Byte(void);
-[; ;i2c.h: 24: void I2C_Stop(void);
+[; ;global.h: 25: typedef struct bq32k_regs {
+[; ;global.h: 26: uint8_t seconds;
+[; ;global.h: 27: uint8_t minutes;
+[; ;global.h: 28: uint8_t hours;
+[; ;global.h: 29: uint8_t wday;
+[; ;global.h: 30: uint8_t date;
+[; ;global.h: 31: uint8_t month;
+[; ;global.h: 32: uint8_t years;
+[; ;global.h: 33: }bq32k_t;
+[; ;global.h: 38: extern unsigned char uch_cr0;
+[; ;global.h: 39: extern unsigned char uch_cr1;
+[; ;global.h: 40: extern unsigned char uch_mask;
+[; ;global.h: 42: extern unsigned char uch_reg[8];
+[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 44: extern unsigned long temperature_value;
+[; ;global.h: 45: extern unsigned int temperature_int;
+[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 47: extern unsigned char display_buff[4];
+[; ;global.h: 48: extern char s[64];
+[; ;global.h: 49: extern float f_cold_junction_temperature;
+[; ;global.h: 50: extern float f_linearized_tc_temperature;
+[; ;global.h: 51: extern unsigned char time_count;
+[; ;global.h: 52: extern unsigned char tmr_flag;
+[; ;global.h: 54: extern unsigned char LongPressSec;
+[; ;global.h: 55: extern unsigned char MAX31856Sec;
+[; ;global.h: 56: extern bq32k_t tm;
+[; ;i2c.h: 23: void I2C_Start(void);
+[; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
+[; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
+[; ;i2c.h: 26: void I2C_Stop(void);
+[; ;i2c.h: 27: unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
+[; ;i2c.h: 28: unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
 "16 mcc_generated_files/i2c.c
 [v _I2C_Start `(v ~T0 @X0 1 ef ]
 "17
@@ -1926,47 +1940,47 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 [; ;i2c.c: 18: do { LATB1 = 1; } while(0);
 "18
-[e :U 236 ]
+[e :U 237 ]
 {
 [e = _LATB1 -> -> 1 `i `b ]
 }
-[e :U 235 ]
+[e :U 236 ]
 [; ;i2c.c: 19: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "19
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 [; ;i2c.c: 20: do { LATB0 = 1; } while(0);
 "20
-[e :U 239 ]
+[e :U 240 ]
 {
 [e = _LATB0 -> -> 1 `i `b ]
 }
-[e :U 238 ]
+[e :U 239 ]
 [; ;i2c.c: 21: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "21
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 [; ;i2c.c: 22: do { LATB1 = 0; } while(0);
 "22
-[e :U 242 ]
+[e :U 243 ]
 {
 [e = _LATB1 -> -> 0 `i `b ]
 }
-[e :U 241 ]
+[e :U 242 ]
 [; ;i2c.c: 23: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "23
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 [; ;i2c.c: 24: do { LATB0 = 0; } while(0);
 "24
-[e :U 245 ]
+[e :U 246 ]
 {
 [e = _LATB0 -> -> 0 `i `b ]
 }
-[e :U 244 ]
+[e :U 245 ]
 [; ;i2c.c: 25: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "25
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 [; ;i2c.c: 26: }
 "26
-[e :UE 233 ]
+[e :UE 234 ]
 }
 "34
 [v _I2C_Send_Byte `(uc ~T0 @X0 1 ef1`uc ]
@@ -1986,44 +2000,44 @@ Version 3.2 HI-TECH Software Intermediate Code
 "37
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 8 `i 247  ]
-[e $U 248  ]
+[e $ < -> _i `i -> 8 `i 248  ]
+[e $U 249  ]
 "38
-[e :U 247 ]
+[e :U 248 ]
 [; ;i2c.c: 38: {
 {
 [; ;i2c.c: 39: if(Data&0x80)
 "39
-[e $ ! != & -> _Data `i -> 128 `i -> 0 `i 250  ]
+[e $ ! != & -> _Data `i -> 128 `i -> 0 `i 251  ]
 [; ;i2c.c: 40: do { LATB1 = 1; } while(0);
 "40
-[e :U 253 ]
+[e :U 254 ]
 {
 [e = _LATB1 -> -> 1 `i `b ]
 }
-[e :U 252 ]
-[e $U 254  ]
+[e :U 253 ]
+[e $U 255  ]
 "41
-[e :U 250 ]
+[e :U 251 ]
 [; ;i2c.c: 41: else
 [; ;i2c.c: 42: do { LATB1 = 0; } while(0);
 "42
-[e :U 257 ]
+[e :U 258 ]
 {
 [e = _LATB1 -> -> 0 `i `b ]
 }
-[e :U 256 ]
-[e :U 254 ]
+[e :U 257 ]
+[e :U 255 ]
 [; ;i2c.c: 43: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "43
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 [; ;i2c.c: 44: do { LATB0 = 1; } while(0);
 "44
-[e :U 260 ]
+[e :U 261 ]
 {
 [e = _LATB0 -> -> 1 `i `b ]
 }
-[e :U 259 ]
+[e :U 260 ]
 [; ;i2c.c: 45: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "45
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
@@ -2032,11 +2046,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =<< _Data -> 1 `i ]
 [; ;i2c.c: 47: do { LATB0 = 0; } while(0);
 "47
-[e :U 263 ]
+[e :U 264 ]
 {
 [e = _LATB0 -> -> 0 `i `b ]
 }
-[e :U 262 ]
+[e :U 263 ]
 [; ;i2c.c: 48: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "48
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
@@ -2044,193 +2058,486 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "37
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 8 `i 247  ]
-[e :U 248 ]
+[e $ < -> _i `i -> 8 `i 248  ]
+[e :U 249 ]
 "49
 }
 [; ;i2c.c: 49: }
 [; ;i2c.c: 50: do { LATB1 = 1; } while(0);
 "50
-[e :U 266 ]
+[e :U 267 ]
 {
 [e = _LATB1 -> -> 1 `i `b ]
 }
-[e :U 265 ]
+[e :U 266 ]
 [; ;i2c.c: 51: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "51
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
 [; ;i2c.c: 52: do { LATB0 = 1; } while(0);
 "52
-[e :U 269 ]
+[e :U 270 ]
 {
 [e = _LATB0 -> -> 1 `i `b ]
 }
-[e :U 268 ]
+[e :U 269 ]
 [; ;i2c.c: 53: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "53
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[; ;i2c.c: 54: if(RB1)
+[; ;i2c.c: 54: do { TRISB1 = 1; } while(0);
 "54
-[e $ ! _RB1 270  ]
-[; ;i2c.c: 55: return 0x01;
-"55
-[e ) -> -> 1 `i `uc ]
-[e $UE 246  ]
-[e :U 270 ]
-[; ;i2c.c: 57: do { LATB0 = 0; } while(0);
-"57
 [e :U 273 ]
+{
+[e = _TRISB1 -> -> 1 `i `b ]
+}
+[e :U 272 ]
+[; ;i2c.c: 55: if(RB1)
+"55
+[e $ ! _RB1 274  ]
+[; ;i2c.c: 56: {
+"56
+{
+[; ;i2c.c: 57: do { TRISB1 = 0; } while(0);
+"57
+[e :U 277 ]
+{
+[e = _TRISB1 -> -> 0 `i `b ]
+}
+[e :U 276 ]
+[; ;i2c.c: 58: return 0x01;
+"58
+[e ) -> -> 1 `i `uc ]
+[e $UE 247  ]
+"59
+}
+[e :U 274 ]
+[; ;i2c.c: 59: }
+[; ;i2c.c: 60: do { TRISB1 = 0; } while(0);
+"60
+[e :U 280 ]
+{
+[e = _TRISB1 -> -> 0 `i `b ]
+}
+[e :U 279 ]
+[; ;i2c.c: 61: do { LATB0 = 0; } while(0);
+"61
+[e :U 283 ]
 {
 [e = _LATB0 -> -> 0 `i `b ]
 }
-[e :U 272 ]
-[; ;i2c.c: 58: _delay((unsigned long)((10)*(16000000/4000000.0)));
-"58
+[e :U 282 ]
+[; ;i2c.c: 62: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"62
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[; ;i2c.c: 59: do { LATB1 = 0; } while(0);
-"59
-[e :U 276 ]
+[; ;i2c.c: 63: do { LATB1 = 0; } while(0);
+"63
+[e :U 286 ]
 {
 [e = _LATB1 -> -> 0 `i `b ]
 }
-[e :U 275 ]
-[; ;i2c.c: 60: _delay((unsigned long)((10)*(16000000/4000000.0)));
-"60
+[e :U 285 ]
+[; ;i2c.c: 64: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"64
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[; ;i2c.c: 61: return 0x00;
-"61
+[; ;i2c.c: 65: return 0x00;
+"65
 [e ) -> -> 0 `i `uc ]
-[e $UE 246  ]
-[; ;i2c.c: 62: }
-"62
-[e :UE 246 ]
+[e $UE 247  ]
+[; ;i2c.c: 66: }
+"66
+[e :UE 247 ]
 }
-"70
+"74
 [v _I2C_Receive_Byte `(uc ~T0 @X0 1 ef ]
-"71
+"75
 {
-[; ;i2c.c: 70: unsigned char I2C_Receive_Byte(void)
-[; ;i2c.c: 71: {
+[; ;i2c.c: 74: unsigned char I2C_Receive_Byte(void)
+[; ;i2c.c: 75: {
 [e :U _I2C_Receive_Byte ]
 [f ]
-"72
+"76
 [v _i `uc ~T0 @X0 1 a ]
 [v _Data `uc ~T0 @X0 1 a ]
-[; ;i2c.c: 72: unsigned char i,Data=0;
+[; ;i2c.c: 76: unsigned char i,Data=0;
 [e = _Data -> -> 0 `i `uc ]
-[; ;i2c.c: 73: do { LATB1 = 1; } while(0);
-"73
-[e :U 280 ]
+[; ;i2c.c: 77: do { LATB1 = 1; } while(0);
+"77
+[e :U 290 ]
 {
 [e = _LATB1 -> -> 1 `i `b ]
 }
-[e :U 279 ]
-[; ;i2c.c: 74: for(i=0;i<8;i++)
-"74
+[e :U 289 ]
+[; ;i2c.c: 78: for(i=0;i<8;i++)
+"78
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 8 `i 281  ]
-[e $U 282  ]
-"75
-[e :U 281 ]
-[; ;i2c.c: 75: {
+[e $ < -> _i `i -> 8 `i 291  ]
+[e $U 292  ]
+"79
+[e :U 291 ]
+[; ;i2c.c: 79: {
 {
-[; ;i2c.c: 76: Data <<= 1;
-"76
+[; ;i2c.c: 80: Data <<= 1;
+"80
 [e =<< _Data -> 1 `i ]
-[; ;i2c.c: 77: do { LATB0 = 1; } while(0);
-"77
-[e :U 286 ]
+[; ;i2c.c: 81: do { LATB0 = 1; } while(0);
+"81
+[e :U 296 ]
 {
 [e = _LATB0 -> -> 1 `i `b ]
 }
-[e :U 285 ]
-[; ;i2c.c: 78: _delay((unsigned long)((10)*(16000000/4000000.0)));
-"78
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[; ;i2c.c: 79: if(RB1)
-"79
-[e $ ! _RB1 287  ]
-[; ;i2c.c: 80: Data |= 0x01;
-"80
-[e =| _Data -> -> 1 `i `uc ]
-[e :U 287 ]
-[; ;i2c.c: 81: do { LATB0 = 0; } while(0);
-"81
-[e :U 290 ]
-{
-[e = _LATB0 -> -> 0 `i `b ]
-}
-[e :U 289 ]
+[e :U 295 ]
 [; ;i2c.c: 82: _delay((unsigned long)((10)*(16000000/4000000.0)));
 "82
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 83: do { TRISB1 = 1; } while(0);
 "83
-}
-"74
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 8 `i 281  ]
-[e :U 282 ]
-"83
-}
-[; ;i2c.c: 83: }
-[; ;i2c.c: 84: return Data;
-"84
-[e ) _Data ]
-[e $UE 277  ]
-[; ;i2c.c: 85: }
-"85
-[e :UE 277 ]
-}
-"93
-[v _I2C_Stop `(v ~T0 @X0 1 ef ]
-"94
+[e :U 299 ]
 {
-[; ;i2c.c: 93: void I2C_Stop(void)
-[; ;i2c.c: 94: {
-[e :U _I2C_Stop ]
-[f ]
-[; ;i2c.c: 95: do { LATB0 = 0; } while(0);
-"95
-[e :U 294 ]
+[e = _TRISB1 -> -> 1 `i `b ]
+}
+[e :U 298 ]
+[; ;i2c.c: 84: if(RB1)
+"84
+[e $ ! _RB1 300  ]
+[; ;i2c.c: 85: {
+"85
+{
+[; ;i2c.c: 86: do { TRISB1 = 0; } while(0);
+"86
+[e :U 303 ]
+{
+[e = _TRISB1 -> -> 0 `i `b ]
+}
+[e :U 302 ]
+[; ;i2c.c: 87: Data |= 0x01;
+"87
+[e =| _Data -> -> 1 `i `uc ]
+"88
+}
+[e :U 300 ]
+[; ;i2c.c: 88: }
+[; ;i2c.c: 89: do { TRISB1 = 0; } while(0);
+"89
+[e :U 306 ]
+{
+[e = _TRISB1 -> -> 0 `i `b ]
+}
+[e :U 305 ]
+[; ;i2c.c: 90: do { LATB0 = 0; } while(0);
+"90
+[e :U 309 ]
 {
 [e = _LATB0 -> -> 0 `i `b ]
 }
-[e :U 293 ]
-[; ;i2c.c: 96: _delay((unsigned long)((10)*(16000000/4000000.0)));
-"96
+[e :U 308 ]
+[; ;i2c.c: 91: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"91
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[; ;i2c.c: 97: do { LATB1 = 0; } while(0);
-"97
-[e :U 297 ]
+"92
+}
+"78
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 8 `i 291  ]
+[e :U 292 ]
+"92
+}
+[; ;i2c.c: 92: }
+[; ;i2c.c: 93: return Data;
+"93
+[e ) _Data ]
+[e $UE 287  ]
+[; ;i2c.c: 94: }
+"94
+[e :UE 287 ]
+}
+"102
+[v _I2C_Stop `(v ~T0 @X0 1 ef ]
+"103
+{
+[; ;i2c.c: 102: void I2C_Stop(void)
+[; ;i2c.c: 103: {
+[e :U _I2C_Stop ]
+[f ]
+[; ;i2c.c: 104: do { LATB0 = 0; } while(0);
+"104
+[e :U 313 ]
+{
+[e = _LATB0 -> -> 0 `i `b ]
+}
+[e :U 312 ]
+[; ;i2c.c: 105: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"105
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 106: do { LATB1 = 0; } while(0);
+"106
+[e :U 316 ]
 {
 [e = _LATB1 -> -> 0 `i `b ]
 }
-[e :U 296 ]
-[; ;i2c.c: 98: _delay((unsigned long)((10)*(16000000/4000000.0)));
-"98
+[e :U 315 ]
+[; ;i2c.c: 107: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"107
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[; ;i2c.c: 99: do { LATB0 = 1; } while(0);
-"99
-[e :U 300 ]
+[; ;i2c.c: 108: do { LATB0 = 1; } while(0);
+"108
+[e :U 319 ]
 {
 [e = _LATB0 -> -> 1 `i `b ]
 }
-[e :U 299 ]
-[; ;i2c.c: 100: _delay((unsigned long)((10)*(16000000/4000000.0)));
-"100
+[e :U 318 ]
+[; ;i2c.c: 109: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"109
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[; ;i2c.c: 101: do { LATB1 = 1; } while(0);
-"101
-[e :U 303 ]
+[; ;i2c.c: 110: do { LATB1 = 1; } while(0);
+"110
+[e :U 322 ]
 {
 [e = _LATB1 -> -> 1 `i `b ]
 }
-[e :U 302 ]
-[; ;i2c.c: 102: _delay((unsigned long)((10)*(16000000/4000000.0)));
-"102
+[e :U 321 ]
+[; ;i2c.c: 111: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"111
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
-[; ;i2c.c: 103: }
-"103
-[e :UE 291 ]
+[; ;i2c.c: 112: }
+"112
+[e :UE 310 ]
+}
+"120
+[v _I2C_Read_Buffer `(uc ~T0 @X0 1 ef3`uc`*uc`uc ]
+"121
+{
+[; ;i2c.c: 120: unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length)
+[; ;i2c.c: 121: {
+[e :U _I2C_Read_Buffer ]
+"120
+[v _ADD `uc ~T0 @X0 1 r1 ]
+[v _buff `*uc ~T0 @X0 1 r2 ]
+[v _Length `uc ~T0 @X0 1 r3 ]
+"121
+[f ]
+"122
+[v _Flag `uc ~T0 @X0 1 a ]
+[; ;i2c.c: 122: unsigned char Flag=1;
+[e = _Flag -> -> 1 `i `uc ]
+[; ;i2c.c: 124: I2C_Start();
+"124
+[e ( _I2C_Start ..  ]
+[; ;i2c.c: 126: Flag=I2C_Send_Byte(0XD0);
+"126
+[e = _Flag ( _I2C_Send_Byte (1 -> -> 208 `i `uc ]
+[; ;i2c.c: 127: if(Flag)
+"127
+[e $ ! != -> _Flag `i -> -> -> 0 `i `uc `i 324  ]
+[; ;i2c.c: 128: return 0x01;
+"128
+[e ) -> -> 1 `i `uc ]
+[e $UE 323  ]
+[e :U 324 ]
+[; ;i2c.c: 130: Flag=I2C_Send_Byte(ADD);
+"130
+[e = _Flag ( _I2C_Send_Byte (1 _ADD ]
+[; ;i2c.c: 131: if(Flag)
+"131
+[e $ ! != -> _Flag `i -> -> -> 0 `i `uc `i 325  ]
+[; ;i2c.c: 132: return 0x01;
+"132
+[e ) -> -> 1 `i `uc ]
+[e $UE 323  ]
+[e :U 325 ]
+[; ;i2c.c: 134: I2C_Start();
+"134
+[e ( _I2C_Start ..  ]
+[; ;i2c.c: 135: Flag=I2C_Send_Byte(0XD0+1);
+"135
+[e = _Flag ( _I2C_Send_Byte (1 -> + -> 208 `i -> 1 `i `uc ]
+[; ;i2c.c: 136: if(Flag)
+"136
+[e $ ! != -> _Flag `i -> -> -> 0 `i `uc `i 326  ]
+[; ;i2c.c: 137: return 0x01;
+"137
+[e ) -> -> 1 `i `uc ]
+[e $UE 323  ]
+[e :U 326 ]
+[; ;i2c.c: 139: while(Length>1)
+"139
+[e $U 327  ]
+[e :U 328 ]
+[; ;i2c.c: 140: {
+"140
+{
+[; ;i2c.c: 141: *buff = I2C_Receive_Byte();
+"141
+[e = *U _buff ( _I2C_Receive_Byte ..  ]
+[; ;i2c.c: 143: do { LATB1 = 0; } while(0);
+"143
+[e :U 332 ]
+{
+[e = _LATB1 -> -> 0 `i `b ]
+}
+[e :U 331 ]
+[; ;i2c.c: 144: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"144
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 145: do { LATB0 = 1; } while(0);
+"145
+[e :U 335 ]
+{
+[e = _LATB0 -> -> 1 `i `b ]
+}
+[e :U 334 ]
+[; ;i2c.c: 146: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"146
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 147: do { LATB0 = 0; } while(0);
+"147
+[e :U 338 ]
+{
+[e = _LATB0 -> -> 0 `i `b ]
+}
+[e :U 337 ]
+[; ;i2c.c: 148: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"148
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 150: buff++;
+"150
+[e ++ _buff * -> -> 1 `i `x -> -> # *U _buff `i `x ]
+[; ;i2c.c: 151: Length--;
+"151
+[e -- _Length -> -> 1 `i `uc ]
+"152
+}
+[e :U 327 ]
+"139
+[e $ > -> _Length `i -> 1 `i 328  ]
+[e :U 329 ]
+[; ;i2c.c: 152: }
+[; ;i2c.c: 153: *buff = I2C_Receive_Byte();
+"153
+[e = *U _buff ( _I2C_Receive_Byte ..  ]
+[; ;i2c.c: 155: do { LATB1 = 1; } while(0);
+"155
+[e :U 341 ]
+{
+[e = _LATB1 -> -> 1 `i `b ]
+}
+[e :U 340 ]
+[; ;i2c.c: 156: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"156
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 157: do { LATB0 = 1; } while(0);
+"157
+[e :U 344 ]
+{
+[e = _LATB0 -> -> 1 `i `b ]
+}
+[e :U 343 ]
+[; ;i2c.c: 158: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"158
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 159: do { LATB0 = 0; } while(0);
+"159
+[e :U 347 ]
+{
+[e = _LATB0 -> -> 0 `i `b ]
+}
+[e :U 346 ]
+[; ;i2c.c: 160: _delay((unsigned long)((10)*(16000000/4000000.0)));
+"160
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[; ;i2c.c: 162: I2C_Stop();
+"162
+[e ( _I2C_Stop ..  ]
+[; ;i2c.c: 164: return 0x00;
+"164
+[e ) -> -> 0 `i `uc ]
+[e $UE 323  ]
+[; ;i2c.c: 165: }
+"165
+[e :UE 323 ]
+}
+"173
+[v _I2C_Send_Buffer `(uc ~T0 @X0 1 ef3`uc`*uc`uc ]
+"174
+{
+[; ;i2c.c: 173: unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length)
+[; ;i2c.c: 174: {
+[e :U _I2C_Send_Buffer ]
+"173
+[v _ADD `uc ~T0 @X0 1 r1 ]
+[v _buff `*uc ~T0 @X0 1 r2 ]
+[v _Length `uc ~T0 @X0 1 r3 ]
+"174
+[f ]
+"175
+[v _Flag `uc ~T0 @X0 1 a ]
+[; ;i2c.c: 175: unsigned char Flag=1;
+[e = _Flag -> -> 1 `i `uc ]
+"176
+[v _i `uc ~T0 @X0 1 a ]
+[; ;i2c.c: 176: unsigned char i;
+[; ;i2c.c: 178: I2C_Start();
+"178
+[e ( _I2C_Start ..  ]
+[; ;i2c.c: 180: Flag=I2C_Send_Byte(0XD0);
+"180
+[e = _Flag ( _I2C_Send_Byte (1 -> -> 208 `i `uc ]
+[; ;i2c.c: 181: if(Flag)
+"181
+[e $ ! != -> _Flag `i -> -> -> 0 `i `uc `i 349  ]
+[; ;i2c.c: 182: return 0x01;
+"182
+[e ) -> -> 1 `i `uc ]
+[e $UE 348  ]
+[e :U 349 ]
+[; ;i2c.c: 184: Flag=I2C_Send_Byte( ADD );
+"184
+[e = _Flag ( _I2C_Send_Byte (1 _ADD ]
+[; ;i2c.c: 185: if(Flag)
+"185
+[e $ ! != -> _Flag `i -> -> -> 0 `i `uc `i 350  ]
+[; ;i2c.c: 186: return 0x01;
+"186
+[e ) -> -> 1 `i `uc ]
+[e $UE 348  ]
+[e :U 350 ]
+[; ;i2c.c: 188: for (i = 0; i<Length; i++)
+"188
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 354  ]
+"189
+[e :U 351 ]
+[; ;i2c.c: 189: {
+{
+[; ;i2c.c: 190: Flag=I2C_Send_Byte(*(buff+i));
+"190
+[e = _Flag ( _I2C_Send_Byte (1 *U + _buff * -> _i `ux -> -> # *U _buff `ui `ux ]
+[; ;i2c.c: 191: if(Flag)
+"191
+[e $ ! != -> _Flag `i -> -> -> 0 `i `uc `i 355  ]
+[; ;i2c.c: 192: return 0x01;
+"192
+[e ) -> -> 1 `i `uc ]
+[e $UE 348  ]
+[e :U 355 ]
+"193
+}
+"188
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 354 ]
+[e $ < -> _i `i -> _Length `i 351  ]
+[e :U 352 ]
+"193
+}
+[; ;i2c.c: 193: }
+[; ;i2c.c: 194: I2C_Stop();
+"194
+[e ( _I2C_Stop ..  ]
+[; ;i2c.c: 195: return 0x00;
+"195
+[e ) -> -> 0 `i `uc ]
+[e $UE 348  ]
+[; ;i2c.c: 196: }
+"196
+[e :UE 348 ]
 }

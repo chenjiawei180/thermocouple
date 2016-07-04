@@ -1,26 +1,6 @@
 
 # 1 "mcc_generated_files/debug.c"
 
-# 26 "mcc_generated_files/global.h"
-extern unsigned char uch_cr0;
-extern unsigned char uch_cr1;
-extern unsigned char uch_mask;
-
-extern unsigned char uch_reg[8];
-extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-extern unsigned long temperature_value;
-extern unsigned int temperature_int;
-extern unsigned char temperature_decimal,temperature_sign;
-extern unsigned char display_buff[4];
-extern char s[64];
-extern float f_cold_junction_temperature;
-extern float f_linearized_tc_temperature;
-extern unsigned char time_count;
-extern unsigned char tmr_flag;
-
-extern unsigned char LongPressSec;
-extern unsigned char MAX31856Sec;
-
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
 
@@ -2514,8 +2494,11 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
-typedef unsigned char bool;
+# 390 "mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_Initialize(void);
+
+# 402
+void PIN_MANAGER_IOC(void);
 
 # 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
 typedef signed char int8_t;
@@ -2607,23 +2590,8 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 95 "mcc_generated_files/eusart.h"
-void EUSART_Initialize(void);
-
-# 115
-uint8_t EUSART_Read(void);
-
-# 135
-void EUSART_Write(uint8_t txData);
-
-# 17 "mcc_generated_files/debug.h"
-void EUSART_SendString(char *s);
-
-# 390 "mcc_generated_files/pin_manager.h"
-void PIN_MANAGER_Initialize(void);
-
-# 402
-void PIN_MANAGER_IOC(void);
+# 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
+typedef unsigned char bool;
 
 # 111 "mcc_generated_files/interrupt_manager.h"
 void interrupt INTERRUPT_InterruptManager(void);
@@ -2651,6 +2619,15 @@ bool SPI_HasWriteCollisionOccured(void);
 
 # 264
 void SPI_ClearWriteCollisionStatus(void);
+
+# 95 "mcc_generated_files/eusart.h"
+void EUSART_Initialize(void);
+
+# 115
+uint8_t EUSART_Read(void);
+
+# 135
+void EUSART_Write(uint8_t txData);
 
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
@@ -2712,6 +2689,43 @@ void SYSTEM_Initialize(void);
 
 # 86
 void OSCILLATOR_Initialize(void);
+
+# 25 "mcc_generated_files/global.h"
+typedef struct bq32k_regs {
+uint8_t seconds;
+uint8_t minutes;
+uint8_t hours;
+uint8_t wday;
+uint8_t date;
+uint8_t month;
+uint8_t years;
+}bq32k_t;
+
+
+
+
+extern unsigned char uch_cr0;
+extern unsigned char uch_cr1;
+extern unsigned char uch_mask;
+
+extern unsigned char uch_reg[8];
+extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+extern unsigned long temperature_value;
+extern unsigned int temperature_int;
+extern unsigned char temperature_decimal,temperature_sign;
+extern unsigned char display_buff[4];
+extern char s[64];
+extern float f_cold_junction_temperature;
+extern float f_linearized_tc_temperature;
+extern unsigned char time_count;
+extern unsigned char tmr_flag;
+
+extern unsigned char LongPressSec;
+extern unsigned char MAX31856Sec;
+extern bq32k_t tm;
+
+# 17 "mcc_generated_files/debug.h"
+void EUSART_SendString(char *s);
 
 # 14 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
 extern void * memcpy(void *, const void *, size_t);
