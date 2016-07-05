@@ -1,17 +1,17 @@
 /**
-  ADC Generated Driver File
+  FVR Generated Driver File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    adc.c
+    fvr.c
 
   @Summary
-    This is the generated driver implementation file for the ADC driver using MPLAB? Code Configurator
+    This is the generated driver implementation file for the FVR driver using MPLAB? Code Configurator
 
   @Description
-    This source file provides implementations for driver APIs for ADC.
+    This source file provides APIs for FVR.
     Generation Information :
         Product Revision  :  MPLAB? Code Configurator - v2.25.2
         Device            :  PIC16F1518
@@ -49,80 +49,21 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
  */
 
 #include <xc.h>
-#include "adc.h"
-#include "mcc.h"
+#include "fvr.h"
 
 /**
-  Section: Macro Declarations
+  Section: FVR APIs
  */
 
-#define ACQ_US_DELAY 5
-
-/**
-  Section: ADC Module APIs
- */
-
-void ADC_Initialize(void) {
-    // set the ADC to the options selected in the User Interface
-
-    // GO_nDONE stop; ADON enabled; CHS AN0; 
-    ADCON0 = 0x01;
-
-    // ADFM right; ADPREF FVR; ADCS FOSC/64; 
-    ADCON1 = 0xE3;
-
-    // ADRESL 0x0; 
-    ADRESL = 0x00;
-
-    // ADRESH 0x0; 
-    ADRESH = 0x00;
-
+void FVR_Initialize(void) {
+    // FVRRDY disabled; FVREN enabled; TSRNG Lo_range; ADFVR 2x; TSEN disabled; 
+    FVRCON = 0x82;
 }
 
-void ADC_StartConversion(adc_channel_t channel) {
-    // select the A/D channel
-    ADCON0bits.CHS = channel;
-
-    // Turn on the ADC module
-    ADCON0bits.ADON = 1;
-
-    // Acquisition time delay
-    __delay_us(ACQ_US_DELAY);
-
-    // Start the conversion
-    ADCON0bits.GO_nDONE = 1;
-}
-
-bool ADC_IsConversionDone() {
-    // Start the conversion
-    return (!ADCON0bits.GO_nDONE);
-}
-
-adc_result_t ADC_GetConversionResult(void) {
-    // Conversion finished, return the result
-    return ((ADRESH << 8) + ADRESL);
-}
-
-adc_result_t ADC_GetConversion(adc_channel_t channel) {
-    // Select the A/D channel
-    ADCON0bits.CHS = channel;
-
-    // Turn on the ADC module
-    ADCON0bits.ADON = 1;
-
-    // Acquisition time delay
-    __delay_us(ACQ_US_DELAY);
-
-    // Start the conversion
-    ADCON0bits.GO_nDONE = 1;
-
-    // Wait for the conversion to finish
-    while (ADCON0bits.GO_nDONE) {
-    }
-
-    // Conversion finished, return the result
-    return ((ADRESH << 8) + ADRESL);
+bool FVR_IsOutputReady(void) {
+    return (FVRCONbits.FVRRDY);
 }
 /**
  End of File
  */
+

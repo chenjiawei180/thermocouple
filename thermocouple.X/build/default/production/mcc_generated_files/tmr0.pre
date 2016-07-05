@@ -2684,10 +2684,16 @@ adc_result_t ADC_GetConversionResult(void);
 # 249
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
-# 73 "mcc_generated_files/mcc.h"
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
+# 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 86
+# 87
 void OSCILLATOR_Initialize(void);
 
 # 25 "mcc_generated_files/global.h"
@@ -2773,6 +2779,8 @@ INTCONbits.TMR0IF = 0;
 
 TMR0 = timer0ReloadVal;
 
+MAX31856Sec++;
+
 
 if (++CountCallBack >= 100) {
 
@@ -2791,6 +2799,6 @@ void TMR0_CallBack(void) {
 time_count++;
 if(time_count == 4 || time_count > 8) time_count = 0;
 LongPressSec++;
-MAX31856Sec++;
+
 }
 

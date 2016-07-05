@@ -1895,8 +1895,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 212: void TMR0_Reload(void);
 [; ;tmr0.h: 230: void TMR0_ISR(void);
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
-[; ;mcc.h: 73: void SYSTEM_Initialize(void);
-[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;mcc.h: 74: void SYSTEM_Initialize(void);
+[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
 [; ;global.h: 25: typedef struct bq32k_regs {
 [; ;global.h: 26: uint8_t seconds;
 [; ;global.h: 27: uint8_t minutes;
@@ -1954,8 +1956,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 "19
 [v _time `S233 ~T0 @X0 1 a ]
-[v F2005 `uc ~T0 @X0 -> 10 `i s ]
-[i F2005
+[v F2009 `uc ~T0 @X0 -> 10 `i s ]
+[i F2009
 :U ..
 "20
 -> -> 1 `i `uc
@@ -1970,7 +1972,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _temp `uc ~T0 @X0 -> 10 `i a ]
 [; ;bq32k.c: 19: bq32k_t time;
 [; ;bq32k.c: 20: unsigned char temp[10] = { 0x01,0x40,0x14,0x02,0x04,0x07,0x16 };
-[e = _temp F2005 ]
+[e = _temp F2009 ]
 [; ;bq32k.c: 21: I2C_Send_Buffer(0, temp, 7);
 "21
 [e ( _I2C_Send_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]

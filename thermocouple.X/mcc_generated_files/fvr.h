@@ -1,17 +1,17 @@
 /**
-  ADC Generated Driver File
+  FVR Generated Driver API Header File
 
   @Company
     Microchip Technology Inc.
 
   @File Name
-    adc.c
+    fvr.h
 
   @Summary
-    This is the generated driver implementation file for the ADC driver using MPLAB? Code Configurator
+    This is the generated header file for the FVR driver using MPLAB? Code Configurator
 
   @Description
-    This source file provides implementations for driver APIs for ADC.
+    This header file provides APIs for driver for FVR.
     Generation Information :
         Product Revision  :  MPLAB? Code Configurator - v2.25.2
         Device            :  PIC16F1518
@@ -44,85 +44,96 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
  */
 
+#ifndef _FVR_H
+#define _FVR_H
+
 /**
   Section: Included Files
  */
 
-#include <xc.h>
-#include "adc.h"
-#include "mcc.h"
+#include <stdbool.h>
+#include <stdint.h>
 
-/**
-  Section: Macro Declarations
- */
+#ifdef __cplusplus  // Provide C++ Compatibility
 
-#define ACQ_US_DELAY 5
+extern "C" {
 
-/**
-  Section: ADC Module APIs
- */
+#endif
 
-void ADC_Initialize(void) {
-    // set the ADC to the options selected in the User Interface
+    /**
+      Section: FVR APIs
+     */
 
-    // GO_nDONE stop; ADON enabled; CHS AN0; 
-    ADCON0 = 0x01;
+    /**
+      @Summary
+        Initializes the FVR
 
-    // ADFM right; ADPREF FVR; ADCS FOSC/64; 
-    ADCON1 = 0xE3;
+      @Description
+        This routine initializes the FVR.
+        This routine must be called before any other FVR routine is called.
+        This routine should only be called once during system initialization.
 
-    // ADRESL 0x0; 
-    ADRESL = 0x00;
+      @Preconditions
+        None
 
-    // ADRESH 0x0; 
-    ADRESH = 0x00;
+      @Param
+        None
+
+      @Returns
+        None
+
+      @Comment
+    
+
+      @Example
+        <code>
+        FVR_Initialize();
+        </code>
+     */
+    void FVR_Initialize(void);
+
+    /**
+      @Summary
+        Gets the FVR output ready status.
+
+      @Description
+        This routine gets the FVR output ready status.
+
+      @Preconditions
+        The FVR_Initialize() routine should be called
+        prior to use this routine.
+
+      @Param
+        None
+
+      @Returns
+         true  - FVR module is ready for use.
+         false - FVR module is not ready for use.
+
+      @Example
+        <code>
+        FVR_Initialize();
+
+        if(FVR_IsOutputReady())
+        {
+              //user code
+        }
+        else
+        {
+              //user code
+        }
+        </code>
+     */
+    bool FVR_IsOutputReady(void);
+
+#ifdef __cplusplus  // Provide C++ Compatibility
 
 }
 
-void ADC_StartConversion(adc_channel_t channel) {
-    // select the A/D channel
-    ADCON0bits.CHS = channel;
+#endif
 
-    // Turn on the ADC module
-    ADCON0bits.ADON = 1;
-
-    // Acquisition time delay
-    __delay_us(ACQ_US_DELAY);
-
-    // Start the conversion
-    ADCON0bits.GO_nDONE = 1;
-}
-
-bool ADC_IsConversionDone() {
-    // Start the conversion
-    return (!ADCON0bits.GO_nDONE);
-}
-
-adc_result_t ADC_GetConversionResult(void) {
-    // Conversion finished, return the result
-    return ((ADRESH << 8) + ADRESL);
-}
-
-adc_result_t ADC_GetConversion(adc_channel_t channel) {
-    // Select the A/D channel
-    ADCON0bits.CHS = channel;
-
-    // Turn on the ADC module
-    ADCON0bits.ADON = 1;
-
-    // Acquisition time delay
-    __delay_us(ACQ_US_DELAY);
-
-    // Start the conversion
-    ADCON0bits.GO_nDONE = 1;
-
-    // Wait for the conversion to finish
-    while (ADCON0bits.GO_nDONE) {
-    }
-
-    // Conversion finished, return the result
-    return ((ADRESH << 8) + ADRESL);
-}
+#endif // _FVR_H
 /**
  End of File
  */
+

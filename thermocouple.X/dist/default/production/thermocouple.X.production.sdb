@@ -9,7 +9,7 @@ channel_Temp 30
 channel_FVR 31
 ADC 11
 ]
-"129 E:\Github\thermocouple\thermocouple.X\main.c
+"81 E:\Github\thermocouple\thermocouple.X\main.c
 [e E1890 . `uc
 channel_Temp 30
 channel_FVR 31
@@ -59,6 +59,8 @@ ADC 11
 [v _FLASH_write FLASH_write `(v  1 e 1 0 ]
 "97
 [v _FLASH_erase FLASH_erase `(v  1 e 1 0 ]
+"58 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/fvr.c
+[v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
 "21 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
 [v _SendBit_1621 SendBit_1621 `(v  1 e 1 0 ]
 "41
@@ -115,7 +117,7 @@ ADC 11
 [v _temperature_process temperature_process `(v  1 e 1 0 ]
 "70 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
-"79
+"80
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 "58 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/memory.c
 [v _FLASH_ReadWord FLASH_ReadWord `(ui  1 e 2 0 ]
@@ -135,9 +137,9 @@ ADC 11
 [v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
 "103
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
-"123
+"125
 [v _TMR0_CallBack TMR0_CallBack `(v  1 e 1 0 ]
-[s S242 . 1 `uc 1 IOCIF 1 0 :1:0 
+[s S246 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 IOCIE 1 0 :1:3 
@@ -147,14 +149,14 @@ ADC 11
 `uc 1 GIE 1 0 :1:7 
 ]
 "360 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[s S251 . 1 `uc 1 . 1 0 :2:0 
+[s S255 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 T0IE 1 0 :1:5 
 ]
-[u S256 . 1 `S242 1 . 1 0 `S251 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES256  1 e 1 @11 ]
-[s S178 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S260 . 1 `S246 1 . 1 0 `S255 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES260  1 e 1 @11 ]
+[s S182 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -164,8 +166,8 @@ ADC 11
 `uc 1 TMR1GIF 1 0 :1:7 
 ]
 "634
-[u S187 . 1 `S178 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES187  1 e 1 @17 ]
+[u S191 . 1 `S182 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES191  1 e 1 @17 ]
 "711
 [v _TMR0 TMR0 `VEuc  1 e 1 @21 ]
 "1022
@@ -203,12 +205,12 @@ ADC 11
 [v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
 "1664
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
-[s S356 . 1 `uc 1 ADON 1 0 :1:0 
+[s S360 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :5:2 
 ]
 "1689
-[s S360 . 1 `uc 1 . 1 0 :1:0 
+[s S364 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ADGO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -216,11 +218,11 @@ ADC 11
 `uc 1 CHS3 1 0 :1:5 
 `uc 1 CHS4 1 0 :1:6 
 ]
-[s S368 . 1 `uc 1 . 1 0 :1:0 
+[s S372 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[u S371 . 1 `S356 1 . 1 0 `S360 1 . 1 0 `S368 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES371  1 e 1 @157 ]
+[u S375 . 1 `S360 1 . 1 0 `S364 1 . 1 0 `S372 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES375  1 e 1 @157 ]
 "1743
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
 "1808
@@ -229,6 +231,21 @@ ADC 11
 [v _LATB LATB `VEuc  1 e 1 @269 ]
 "1930
 [v _LATC LATC `VEuc  1 e 1 @270 ]
+"2023
+[v _FVRCON FVRCON `VEuc  1 e 1 @279 ]
+[s S903 . 1 `uc 1 ADFVR 1 0 :2:0 
+`uc 1 . 1 0 :2:2 
+`uc 1 TSRNG 1 0 :1:4 
+`uc 1 TSEN 1 0 :1:5 
+`uc 1 FVRRDY 1 0 :1:6 
+`uc 1 FVREN 1 0 :1:7 
+]
+"2042
+[s S910 . 1 `uc 1 ADFVR0 1 0 :1:0 
+`uc 1 ADFVR1 1 0 :1:1 
+]
+[u S913 . 1 `S903 1 . 1 0 `S910 1 . 1 0 ]
+[v _FVRCONbits FVRCONbits `VES913  1 e 1 @279 ]
 "2081
 [v _APFCON APFCON `VEuc  1 e 1 @285 ]
 "2106
@@ -249,7 +266,7 @@ ADC 11
 [v _PMDATL PMDATL `VEuc  1 e 1 @403 ]
 "2345
 [v _PMDATH PMDATH `VEuc  1 e 1 @404 ]
-[s S276 . 1 `uc 1 RD 1 0 :1:0 
+[s S280 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -258,8 +275,8 @@ ADC 11
 `uc 1 CFGS 1 0 :1:6 
 ]
 "2380
-[u S284 . 1 `S276 1 . 1 0 ]
-[v _PMCON1bits PMCON1bits `VES284  1 e 1 @405 ]
+[u S288 . 1 `S280 1 . 1 0 ]
+[v _PMCON1bits PMCON1bits `VES288  1 e 1 @405 ]
 "2419
 [v _PMCON2 PMCON2 `VEuc  1 e 1 @406 ]
 "2458
@@ -272,7 +289,7 @@ ADC 11
 [v _SPBRGH SPBRGH `VEuc  1 e 1 @412 ]
 "2592
 [v _RCSTA RCSTA `VEuc  1 e 1 @413 ]
-[s S199 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S203 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -282,8 +299,8 @@ ADC 11
 `uc 1 SPEN 1 0 :1:7 
 ]
 "2609
-[u S208 . 1 `S199 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES208  1 e 1 @413 ]
+[u S212 . 1 `S203 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES212  1 e 1 @413 ]
 "2653
 [v _TXSTA TXSTA `VEuc  1 e 1 @414 ]
 "2714
@@ -298,7 +315,7 @@ ADC 11
 [v _SSP1ADD SSP1ADD `VEuc  1 e 1 @530 ]
 "2970
 [v _SSP1STAT SSP1STAT `VEuc  1 e 1 @532 ]
-[s S126 . 1 `uc 1 BF 1 0 :1:0 
+[s S130 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -308,24 +325,24 @@ ADC 11
 `uc 1 SMP 1 0 :1:7 
 ]
 "3042
-[u S135 . 1 `S126 1 . 1 0 ]
-[v _SSP1STATbits SSP1STATbits `VES135  1 e 1 @532 ]
+[u S139 . 1 `S130 1 . 1 0 ]
+[v _SSP1STATbits SSP1STATbits `VES139  1 e 1 @532 ]
 "3095
 [v _SSP1CON1 SSP1CON1 `VEuc  1 e 1 @533 ]
-[s S99 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S103 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "3240
-[s S105 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S109 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S110 . 1 `S99 1 . 1 0 `S105 1 . 1 0 ]
-[v _SSP1CON1bits SSP1CON1bits `VES110  1 e 1 @533 ]
+[u S114 . 1 `S103 1 . 1 0 `S109 1 . 1 0 ]
+[v _SSP1CON1bits SSP1CON1bits `VES114  1 e 1 @533 ]
 "4435
 [v _LATA0 LATA0 `VEb  1 e 0 @2144 ]
 "4437
@@ -390,9 +407,9 @@ ADC 11
 [v _LongPressSec LongPressSec `uc  1 e 1 0 ]
 "55
 [v _MAX31856Sec MAX31856Sec `uc  1 e 1 0 ]
-[s S466 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
+[s S470 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
 "56
-[v _tm tm `S466  1 e 7 0 ]
+[v _tm tm `S470  1 e 7 0 ]
 "14 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
 [v _Dis_TAB Dis_TAB `DCC[21]uc  1 e 21 0 ]
 "60 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
@@ -400,15 +417,11 @@ ADC 11
 "65 E:\Github\thermocouple\thermocouple.X\main.c
 [v _main main `(v  1 e 1 0 ]
 {
-"66
-[v main@a a `[10]uc  1 a 10 0 ]
 "69
-[v main@bat_data bat_data `ui  1 a 2 11 ]
+[v main@bat_data bat_data `ui  1 a 2 1 ]
 "67
-[v main@i i `uc  1 a 1 10 ]
-"65
-[v main@F2210 F2210 `[10]uc  1 s 10 F2210 ]
-"223
+[v main@i i `uc  1 a 1 0 ]
+"242
 } 0
 "63 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _maxim_31856_init maxim_31856_init `(v  1 e 1 0 ]
@@ -418,7 +431,7 @@ ADC 11
 "70 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
 {
-"77
+"78
 } 0
 "66 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
 [v _TMR0_Initialize TMR0_Initialize `(v  1 e 1 0 ]
@@ -435,10 +448,15 @@ ADC 11
 {
 "71
 } 0
-"79 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
+"80 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 {
-"86
+"87
+} 0
+"58 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/fvr.c
+[v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
+{
+"61
 } 0
 "56 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
 [v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
@@ -454,7 +472,7 @@ ADC 11
 [v _Key_Process Key_Process `(i  1 e 2 0 ]
 {
 "41
-[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 21 ]
+[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 24 ]
 "74
 } 0
 "247 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
@@ -466,20 +484,20 @@ ADC 11
 [v _time_Display time_Display `(v  1 e 1 0 ]
 {
 "167
-[v time_Display@num num `[4]uc  1 a 4 16 ]
+[v time_Display@num num `[4]uc  1 a 4 19 ]
 "166
-[v time_Display@F2116 F2116 `[4]uc  1 s 4 F2116 ]
+[v time_Display@F2120 F2120 `[4]uc  1 s 4 F2120 ]
 "174
 } 0
 "6 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
 {
 "11
-[v ___awmod@sign sign `uc  1 a 1 8 ]
-[v ___awmod@counter counter `uc  1 a 1 7 ]
+[v ___awmod@sign sign `uc  1 a 1 1 ]
+[v ___awmod@counter counter `uc  1 a 1 0 ]
 "6
-[v ___awmod@divisor divisor `i  1 p 2 2 ]
-[v ___awmod@dividend dividend `i  1 p 2 4 ]
+[v ___awmod@divisor divisor `i  1 p 2 3 ]
+[v ___awmod@dividend dividend `i  1 p 2 5 ]
 "35
 } 0
 "6 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
@@ -491,22 +509,22 @@ ADC 11
 [v ___awdiv@sign sign `uc  1 a 1 1 ]
 [v ___awdiv@counter counter `uc  1 a 1 0 ]
 "6
-[v ___awdiv@divisor divisor `i  1 p 2 2 ]
-[v ___awdiv@dividend dividend `i  1 p 2 4 ]
+[v ___awdiv@divisor divisor `i  1 p 2 3 ]
+[v ___awdiv@dividend dividend `i  1 p 2 5 ]
 "42
 } 0
 "30 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/bq32k.c
 [v _Bq32k_Rtc_Read_Time Bq32k_Rtc_Read_Time `(v  1 e 1 0 ]
 {
-[s S466 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
-[v Bq32k_Rtc_Read_Time@p p `*.4S466  1 a 1 wreg ]
+[s S470 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
+[v Bq32k_Rtc_Read_Time@p p `*.4S470  1 a 1 wreg ]
 "32
-[v Bq32k_Rtc_Read_Time@temp temp `[10]uc  1 a 10 2 ]
+[v Bq32k_Rtc_Read_Time@temp temp `[10]uc  1 a 10 5 ]
 "30
-[v Bq32k_Rtc_Read_Time@p p `*.4S466  1 a 1 wreg ]
+[v Bq32k_Rtc_Read_Time@p p `*.4S470  1 a 1 wreg ]
 "33
 "30
-[v Bq32k_Rtc_Read_Time@p p `*.4S466  1 a 1 12 ]
+[v Bq32k_Rtc_Read_Time@p p `*.4S470  1 a 1 15 ]
 "41
 } 0
 "63
@@ -515,7 +533,7 @@ ADC 11
 [v bcd2bin@val val `uc  1 a 1 wreg ]
 [v bcd2bin@val val `uc  1 a 1 wreg ]
 "65
-[v bcd2bin@val val `uc  1 a 1 9 ]
+[v bcd2bin@val val `uc  1 a 1 7 ]
 "66
 } 0
 "4 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul8.c
@@ -523,12 +541,12 @@ ADC 11
 {
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
 "6
-[v ___bmul@product product `uc  1 a 1 4 ]
+[v ___bmul@product product `uc  1 a 1 5 ]
 "4
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
-[v ___bmul@multiplicand multiplicand `uc  1 p 1 2 ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 3 ]
 "6
-[v ___bmul@multiplier multiplier `uc  1 a 1 5 ]
+[v ___bmul@multiplier multiplier `uc  1 a 1 6 ]
 "51
 } 0
 "120 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/i2c.c
@@ -536,21 +554,21 @@ ADC 11
 {
 [v I2C_Read_Buffer@ADD ADD `uc  1 a 1 wreg ]
 "122
-[v I2C_Read_Buffer@Flag Flag `uc  1 a 1 9 ]
+[v I2C_Read_Buffer@Flag Flag `uc  1 a 1 2 ]
 "120
 [v I2C_Read_Buffer@ADD ADD `uc  1 a 1 wreg ]
-[v I2C_Read_Buffer@buff buff `*.4uc  1 p 1 5 ]
-[v I2C_Read_Buffer@Length Length `uc  1 p 1 6 ]
+[v I2C_Read_Buffer@buff buff `*.4uc  1 p 1 6 ]
+[v I2C_Read_Buffer@Length Length `uc  1 p 1 7 ]
 "122
-[v I2C_Read_Buffer@ADD ADD `uc  1 a 1 8 ]
+[v I2C_Read_Buffer@ADD ADD `uc  1 a 1 1 ]
 "165
 } 0
 "74
 [v _I2C_Receive_Byte I2C_Receive_Byte `(uc  1 e 1 0 ]
 {
 "76
-[v I2C_Receive_Byte@i i `uc  1 a 1 4 ]
-[v I2C_Receive_Byte@Data Data `uc  1 a 1 3 ]
+[v I2C_Receive_Byte@i i `uc  1 a 1 5 ]
+[v I2C_Receive_Byte@Data Data `uc  1 a 1 4 ]
 "94
 } 0
 "225 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
@@ -572,18 +590,18 @@ ADC 11
 [v _err_Display err_Display `(v  1 e 1 0 ]
 {
 "153
-[v err_Display@num num `[4]uc  1 a 4 4 ]
+[v err_Display@num num `[4]uc  1 a 4 7 ]
 "152
-[v err_Display@F2113 F2113 `[4]uc  1 s 4 F2113 ]
+[v err_Display@F2117 F2117 `[4]uc  1 s 4 F2117 ]
 "157
 } 0
 "109
 [v _Tc_Display Tc_Display `(v  1 e 1 0 ]
 {
 "112
-[v Tc_Display@data data `ui  1 a 2 9 ]
+[v Tc_Display@data data `ui  1 a 2 11 ]
 "111
-[v Tc_Display@count count `uc  1 a 1 8 ]
+[v Tc_Display@count count `uc  1 a 1 10 ]
 "129
 } 0
 "8 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\memset.c
@@ -591,35 +609,35 @@ ADC 11
 {
 [v memset@p1 p1 `*.4v  1 a 1 wreg ]
 "15
-[v memset@p p `*.4uc  1 a 1 8 ]
+[v memset@p p `*.4uc  1 a 1 1 ]
 "8
 [v memset@p1 p1 `*.4v  1 a 1 wreg ]
-[v memset@c c `i  1 p 2 2 ]
-[v memset@n n `ui  1 p 2 4 ]
+[v memset@c c `i  1 p 2 3 ]
+[v memset@n n `ui  1 p 2 5 ]
 "18
-[v memset@p1 p1 `*.4v  1 a 1 7 ]
+[v memset@p1 p1 `*.4v  1 a 1 0 ]
 "22
 } 0
 "6 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwmod.c
 [v ___lwmod __lwmod `(ui  1 e 2 0 ]
 {
 "11
-[v ___lwmod@counter counter `uc  1 a 1 7 ]
+[v ___lwmod@counter counter `uc  1 a 1 0 ]
 "6
-[v ___lwmod@divisor divisor `ui  1 p 2 2 ]
-[v ___lwmod@dividend dividend `ui  1 p 2 4 ]
+[v ___lwmod@divisor divisor `ui  1 p 2 3 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 5 ]
 "26
 } 0
 "6 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
 {
 "11
-[v ___lwdiv@quotient quotient `ui  1 a 2 5 ]
+[v ___lwdiv@quotient quotient `ui  1 a 2 7 ]
 "12
-[v ___lwdiv@counter counter `uc  1 a 1 4 ]
+[v ___lwdiv@counter counter `uc  1 a 1 6 ]
 "6
-[v ___lwdiv@divisor divisor `ui  1 p 2 0 ]
-[v ___lwdiv@dividend dividend `ui  1 p 2 2 ]
+[v ___lwdiv@divisor divisor `ui  1 p 2 1 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 3 ]
 "31
 } 0
 "200 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
@@ -633,7 +651,7 @@ ADC 11
 [v maxim_start_conversion@uch_conversion_mode uch_conversion_mode `uc  1 a 1 wreg ]
 [v maxim_start_conversion@uch_conversion_mode uch_conversion_mode `uc  1 a 1 wreg ]
 "116
-[v maxim_start_conversion@uch_conversion_mode uch_conversion_mode `uc  1 a 1 7 ]
+[v maxim_start_conversion@uch_conversion_mode uch_conversion_mode `uc  1 a 1 0 ]
 "120
 } 0
 "19
@@ -641,9 +659,9 @@ ADC 11
 {
 [v maxim_31856_write_register@uch_register_address uch_register_address `uc  1 a 1 wreg ]
 [v maxim_31856_write_register@uch_register_address uch_register_address `uc  1 a 1 wreg ]
-[v maxim_31856_write_register@uch_register_value uch_register_value `uc  1 p 1 3 ]
+[v maxim_31856_write_register@uch_register_value uch_register_value `uc  1 p 1 4 ]
 "21
-[v maxim_31856_write_register@uch_register_address uch_register_address `uc  1 a 1 4 ]
+[v maxim_31856_write_register@uch_register_address uch_register_address `uc  1 a 1 5 ]
 "25
 } 0
 "33
@@ -651,11 +669,11 @@ ADC 11
 {
 [v maxim_31856_read_register@uch_register_address uch_register_address `uc  1 a 1 wreg ]
 "35
-[v maxim_31856_read_register@uch_register_data uch_register_data `uc  1 a 1 5 ]
+[v maxim_31856_read_register@uch_register_data uch_register_data `uc  1 a 1 6 ]
 "33
 [v maxim_31856_read_register@uch_register_address uch_register_address `uc  1 a 1 wreg ]
 "36
-[v maxim_31856_read_register@uch_register_address uch_register_address `uc  1 a 1 4 ]
+[v maxim_31856_read_register@uch_register_address uch_register_address `uc  1 a 1 5 ]
 "41
 } 0
 "49
@@ -663,10 +681,10 @@ ADC 11
 {
 [v maxim_31856_read_nregisters@uch_register_address uch_register_address `uc  1 a 1 wreg ]
 [v maxim_31856_read_nregisters@uch_register_address uch_register_address `uc  1 a 1 wreg ]
-[v maxim_31856_read_nregisters@uch_buff uch_buff `*.4uc  1 p 1 0 ]
-[v maxim_31856_read_nregisters@uch_nBytes uch_nBytes `uc  1 p 1 1 ]
+[v maxim_31856_read_nregisters@uch_buff uch_buff `*.4uc  1 p 1 3 ]
+[v maxim_31856_read_nregisters@uch_nBytes uch_nBytes `uc  1 p 1 4 ]
 "51
-[v maxim_31856_read_nregisters@uch_register_address uch_register_address `uc  1 a 1 4 ]
+[v maxim_31856_read_nregisters@uch_register_address uch_register_address `uc  1 a 1 7 ]
 "55
 } 0
 "89 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
@@ -674,12 +692,12 @@ ADC 11
 {
 [v SPI_Exchange8bitBuffer@dataIn dataIn `*.1uc  1 a 1 wreg ]
 "90
-[v SPI_Exchange8bitBuffer@bytesWritten bytesWritten `uc  1 a 1 9 ]
+[v SPI_Exchange8bitBuffer@bytesWritten bytesWritten `uc  1 a 1 7 ]
 "89
 [v SPI_Exchange8bitBuffer@dataIn dataIn `*.1uc  1 a 1 wreg ]
-[v SPI_Exchange8bitBuffer@bufLen bufLen `uc  1 p 1 3 ]
-[v SPI_Exchange8bitBuffer@dataOut dataOut `*.4uc  1 p 1 4 ]
-[v SPI_Exchange8bitBuffer@dataIn dataIn `*.1uc  1 a 1 8 ]
+[v SPI_Exchange8bitBuffer@bufLen bufLen `uc  1 p 1 4 ]
+[v SPI_Exchange8bitBuffer@dataOut dataOut `*.4uc  1 p 1 5 ]
+[v SPI_Exchange8bitBuffer@dataIn dataIn `*.1uc  1 a 1 6 ]
 "115
 } 0
 "77
@@ -688,7 +706,7 @@ ADC 11
 [v SPI_Exchange8bit@data data `uc  1 a 1 wreg ]
 [v SPI_Exchange8bit@data data `uc  1 a 1 wreg ]
 "79
-[v SPI_Exchange8bit@data data `uc  1 a 1 2 ]
+[v SPI_Exchange8bit@data data `uc  1 a 1 3 ]
 "87
 } 0
 "137 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
@@ -696,12 +714,12 @@ ADC 11
 {
 [v Two_Display@number number `uc  1 a 1 wreg ]
 "139
-[v Two_Display@num num `[4]uc  1 a 4 4 ]
+[v Two_Display@num num `[4]uc  1 a 4 7 ]
 "137
 [v Two_Display@number number `uc  1 a 1 wreg ]
 "138
-[v Two_Display@F2110 F2110 `[4]uc  1 s 4 F2110 ]
-[v Two_Display@number number `uc  1 a 1 8 ]
+[v Two_Display@F2114 F2114 `[4]uc  1 s 4 F2114 ]
+[v Two_Display@number number `uc  1 a 1 11 ]
 "143
 } 0
 "90
@@ -709,13 +727,13 @@ ADC 11
 {
 [v WriteAll_1621@addr addr `uc  1 a 1 wreg ]
 "92
-[v WriteAll_1621@i i `uc  1 a 1 2 ]
+[v WriteAll_1621@i i `uc  1 a 1 5 ]
 "90
 [v WriteAll_1621@addr addr `uc  1 a 1 wreg ]
-[v WriteAll_1621@p p `*.26uc  1 p 2 7 ]
-[v WriteAll_1621@cnt cnt `uc  1 p 1 9 ]
+[v WriteAll_1621@p p `*.26uc  1 p 2 0 ]
+[v WriteAll_1621@cnt cnt `uc  1 p 1 2 ]
 "93
-[v WriteAll_1621@addr addr `uc  1 a 1 1 ]
+[v WriteAll_1621@addr addr `uc  1 a 1 4 ]
 "101
 } 0
 "41
@@ -723,12 +741,12 @@ ADC 11
 {
 [v SendDataBit_1621@data data `uc  1 a 1 wreg ]
 "43
-[v SendDataBit_1621@i i `uc  1 a 1 6 ]
+[v SendDataBit_1621@i i `uc  1 a 1 7 ]
 "41
 [v SendDataBit_1621@data data `uc  1 a 1 wreg ]
-[v SendDataBit_1621@cnt cnt `uc  1 p 1 2 ]
+[v SendDataBit_1621@cnt cnt `uc  1 p 1 3 ]
 "44
-[v SendDataBit_1621@data data `uc  1 a 1 5 ]
+[v SendDataBit_1621@data data `uc  1 a 1 6 ]
 "53
 } 0
 "61
@@ -737,7 +755,7 @@ ADC 11
 [v SendCmd_1621@command command `uc  1 a 1 wreg ]
 [v SendCmd_1621@command command `uc  1 a 1 wreg ]
 "63
-[v SendCmd_1621@command command `uc  1 a 1 8 ]
+[v SendCmd_1621@command command `uc  1 a 1 1 ]
 "67
 } 0
 "21
@@ -745,28 +763,28 @@ ADC 11
 {
 [v SendBit_1621@data data `uc  1 a 1 wreg ]
 "23
-[v SendBit_1621@i i `uc  1 a 1 6 ]
+[v SendBit_1621@i i `uc  1 a 1 7 ]
 "21
 [v SendBit_1621@data data `uc  1 a 1 wreg ]
-[v SendBit_1621@cnt cnt `uc  1 p 1 2 ]
+[v SendBit_1621@cnt cnt `uc  1 p 1 3 ]
 "24
-[v SendBit_1621@data data `uc  1 a 1 5 ]
+[v SendBit_1621@data data `uc  1 a 1 6 ]
 "33
 } 0
 "17 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
 [v _Key_Scan Key_Scan `(uc  1 e 1 0 ]
 {
 "19
-[v Key_Scan@Key_val Key_val `uc  1 a 1 4 ]
+[v Key_Scan@Key_val Key_val `uc  1 a 1 5 ]
 "30
 } 0
 "17 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/bq32k.c
 [v _Bq32k_Time_Init Bq32k_Time_Init `(v  1 e 1 0 ]
 {
 "20
-[v Bq32k_Time_Init@temp temp `[10]uc  1 a 10 5 ]
+[v Bq32k_Time_Init@temp temp `[10]uc  1 a 10 7 ]
 "19
-[v Bq32k_Time_Init@F2005 F2005 `[10]uc  1 s 10 F2005 ]
+[v Bq32k_Time_Init@F2009 F2009 `[10]uc  1 s 10 F2009 ]
 "22
 } 0
 "173 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/i2c.c
@@ -774,15 +792,15 @@ ADC 11
 {
 [v I2C_Send_Buffer@ADD ADD `uc  1 a 1 wreg ]
 "175
-[v I2C_Send_Buffer@Flag Flag `uc  1 a 1 2 ]
+[v I2C_Send_Buffer@Flag Flag `uc  1 a 1 4 ]
 "176
-[v I2C_Send_Buffer@i i `uc  1 a 1 1 ]
+[v I2C_Send_Buffer@i i `uc  1 a 1 3 ]
 "173
 [v I2C_Send_Buffer@ADD ADD `uc  1 a 1 wreg ]
-[v I2C_Send_Buffer@buff buff `*.4uc  1 p 1 5 ]
-[v I2C_Send_Buffer@Length Length `uc  1 p 1 6 ]
+[v I2C_Send_Buffer@buff buff `*.4uc  1 p 1 6 ]
+[v I2C_Send_Buffer@Length Length `uc  1 p 1 7 ]
 "175
-[v I2C_Send_Buffer@ADD ADD `uc  1 a 1 0 ]
+[v I2C_Send_Buffer@ADD ADD `uc  1 a 1 2 ]
 "196
 } 0
 "102
@@ -800,11 +818,11 @@ ADC 11
 {
 [v I2C_Send_Byte@Data Data `uc  1 a 1 wreg ]
 "36
-[v I2C_Send_Byte@i i `uc  1 a 1 4 ]
+[v I2C_Send_Byte@i i `uc  1 a 1 5 ]
 "34
 [v I2C_Send_Byte@Data Data `uc  1 a 1 wreg ]
 "37
-[v I2C_Send_Byte@Data Data `uc  1 a 1 3 ]
+[v I2C_Send_Byte@Data Data `uc  1 a 1 4 ]
 "66
 } 0
 "106 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
@@ -813,7 +831,7 @@ ADC 11
 [v ADC_GetConversion@channel channel `E1850  1 a 1 wreg ]
 [v ADC_GetConversion@channel channel `E1850  1 a 1 wreg ]
 "108
-[v ADC_GetConversion@channel channel `E1850  1 a 1 5 ]
+[v ADC_GetConversion@channel channel `E1850  1 a 1 6 ]
 "125
 } 0
 "52 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
@@ -826,10 +844,10 @@ ADC 11
 {
 "104
 [v TMR0_ISR@CountCallBack CountCallBack `VEui  1 s 2 CountCallBack ]
-"121
-} 0
 "123
+} 0
+"125
 [v _TMR0_CallBack TMR0_CallBack `(v  1 e 1 0 ]
 {
-"130
+"132
 } 0

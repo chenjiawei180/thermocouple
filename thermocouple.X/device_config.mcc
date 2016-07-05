@@ -58,8 +58,8 @@
             <setting name="STVREN" option="ON"/>
             <setting name="BORV" option="LO"/>
             <setting name="generateConfigBits" option="true"/>
-            <file checksum="3231368207" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
-            <file checksum="3929025708" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
+            <file checksum="4166109841" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
+            <file checksum="1103966738" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
         </manager>
         <manager generated="true" name="Interrupt Manager" reloadPin="manual">
             <setting name="preemptHigh" option="true"/>
@@ -157,20 +157,31 @@
             <file checksum="1762203634" modified="false" name="memory.c" path="mcc_generated_files/memory.c"/>
             <file checksum="878976993" modified="false" name="memory.h" path="mcc_generated_files/memory.h"/>
         </module>
+        <module generated="true" mode="FVR" name="FVR" order="6" reloadPin="manual" type="vref_bandgap_2buf">
+            <initializer comment="" name="Initialize">
+                <setting name="FVRRDY" option="disabled" register="FVRCON"/>
+                <setting name="FVREN" option="enabled" register="FVRCON"/>
+                <setting name="TSRNG" option="Lo_range" register="FVRCON"/>
+                <setting name="ADFVR" option="2x" register="FVRCON"/>
+                <setting name="TSEN" option="disabled" register="FVRCON"/>
+            </initializer>
+            <file checksum="379358947" modified="false" name="fvr.c" path="mcc_generated_files/fvr.c"/>
+            <file checksum="3677539481" modified="false" name="fvr.h" path="mcc_generated_files/fvr.h"/>
+        </module>
         <module generated="true" mode="ADC" name="ADC" order="4" reloadPin="manual_auto" type="adc_sarcore_10bit">
             <initializer comment="" name="Initialize">
                 <setting name="GO_nDONE" option="stop" register="ADCON0"/>
                 <setting name="ADON" option="enabled" register="ADCON0"/>
                 <setting name="CHS" option="AN0" register="ADCON0"/>
                 <setting name="ADFM" option="right" register="ADCON1"/>
-                <setting name="ADPREF" option="VDD" register="ADCON1"/>
+                <setting name="ADPREF" option="FVR" register="ADCON1"/>
                 <setting name="ADCS" option="FOSC/64" register="ADCON1"/>
                 <setting name="ADRESL" option="0x0" register="ADRESL"/>
                 <setting name="ADRESH" option="0x0" register="ADRESH"/>
             </initializer>
             <setting name="ADI" option="false"/>
             <resource customName="ADC" function="AN11" name="RB4" type="pin"/>
-            <file checksum="698674867" modified="false" name="adc.c" path="mcc_generated_files/adc.c"/>
+            <file checksum="2150231750" modified="false" name="adc.c" path="mcc_generated_files/adc.c"/>
             <file checksum="3922828542" modified="false" name="adc.h" path="mcc_generated_files/adc.h"/>
         </module>
         <module generated="true" mode="Timer" name="TMR0" order="5" reloadPin="manual" type="tmr_0">

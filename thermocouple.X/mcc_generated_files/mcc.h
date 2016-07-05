@@ -56,6 +56,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "memory.h"
 #include "adc.h"
 #include "tmr0.h"
+#include "fvr.h"
 
 #define _XTAL_FREQ  16000000
 

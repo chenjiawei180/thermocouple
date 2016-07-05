@@ -57,13 +57,13 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #endif
 #include <stdio.h>
 #include <string.h>
-#define BAT_V 481
+#define BAT_V 800
 
 /*
                          Main application
  */
 void main(void) {
-    unsigned char a[10] = {0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01};
+    //unsigned char a[10] = {0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01,0x01};
     unsigned char i=0;
     //a[0]=0x51;a[1]=0x00;a[2]=0x00;a[3]=0x00;a[4]=0x00;
     unsigned int  bat_data = 0;
@@ -74,13 +74,20 @@ void main(void) {
     else POWER_SetLow();
     LED1_SetLow();
 
-#if 0
-    bat_data = ADC_GetConversion(ADC);
-    if( bat_data <BAT_V)
+#if 1
+    bat_data = 0;
+    for(i=0;i<16;i++)
+    {
+        bat_data = bat_data + ADC_GetConversion(ADC);
+    }
+    bat_data = bat_data>>4;
+    if( bat_data < BAT_V)
     {
          POWER_SetLow();
 	  while(1);
     }
+    i = 0 ;
+    bat_data = 0 ;
 #endif
     //LED2_SetLow();
     maxim_31856_init();
@@ -94,6 +101,7 @@ void main(void) {
     WriteAll_1621(0,Dis_TAB+17,4);	//0：(起始地址)高6位有效，a：(写入数据的起始地址)8位 
     //开机显示4 个 - - - -  
     time_count = 0;
+    bat_data = 0;
 #if 0
     FLASH_write(0x3FFF, 0xFFFF, 0);
     data_temp = FLASH_read(0X3FFF);
@@ -126,12 +134,23 @@ void main(void) {
     // Add your application code
        // EUSART_SendString("ONE CYCLE \n\r");
 #if 1
-        bat_data = ADC_GetConversion(ADC);
-        if( bat_data < BAT_V)
-        {
-            POWER_SetLow();
-            while(1);
-        }
+        bat_data = bat_data + ADC_GetConversion(ADC);
+        i++;
+	 if(i == 16)
+	 {
+	     i = 0;
+	     bat_data = bat_data>>4;
+            if( bat_data < BAT_V)
+            {
+                POWER_SetLow();
+                while(1);
+            }
+	     bat_data = 0;
+	 }
+        
+        //EUSART_Write(bat_data>>8);
+	 //EUSART_Write(bat_data&0xff);
+
         temperature_process();
         Key_Process();
 #endif

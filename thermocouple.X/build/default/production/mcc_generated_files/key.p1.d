@@ -1,12 +1,13 @@
- build/default/production/mcc_generated_files/i2c.d  \
- build/default/production/mcc_generated_files/i2c.p1:  \
- mcc_generated_files/i2c.c  \
-mcc_generated_files/i2c.h  \
+ build/default/production/mcc_generated_files/key.d  \
+ build/default/production/mcc_generated_files/key.p1:  \
+ mcc_generated_files/key.c  \
 mcc_generated_files/fvr.h  \
+mcc_generated_files/key.h  \
 mcc_generated_files/mcc.h  \
 mcc_generated_files/global.h  \
 mcc_generated_files/adc.h  \
 mcc_generated_files/memory.h  \
+mcc_generated_files/ht1621.h  \
 mcc_generated_files/interrupt_manager.h  \
 mcc_generated_files/tmr0.h  \
 mcc_generated_files/eusart.h  \

@@ -1920,8 +1920,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 212: void TMR0_Reload(void);
 [; ;tmr0.h: 230: void TMR0_ISR(void);
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
-[; ;mcc.h: 73: void SYSTEM_Initialize(void);
-[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;mcc.h: 74: void SYSTEM_Initialize(void);
+[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
 [; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
 [; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
 [; ;string.h: 16: extern void * memset(void *, int, size_t);
@@ -2401,8 +2403,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _number `uc ~T0 @X0 1 r1 ]
 "138
 [f ]
-[v F2110 `uc ~T0 @X0 -> 4 `i s ]
-[i F2110
+[v F2114 `uc ~T0 @X0 -> 4 `i s ]
+[i F2114
 :U ..
 "139
 -> -> 0 `i `uc
@@ -2410,7 +2412,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 139: unsigned char num[4]={0};
-[e = _num F2110 ]
+[e = _num F2114 ]
 [; ;ht1621.c: 140: num[1] = Dis_TAB[0];
 "140
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2432,8 +2434,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 152: {
 [e :U _err_Display ]
 [f ]
-[v F2113 `uc ~T0 @X0 -> 4 `i s ]
-[i F2113
+[v F2117 `uc ~T0 @X0 -> 4 `i s ]
+[i F2117
 :U ..
 "153
 -> -> 0 `i `uc
@@ -2441,7 +2443,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 153: unsigned char num[4]={0};
-[e = _num F2113 ]
+[e = _num F2117 ]
 [; ;ht1621.c: 154: num[1] = Dis_TAB[0x10];
 "154
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2463,8 +2465,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 166: {
 [e :U _time_Display ]
 [f ]
-[v F2116 `uc ~T0 @X0 -> 4 `i s ]
-[i F2116
+[v F2120 `uc ~T0 @X0 -> 4 `i s ]
+[i F2120
 :U ..
 "167
 -> -> 0 `i `uc
@@ -2472,7 +2474,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 167: unsigned char num[4]={0};
-[e = _num F2116 ]
+[e = _num F2120 ]
 [; ;ht1621.c: 168: Bq32k_Rtc_Read_Time(&tm);
 "168
 [e ( _Bq32k_Rtc_Read_Time (1 &U _tm ]

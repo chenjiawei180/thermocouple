@@ -107,7 +107,9 @@ void TMR0_ISR(void) {
     INTCONbits.TMR0IF = 0;
 
     TMR0 = timer0ReloadVal;
-
+	
+    MAX31856Sec++;
+    
     // callback function - called every 200th pass
     if (++CountCallBack >= TMR0_INTERRUPT_TICKER_FACTOR) {
         // ticker function call
@@ -126,7 +128,7 @@ void TMR0_CallBack(void) {
     time_count++;
     if(time_count == 4 || time_count > 8)    time_count = 0;   // ¿ØÖÆÁ÷³Ì
     LongPressSec++;
-    MAX31856Sec++;
+    
 }
 /**
   End of File

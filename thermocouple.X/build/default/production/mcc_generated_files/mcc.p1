@@ -1,5 +1,5 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"86 mcc_generated_files/mcc.h
+"87 mcc_generated_files/mcc.h
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
 "390 mcc_generated_files/pin_manager.h
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
@@ -11,6 +11,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ADC_Initialize `(v ~T0 @X0 0 ef ]
 "104 mcc_generated_files/tmr0.h
 [v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
+"93 mcc_generated_files/fvr.h
+[v _FVR_Initialize `(v ~T0 @X0 0 ef ]
 "1501 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
 "1566
@@ -1930,8 +1932,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 212: void TMR0_Reload(void);
 [; ;tmr0.h: 230: void TMR0_ISR(void);
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
-[; ;mcc.h: 73: void SYSTEM_Initialize(void);
-[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;mcc.h: 74: void SYSTEM_Initialize(void);
+[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
 "70 mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize `(v ~T0 @X0 1 ef ]
 {
@@ -1956,23 +1960,26 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 76: TMR0_Initialize();
 "76
 [e ( _TMR0_Initialize ..  ]
-[; ;mcc.c: 77: }
+[; ;mcc.c: 77: FVR_Initialize();
 "77
+[e ( _FVR_Initialize ..  ]
+[; ;mcc.c: 78: }
+"78
 [e :UE 233 ]
 }
-"79
+"80
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 1 ef ]
 {
-[; ;mcc.c: 79: void OSCILLATOR_Initialize(void) {
+[; ;mcc.c: 80: void OSCILLATOR_Initialize(void) {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-[; ;mcc.c: 81: OSCCON = 0x78;
-"81
+[; ;mcc.c: 82: OSCCON = 0x78;
+"82
 [e = _OSCCON -> -> 120 `i `uc ]
-[; ;mcc.c: 83: OSCSTAT = 0x00;
-"83
+[; ;mcc.c: 84: OSCSTAT = 0x00;
+"84
 [e = _OSCSTAT -> -> 0 `i `uc ]
-[; ;mcc.c: 86: }
-"86
+[; ;mcc.c: 87: }
+"87
 [e :UE 234 ]
 }

@@ -1,26 +1,17 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"4523 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _RA7 `Vb ~T0 @X0 0 e@103 ]
-"4535
-[v _RB5 `Vb ~T0 @X0 0 e@109 ]
-[v F1816 `(v ~T0 @X0 1 tf1`ul ]
-"152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
-[v __delay `JF1816 ~T0 @X0 0 e ]
-[p i __delay ]
-"54 mcc_generated_files/global.h
-[v _LongPressSec `uc ~T0 @X0 0 e ]
-"4439 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _LATA2 `Vb ~T0 @X0 0 e@2146 ]
-"4441
-[v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
-"25 mcc_generated_files/ht1621.h
-[v _SendCmd_1621 `(v ~T0 @X0 0 ef1`uc ]
-"4443 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _LATA4 `Vb ~T0 @X0 0 e@2148 ]
-"51 mcc_generated_files/global.h
-[v _time_count `uc ~T0 @X0 0 e ]
-"67 mcc_generated_files/key.c
-[v _temperature_process `(i ~T0 @X0 0 ef ]
+"2023 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _FVRCON `Vuc ~T0 @X0 0 e@279 ]
+"2029
+[s S104 :2 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S104 . ADFVR . TSRNG TSEN FVRRDY FVREN ]
+"2037
+[s S105 :1 `uc 1 :1 `uc 1 ]
+[n S105 . ADFVR0 ADFVR1 ]
+"2028
+[u S103 `S104 1 `S105 1 ]
+[n S103 . . . ]
+"2042
+[v _FVRCONbits `VS103 ~T0 @X0 0 e@279 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1842,8 +1833,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 186: extern unsigned char __resetbits;
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
-[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
+[; ;stdbool.h: 12: typedef unsigned char bool;
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -1872,285 +1862,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;stdbool.h: 12: typedef unsigned char bool;
-[; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
-[; ;__size_t.h: 4: typedef unsigned size_t;
-[; ;stddef.h: 6: typedef int ptrdiff_t;
-[; ;spi.h: 117: void SPI_Initialize(void);
-[; ;spi.h: 152: uint8_t SPI_Exchange8bit(uint8_t data);
-[; ;spi.h: 192: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
-[; ;spi.h: 215: bool SPI_IsBufferFull(void);
-[; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
-[; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
-[; ;eusart.h: 95: void EUSART_Initialize(void);
-[; ;eusart.h: 115: uint8_t EUSART_Read(void);
-[; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
-[; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-[; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
-[; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
-[; ;adc.h: 72: typedef uint16_t adc_result_t;
-[; ;adc.h: 86: typedef enum {
-[; ;adc.h: 87: channel_Temp = 0x1E,
-[; ;adc.h: 88: channel_FVR = 0x1F,
-[; ;adc.h: 89: ADC = 0x0B
-[; ;adc.h: 90: } adc_channel_t;
-[; ;adc.h: 125: void ADC_Initialize(void);
-[; ;adc.h: 154: void ADC_StartConversion(adc_channel_t channel);
-[; ;adc.h: 186: bool ADC_IsConversionDone();
-[; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
-[; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;tmr0.h: 104: void TMR0_Initialize(void);
-[; ;tmr0.h: 137: uint8_t TMR0_ReadTimer(void);
-[; ;tmr0.h: 176: void TMR0_WriteTimer(uint8_t timerVal);
-[; ;tmr0.h: 212: void TMR0_Reload(void);
-[; ;tmr0.h: 230: void TMR0_ISR(void);
-[; ;tmr0.h: 248: void TMR0_CallBack(void);
 [; ;fvr.h: 93: void FVR_Initialize(void);
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
-[; ;mcc.h: 74: void SYSTEM_Initialize(void);
-[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
-[; ;global.h: 25: typedef struct bq32k_regs {
-[; ;global.h: 26: uint8_t seconds;
-[; ;global.h: 27: uint8_t minutes;
-[; ;global.h: 28: uint8_t hours;
-[; ;global.h: 29: uint8_t wday;
-[; ;global.h: 30: uint8_t date;
-[; ;global.h: 31: uint8_t month;
-[; ;global.h: 32: uint8_t years;
-[; ;global.h: 33: }bq32k_t;
-[; ;global.h: 38: extern unsigned char uch_cr0;
-[; ;global.h: 39: extern unsigned char uch_cr1;
-[; ;global.h: 40: extern unsigned char uch_mask;
-[; ;global.h: 42: extern unsigned char uch_reg[8];
-[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 44: extern unsigned long temperature_value;
-[; ;global.h: 45: extern unsigned int temperature_int;
-[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 47: extern unsigned char display_buff[4];
-[; ;global.h: 48: extern char s[64];
-[; ;global.h: 49: extern float f_cold_junction_temperature;
-[; ;global.h: 50: extern float f_linearized_tc_temperature;
-[; ;global.h: 51: extern unsigned char time_count;
-[; ;global.h: 52: extern unsigned char tmr_flag;
-[; ;global.h: 54: extern unsigned char LongPressSec;
-[; ;global.h: 55: extern unsigned char MAX31856Sec;
-[; ;global.h: 56: extern bq32k_t tm;
-[; ;key.h: 21: unsigned char Key_Scan(void);
-[; ;key.h: 22: void Key_Process(void);
-[; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
-[; ;ht1621.h: 23: void SendBit_1621(unsigned char data,unsigned char cnt);
-[; ;ht1621.h: 24: void SendDataBit_1621(unsigned char data,unsigned char cnt);
-[; ;ht1621.h: 25: void SendCmd_1621(unsigned char command);
-[; ;ht1621.h: 26: void Write_1621(unsigned char addr,unsigned char data);
-[; ;ht1621.h: 27: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-[; ;ht1621.h: 28: void Tc_Display(void);
-[; ;ht1621.h: 29: void Two_Display(unsigned char number);
-[; ;ht1621.h: 30: void err_Display(void);
-[; ;ht1621.h: 31: void time_Display(void);
-"17 mcc_generated_files/key.c
-[v _Key_Scan `(uc ~T0 @X0 1 ef ]
-"18
+"58 mcc_generated_files/fvr.c
+[v _FVR_Initialize `(v ~T0 @X0 1 ef ]
 {
-[; ;key.c: 17: unsigned char Key_Scan(void)
-[; ;key.c: 18: {
-[e :U _Key_Scan ]
+[; ;fvr.c: 58: void FVR_Initialize(void) {
+[e :U _FVR_Initialize ]
 [f ]
-"19
-[v _Key_val `uc ~T0 @X0 1 a ]
-[; ;key.c: 19: unsigned char Key_val=0xff;
-[e = _Key_val -> -> 255 `i `uc ]
-[; ;key.c: 20: if( RA7 == 0 || RB5 == 0 )
-"20
-[e $ ! || == -> _RA7 `i -> 0 `i == -> _RB5 `i -> 0 `i 235  ]
-[; ;key.c: 21: {
-"21
-{
-[; ;key.c: 22: _delay((unsigned long)((10)*(16000000/4000.0)));
-"22
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;key.c: 23: if( RA7 == 0 || RB5 == 0)
-"23
-[e $ ! || == -> _RA7 `i -> 0 `i == -> _RB5 `i -> 0 `i 236  ]
-[; ;key.c: 24: {
-"24
-{
-[; ;key.c: 25: if(RB5 == 0 ) Key_val = 0x01;
-"25
-[e $ ! == -> _RB5 `i -> 0 `i 237  ]
-[e = _Key_val -> -> 1 `i `uc ]
-[e :U 237 ]
-[; ;key.c: 26: if(RA7 == 0 ) Key_val = 0x02;
-"26
-[e $ ! == -> _RA7 `i -> 0 `i 238  ]
-[e = _Key_val -> -> 2 `i `uc ]
-[e :U 238 ]
-"27
-}
-[e :U 236 ]
-"28
-}
-[e :U 235 ]
-[; ;key.c: 27: }
-[; ;key.c: 28: }
-[; ;key.c: 29: return Key_val;
-"29
-[e ) _Key_val ]
-[e $UE 234  ]
-[; ;key.c: 30: }
-"30
-[e :UE 234 ]
-}
-"39
-[v _Key_Process `(v ~T0 @X0 1 ef ]
-"40
-{
-[; ;key.c: 39: void Key_Process(void)
-[; ;key.c: 40: {
-[e :U _Key_Process ]
-[f ]
-"41
-[v _gKeyValue `uc ~T0 @X0 1 a ]
-[; ;key.c: 41: unsigned char gKeyValue=0;
-[e = _gKeyValue -> -> 0 `i `uc ]
-[; ;key.c: 42: LongPressSec = 0;
-"42
-[e = _LongPressSec -> -> 0 `i `uc ]
-[; ;key.c: 43: gKeyValue=Key_Scan();
-"43
-[e = _gKeyValue ( _Key_Scan ..  ]
-[; ;key.c: 44: if(gKeyValue)
-"44
-[e $ ! != -> _gKeyValue `i -> -> -> 0 `i `uc `i 240  ]
-[; ;key.c: 45: {
-"45
-{
-[; ;key.c: 46: switch(gKeyValue)
-"46
-[e $U 242  ]
-[; ;key.c: 47: {
-"47
-{
-[; ;key.c: 48: case 0x01:
-"48
-[e :U 243 ]
-[; ;key.c: 49: while( !(LongPressSec > 2 || RB5 == 1) );
-"49
-[e $U 244  ]
-[e :U 245 ]
-[e :U 244 ]
-[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RB5 `i -> 1 `i 245  ]
-[e :U 246 ]
-[; ;key.c: 50: if(LongPressSec > 2)
-"50
-[e $ ! > -> _LongPressSec `i -> 2 `i 247  ]
-[; ;key.c: 51: {
-"51
-{
-[; ;key.c: 52: do { LATA2 = 0; } while(0);
-"52
-[e :U 250 ]
-{
-[e = _LATA2 -> -> 0 `i `b ]
-}
-[e :U 249 ]
-[; ;key.c: 53: do { LATA3 = 1; } while(0);
-"53
-[e :U 253 ]
-{
-[e = _LATA3 -> -> 1 `i `b ]
-}
-[e :U 252 ]
-[; ;key.c: 54: SendCmd_1621(0x04);
-"54
-[e ( _SendCmd_1621 (1 -> -> 4 `i `uc ]
-"55
-}
-[e :U 247 ]
-[; ;key.c: 55: }
-[; ;key.c: 56: while(RB5 == 0);
-"56
-[e $U 254  ]
-[e :U 255 ]
-[e :U 254 ]
-[e $ == -> _RB5 `i -> 0 `i 255  ]
-[e :U 256 ]
-[; ;key.c: 57: break;
-"57
-[e $U 241  ]
-[; ;key.c: 58: case 0x02:
-"58
-[e :U 257 ]
-[; ;key.c: 59: while( !(LongPressSec > 2 || RA7 == 1) );
-"59
-[e $U 258  ]
-[e :U 259 ]
-[e :U 258 ]
-[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RA7 `i -> 1 `i 259  ]
-[e :U 260 ]
-[; ;key.c: 60: if(LongPressSec > 2)
+[; ;fvr.c: 60: FVRCON = 0x82;
 "60
-[e $ ! > -> _LongPressSec `i -> 2 `i 261  ]
-[; ;key.c: 61: {
+[e = _FVRCON -> -> 130 `i `uc ]
+[; ;fvr.c: 61: }
 "61
-{
-[; ;key.c: 62: do { LATA4 = ~LATA4; } while(0);
-"62
-[e :U 264 ]
-{
-[e = _LATA4 -> ~ -> _LATA4 `ui `b ]
+[e :UE 233 ]
 }
-[e :U 263 ]
 "63
-}
-[; ;key.c: 63: }
-[e $U 265  ]
-"64
-[e :U 261 ]
-[; ;key.c: 64: else
-[; ;key.c: 65: {
-"65
+[v _FVR_IsOutputReady `(uc ~T0 @X0 1 ef ]
 {
-[; ;key.c: 66: time_count = 5;
-"66
-[e = _time_count -> -> 5 `i `uc ]
-[; ;key.c: 67: temperature_process();
-"67
-[e ( _temperature_process ..  ]
-"68
-}
-[e :U 265 ]
-[; ;key.c: 68: }
-[; ;key.c: 69: while(RA7 == 0);
-"69
-[e $U 266  ]
-[e :U 267 ]
-[e :U 266 ]
-[e $ == -> _RA7 `i -> 0 `i 267  ]
-[e :U 268 ]
-[; ;key.c: 70: break;
-"70
-[e $U 241  ]
-[; ;key.c: 71: default:break;
-"71
-[e :U 269 ]
-[e $U 241  ]
-"72
-}
-[; ;key.c: 72: }
-[e $U 241  ]
-"46
-[e :U 242 ]
-[e [\ _gKeyValue , $ -> -> 1 `i `uc 243
- , $ -> -> 2 `i `uc 257
- 269 ]
-"72
-[e :U 241 ]
-"73
-}
-[e :U 240 ]
-[; ;key.c: 73: }
-[; ;key.c: 74: }
-"74
-[e :UE 239 ]
+[; ;fvr.c: 63: bool FVR_IsOutputReady(void) {
+[e :U _FVR_IsOutputReady ]
+[f ]
+[; ;fvr.c: 64: return (FVRCONbits.FVRRDY);
+"64
+[e ) . . _FVRCONbits 0 4 ]
+[e $UE 234  ]
+[; ;fvr.c: 65: }
+"65
+[e :UE 234 ]
 }

@@ -14,14 +14,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S26 . . . ]
 "360
 [v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
+"55 mcc_generated_files/global.h
+[v _MAX31856Sec `uc ~T0 @X0 0 e ]
 "248 mcc_generated_files/tmr0.h
 [v _TMR0_CallBack `(v ~T0 @X0 0 ef ]
 "51 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
 "54
 [v _LongPressSec `uc ~T0 @X0 0 e ]
-"55
-[v _MAX31856Sec `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1907,8 +1907,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 186: bool ADC_IsConversionDone();
 [; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;mcc.h: 73: void SYSTEM_Initialize(void);
-[; ;mcc.h: 86: void OSCILLATOR_Initialize(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;mcc.h: 74: void SYSTEM_Initialize(void);
+[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
 [; ;global.h: 25: typedef struct bq32k_regs {
 [; ;global.h: 26: uint8_t seconds;
 [; ;global.h: 27: uint8_t minutes;
@@ -2017,8 +2019,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _TMR0_ISR ]
 [f ]
 "104
-[v F1959 `Vui ~T0 @X0 1 s CountCallBack ]
-[i F1959
+[v F1963 `Vui ~T0 @X0 1 s CountCallBack ]
+[i F1963
 -> -> 0 `i `ui
 ]
 [; ;tmr0.c: 104: static volatile unsigned int CountCallBack = 0;
@@ -2028,45 +2030,45 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 109: TMR0 = timer0ReloadVal;
 "109
 [e = _TMR0 _timer0ReloadVal ]
-[; ;tmr0.c: 112: if (++CountCallBack >= 100) {
-"112
-[e $ ! >= =+ F1959 -> -> 1 `i `ui -> -> 100 `i `ui 239  ]
-{
-[; ;tmr0.c: 114: TMR0_CallBack();
+[; ;tmr0.c: 111: MAX31856Sec++;
+"111
+[e ++ _MAX31856Sec -> -> 1 `i `uc ]
+[; ;tmr0.c: 114: if (++CountCallBack >= 100) {
 "114
+[e $ ! >= =+ F1963 -> -> 1 `i `ui -> -> 100 `i `ui 239  ]
+{
+[; ;tmr0.c: 116: TMR0_CallBack();
+"116
 [e ( _TMR0_CallBack ..  ]
-[; ;tmr0.c: 117: CountCallBack = 0;
-"117
-[e = F1959 -> -> 0 `i `ui ]
-"118
+[; ;tmr0.c: 119: CountCallBack = 0;
+"119
+[e = F1963 -> -> 0 `i `ui ]
+"120
 }
 [e :U 239 ]
-[; ;tmr0.c: 118: }
-[; ;tmr0.c: 121: }
-"121
+[; ;tmr0.c: 120: }
+[; ;tmr0.c: 123: }
+"123
 [e :UE 238 ]
 }
-"123
+"125
 [v _TMR0_CallBack `(v ~T0 @X0 1 ef ]
 {
-[; ;tmr0.c: 123: void TMR0_CallBack(void) {
+[; ;tmr0.c: 125: void TMR0_CallBack(void) {
 [e :U _TMR0_CallBack ]
 [f ]
-[; ;tmr0.c: 126: time_count++;
-"126
+[; ;tmr0.c: 128: time_count++;
+"128
 [e ++ _time_count -> -> 1 `i `uc ]
-[; ;tmr0.c: 127: if(time_count == 4 || time_count > 8) time_count = 0;
-"127
+[; ;tmr0.c: 129: if(time_count == 4 || time_count > 8) time_count = 0;
+"129
 [e $ ! || == -> _time_count `i -> 4 `i > -> _time_count `i -> 8 `i 241  ]
 [e = _time_count -> -> 0 `i `uc ]
 [e :U 241 ]
-[; ;tmr0.c: 128: LongPressSec++;
-"128
-[e ++ _LongPressSec -> -> 1 `i `uc ]
-[; ;tmr0.c: 129: MAX31856Sec++;
-"129
-[e ++ _MAX31856Sec -> -> 1 `i `uc ]
-[; ;tmr0.c: 130: }
+[; ;tmr0.c: 130: LongPressSec++;
 "130
+[e ++ _LongPressSec -> -> 1 `i `uc ]
+[; ;tmr0.c: 132: }
+"132
 [e :UE 240 ]
 }

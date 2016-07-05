@@ -2684,10 +2684,16 @@ void TMR0_ISR(void);
 # 248
 void TMR0_CallBack(void);
 
-# 73 "mcc_generated_files/mcc.h"
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
+# 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
-# 86
+# 87
 void OSCILLATOR_Initialize(void);
 
 # 65 "mcc_generated_files/adc.c"
@@ -2698,7 +2704,7 @@ void ADC_Initialize(void) {
 ADCON0 = 0x01;
 
 
-ADCON1 = 0xE0;
+ADCON1 = 0xE3;
 
 
 ADRESL = 0x00;
