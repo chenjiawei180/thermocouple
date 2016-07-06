@@ -1,18 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"90 mcc_generated_files/FLash.h
-[v _FLASH_erase `(v ~T0 @X0 0 ef1`ui ]
-"82
-[v _FLASH_write `(v ~T0 @X0 0 ef3`ui`ui`uc ]
-"2370 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[s S125 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S125 . RD WR WREN WRERR FREE LWLO CFGS ]
-"2369
-[u S124 `S125 1 ]
-[n S124 . . ]
-"2380
-[v _PMCON1bits `VS124 ~T0 @X0 0 e@405 ]
-"53 mcc_generated_files/FLash.h
-[v _FLASH_read `(ui ~T0 @X0 0 ef1`ui ]
+"62 mcc_generated_files/global.h
+[v _Record_flag `uc ~T0 @X0 0 e ]
+"4443 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _LATA4 `Vb ~T0 @X0 0 e@2148 ]
+"99 mcc_generated_files/memory.h
+[v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ui ]
+"68 mcc_generated_files/global.h
+[v _Cur_Save_Index `ui ~T0 @X0 0 e ]
+"128 mcc_generated_files/memory.h
+[v _FLASH_WriteWord `(v ~T0 @X0 0 ef3`ui`*ui`ui ]
+"60 mcc_generated_files/global.h
+[v _Flash_buff `ui ~T0 @X0 -> 0 `x e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1834,147 +1832,261 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 186: extern unsigned char __resetbits;
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
-[; ;FLash.h: 53: unsigned FLASH_read( unsigned address);
-[; ;FLash.h: 62: unsigned FLASH_readConfig( unsigned address);
-[; ;FLash.h: 71: void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
-[; ;FLash.h: 82: void FLASH_write( unsigned address, unsigned data, char latch);
-[; ;FLash.h: 90: void FLASH_erase( unsigned address);
-[; ;HEFLash.h: 22: char HEFLASH_writeBlock( char radd, char* buffer, char count);
-[; ;HEFLash.h: 33: char HEFLASH_readBlock( char* buffer, char radd, char count);
-[; ;HEFLash.h: 43: char HEFLASH_readByte( char radd, char offset);
-"17 mcc_generated_files/HEFlash.c
-[v _HEFLASH_writeBlock `(uc ~T0 @X0 1 ef3`uc`*uc`uc ]
-"18
-{
-[; ;HEFlash.c: 17: char HEFLASH_writeBlock( char radd, char* data, char count)
-[; ;HEFlash.c: 18: {
-[e :U _HEFLASH_writeBlock ]
+[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
+[; ;stdint.h: 13: typedef signed char int8_t;
+[; ;stdint.h: 20: typedef signed int int16_t;
+[; ;stdint.h: 28: typedef signed short long int int24_t;
+[; ;stdint.h: 36: typedef signed long int int32_t;
+[; ;stdint.h: 43: typedef unsigned char uint8_t;
+[; ;stdint.h: 49: typedef unsigned int uint16_t;
+[; ;stdint.h: 56: typedef unsigned short long int uint24_t;
+[; ;stdint.h: 63: typedef unsigned long int uint32_t;
+[; ;stdint.h: 71: typedef signed char int_least8_t;
+[; ;stdint.h: 78: typedef signed int int_least16_t;
+[; ;stdint.h: 90: typedef signed short long int int_least24_t;
+[; ;stdint.h: 98: typedef signed long int int_least32_t;
+[; ;stdint.h: 105: typedef unsigned char uint_least8_t;
+[; ;stdint.h: 111: typedef unsigned int uint_least16_t;
+[; ;stdint.h: 121: typedef unsigned short long int uint_least24_t;
+[; ;stdint.h: 128: typedef unsigned long int uint_least32_t;
+[; ;stdint.h: 137: typedef signed char int_fast8_t;
+[; ;stdint.h: 144: typedef signed int int_fast16_t;
+[; ;stdint.h: 156: typedef signed short long int int_fast24_t;
+[; ;stdint.h: 164: typedef signed long int int_fast32_t;
+[; ;stdint.h: 171: typedef unsigned char uint_fast8_t;
+[; ;stdint.h: 177: typedef unsigned int uint_fast16_t;
+[; ;stdint.h: 187: typedef unsigned short long int uint_fast24_t;
+[; ;stdint.h: 194: typedef unsigned long int uint_fast32_t;
+[; ;stdint.h: 200: typedef int32_t intmax_t;
+[; ;stdint.h: 205: typedef uint32_t uintmax_t;
+[; ;stdint.h: 210: typedef int16_t intptr_t;
+[; ;stdint.h: 215: typedef uint16_t uintptr_t;
+[; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stddef.h: 6: typedef int ptrdiff_t;
+[; ;spi.h: 117: void SPI_Initialize(void);
+[; ;spi.h: 152: uint8_t SPI_Exchange8bit(uint8_t data);
+[; ;spi.h: 192: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+[; ;spi.h: 215: bool SPI_IsBufferFull(void);
+[; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
+[; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
+[; ;eusart.h: 95: void EUSART_Initialize(void);
+[; ;eusart.h: 115: uint8_t EUSART_Read(void);
+[; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
+[; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
+[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+[; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;adc.h: 72: typedef uint16_t adc_result_t;
+[; ;adc.h: 86: typedef enum {
+[; ;adc.h: 87: channel_Temp = 0x1E,
+[; ;adc.h: 88: channel_FVR = 0x1F,
+[; ;adc.h: 89: ADC = 0x0B
+[; ;adc.h: 90: } adc_channel_t;
+[; ;adc.h: 125: void ADC_Initialize(void);
+[; ;adc.h: 154: void ADC_StartConversion(adc_channel_t channel);
+[; ;adc.h: 186: bool ADC_IsConversionDone();
+[; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
+[; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[; ;tmr0.h: 104: void TMR0_Initialize(void);
+[; ;tmr0.h: 137: uint8_t TMR0_ReadTimer(void);
+[; ;tmr0.h: 176: void TMR0_WriteTimer(uint8_t timerVal);
+[; ;tmr0.h: 212: void TMR0_Reload(void);
+[; ;tmr0.h: 230: void TMR0_ISR(void);
+[; ;tmr0.h: 248: void TMR0_CallBack(void);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;mcc.h: 74: void SYSTEM_Initialize(void);
+[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
+[; ;global.h: 25: typedef struct bq32k_regs {
+[; ;global.h: 26: uint8_t seconds;
+[; ;global.h: 27: uint8_t minutes;
+[; ;global.h: 28: uint8_t hours;
+[; ;global.h: 29: uint8_t wday;
+[; ;global.h: 30: uint8_t date;
+[; ;global.h: 31: uint8_t month;
+[; ;global.h: 32: uint8_t years;
+[; ;global.h: 33: }bq32k_t;
+[; ;global.h: 41: extern unsigned char uch_cr0;
+[; ;global.h: 42: extern unsigned char uch_cr1;
+[; ;global.h: 43: extern unsigned char uch_mask;
+[; ;global.h: 45: extern unsigned char uch_reg[8];
+[; ;global.h: 46: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 47: extern unsigned long temperature_value;
+[; ;global.h: 48: extern unsigned int temperature_int;
+[; ;global.h: 49: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 50: extern unsigned char display_buff[4];
+[; ;global.h: 54: extern unsigned char time_count;
+[; ;global.h: 55: extern unsigned char tmr_flag;
+[; ;global.h: 57: extern unsigned char LongPressSec;
+[; ;global.h: 58: extern unsigned char MAX31856Sec;
+[; ;global.h: 59: extern bq32k_t rtc_tm;
+[; ;global.h: 60: extern unsigned int Flash_buff[32];
+[; ;global.h: 62: extern unsigned char Record_flag;
+[; ;global.h: 63: extern unsigned char CH1_state;
+[; ;global.h: 64: extern unsigned char CH2_state;
+[; ;global.h: 65: extern unsigned int CH1_temperature;
+[; ;global.h: 66: extern unsigned int CH2_temperature;
+[; ;global.h: 67: extern unsigned int Cur_temperature;
+[; ;global.h: 68: extern unsigned int Cur_Save_Index;
+[; ;global.h: 69: extern unsigned char Cur_temperature_time;
+[; ;save.h: 19: void Set_start_flag(void);
+[; ;save.h: 20: void Set_finish_flag(void);
+[; ;save.h: 21: void Serach_Flash_Head(void);
+[; ;save.h: 22: void Write_Flash_head(void);
+[; ;save.h: 23: void Write_Flash_finish(void);
+"16 mcc_generated_files/save.c
+[v _Set_start_flag `(v ~T0 @X0 1 ef ]
 "17
-[v _radd `uc ~T0 @X0 1 r1 ]
-[v _data `*uc ~T0 @X0 1 r2 ]
-[v _count `uc ~T0 @X0 1 r3 ]
+{
+[; ;save.c: 16: void Set_start_flag(void)
+[; ;save.c: 17: {
+[e :U _Set_start_flag ]
+[f ]
+[; ;save.c: 18: Record_flag = 1;
 "18
-[f ]
-"20
-[v _add `ui ~T0 @X0 1 a ]
-[; ;HEFlash.c: 20: unsigned add = radd * 32 + 0x3F80;
-[e = _add -> + * -> _radd `i -> 32 `i -> 16256 `i `ui ]
-[; ;HEFlash.c: 23: if ( ( count > 32) || (radd >= (0x3FFF-0x3F80+1)/32))
-"23
-[e $ ! || > -> _count `i -> 32 `i >= -> _radd `i / + - -> 16383 `i -> 16256 `i -> 1 `i -> 32 `i 234  ]
-[; ;HEFlash.c: 24: return -1;
-"24
-[e ) -> -U -> 1 `i `uc ]
-[e $UE 233  ]
-[e :U 234 ]
-[; ;HEFlash.c: 27: FLASH_erase( add);
-"27
-[e ( _FLASH_erase (1 _add ]
-[; ;HEFlash.c: 30: while( count > 1)
-"30
-[e $U 235  ]
-[e :U 236 ]
-[; ;HEFlash.c: 31: {
-"31
-{
-[; ;HEFlash.c: 33: FLASH_write( add++, (unsigned) *data++, 1);
-"33
-[e ( _FLASH_write (3 , , ++ _add -> -> 1 `i `ui -> *U ++ _data * -> -> 1 `i `x -> -> # *U _data `i `x `ui -> -> 1 `i `uc ]
-[; ;HEFlash.c: 34: count--;
-"34
-[e -- _count -> -> 1 `i `uc ]
-"35
-}
-[e :U 235 ]
-"30
-[e $ > -> _count `i -> 1 `i 236  ]
+[e = _Record_flag -> -> 1 `i `uc ]
+[; ;save.c: 19: do { LATA4 = 0; } while(0);
+"19
 [e :U 237 ]
-[; ;HEFlash.c: 35: }
-[; ;HEFlash.c: 39: FLASH_write( add, (unsigned) *data, 0);
-"39
-[e ( _FLASH_write (3 , , _add -> *U _data `ui -> -> 0 `i `uc ]
-[; ;HEFlash.c: 44: return PMCON1bits.WRERR;
-"44
-[e ) . . _PMCON1bits 0 3 ]
-[e $UE 233  ]
-[; ;HEFlash.c: 46: }
-"46
-[e :UE 233 ]
+{
+[e = _LATA4 -> -> 0 `i `b ]
 }
-"49
-[v _HEFLASH_readBlock `(uc ~T0 @X0 1 ef3`*uc`uc`uc ]
-"50
+[e :U 236 ]
+[; ;save.c: 20: }
+"20
+[e :UE 234 ]
+}
+"28
+[v _Set_finish_flag `(v ~T0 @X0 1 ef ]
+"29
 {
-[; ;HEFlash.c: 49: char HEFLASH_readBlock( char *buffer, char radd, char count)
-[; ;HEFlash.c: 50: {
-[e :U _HEFLASH_readBlock ]
-"49
-[v _buffer `*uc ~T0 @X0 1 r1 ]
-[v _radd `uc ~T0 @X0 1 r2 ]
-[v _count `uc ~T0 @X0 1 r3 ]
-"50
+[; ;save.c: 28: void Set_finish_flag(void)
+[; ;save.c: 29: {
+[e :U _Set_finish_flag ]
 [f ]
-"52
-[v _add `ui ~T0 @X0 1 a ]
-[; ;HEFlash.c: 52: unsigned add = radd * 32 + 0x3F80;
-[e = _add -> + * -> _radd `i -> 32 `i -> 16256 `i `ui ]
-[; ;HEFlash.c: 55: if ( ( count > 32) || (radd >= (0x3FFF-0x3F80+1)/32))
-"55
-[e $ ! || > -> _count `i -> 32 `i >= -> _radd `i / + - -> 16383 `i -> 16256 `i -> 1 `i -> 32 `i 239  ]
-[; ;HEFlash.c: 56: return -1;
-"56
-[e ) -> -U -> 1 `i `uc ]
-[e $UE 238  ]
-[e :U 239 ]
-[; ;HEFlash.c: 59: while ( count > 0)
-"59
-[e $U 240  ]
+[; ;save.c: 30: Record_flag = 0;
+"30
+[e = _Record_flag -> -> 0 `i `uc ]
+[; ;save.c: 31: do { LATA4 = 1; } while(0);
+"31
 [e :U 241 ]
-[; ;HEFlash.c: 60: {
-"60
 {
-[; ;HEFlash.c: 61: *buffer++ = (char) FLASH_read( add++);
-"61
-[e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x -> ( _FLASH_read (1 ++ _add -> -> 1 `i `ui `uc ]
-[; ;HEFlash.c: 62: count--;
-"62
-[e -- _count -> -> 1 `i `uc ]
-"63
+[e = _LATA4 -> -> 1 `i `b ]
 }
 [e :U 240 ]
-"59
-[e $ > -> _count `i -> 0 `i 241  ]
-[e :U 242 ]
-[; ;HEFlash.c: 63: }
-[; ;HEFlash.c: 66: return 0;
-"66
-[e ) -> -> 0 `i `uc ]
-[e $UE 238  ]
-[; ;HEFlash.c: 67: }
-"67
+[; ;save.c: 32: }
+"32
 [e :UE 238 ]
 }
-"70
-[v _HEFLASH_readByte `(uc ~T0 @X0 1 ef2`uc`uc ]
-"71
+"40
+[v _Serach_Flash_Head `(v ~T0 @X0 1 ef ]
+"41
 {
-[; ;HEFlash.c: 70: char HEFLASH_readByte( char radd, char offset)
-[; ;HEFlash.c: 71: {
-[e :U _HEFLASH_readByte ]
-"70
-[v _radd `uc ~T0 @X0 1 r1 ]
-[v _offset `uc ~T0 @X0 1 r2 ]
-"71
+[; ;save.c: 40: void Serach_Flash_Head(void)
+[; ;save.c: 41: {
+[e :U _Serach_Flash_Head ]
 [f ]
-"73
-[v _add `ui ~T0 @X0 1 a ]
-[; ;HEFlash.c: 73: unsigned add = radd * 32 + 0x3F80 + offset;
-[e = _add -> + + * -> _radd `i -> 32 `i -> 16256 `i -> _offset `i `ui ]
-[; ;HEFlash.c: 76: return (char) FLASH_read( add);
+"42
+[v _i `ui ~T0 @X0 1 a ]
+[; ;save.c: 42: unsigned int i=0;
+[e = _i -> -> 0 `i `ui ]
+"43
+[v _data `ui ~T0 @X0 1 a ]
+[; ;save.c: 43: unsigned int data=0;
+[e = _data -> -> 0 `i `ui ]
+[; ;save.c: 44: for(i = 0x2000; i<16384;i++ )
+"44
+{
+[e = _i -> -> 8192 `i `ui ]
+[e $ < _i -> -> 16384 `i `ui 243  ]
+[e $U 244  ]
+"45
+[e :U 243 ]
+[; ;save.c: 45: {
+{
+[; ;save.c: 46: data = FLASH_ReadWord(i);
+"46
+[e = _data ( _FLASH_ReadWord (1 _i ]
+[; ;save.c: 47: if( data == 0x3fff)
+"47
+[e $ ! == _data -> -> 16383 `i `ui 246  ]
+[; ;save.c: 48: {
+"48
+{
+[; ;save.c: 49: i++;
+"49
+[e ++ _i -> -> 1 `i `ui ]
+[; ;save.c: 50: Cur_Save_Index = i;
+"50
+[e = _Cur_Save_Index _i ]
+[; ;save.c: 51: break;
+"51
+[e $U 244  ]
+"52
+}
+[e :U 246 ]
+"53
+}
+"44
+[e ++ _i -> -> 1 `i `ui ]
+[e $ < _i -> -> 16384 `i `ui 243  ]
+[e :U 244 ]
+"53
+}
+[; ;save.c: 52: }
+[; ;save.c: 53: }
+[; ;save.c: 54: }
+"54
+[e :UE 242 ]
+}
+"62
+[v _Write_Flash_head `(v ~T0 @X0 1 ef ]
+"63
+{
+[; ;save.c: 62: void Write_Flash_head(void)
+[; ;save.c: 63: {
+[e :U _Write_Flash_head ]
+[f ]
+[; ;save.c: 64: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAA);
+"64
+[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> -> 170 `i `ui ]
+[; ;save.c: 65: Cur_Save_Index++;
+"65
+[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
+[; ;save.c: 66: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAA);
+"66
+[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> -> 170 `i `ui ]
+[; ;save.c: 67: Cur_Save_Index++;
+"67
+[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
+[; ;save.c: 68: }
+"68
+[e :UE 247 ]
+}
 "76
-[e ) -> ( _FLASH_read (1 _add `uc ]
-[e $UE 243  ]
-[; ;HEFlash.c: 77: }
+[v _Write_Flash_finish `(v ~T0 @X0 1 ef ]
 "77
-[e :UE 243 ]
+{
+[; ;save.c: 76: void Write_Flash_finish(void)
+[; ;save.c: 77: {
+[e :U _Write_Flash_finish ]
+[f ]
+[; ;save.c: 78: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x55);
+"78
+[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> -> 85 `i `ui ]
+[; ;save.c: 79: Cur_Save_Index++;
+"79
+[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
+[; ;save.c: 80: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x55);
+"80
+[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> -> 85 `i `ui ]
+[; ;save.c: 81: Cur_Save_Index++;
+"81
+[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
+[; ;save.c: 82: }
+"82
+[e :UE 248 ]
 }

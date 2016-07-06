@@ -16,6 +16,7 @@ extern "C" {
 #include "i2c.h"
 #include "global.h"
 
+
 #define I2C_ADD 0XD0 
 
 #define BQ32K_SECONDS		0x00	/* Seconds register address */
@@ -40,6 +41,7 @@ void Bq32k_Rtc_Write_Time(bq32k_t *p);
 
 unsigned char bcd2bin(unsigned char val);
 unsigned char bin2bcd(unsigned char val);
+
 
 #ifdef	__cplusplus
 }

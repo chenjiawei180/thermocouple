@@ -165,12 +165,14 @@ void err_Display(void)
 void time_Display(void)
 {
     unsigned char num[4]={0};
-    Bq32k_Rtc_Read_Time(&tm);
-    num[0] = Dis_TAB[tm.hours / 10];
-    num[1] = Dis_TAB[tm.hours % 10];
-    num[2] = Dis_TAB[tm.minutes / 10];
-    num[3] = Dis_TAB[tm.minutes % 10];
+    Bq32k_Rtc_Read_Time(&rtc_tm);
+    num[0] = Dis_TAB[rtc_tm.hours / 10];
+    num[0] |= 0x08;
+    num[1] = Dis_TAB[rtc_tm.hours % 10];
+    num[2] = Dis_TAB[rtc_tm.minutes / 10];
+    num[3] = Dis_TAB[rtc_tm.minutes % 10];
     WriteAll_1621(0, num, 4);
+
 }
 
 

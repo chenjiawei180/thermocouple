@@ -2707,9 +2707,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-
-
-
+# 41
  unsigned char uch_cr0;
  unsigned char uch_cr1;
  unsigned char uch_mask;
@@ -2720,15 +2718,25 @@ uint8_t years;
  unsigned int temperature_int;
  unsigned char temperature_decimal,temperature_sign;
  unsigned char display_buff[4];
- char s[64];
- float f_cold_junction_temperature;
- float f_linearized_tc_temperature;
+
+
+
  unsigned char time_count;
  unsigned char tmr_flag;
 
  unsigned char LongPressSec;
  unsigned char MAX31856Sec;
- bq32k_t tm;
+ bq32k_t rtc_tm;
+ unsigned int Flash_buff[32];
+
+ unsigned char Record_flag;
+ unsigned char CH1_state;
+ unsigned char CH2_state;
+ unsigned int CH1_temperature;
+ unsigned int CH2_temperature;
+ unsigned int Cur_temperature;
+ unsigned int Cur_Save_Index;
+ unsigned char Cur_temperature_time;
 
 # 82 "mcc_generated_files/max31856.h"
 void maxim_31856_init(void);
@@ -2760,30 +2768,6 @@ void Two_Display(unsigned char number);
 void err_Display(void);
 void time_Display(void);
 
-# 53 "mcc_generated_files/FLash.h"
-unsigned FLASH_read( unsigned address);
-
-# 62
-unsigned FLASH_readConfig( unsigned address);
-
-# 71
-void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
-
-# 82
-void FLASH_write( unsigned address, unsigned data, char latch);
-
-# 90
-void FLASH_erase( unsigned address);
-
-# 22 "mcc_generated_files/HEFLash.h"
-char HEFLASH_writeBlock( char radd, char* buffer, char count);
-
-# 33
-char HEFLASH_readBlock( char* buffer, char radd, char count);
-
-# 43
-char HEFLASH_readByte( char radd, char offset);
-
 # 23 "mcc_generated_files/i2c.h"
 void I2C_Start(void);
 unsigned char I2C_Send_Byte(unsigned char Data);
@@ -2792,13 +2776,20 @@ void I2C_Stop(void);
 unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
 unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
 
-# 37 "mcc_generated_files/bq32k.h"
+# 38 "mcc_generated_files/bq32k.h"
 void Bq32k_Time_Init(void);
 void Bq32k_Rtc_Read_Time(bq32k_t *p);
 void Bq32k_Rtc_Write_Time(bq32k_t *p);
 
 unsigned char bcd2bin(unsigned char val);
 unsigned char bin2bcd(unsigned char val);
+
+# 19 "mcc_generated_files/save.h"
+void Set_start_flag(void);
+void Set_finish_flag(void);
+void Serach_Flash_Head(void);
+void Write_Flash_head(void);
+void Write_Flash_finish(void);
 
 # 17 "mcc_generated_files/debug.h"
 void EUSART_SendString(char *s);
@@ -2906,6 +2897,7 @@ void main(void) {
 unsigned char i=0;
 
 unsigned int bat_data = 0;
+unsigned int data_temp = 0;
 
 SYSTEM_Initialize();
 _delay((unsigned long)((3000)*(16000000/4000.0)));
@@ -2940,17 +2932,24 @@ SendCmd_1621(0x06);
 WriteAll_1621(0,Dis_TAB+17,4);
 
 time_count = 0;
+Record_flag = 0;
+Cur_temperature_time = 0;
 bat_data = 0;
+Cur_Save_Index = 0x2000;
+Serach_Flash_Head();
+EUSART_Write(Cur_Save_Index>>8);
+EUSART_Write(Cur_Save_Index&0XFF);
 
-# 121
+# 135
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 132
+# 146
 while (1)
 {
+
 
 
 
@@ -2974,7 +2973,7 @@ bat_data = 0;
 temperature_process();
 Key_Process();
 
-# 241
+# 256
 }
 }
 

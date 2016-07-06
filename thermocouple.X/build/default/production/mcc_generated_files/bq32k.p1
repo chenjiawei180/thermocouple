@@ -6,9 +6,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _I2C_Send_Buffer `(uc ~T0 @X0 0 ef3`uc`*uc`uc ]
 "27
 [v _I2C_Read_Buffer `(uc ~T0 @X0 0 ef3`uc`*uc`uc ]
-"41 mcc_generated_files/bq32k.h
+"42 mcc_generated_files/bq32k.h
 [v _bcd2bin `(uc ~T0 @X0 0 ef1`uc ]
-"42
+"43
 [v _bin2bcd `(uc ~T0 @X0 0 ef1`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1908,34 +1908,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 31: uint8_t month;
 [; ;global.h: 32: uint8_t years;
 [; ;global.h: 33: }bq32k_t;
-[; ;global.h: 38: extern unsigned char uch_cr0;
-[; ;global.h: 39: extern unsigned char uch_cr1;
-[; ;global.h: 40: extern unsigned char uch_mask;
-[; ;global.h: 42: extern unsigned char uch_reg[8];
-[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 44: extern unsigned long temperature_value;
-[; ;global.h: 45: extern unsigned int temperature_int;
-[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 47: extern unsigned char display_buff[4];
-[; ;global.h: 48: extern char s[64];
-[; ;global.h: 49: extern float f_cold_junction_temperature;
-[; ;global.h: 50: extern float f_linearized_tc_temperature;
-[; ;global.h: 51: extern unsigned char time_count;
-[; ;global.h: 52: extern unsigned char tmr_flag;
-[; ;global.h: 54: extern unsigned char LongPressSec;
-[; ;global.h: 55: extern unsigned char MAX31856Sec;
-[; ;global.h: 56: extern bq32k_t tm;
+[; ;global.h: 41: extern unsigned char uch_cr0;
+[; ;global.h: 42: extern unsigned char uch_cr1;
+[; ;global.h: 43: extern unsigned char uch_mask;
+[; ;global.h: 45: extern unsigned char uch_reg[8];
+[; ;global.h: 46: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 47: extern unsigned long temperature_value;
+[; ;global.h: 48: extern unsigned int temperature_int;
+[; ;global.h: 49: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 50: extern unsigned char display_buff[4];
+[; ;global.h: 54: extern unsigned char time_count;
+[; ;global.h: 55: extern unsigned char tmr_flag;
+[; ;global.h: 57: extern unsigned char LongPressSec;
+[; ;global.h: 58: extern unsigned char MAX31856Sec;
+[; ;global.h: 59: extern bq32k_t rtc_tm;
+[; ;global.h: 60: extern unsigned int Flash_buff[32];
+[; ;global.h: 62: extern unsigned char Record_flag;
+[; ;global.h: 63: extern unsigned char CH1_state;
+[; ;global.h: 64: extern unsigned char CH2_state;
+[; ;global.h: 65: extern unsigned int CH1_temperature;
+[; ;global.h: 66: extern unsigned int CH2_temperature;
+[; ;global.h: 67: extern unsigned int Cur_temperature;
+[; ;global.h: 68: extern unsigned int Cur_Save_Index;
+[; ;global.h: 69: extern unsigned char Cur_temperature_time;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
 [; ;i2c.h: 26: void I2C_Stop(void);
 [; ;i2c.h: 27: unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
 [; ;i2c.h: 28: unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
-[; ;bq32k.h: 37: void Bq32k_Time_Init(void);
-[; ;bq32k.h: 38: void Bq32k_Rtc_Read_Time(bq32k_t *p);
-[; ;bq32k.h: 39: void Bq32k_Rtc_Write_Time(bq32k_t *p);
-[; ;bq32k.h: 41: unsigned char bcd2bin(unsigned char val);
-[; ;bq32k.h: 42: unsigned char bin2bcd(unsigned char val);
+[; ;bq32k.h: 38: void Bq32k_Time_Init(void);
+[; ;bq32k.h: 39: void Bq32k_Rtc_Read_Time(bq32k_t *p);
+[; ;bq32k.h: 40: void Bq32k_Rtc_Write_Time(bq32k_t *p);
+[; ;bq32k.h: 42: unsigned char bcd2bin(unsigned char val);
+[; ;bq32k.h: 43: unsigned char bin2bcd(unsigned char val);
 [; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
 [; ;ht1621.h: 23: void SendBit_1621(unsigned char data,unsigned char cnt);
 [; ;ht1621.h: 24: void SendDataBit_1621(unsigned char data,unsigned char cnt);
@@ -1956,8 +1962,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 "19
 [v _time `S233 ~T0 @X0 1 a ]
-[v F2009 `uc ~T0 @X0 -> 10 `i s ]
-[i F2009
+[v F2015 `uc ~T0 @X0 -> 10 `i s ]
+[i F2015
 :U ..
 "20
 -> -> 1 `i `uc
@@ -1972,7 +1978,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _temp `uc ~T0 @X0 -> 10 `i a ]
 [; ;bq32k.c: 19: bq32k_t time;
 [; ;bq32k.c: 20: unsigned char temp[10] = { 0x01,0x40,0x14,0x02,0x04,0x07,0x16 };
-[e = _temp F2009 ]
+[e = _temp F2015 ]
 [; ;bq32k.c: 21: I2C_Send_Buffer(0, temp, 7);
 "21
 [e ( _I2C_Send_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]

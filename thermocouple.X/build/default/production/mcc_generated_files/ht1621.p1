@@ -9,22 +9,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i __delay ]
 "4467 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATC0 `Vb ~T0 @X0 0 e@2160 ]
-"45 mcc_generated_files/global.h
+"48 mcc_generated_files/global.h
 [v _temperature_int `ui ~T0 @X0 0 e ]
 "16 D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h
 [v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
-"47 mcc_generated_files/global.h
+"50 mcc_generated_files/global.h
 [v _display_buff `uc ~T0 @X0 -> 0 `x e ]
-"46
+"49
 [v _temperature_sign `uc ~T0 @X0 0 e ]
 [v _temperature_decimal `uc ~T0 @X0 0 e ]
 "25
 [s S233 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S233 bq32k_regs seconds minutes hours wday date month years ]
-"38 mcc_generated_files/bq32k.h
+"39 mcc_generated_files/bq32k.h
 [v _Bq32k_Rtc_Read_Time `(v ~T0 @X0 0 ef1`*S233 ]
-"56 mcc_generated_files/global.h
-[v _tm `S233 ~T0 @X0 0 e ]
+"59 mcc_generated_files/global.h
+[v _rtc_tm `S233 ~T0 @X0 0 e ]
 [; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
 [; ;ht1621.h: 23: void SendBit_1621(unsigned char data,unsigned char cnt);
 [; ;ht1621.h: 24: void SendDataBit_1621(unsigned char data,unsigned char cnt);
@@ -1960,34 +1960,40 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 31: uint8_t month;
 [; ;global.h: 32: uint8_t years;
 [; ;global.h: 33: }bq32k_t;
-[; ;global.h: 38: extern unsigned char uch_cr0;
-[; ;global.h: 39: extern unsigned char uch_cr1;
-[; ;global.h: 40: extern unsigned char uch_mask;
-[; ;global.h: 42: extern unsigned char uch_reg[8];
-[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 44: extern unsigned long temperature_value;
-[; ;global.h: 45: extern unsigned int temperature_int;
-[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 47: extern unsigned char display_buff[4];
-[; ;global.h: 48: extern char s[64];
-[; ;global.h: 49: extern float f_cold_junction_temperature;
-[; ;global.h: 50: extern float f_linearized_tc_temperature;
-[; ;global.h: 51: extern unsigned char time_count;
-[; ;global.h: 52: extern unsigned char tmr_flag;
-[; ;global.h: 54: extern unsigned char LongPressSec;
-[; ;global.h: 55: extern unsigned char MAX31856Sec;
-[; ;global.h: 56: extern bq32k_t tm;
+[; ;global.h: 41: extern unsigned char uch_cr0;
+[; ;global.h: 42: extern unsigned char uch_cr1;
+[; ;global.h: 43: extern unsigned char uch_mask;
+[; ;global.h: 45: extern unsigned char uch_reg[8];
+[; ;global.h: 46: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 47: extern unsigned long temperature_value;
+[; ;global.h: 48: extern unsigned int temperature_int;
+[; ;global.h: 49: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 50: extern unsigned char display_buff[4];
+[; ;global.h: 54: extern unsigned char time_count;
+[; ;global.h: 55: extern unsigned char tmr_flag;
+[; ;global.h: 57: extern unsigned char LongPressSec;
+[; ;global.h: 58: extern unsigned char MAX31856Sec;
+[; ;global.h: 59: extern bq32k_t rtc_tm;
+[; ;global.h: 60: extern unsigned int Flash_buff[32];
+[; ;global.h: 62: extern unsigned char Record_flag;
+[; ;global.h: 63: extern unsigned char CH1_state;
+[; ;global.h: 64: extern unsigned char CH2_state;
+[; ;global.h: 65: extern unsigned int CH1_temperature;
+[; ;global.h: 66: extern unsigned int CH2_temperature;
+[; ;global.h: 67: extern unsigned int Cur_temperature;
+[; ;global.h: 68: extern unsigned int Cur_Save_Index;
+[; ;global.h: 69: extern unsigned char Cur_temperature_time;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
 [; ;i2c.h: 26: void I2C_Stop(void);
 [; ;i2c.h: 27: unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
 [; ;i2c.h: 28: unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
-[; ;bq32k.h: 37: void Bq32k_Time_Init(void);
-[; ;bq32k.h: 38: void Bq32k_Rtc_Read_Time(bq32k_t *p);
-[; ;bq32k.h: 39: void Bq32k_Rtc_Write_Time(bq32k_t *p);
-[; ;bq32k.h: 41: unsigned char bcd2bin(unsigned char val);
-[; ;bq32k.h: 42: unsigned char bin2bcd(unsigned char val);
+[; ;bq32k.h: 38: void Bq32k_Time_Init(void);
+[; ;bq32k.h: 39: void Bq32k_Rtc_Read_Time(bq32k_t *p);
+[; ;bq32k.h: 40: void Bq32k_Rtc_Write_Time(bq32k_t *p);
+[; ;bq32k.h: 42: unsigned char bcd2bin(unsigned char val);
+[; ;bq32k.h: 43: unsigned char bin2bcd(unsigned char val);
 "14 mcc_generated_files/ht1621.c
 [v _Dis_TAB `Cuc ~T0 @X0 -> 0 `x e ]
 [i _Dis_TAB
@@ -2403,8 +2409,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _number `uc ~T0 @X0 1 r1 ]
 "138
 [f ]
-[v F2114 `uc ~T0 @X0 -> 4 `i s ]
-[i F2114
+[v F2120 `uc ~T0 @X0 -> 4 `i s ]
+[i F2120
 :U ..
 "139
 -> -> 0 `i `uc
@@ -2412,7 +2418,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 139: unsigned char num[4]={0};
-[e = _num F2114 ]
+[e = _num F2120 ]
 [; ;ht1621.c: 140: num[1] = Dis_TAB[0];
 "140
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2434,8 +2440,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 152: {
 [e :U _err_Display ]
 [f ]
-[v F2117 `uc ~T0 @X0 -> 4 `i s ]
-[i F2117
+[v F2123 `uc ~T0 @X0 -> 4 `i s ]
+[i F2123
 :U ..
 "153
 -> -> 0 `i `uc
@@ -2443,7 +2449,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 153: unsigned char num[4]={0};
-[e = _num F2117 ]
+[e = _num F2123 ]
 [; ;ht1621.c: 154: num[1] = Dis_TAB[0x10];
 "154
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2465,8 +2471,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 166: {
 [e :U _time_Display ]
 [f ]
-[v F2120 `uc ~T0 @X0 -> 4 `i s ]
-[i F2120
+[v F2126 `uc ~T0 @X0 -> 4 `i s ]
+[i F2126
 :U ..
 "167
 -> -> 0 `i `uc
@@ -2474,26 +2480,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 167: unsigned char num[4]={0};
-[e = _num F2120 ]
-[; ;ht1621.c: 168: Bq32k_Rtc_Read_Time(&tm);
+[e = _num F2126 ]
+[; ;ht1621.c: 168: Bq32k_Rtc_Read_Time(&rtc_tm);
 "168
-[e ( _Bq32k_Rtc_Read_Time (1 &U _tm ]
-[; ;ht1621.c: 169: num[0] = Dis_TAB[tm.hours / 10];
+[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
+[; ;ht1621.c: 169: num[0] = Dis_TAB[rtc_tm.hours / 10];
 "169
-[e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 170: num[1] = Dis_TAB[tm.hours % 10];
+[e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 170: num[0] |= 0x08;
 "170
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 171: num[2] = Dis_TAB[tm.minutes / 10];
+[e =| *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux -> -> 8 `i `uc ]
+[; ;ht1621.c: 171: num[1] = Dis_TAB[rtc_tm.hours % 10];
 "171
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 172: num[3] = Dis_TAB[tm.minutes % 10];
+[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 172: num[2] = Dis_TAB[rtc_tm.minutes / 10];
 "172
-[e = *U + &U _num * -> -> -> 3 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 173: WriteAll_1621(0, num, 4);
+[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 173: num[3] = Dis_TAB[rtc_tm.minutes % 10];
 "173
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 174: }
+[e = *U + &U _num * -> -> -> 3 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 174: WriteAll_1621(0, num, 4);
 "174
+[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
+[; ;ht1621.c: 176: }
+"176
 [e :UE 310 ]
 }

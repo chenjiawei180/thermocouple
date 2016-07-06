@@ -7,6 +7,7 @@
 
 #include "key.h"
 #include "ht1621.h"
+#include "save.h"
 
 /**
   * @brief  This function is Key scan.
@@ -59,7 +60,14 @@ void Key_Process(void)
                 while(  !(LongPressSec > 2 || KEY2_GetValue() == 1) ); //ÅÐ¶Ï³¤°´¶Ì°´
                 if(LongPressSec > 2)
                 {
-                    LED2_Toggle();
+		      if(Record_flag == 0) 
+		      {
+                        Set_start_flag();
+		      }
+		      else 
+		      {
+                        Set_finish_flag();
+		      }
                 }
                 else
                 {

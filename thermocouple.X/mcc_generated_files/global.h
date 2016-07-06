@@ -32,8 +32,11 @@ typedef struct bq32k_regs {
 	uint8_t		years;
 }bq32k_t;
 
+
 // ALL Global Variables Add to here.
 // such as OS_EXT unsigned char data;
+
+#define Record_Add 0x2000
 
 OS_EXT unsigned char uch_cr0;
 OS_EXT unsigned char uch_cr1;
@@ -45,15 +48,26 @@ OS_EXT unsigned long temperature_value;
 OS_EXT unsigned int temperature_int;
 OS_EXT unsigned char temperature_decimal,temperature_sign;
 OS_EXT unsigned char display_buff[4];
-OS_EXT char s[64];
-OS_EXT float  f_cold_junction_temperature;
-OS_EXT float  f_linearized_tc_temperature;
+//OS_EXT char s[64];
+//OS_EXT float  f_cold_junction_temperature;
+//OS_EXT float  f_linearized_tc_temperature;
 OS_EXT unsigned char time_count;
 OS_EXT unsigned char tmr_flag;
 
 OS_EXT unsigned char LongPressSec;
 OS_EXT unsigned char MAX31856Sec;
-OS_EXT bq32k_t tm;
+OS_EXT bq32k_t rtc_tm;
+OS_EXT unsigned int Flash_buff[32];
+
+OS_EXT unsigned char Record_flag;
+OS_EXT unsigned char CH1_state;
+OS_EXT unsigned char CH2_state;
+OS_EXT unsigned int CH1_temperature;
+OS_EXT unsigned int CH2_temperature;
+OS_EXT unsigned int Cur_temperature;
+OS_EXT unsigned int Cur_Save_Index;
+OS_EXT unsigned char Cur_temperature_time;
+
 
 #ifdef	__cplusplus
 }

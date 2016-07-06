@@ -5,38 +5,48 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SPI_Exchange8bit `(uc ~T0 @X0 0 ef1`uc ]
 "192
 [v _SPI_Exchange8bitBuffer `(uc ~T0 @X0 0 ef3`*uc`uc`*uc ]
-"38 mcc_generated_files/global.h
+"41 mcc_generated_files/global.h
 [v _uch_cr0 `uc ~T0 @X0 0 e ]
-"39
+"42
 [v _uch_cr1 `uc ~T0 @X0 0 e ]
-"40
-[v _uch_mask `uc ~T0 @X0 0 e ]
-"44
-[v _temperature_value `ul ~T0 @X0 0 e ]
 "43
+[v _uch_mask `uc ~T0 @X0 0 e ]
+"47
+[v _temperature_value `ul ~T0 @X0 0 e ]
+"46
 [v _uch_ltcbh `uc ~T0 @X0 0 e ]
 [v _uch_ltcbm `uc ~T0 @X0 0 e ]
-"46
+"54
+[v _time_count `uc ~T0 @X0 0 e ]
+"65
+[v _CH1_temperature `ui ~T0 @X0 0 e ]
+"66
+[v _CH2_temperature `ui ~T0 @X0 0 e ]
+"49
 [v _temperature_sign `uc ~T0 @X0 0 e ]
-"45
+"48
 [v _temperature_int `ui ~T0 @X0 0 e ]
-"46
+"49
 [v _temperature_decimal `uc ~T0 @X0 0 e ]
-"55
+"58
 [v _MAX31856Sec `uc ~T0 @X0 0 e ]
 "4531 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _RB3 `Vb ~T0 @X0 0 e@107 ]
-"43 mcc_generated_files/global.h
+"46 mcc_generated_files/global.h
 [v _uch_sr `uc ~T0 @X0 0 e ]
-"42
+"45
 [v _uch_reg `uc ~T0 @X0 -> 0 `x e ]
-"43
+"46
 [v _uch_cjth `uc ~T0 @X0 0 e ]
 [v _uch_cjtl `uc ~T0 @X0 0 e ]
 [v _uch_ltcbl `uc ~T0 @X0 0 e ]
 "28 mcc_generated_files/ht1621.h
 [v _Tc_Display `(v ~T0 @X0 0 ef ]
-"30
+"63 mcc_generated_files/global.h
+[v _CH1_state `uc ~T0 @X0 0 e ]
+"64
+[v _CH2_state `uc ~T0 @X0 0 e ]
+"30 mcc_generated_files/ht1621.h
 [v _err_Display `(v ~T0 @X0 0 ef ]
 "29
 [v _Two_Display `(v ~T0 @X0 0 ef1`uc ]
@@ -46,8 +56,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATA0 `Vb ~T0 @X0 0 e@2144 ]
 "31 mcc_generated_files/ht1621.h
 [v _time_Display `(v ~T0 @X0 0 ef ]
-"51 mcc_generated_files/global.h
-[v _time_count `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1946,23 +1954,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 31: uint8_t month;
 [; ;global.h: 32: uint8_t years;
 [; ;global.h: 33: }bq32k_t;
-[; ;global.h: 38: extern unsigned char uch_cr0;
-[; ;global.h: 39: extern unsigned char uch_cr1;
-[; ;global.h: 40: extern unsigned char uch_mask;
-[; ;global.h: 42: extern unsigned char uch_reg[8];
-[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 44: extern unsigned long temperature_value;
-[; ;global.h: 45: extern unsigned int temperature_int;
-[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 47: extern unsigned char display_buff[4];
-[; ;global.h: 48: extern char s[64];
-[; ;global.h: 49: extern float f_cold_junction_temperature;
-[; ;global.h: 50: extern float f_linearized_tc_temperature;
-[; ;global.h: 51: extern unsigned char time_count;
-[; ;global.h: 52: extern unsigned char tmr_flag;
-[; ;global.h: 54: extern unsigned char LongPressSec;
-[; ;global.h: 55: extern unsigned char MAX31856Sec;
-[; ;global.h: 56: extern bq32k_t tm;
+[; ;global.h: 41: extern unsigned char uch_cr0;
+[; ;global.h: 42: extern unsigned char uch_cr1;
+[; ;global.h: 43: extern unsigned char uch_mask;
+[; ;global.h: 45: extern unsigned char uch_reg[8];
+[; ;global.h: 46: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 47: extern unsigned long temperature_value;
+[; ;global.h: 48: extern unsigned int temperature_int;
+[; ;global.h: 49: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 50: extern unsigned char display_buff[4];
+[; ;global.h: 54: extern unsigned char time_count;
+[; ;global.h: 55: extern unsigned char tmr_flag;
+[; ;global.h: 57: extern unsigned char LongPressSec;
+[; ;global.h: 58: extern unsigned char MAX31856Sec;
+[; ;global.h: 59: extern bq32k_t rtc_tm;
+[; ;global.h: 60: extern unsigned int Flash_buff[32];
+[; ;global.h: 62: extern unsigned char Record_flag;
+[; ;global.h: 63: extern unsigned char CH1_state;
+[; ;global.h: 64: extern unsigned char CH2_state;
+[; ;global.h: 65: extern unsigned int CH1_temperature;
+[; ;global.h: 66: extern unsigned int CH2_temperature;
+[; ;global.h: 67: extern unsigned int Cur_temperature;
+[; ;global.h: 68: extern unsigned int Cur_Save_Index;
+[; ;global.h: 69: extern unsigned char Cur_temperature_time;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
@@ -2297,298 +2311,354 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ ! != & -> _uch_ltcbh `i -> 128 `i -> 0 `i 262  ]
 [e =| _temperature_value -> -> -> 8192 `i `l `ul ]
 [e :U 262 ]
-[; ;max31856.c: 173: if((uch_ltcbh&0x80)==0x80)
-"173
-[e $ ! == & -> _uch_ltcbh `i -> 128 `i -> 128 `i 263  ]
-[; ;max31856.c: 174: {
+[; ;max31856.c: 174: if(time_count == 1)
 "174
-{
-[; ;max31856.c: 175: temperature_sign = 1;
+[e $ ! == -> _time_count `i -> 1 `i 263  ]
+[; ;max31856.c: 175: {
 "175
-[e = _temperature_sign -> -> 1 `i `uc ]
-[; ;max31856.c: 176: temperature_value=0x3FFF-temperature_value+1;
+{
+[; ;max31856.c: 176: CH1_temperature= temperature_value;
 "176
-[e = _temperature_value + - -> -> -> 16383 `i `l `ul _temperature_value -> -> -> 1 `i `l `ul ]
-[; ;max31856.c: 178: temperature_int = temperature_value>>3;
-"178
-[e = _temperature_int -> >> _temperature_value -> 3 `i `ui ]
-[; ;max31856.c: 179: temperature_decimal = temperature_value & 0x07;
-"179
-[e = _temperature_decimal -> & _temperature_value -> -> -> 7 `i `l `ul `uc ]
-[; ;max31856.c: 180: if(temperature_decimal > 3) temperature_decimal++;
-"180
-[e $ ! > -> _temperature_decimal `i -> 3 `i 264  ]
-[e ++ _temperature_decimal -> -> 1 `i `uc ]
-[e :U 264 ]
-[; ;max31856.c: 181: if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++;
-"181
-[e $ ! && || == -> _temperature_decimal `i -> 3 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 265  ]
-[e ++ _temperature_decimal -> -> 1 `i `uc ]
-[e :U 265 ]
-"182
+[e = _CH1_temperature -> _temperature_value `ui ]
+"177
 }
-[; ;max31856.c: 182: }
-[e $U 266  ]
-"183
+[; ;max31856.c: 177: }
+[e $U 264  ]
+"178
 [e :U 263 ]
-[; ;max31856.c: 183: else
+[; ;max31856.c: 178: else if(time_count == 3)
+[e $ ! == -> _time_count `i -> 3 `i 265  ]
+[; ;max31856.c: 179: {
+"179
+{
+[; ;max31856.c: 180: CH2_temperature= temperature_value;
+"180
+[e = _CH2_temperature -> _temperature_value `ui ]
+"181
+}
+[e :U 265 ]
+"183
+[e :U 264 ]
+[; ;max31856.c: 181: }
+[; ;max31856.c: 183: if((uch_ltcbh&0x80)==0x80)
+[e $ ! == & -> _uch_ltcbh `i -> 128 `i -> 128 `i 266  ]
 [; ;max31856.c: 184: {
 "184
 {
-[; ;max31856.c: 185: temperature_sign = 0;
+[; ;max31856.c: 185: temperature_sign = 1;
 "185
-[e = _temperature_sign -> -> 0 `i `uc ]
-[; ;max31856.c: 186: temperature_int = temperature_value>>3;
+[e = _temperature_sign -> -> 1 `i `uc ]
+[; ;max31856.c: 186: temperature_value=0x3FFF-temperature_value+1;
 "186
-[e = _temperature_int -> >> _temperature_value -> 3 `i `ui ]
-[; ;max31856.c: 187: temperature_decimal = temperature_value & 0x07;
-"187
-[e = _temperature_decimal -> & _temperature_value -> -> -> 7 `i `l `ul `uc ]
-[; ;max31856.c: 188: if(temperature_decimal > 3) temperature_decimal++;
+[e = _temperature_value + - -> -> -> 16383 `i `l `ul _temperature_value -> -> -> 1 `i `l `ul ]
+[; ;max31856.c: 188: temperature_int = temperature_value>>3;
 "188
+[e = _temperature_int -> >> _temperature_value -> 3 `i `ui ]
+[; ;max31856.c: 189: temperature_decimal = temperature_value & 0x07;
+"189
+[e = _temperature_decimal -> & _temperature_value -> -> -> 7 `i `l `ul `uc ]
+[; ;max31856.c: 190: if(temperature_decimal > 3) temperature_decimal++;
+"190
 [e $ ! > -> _temperature_decimal `i -> 3 `i 267  ]
 [e ++ _temperature_decimal -> -> 1 `i `uc ]
 [e :U 267 ]
-[; ;max31856.c: 189: if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
-"189
-[e $ ! && || == -> _temperature_decimal `i -> 4 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 268  ]
+[; ;max31856.c: 191: if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++;
+"191
+[e $ ! && || == -> _temperature_decimal `i -> 3 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 268  ]
 [e ++ _temperature_decimal -> -> 1 `i `uc ]
 [e :U 268 ]
-"190
-}
-[e :U 266 ]
-[; ;max31856.c: 190: }
-[; ;max31856.c: 192: }
 "192
+}
+[; ;max31856.c: 192: }
+[e $U 269  ]
+"193
+[e :U 266 ]
+[; ;max31856.c: 193: else
+[; ;max31856.c: 194: {
+"194
+{
+[; ;max31856.c: 195: temperature_sign = 0;
+"195
+[e = _temperature_sign -> -> 0 `i `uc ]
+[; ;max31856.c: 196: temperature_int = temperature_value>>3;
+"196
+[e = _temperature_int -> >> _temperature_value -> 3 `i `ui ]
+[; ;max31856.c: 197: temperature_decimal = temperature_value & 0x07;
+"197
+[e = _temperature_decimal -> & _temperature_value -> -> -> 7 `i `l `ul `uc ]
+[; ;max31856.c: 198: if(temperature_decimal > 3) temperature_decimal++;
+"198
+[e $ ! > -> _temperature_decimal `i -> 3 `i 270  ]
+[e ++ _temperature_decimal -> -> 1 `i `uc ]
+[e :U 270 ]
+[; ;max31856.c: 199: if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
+"199
+[e $ ! && || == -> _temperature_decimal `i -> 4 `i == -> _temperature_decimal `i -> 8 `i != & _temperature_int -> -> 1 `i `ui -> -> 0 `i `ui 271  ]
+[e ++ _temperature_decimal -> -> 1 `i `uc ]
+[e :U 271 ]
+"200
+}
+[e :U 269 ]
+[; ;max31856.c: 200: }
+[; ;max31856.c: 202: }
+"202
 [e :UE 261 ]
 }
-"200
+"210
 [v _one_temperature_trans `(v ~T0 @X0 1 ef ]
-"201
+"211
 {
-[; ;max31856.c: 200: void one_temperature_trans(void)
-[; ;max31856.c: 201: {
+[; ;max31856.c: 210: void one_temperature_trans(void)
+[; ;max31856.c: 211: {
 [e :U _one_temperature_trans ]
 [f ]
-[; ;max31856.c: 202: maxim_start_conversion((uint8_t) 0x40);
-"202
-[e ( _maxim_start_conversion (1 -> -> 64 `i `uc ]
-[; ;max31856.c: 203: MAX31856Sec = 0;
-"203
-[e = _MAX31856Sec -> -> 0 `i `uc ]
-[; ;max31856.c: 204: while( !(RB3 == 0 || MAX31856Sec > 2) ) ;
-"204
-[e $U 270  ]
-[e :U 271 ]
-[e :U 270 ]
-[e $ ! || == -> _RB3 `i -> 0 `i > -> _MAX31856Sec `i -> 2 `i 271  ]
-[e :U 272 ]
-[; ;max31856.c: 205: if( MAX31856Sec > 2)
-"205
-[e $ ! > -> _MAX31856Sec `i -> 2 `i 273  ]
-[; ;max31856.c: 206: {
-"206
-{
-[; ;max31856.c: 207: uch_sr = 0x01;
-"207
-[e = _uch_sr -> -> 1 `i `uc ]
-"208
-}
-[; ;max31856.c: 208: }
-[e $U 274  ]
-"209
-[e :U 273 ]
-[; ;max31856.c: 209: else
-[; ;max31856.c: 210: {
-"210
-{
-[; ;max31856.c: 211: maxim_31856_read_nregisters(0x0A, uch_reg,6);
-"211
-[e ( _maxim_31856_read_nregisters (3 , , -> -> 10 `i `uc &U _uch_reg -> -> 6 `i `uc ]
-[; ;max31856.c: 212: uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
+[; ;max31856.c: 212: maxim_start_conversion((uint8_t) 0x40);
 "212
+[e ( _maxim_start_conversion (1 -> -> 64 `i `uc ]
+[; ;max31856.c: 213: MAX31856Sec = 0;
+"213
+[e = _MAX31856Sec -> -> 0 `i `uc ]
+[; ;max31856.c: 214: while( !(RB3 == 0 || MAX31856Sec > 2) ) ;
+"214
+[e $U 273  ]
+[e :U 274 ]
+[e :U 273 ]
+[e $ ! || == -> _RB3 `i -> 0 `i > -> _MAX31856Sec `i -> 2 `i 274  ]
+[e :U 275 ]
+[; ;max31856.c: 215: if( MAX31856Sec > 2)
+"215
+[e $ ! > -> _MAX31856Sec `i -> 2 `i 276  ]
+[; ;max31856.c: 216: {
+"216
+{
+[; ;max31856.c: 217: uch_sr = 0x01;
+"217
+[e = _uch_sr -> -> 1 `i `uc ]
+"218
+}
+[; ;max31856.c: 218: }
+[e $U 277  ]
+"219
+[e :U 276 ]
+[; ;max31856.c: 219: else
+[; ;max31856.c: 220: {
+"220
+{
+[; ;max31856.c: 221: maxim_31856_read_nregisters(0x0A, uch_reg,6);
+"221
+[e ( _maxim_31856_read_nregisters (3 , , -> -> 10 `i `uc &U _uch_reg -> -> 6 `i `uc ]
+[; ;max31856.c: 222: uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
+"222
 [e = _uch_cjth *U + &U _uch_reg * -> -> -> 0 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
 [e = _uch_cjtl *U + &U _uch_reg * -> -> -> 1 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[; ;max31856.c: 213: uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
-"213
+[; ;max31856.c: 223: uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
+"223
 [e = _uch_ltcbh *U + &U _uch_reg * -> -> -> 2 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
 [e = _uch_ltcbm *U + &U _uch_reg * -> -> -> 3 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
 [e = _uch_ltcbl *U + &U _uch_reg * -> -> -> 4 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-[; ;max31856.c: 214: uch_sr=uch_reg[5];
-"214
+[; ;max31856.c: 224: uch_sr=uch_reg[5];
+"224
 [e = _uch_sr *U + &U _uch_reg * -> -> -> 5 `i `ui `ux -> -> # *U &U _uch_reg `ui `ux ]
-"215
-}
-[e :U 274 ]
-[; ;max31856.c: 215: }
-[; ;max31856.c: 217: }
-"217
-[e :UE 269 ]
-}
 "225
-[v _temperature_display `(v ~T0 @X0 1 ef ]
-"226
-{
-[; ;max31856.c: 225: void temperature_display(void)
-[; ;max31856.c: 226: {
-[e :U _temperature_display ]
-[f ]
-[; ;max31856.c: 227: if(uch_sr==(uint8_t)0x00)
-"227
-[e $ ! == -> _uch_sr `i -> -> -> 0 `i `uc `i 276  ]
-[; ;max31856.c: 228: {
-"228
-{
-[; ;max31856.c: 229: tc_temperature_trans();
-"229
-[e ( _tc_temperature_trans ..  ]
-[; ;max31856.c: 230: Tc_Display();
-"230
-[e ( _Tc_Display ..  ]
-"231
-}
-[; ;max31856.c: 231: }
-[e $U 277  ]
-"232
-[e :U 276 ]
-[; ;max31856.c: 232: else
-[; ;max31856.c: 233: {
-"233
-{
-[; ;max31856.c: 234: err_Display();
-"234
-[e ( _err_Display ..  ]
-[; ;max31856.c: 235: maxim_31856_write_register(0x82, 0xFF);
-"235
-[e ( _maxim_31856_write_register (2 , -> -> 130 `i `uc -> -> 255 `i `uc ]
-[; ;max31856.c: 236: maxim_clear_fault_status();
-"236
-[e ( _maxim_clear_fault_status ..  ]
-[; ;max31856.c: 237: maxim_31856_write_register(0x82, 0x00);
-"237
-[e ( _maxim_31856_write_register (2 , -> -> 130 `i `uc -> -> 0 `i `uc ]
-"238
 }
 [e :U 277 ]
-[; ;max31856.c: 238: }
-[; ;max31856.c: 239: }
-"239
-[e :UE 275 ]
+[; ;max31856.c: 225: }
+[; ;max31856.c: 227: }
+"227
+[e :UE 272 ]
 }
-"247
-[v _temperature_process `(v ~T0 @X0 1 ef ]
-"248
+"235
+[v _temperature_display `(v ~T0 @X0 1 ef ]
+"236
 {
-[; ;max31856.c: 247: void temperature_process(void)
-[; ;max31856.c: 248: {
+[; ;max31856.c: 235: void temperature_display(void)
+[; ;max31856.c: 236: {
+[e :U _temperature_display ]
+[f ]
+[; ;max31856.c: 237: if(uch_sr==(uint8_t)0x00)
+"237
+[e $ ! == -> _uch_sr `i -> -> -> 0 `i `uc `i 279  ]
+[; ;max31856.c: 238: {
+"238
+{
+[; ;max31856.c: 239: tc_temperature_trans();
+"239
+[e ( _tc_temperature_trans ..  ]
+[; ;max31856.c: 240: Tc_Display();
+"240
+[e ( _Tc_Display ..  ]
+"241
+}
+[; ;max31856.c: 241: }
+[e $U 280  ]
+"242
+[e :U 279 ]
+[; ;max31856.c: 242: else
+[; ;max31856.c: 243: {
+"243
+{
+[; ;max31856.c: 244: if(time_count == 1)
+"244
+[e $ ! == -> _time_count `i -> 1 `i 281  ]
+[; ;max31856.c: 245: {
+"245
+{
+[; ;max31856.c: 246: CH1_state = 1;
+"246
+[e = _CH1_state -> -> 1 `i `uc ]
+"247
+}
+[; ;max31856.c: 247: }
+[e $U 282  ]
+"248
+[e :U 281 ]
+[; ;max31856.c: 248: else if(time_count == 3)
+[e $ ! == -> _time_count `i -> 3 `i 283  ]
+[; ;max31856.c: 249: {
+"249
+{
+[; ;max31856.c: 250: CH2_state = 1;
+"250
+[e = _CH2_state -> -> 1 `i `uc ]
+"251
+}
+[e :U 283 ]
+"252
+[e :U 282 ]
+[; ;max31856.c: 251: }
+[; ;max31856.c: 252: err_Display();
+[e ( _err_Display ..  ]
+[; ;max31856.c: 253: maxim_31856_write_register(0x82, 0xFF);
+"253
+[e ( _maxim_31856_write_register (2 , -> -> 130 `i `uc -> -> 255 `i `uc ]
+[; ;max31856.c: 254: maxim_clear_fault_status();
+"254
+[e ( _maxim_clear_fault_status ..  ]
+[; ;max31856.c: 255: maxim_31856_write_register(0x82, 0x00);
+"255
+[e ( _maxim_31856_write_register (2 , -> -> 130 `i `uc -> -> 0 `i `uc ]
+"256
+}
+[e :U 280 ]
+[; ;max31856.c: 256: }
+[; ;max31856.c: 257: }
+"257
+[e :UE 278 ]
+}
+"265
+[v _temperature_process `(v ~T0 @X0 1 ef ]
+"266
+{
+[; ;max31856.c: 265: void temperature_process(void)
+[; ;max31856.c: 266: {
 [e :U _temperature_process ]
 [f ]
-[; ;max31856.c: 249: switch(time_count)
-"249
-[e $U 280  ]
-[; ;max31856.c: 250: {
-"250
+[; ;max31856.c: 267: switch(time_count)
+"267
+[e $U 286  ]
+[; ;max31856.c: 268: {
+"268
 {
-[; ;max31856.c: 251: case 0: Two_Display(1);
-"251
-[e :U 281 ]
+[; ;max31856.c: 269: case 0: Two_Display(1);
+"269
+[e :U 287 ]
 [e ( _Two_Display (1 -> -> 1 `i `uc ]
-[; ;max31856.c: 252: do { LATA1 = 1; } while(0);
-"252
-[e :U 284 ]
+[; ;max31856.c: 270: do { LATA1 = 1; } while(0);
+"270
+[e :U 290 ]
 {
 [e = _LATA1 -> -> 1 `i `b ]
 }
-[e :U 283 ]
-[; ;max31856.c: 253: do { LATA0 = 1; } while(0);
-"253
-[e :U 287 ]
+[e :U 289 ]
+[; ;max31856.c: 271: do { LATA0 = 1; } while(0);
+"271
+[e :U 293 ]
 {
 [e = _LATA0 -> -> 1 `i `b ]
 }
-[e :U 286 ]
-[; ;max31856.c: 254: do { LATA0 = 0; } while(0);
-"254
-[e :U 290 ]
+[e :U 292 ]
+[; ;max31856.c: 272: do { LATA0 = 0; } while(0);
+"272
+[e :U 296 ]
 {
 [e = _LATA0 -> -> 0 `i `b ]
 }
-[e :U 289 ]
-[; ;max31856.c: 255: one_temperature_trans();
-"255
-[e ( _one_temperature_trans ..  ]
-[; ;max31856.c: 256: break;
-"256
-[e $U 279  ]
-[; ;max31856.c: 257: case 1:
-"257
-[e :U 291 ]
-[; ;max31856.c: 258: temperature_display();break;
-"258
-[e ( _temperature_display ..  ]
-[e $U 279  ]
-[; ;max31856.c: 259: case 2: Two_Display(2);
-"259
-[e :U 292 ]
-[e ( _Two_Display (1 -> -> 2 `i `uc ]
-[; ;max31856.c: 260: do { LATA0 = 1; } while(0);
-"260
 [e :U 295 ]
+[; ;max31856.c: 273: one_temperature_trans();
+"273
+[e ( _one_temperature_trans ..  ]
+[; ;max31856.c: 274: break;
+"274
+[e $U 285  ]
+[; ;max31856.c: 275: case 1:
+"275
+[e :U 297 ]
+[; ;max31856.c: 276: temperature_display();break;
+"276
+[e ( _temperature_display ..  ]
+[e $U 285  ]
+[; ;max31856.c: 277: case 2: Two_Display(2);
+"277
+[e :U 298 ]
+[e ( _Two_Display (1 -> -> 2 `i `uc ]
+[; ;max31856.c: 278: do { LATA0 = 1; } while(0);
+"278
+[e :U 301 ]
 {
 [e = _LATA0 -> -> 1 `i `b ]
 }
-[e :U 294 ]
-[; ;max31856.c: 261: do { LATA1 = 1; } while(0);
-"261
-[e :U 298 ]
+[e :U 300 ]
+[; ;max31856.c: 279: do { LATA1 = 1; } while(0);
+"279
+[e :U 304 ]
 {
 [e = _LATA1 -> -> 1 `i `b ]
 }
-[e :U 297 ]
-[; ;max31856.c: 262: do { LATA1 = 0; } while(0);
-"262
-[e :U 301 ]
+[e :U 303 ]
+[; ;max31856.c: 280: do { LATA1 = 0; } while(0);
+"280
+[e :U 307 ]
 {
 [e = _LATA1 -> -> 0 `i `b ]
 }
-[e :U 300 ]
-[; ;max31856.c: 263: one_temperature_trans();
-"263
+[e :U 306 ]
+[; ;max31856.c: 281: one_temperature_trans();
+"281
 [e ( _one_temperature_trans ..  ]
-[; ;max31856.c: 264: break;
-"264
-[e $U 279  ]
-[; ;max31856.c: 265: case 3:
-"265
-[e :U 302 ]
-[; ;max31856.c: 266: temperature_display();break;
-"266
+[; ;max31856.c: 282: break;
+"282
+[e $U 285  ]
+[; ;max31856.c: 283: case 3:
+"283
+[e :U 308 ]
+[; ;max31856.c: 284: temperature_display();break;
+"284
 [e ( _temperature_display ..  ]
-[e $U 279  ]
-[; ;max31856.c: 267: case 5: time_Display();break;
-"267
-[e :U 303 ]
+[e $U 285  ]
+[; ;max31856.c: 285: case 5: time_Display();break;
+"285
+[e :U 309 ]
 [e ( _time_Display ..  ]
-[e $U 279  ]
-[; ;max31856.c: 268: default:break;
-"268
-[e :U 304 ]
-[e $U 279  ]
-"269
+[e $U 285  ]
+[; ;max31856.c: 286: default:break;
+"286
+[e :U 310 ]
+[e $U 285  ]
+"287
 }
-[; ;max31856.c: 269: }
-[e $U 279  ]
-"249
-[e :U 280 ]
-[e [\ _time_count , $ -> -> 0 `i `uc 281
- , $ -> -> 1 `i `uc 291
- , $ -> -> 2 `i `uc 292
- , $ -> -> 3 `i `uc 302
- , $ -> -> 5 `i `uc 303
- 304 ]
-"269
-[e :U 279 ]
-[; ;max31856.c: 270: }
-"270
-[e :UE 278 ]
+[; ;max31856.c: 287: }
+[e $U 285  ]
+"267
+[e :U 286 ]
+[e [\ _time_count , $ -> -> 0 `i `uc 287
+ , $ -> -> 1 `i `uc 297
+ , $ -> -> 2 `i `uc 298
+ , $ -> -> 3 `i `uc 308
+ , $ -> -> 5 `i `uc 309
+ 310 ]
+"287
+[e :U 285 ]
+[; ;max31856.c: 288: }
+"288
+[e :UE 284 ]
 }

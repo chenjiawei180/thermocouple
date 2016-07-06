@@ -1,5 +1,5 @@
 
-# 1 "mcc_generated_files/Flash.c"
+# 1 "mcc_generated_files/save.c"
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2494,123 +2494,303 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 53 "mcc_generated_files/FLash.h"
-unsigned FLASH_read( unsigned address);
+# 390 "mcc_generated_files/pin_manager.h"
+void PIN_MANAGER_Initialize(void);
 
-# 62
-unsigned FLASH_readConfig( unsigned address);
+# 402
+void PIN_MANAGER_IOC(void);
+
+# 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
+typedef signed char int8_t;
+
+# 20
+typedef signed int int16_t;
+
+# 28
+typedef signed short long int int24_t;
+
+# 36
+typedef signed long int int32_t;
+
+# 43
+typedef unsigned char uint8_t;
+
+# 49
+typedef unsigned int uint16_t;
+
+# 56
+typedef unsigned short long int uint24_t;
+
+# 63
+typedef unsigned long int uint32_t;
 
 # 71
-void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
+typedef signed char int_least8_t;
 
-# 82
-void FLASH_write( unsigned address, unsigned data, char latch);
+# 78
+typedef signed int int_least16_t;
 
 # 90
-void FLASH_erase( unsigned address);
+typedef signed short long int int_least24_t;
 
-# 17 "mcc_generated_files/Flash.c"
-unsigned FLASH_readConfig( unsigned address)
+# 98
+typedef signed long int int_least32_t;
+
+# 105
+typedef unsigned char uint_least8_t;
+
+# 111
+typedef unsigned int uint_least16_t;
+
+# 121
+typedef unsigned short long int uint_least24_t;
+
+# 128
+typedef unsigned long int uint_least32_t;
+
+# 137
+typedef signed char int_fast8_t;
+
+# 144
+typedef signed int int_fast16_t;
+
+# 156
+typedef signed short long int int_fast24_t;
+
+# 164
+typedef signed long int int_fast32_t;
+
+# 171
+typedef unsigned char uint_fast8_t;
+
+# 177
+typedef unsigned int uint_fast16_t;
+
+# 187
+typedef unsigned short long int uint_fast24_t;
+
+# 194
+typedef unsigned long int uint_fast32_t;
+
+# 200
+typedef int32_t intmax_t;
+
+
+
+
+typedef uint32_t uintmax_t;
+
+
+
+
+typedef int16_t intptr_t;
+
+
+
+
+typedef uint16_t uintptr_t;
+
+# 12 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdbool.h"
+typedef unsigned char bool;
+
+# 111 "mcc_generated_files/interrupt_manager.h"
+void interrupt INTERRUPT_InterruptManager(void);
+
+# 4 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\__size_t.h"
+typedef unsigned size_t;
+
+# 6 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stddef.h"
+typedef int ptrdiff_t;
+
+# 117 "mcc_generated_files/spi.h"
+void SPI_Initialize(void);
+
+# 152
+uint8_t SPI_Exchange8bit(uint8_t data);
+
+# 192
+uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+
+# 215
+bool SPI_IsBufferFull(void);
+
+# 240
+bool SPI_HasWriteCollisionOccured(void);
+
+# 264
+void SPI_ClearWriteCollisionStatus(void);
+
+# 95 "mcc_generated_files/eusart.h"
+void EUSART_Initialize(void);
+
+# 115
+uint8_t EUSART_Read(void);
+
+# 135
+void EUSART_Write(uint8_t txData);
+
+# 99 "mcc_generated_files/memory.h"
+uint16_t FLASH_ReadWord(uint16_t flashAddr);
+
+# 128
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+
+# 164
+int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+
+# 189
+void FLASH_EraseBlock(uint16_t startAddr);
+
+# 72 "mcc_generated_files/adc.h"
+typedef uint16_t adc_result_t;
+
+# 86
+typedef enum {
+channel_Temp = 0x1E,
+channel_FVR = 0x1F,
+ADC = 0x0B
+} adc_channel_t;
+
+# 125
+void ADC_Initialize(void);
+
+# 154
+void ADC_StartConversion(adc_channel_t channel);
+
+# 186
+bool ADC_IsConversionDone();
+
+# 219
+adc_result_t ADC_GetConversionResult(void);
+
+# 249
+adc_result_t ADC_GetConversion(adc_channel_t channel);
+
+# 104 "mcc_generated_files/tmr0.h"
+void TMR0_Initialize(void);
+
+# 137
+uint8_t TMR0_ReadTimer(void);
+
+# 176
+void TMR0_WriteTimer(uint8_t timerVal);
+
+# 212
+void TMR0_Reload(void);
+
+# 230
+void TMR0_ISR(void);
+
+# 248
+void TMR0_CallBack(void);
+
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
+# 74 "mcc_generated_files/mcc.h"
+void SYSTEM_Initialize(void);
+
+# 87
+void OSCILLATOR_Initialize(void);
+
+# 25 "mcc_generated_files/global.h"
+typedef struct bq32k_regs {
+uint8_t seconds;
+uint8_t minutes;
+uint8_t hours;
+uint8_t wday;
+uint8_t date;
+uint8_t month;
+uint8_t years;
+}bq32k_t;
+
+# 41
+extern unsigned char uch_cr0;
+extern unsigned char uch_cr1;
+extern unsigned char uch_mask;
+
+extern unsigned char uch_reg[8];
+extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+extern unsigned long temperature_value;
+extern unsigned int temperature_int;
+extern unsigned char temperature_decimal,temperature_sign;
+extern unsigned char display_buff[4];
+
+
+
+extern unsigned char time_count;
+extern unsigned char tmr_flag;
+
+extern unsigned char LongPressSec;
+extern unsigned char MAX31856Sec;
+extern bq32k_t rtc_tm;
+extern unsigned int Flash_buff[32];
+
+extern unsigned char Record_flag;
+extern unsigned char CH1_state;
+extern unsigned char CH2_state;
+extern unsigned int CH1_temperature;
+extern unsigned int CH2_temperature;
+extern unsigned int Cur_temperature;
+extern unsigned int Cur_Save_Index;
+extern unsigned char Cur_temperature_time;
+
+# 19 "mcc_generated_files/save.h"
+void Set_start_flag(void);
+void Set_finish_flag(void);
+void Serach_Flash_Head(void);
+void Write_Flash_head(void);
+void Write_Flash_finish(void);
+
+# 16 "mcc_generated_files/save.c"
+void Set_start_flag(void)
 {
-
-PMADR = address;
-PMCON1bits.CFGS = 1;
-PMCON1bits.RD = 1;
-__nop();
-__nop();
-
-
-return PMDAT;
+Record_flag = 1;
+do { LATA4 = 0; } while(0);
 }
 
-
-unsigned FLASH_read( unsigned address)
+# 28
+void Set_finish_flag(void)
 {
-
-PMADR = address;
-PMCON1bits.CFGS = 0;
-PMCON1bits.RD = 1;
-__nop();
-__nop();
-
-
-return PMDAT;
+Record_flag = 0;
+do { LATA4 = 1; } while(0);
 }
 
-
-void FLASH_readBlock( unsigned *buffer, unsigned address, char count)
+# 40
+void Serach_Flash_Head(void)
 {
-while ( count > 0)
+unsigned int i=0;
+unsigned int data=0;
+for(i = 0x2000; i<16384;i++ )
 {
-*buffer++ = FLASH_read( address++);
-count--;
+data = FLASH_ReadWord(i);
+if( data == 0x3fff)
+{
+i++;
+Cur_Save_Index = i;
+break;
 }
 }
-
-# 58
-void _unlock( void)
-{
-
-# 60
-#asm
-        BANKSEL PMCON2
-        MOVLW 0x55
-        MOVWF PMCON2 & 0x7F
-        MOVLW 0xAA
-        MOVWF PMCON2 & 0x7F
-        BSF PMCON1 & 0x7F,1 ; set WR bit
-        NOP
- NOP
-#endasm 
-# 69
-
- }
-
-
-void FLASH_write( unsigned address, unsigned data, char latch)
-{
-
-char temp = INTCONbits.GIE;
-INTCONbits.GIE = 0;
-
-
-PMADR = address;
-PMDAT = data;
-PMCON1bits.LWLO = latch;
-PMCON1bits.CFGS = 0;
-PMCON1bits.FREE = 0;
-PMCON1bits.WREN = 1;
-
-
-_unlock();
-
-
-if ( temp)
-INTCONbits.GIE = 1;
-
 }
 
-
-void FLASH_erase( unsigned address)
+# 62
+void Write_Flash_head(void)
 {
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAA);
+Cur_Save_Index++;
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAA);
+Cur_Save_Index++;
+}
 
-char temp = INTCONbits.GIE;
-INTCONbits.GIE = 0;
-
-
-
-PMADR = address;
-PMCON1bits.CFGS = 0;
-PMCON1bits.FREE = 1;
-PMCON1bits.WREN = 1;
-
-
-_unlock();
-
-
-PMCON1bits.WREN = 0;
-if ( temp)
-INTCONbits.GIE = 1;
-
+# 76
+void Write_Flash_finish(void)
+{
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x55);
+Cur_Save_Index++;
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x55);
+Cur_Save_Index++;
 }
 

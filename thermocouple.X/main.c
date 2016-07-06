@@ -49,15 +49,15 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "mcc_generated_files/global.h"
 #include "mcc_generated_files/max31856.h"
 #include "mcc_generated_files/ht1621.h"
-#include "mcc_generated_files/HEFLash.h"
 #include "mcc_generated_files/i2c.h"
 #include "mcc_generated_files/bq32k.h"
+#include "mcc_generated_files/save.h"
 #ifdef DEBUG
 #include "mcc_generated_files/debug.h"
 #endif
 #include <stdio.h>
 #include <string.h>
-#define BAT_V 800
+#define BAT_V 800 //3.2V
 
 /*
                          Main application
@@ -67,6 +67,7 @@ void main(void) {
     unsigned char i=0;
     //a[0]=0x51;a[1]=0x00;a[2]=0x00;a[3]=0x00;a[4]=0x00;
     unsigned int  bat_data = 0;
+    unsigned int  data_temp = 0;
     // initialize the device
     SYSTEM_Initialize();
     __delay_ms(3000);
@@ -101,10 +102,23 @@ void main(void) {
     WriteAll_1621(0,Dis_TAB+17,4);	//0：(起始地址)高6位有效，a：(写入数据的起始地址)8位 
     //开机显示4 个 - - - -  
     time_count = 0;
+    Record_flag = 0;
+    Cur_temperature_time = 0;
     bat_data = 0;
+    Cur_Save_Index = Record_Add;
+    Serach_Flash_Head();
+    //EUSART_Write(Cur_Save_Index>>8);
+    //EUSART_Write(Cur_Save_Index&0XFF);
 #if 0
-    FLASH_write(0x3FFF, 0xFFFF, 0);
-    data_temp = FLASH_read(0X3FFF);
+    //FLASH_write(0x3FFF, 0xFFFF, 0);
+    FLASH_WriteWord(0x1000,Flash_buff,0x1234);
+    data_temp = FLASH_ReadWord(0x1000);
+    EUSART_Write(data_temp>>8);
+    EUSART_Write(data_temp&0XFF);
+    data_temp = FLASH_ReadWord(0x1001);
+    EUSART_Write(data_temp>>8);
+    EUSART_Write(data_temp&0XFF);
+    data_temp = FLASH_ReadWord(0x1002);
     EUSART_Write(data_temp>>8);
     EUSART_Write(data_temp&0XFF);
 #endif
@@ -133,6 +147,7 @@ void main(void) {
     {
     // Add your application code
        // EUSART_SendString("ONE CYCLE \n\r");
+	
 #if 1
         bat_data = bat_data + ADC_GetConversion(ADC);
         i++;

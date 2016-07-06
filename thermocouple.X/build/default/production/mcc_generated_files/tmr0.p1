@@ -14,13 +14,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S26 . . . ]
 "360
 [v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
-"55 mcc_generated_files/global.h
+"58 mcc_generated_files/global.h
 [v _MAX31856Sec `uc ~T0 @X0 0 e ]
 "248 mcc_generated_files/tmr0.h
 [v _TMR0_CallBack `(v ~T0 @X0 0 ef ]
-"51 mcc_generated_files/global.h
+"54 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
-"54
+"57
 [v _LongPressSec `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1920,23 +1920,29 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 31: uint8_t month;
 [; ;global.h: 32: uint8_t years;
 [; ;global.h: 33: }bq32k_t;
-[; ;global.h: 38: extern unsigned char uch_cr0;
-[; ;global.h: 39: extern unsigned char uch_cr1;
-[; ;global.h: 40: extern unsigned char uch_mask;
-[; ;global.h: 42: extern unsigned char uch_reg[8];
-[; ;global.h: 43: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 44: extern unsigned long temperature_value;
-[; ;global.h: 45: extern unsigned int temperature_int;
-[; ;global.h: 46: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 47: extern unsigned char display_buff[4];
-[; ;global.h: 48: extern char s[64];
-[; ;global.h: 49: extern float f_cold_junction_temperature;
-[; ;global.h: 50: extern float f_linearized_tc_temperature;
-[; ;global.h: 51: extern unsigned char time_count;
-[; ;global.h: 52: extern unsigned char tmr_flag;
-[; ;global.h: 54: extern unsigned char LongPressSec;
-[; ;global.h: 55: extern unsigned char MAX31856Sec;
-[; ;global.h: 56: extern bq32k_t tm;
+[; ;global.h: 41: extern unsigned char uch_cr0;
+[; ;global.h: 42: extern unsigned char uch_cr1;
+[; ;global.h: 43: extern unsigned char uch_mask;
+[; ;global.h: 45: extern unsigned char uch_reg[8];
+[; ;global.h: 46: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 47: extern unsigned long temperature_value;
+[; ;global.h: 48: extern unsigned int temperature_int;
+[; ;global.h: 49: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 50: extern unsigned char display_buff[4];
+[; ;global.h: 54: extern unsigned char time_count;
+[; ;global.h: 55: extern unsigned char tmr_flag;
+[; ;global.h: 57: extern unsigned char LongPressSec;
+[; ;global.h: 58: extern unsigned char MAX31856Sec;
+[; ;global.h: 59: extern bq32k_t rtc_tm;
+[; ;global.h: 60: extern unsigned int Flash_buff[32];
+[; ;global.h: 62: extern unsigned char Record_flag;
+[; ;global.h: 63: extern unsigned char CH1_state;
+[; ;global.h: 64: extern unsigned char CH2_state;
+[; ;global.h: 65: extern unsigned int CH1_temperature;
+[; ;global.h: 66: extern unsigned int CH2_temperature;
+[; ;global.h: 67: extern unsigned int Cur_temperature;
+[; ;global.h: 68: extern unsigned int Cur_Save_Index;
+[; ;global.h: 69: extern unsigned char Cur_temperature_time;
 "60 mcc_generated_files/tmr0.c
 [v _timer0ReloadVal `Vuc ~T0 @X0 1 e ]
 [; ;tmr0.c: 60: volatile uint8_t timer0ReloadVal;
@@ -2019,8 +2025,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _TMR0_ISR ]
 [f ]
 "104
-[v F1963 `Vui ~T0 @X0 1 s CountCallBack ]
-[i F1963
+[v F1969 `Vui ~T0 @X0 1 s CountCallBack ]
+[i F1969
 -> -> 0 `i `ui
 ]
 [; ;tmr0.c: 104: static volatile unsigned int CountCallBack = 0;
@@ -2035,14 +2041,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _MAX31856Sec -> -> 1 `i `uc ]
 [; ;tmr0.c: 114: if (++CountCallBack >= 100) {
 "114
-[e $ ! >= =+ F1963 -> -> 1 `i `ui -> -> 100 `i `ui 239  ]
+[e $ ! >= =+ F1969 -> -> 1 `i `ui -> -> 100 `i `ui 239  ]
 {
 [; ;tmr0.c: 116: TMR0_CallBack();
 "116
 [e ( _TMR0_CallBack ..  ]
 [; ;tmr0.c: 119: CountCallBack = 0;
 "119
-[e = F1963 -> -> 0 `i `ui ]
+[e = F1969 -> -> 0 `i `ui ]
 "120
 }
 [e :U 239 ]

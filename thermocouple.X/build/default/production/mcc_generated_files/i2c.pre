@@ -2707,9 +2707,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-
-
-
+# 41
 extern unsigned char uch_cr0;
 extern unsigned char uch_cr1;
 extern unsigned char uch_mask;
@@ -2720,15 +2718,25 @@ extern unsigned long temperature_value;
 extern unsigned int temperature_int;
 extern unsigned char temperature_decimal,temperature_sign;
 extern unsigned char display_buff[4];
-extern char s[64];
-extern float f_cold_junction_temperature;
-extern float f_linearized_tc_temperature;
+
+
+
 extern unsigned char time_count;
 extern unsigned char tmr_flag;
 
 extern unsigned char LongPressSec;
 extern unsigned char MAX31856Sec;
-extern bq32k_t tm;
+extern bq32k_t rtc_tm;
+extern unsigned int Flash_buff[32];
+
+extern unsigned char Record_flag;
+extern unsigned char CH1_state;
+extern unsigned char CH2_state;
+extern unsigned int CH1_temperature;
+extern unsigned int CH2_temperature;
+extern unsigned int Cur_temperature;
+extern unsigned int Cur_Save_Index;
+extern unsigned char Cur_temperature_time;
 
 # 23 "mcc_generated_files/i2c.h"
 void I2C_Start(void);

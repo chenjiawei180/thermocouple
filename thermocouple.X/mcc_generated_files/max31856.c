@@ -170,6 +170,16 @@ void tc_temperature_trans(void)
     temperature_value = 0;
     temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
     if(uch_ltcbh & 0x80)    temperature_value |=0x2000;
+
+    if(time_count == 1)    //recoder the temperature of each channel
+    {
+         CH1_temperature= temperature_value;
+    }
+    else if(time_count == 3)
+    {
+        CH2_temperature= temperature_value;
+    }
+    
     if((uch_ltcbh&0x80)==0x80)                                          //如果LTCBH最高位为1，则为负温度值
     {
         temperature_sign = 1; 
@@ -225,12 +235,20 @@ void one_temperature_trans(void)
 void temperature_display(void)
 {
     if(uch_sr==NO_Fault)  
-    {
+    { 
         tc_temperature_trans();  //把寄存器的值进行转换
         Tc_Display(); //显示温度
     }
     else
     {
+        if(time_count == 1)    //judge the number of channel
+        {
+             CH1_state = 1;
+        }
+	 else if(time_count == 3)
+	 {
+	      CH2_state = 1;
+	 }
         err_Display();//添加错误显示代码 暂定nc
         maxim_31856_write_register(0x82, 0xFF);        //屏蔽/FAULT输出
         maxim_clear_fault_status();                       //清除故障状态

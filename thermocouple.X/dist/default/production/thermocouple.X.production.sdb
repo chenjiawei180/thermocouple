@@ -9,7 +9,7 @@ channel_Temp 30
 channel_FVR 31
 ADC 11
 ]
-"81 E:\Github\thermocouple\thermocouple.X\main.c
+"82 E:\Github\thermocouple\thermocouple.X\main.c
 [e E1890 . `uc
 channel_Temp 30
 channel_FVR 31
@@ -51,14 +51,6 @@ ADC 11
 [v _EUSART_Initialize EUSART_Initialize `(v  1 e 1 0 ]
 "91
 [v _EUSART_Write EUSART_Write `(v  1 e 1 0 ]
-"31 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/Flash.c
-[v _FLASH_read FLASH_read `(ui  1 e 2 0 ]
-"58
-[v __unlock _unlock `(v  1 e 1 0 ]
-"73
-[v _FLASH_write FLASH_write `(v  1 e 1 0 ]
-"97
-[v _FLASH_erase FLASH_erase `(v  1 e 1 0 ]
 "58 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/fvr.c
 [v _FVR_Initialize FVR_Initialize `(v  1 e 1 0 ]
 "21 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
@@ -91,9 +83,9 @@ ADC 11
 [v _I2C_Send_Buffer I2C_Send_Buffer `(uc  1 e 1 0 ]
 "52 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
-"17 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+"18 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
 [v _Key_Scan Key_Scan `(uc  1 e 1 0 ]
-"39
+"40
 [v _Key_Process Key_Process `(i  1 e 2 0 ]
 "19 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _maxim_31856_write_register maxim_31856_write_register `(v  1 e 1 0 ]
@@ -109,11 +101,11 @@ ADC 11
 [v _maxim_clear_fault_status maxim_clear_fault_status `(v  1 e 1 0 ]
 "168
 [v _tc_temperature_trans tc_temperature_trans `(v  1 e 1 0 ]
-"200
+"210
 [v _one_temperature_trans one_temperature_trans `(v  1 e 1 0 ]
-"225
+"235
 [v _temperature_display temperature_display `(v  1 e 1 0 ]
-"247
+"265
 [v _temperature_process temperature_process `(v  1 e 1 0 ]
 "70 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -121,12 +113,20 @@ ADC 11
 [v _OSCILLATOR_Initialize OSCILLATOR_Initialize `(v  1 e 1 0 ]
 "58 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/memory.c
 [v _FLASH_ReadWord FLASH_ReadWord `(ui  1 e 2 0 ]
+"74
+[v _FLASH_WriteWord FLASH_WriteWord `(v  1 e 1 0 ]
 "91
 [v _FLASH_WriteBlock FLASH_WriteBlock `(c  1 e 1 0 ]
 "141
 [v _FLASH_EraseBlock FLASH_EraseBlock `(v  1 e 1 0 ]
 "50 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
+"16 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
+[v _Set_start_flag Set_start_flag `(v  1 e 1 0 ]
+"28
+[v _Set_finish_flag Set_finish_flag `(v  1 e 1 0 ]
+"40
+[v _Serach_Flash_Head Serach_Flash_Head `(v  1 e 1 0 ]
 "64 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
 [v _SPI_Initialize SPI_Initialize `(v  1 e 1 0 ]
 "77
@@ -233,7 +233,7 @@ ADC 11
 [v _LATC LATC `VEuc  1 e 1 @270 ]
 "2023
 [v _FVRCON FVRCON `VEuc  1 e 1 @279 ]
-[s S903 . 1 `uc 1 ADFVR 1 0 :2:0 
+[s S471 . 1 `uc 1 ADFVR 1 0 :2:0 
 `uc 1 . 1 0 :2:2 
 `uc 1 TSRNG 1 0 :1:4 
 `uc 1 TSEN 1 0 :1:5 
@@ -241,11 +241,11 @@ ADC 11
 `uc 1 FVREN 1 0 :1:7 
 ]
 "2042
-[s S910 . 1 `uc 1 ADFVR0 1 0 :1:0 
+[s S478 . 1 `uc 1 ADFVR0 1 0 :1:0 
 `uc 1 ADFVR1 1 0 :1:1 
 ]
-[u S913 . 1 `S903 1 . 1 0 `S910 1 . 1 0 ]
-[v _FVRCONbits FVRCONbits `VES913  1 e 1 @279 ]
+[u S481 . 1 `S471 1 . 1 0 `S478 1 . 1 0 ]
+[v _FVRCONbits FVRCONbits `VES481  1 e 1 @279 ]
 "2081
 [v _APFCON APFCON `VEuc  1 e 1 @285 ]
 "2106
@@ -254,14 +254,10 @@ ADC 11
 [v _ANSELB ANSELB `VEuc  1 e 1 @397 ]
 "2215
 [v _ANSELC ANSELC `VEuc  1 e 1 @398 ]
-"2276
-[v _PMADR PMADR `VEus  1 e 2 @401 ]
 "2282
 [v _PMADRL PMADRL `VEuc  1 e 1 @401 ]
 "2301
 [v _PMADRH PMADRH `VEuc  1 e 1 @402 ]
-"2320
-[v _PMDAT PMDAT `VEus  1 e 2 @403 ]
 "2326
 [v _PMDATL PMDATL `VEuc  1 e 1 @403 ]
 "2345
@@ -377,39 +373,55 @@ ADC 11
 [v _TRISB1 TRISB1 `VEb  1 e 0 @1129 ]
 "4723
 [v _TRISB3 TRISB3 `VEb  1 e 0 @1131 ]
-"38 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/global.h
+"41 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/global.h
 [v _uch_cr0 uch_cr0 `uc  1 e 1 0 ]
-"39
-[v _uch_cr1 uch_cr1 `uc  1 e 1 0 ]
-"40
-[v _uch_mask uch_mask `uc  1 e 1 0 ]
 "42
-[v _uch_reg uch_reg `[8]uc  1 e 8 0 ]
+[v _uch_cr1 uch_cr1 `uc  1 e 1 0 ]
 "43
+[v _uch_mask uch_mask `uc  1 e 1 0 ]
+"45
+[v _uch_reg uch_reg `[8]uc  1 e 8 0 ]
+"46
 [v _uch_cjth uch_cjth `uc  1 e 1 0 ]
 [v _uch_cjtl uch_cjtl `uc  1 e 1 0 ]
 [v _uch_ltcbh uch_ltcbh `uc  1 e 1 0 ]
 [v _uch_ltcbm uch_ltcbm `uc  1 e 1 0 ]
 [v _uch_ltcbl uch_ltcbl `uc  1 e 1 0 ]
 [v _uch_sr uch_sr `uc  1 e 1 0 ]
-"44
+"47
 [v _temperature_value temperature_value `ul  1 e 4 0 ]
-"45
+"48
 [v _temperature_int temperature_int `ui  1 e 2 0 ]
-"46
+"49
 [v _temperature_decimal temperature_decimal `uc  1 e 1 0 ]
 [v _temperature_sign temperature_sign `uc  1 e 1 0 ]
-"47
+"50
 [v _display_buff display_buff `[4]uc  1 e 4 0 ]
-"51
-[v _time_count time_count `uc  1 e 1 0 ]
 "54
+[v _time_count time_count `uc  1 e 1 0 ]
+"57
 [v _LongPressSec LongPressSec `uc  1 e 1 0 ]
-"55
+"58
 [v _MAX31856Sec MAX31856Sec `uc  1 e 1 0 ]
-[s S470 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
-"56
-[v _tm tm `S470  1 e 7 0 ]
+[s S503 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
+"59
+[v _rtc_tm rtc_tm `S503  1 e 7 0 ]
+"60
+[v _Flash_buff Flash_buff `[32]ui  1 e 64 0 ]
+"62
+[v _Record_flag Record_flag `uc  1 e 1 0 ]
+"63
+[v _CH1_state CH1_state `uc  1 e 1 0 ]
+"64
+[v _CH2_state CH2_state `uc  1 e 1 0 ]
+"65
+[v _CH1_temperature CH1_temperature `ui  1 e 2 0 ]
+"66
+[v _CH2_temperature CH2_temperature `ui  1 e 2 0 ]
+"68
+[v _Cur_Save_Index Cur_Save_Index `ui  1 e 2 0 ]
+"69
+[v _Cur_temperature_time Cur_temperature_time `uc  1 e 1 0 ]
 "14 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
 [v _Dis_TAB Dis_TAB `DCC[21]uc  1 e 21 0 ]
 "60 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/tmr0.c
@@ -418,15 +430,35 @@ ADC 11
 [v _main main `(v  1 e 1 0 ]
 {
 "69
-[v main@bat_data bat_data `ui  1 a 2 1 ]
+[v main@bat_data bat_data `ui  1 a 2 3 ]
+"70
+[v main@data_temp data_temp `ui  1 a 2 0 ]
 "67
-[v main@i i `uc  1 a 1 0 ]
-"242
+[v main@i i `uc  1 a 1 2 ]
+"257
 } 0
 "63 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _maxim_31856_init maxim_31856_init `(v  1 e 1 0 ]
 {
 "93
+} 0
+"40 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
+[v _Serach_Flash_Head Serach_Flash_Head `(v  1 e 1 0 ]
+{
+"42
+[v Serach_Flash_Head@i i `ui  1 a 2 2 ]
+"43
+[v Serach_Flash_Head@data data `ui  1 a 2 0 ]
+"54
+} 0
+"58 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/memory.c
+[v _FLASH_ReadWord FLASH_ReadWord `(ui  1 e 2 0 ]
+{
+"59
+[v FLASH_ReadWord@GIEBitValue GIEBitValue `uc  1 a 1 5 ]
+"58
+[v FLASH_ReadWord@flashAddr flashAddr `ui  1 p 2 3 ]
+"72
 } 0
 "70 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -468,17 +500,17 @@ ADC 11
 {
 "80
 } 0
-"39 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+"40 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
 [v _Key_Process Key_Process `(i  1 e 2 0 ]
 {
-"41
+"42
 [v Key_Process@gKeyValue gKeyValue `uc  1 a 1 24 ]
-"74
+"82
 } 0
-"247 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+"265 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _temperature_process temperature_process `(v  1 e 1 0 ]
 {
-"270
+"288
 } 0
 "165 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
 [v _time_Display time_Display `(v  1 e 1 0 ]
@@ -486,8 +518,8 @@ ADC 11
 "167
 [v time_Display@num num `[4]uc  1 a 4 19 ]
 "166
-[v time_Display@F2120 F2120 `[4]uc  1 s 4 F2120 ]
-"174
+[v time_Display@F2126 F2126 `[4]uc  1 s 4 F2126 ]
+"176
 } 0
 "6 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
 [v ___awmod __awmod `(i  1 e 2 0 ]
@@ -516,15 +548,15 @@ ADC 11
 "30 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/bq32k.c
 [v _Bq32k_Rtc_Read_Time Bq32k_Rtc_Read_Time `(v  1 e 1 0 ]
 {
-[s S470 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
-[v Bq32k_Rtc_Read_Time@p p `*.4S470  1 a 1 wreg ]
+[s S503 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
+[v Bq32k_Rtc_Read_Time@p p `*.4S503  1 a 1 wreg ]
 "32
 [v Bq32k_Rtc_Read_Time@temp temp `[10]uc  1 a 10 5 ]
 "30
-[v Bq32k_Rtc_Read_Time@p p `*.4S470  1 a 1 wreg ]
+[v Bq32k_Rtc_Read_Time@p p `*.4S503  1 a 1 wreg ]
 "33
 "30
-[v Bq32k_Rtc_Read_Time@p p `*.4S470  1 a 1 15 ]
+[v Bq32k_Rtc_Read_Time@p p `*.4S503  1 a 1 15 ]
 "41
 } 0
 "63
@@ -571,15 +603,15 @@ ADC 11
 [v I2C_Receive_Byte@Data Data `uc  1 a 1 4 ]
 "94
 } 0
-"225 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+"235 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _temperature_display temperature_display `(v  1 e 1 0 ]
 {
-"239
+"257
 } 0
 "168
 [v _tc_temperature_trans tc_temperature_trans `(v  1 e 1 0 ]
 {
-"192
+"202
 } 0
 "155
 [v _maxim_clear_fault_status maxim_clear_fault_status `(v  1 e 1 0 ]
@@ -592,7 +624,7 @@ ADC 11
 "153
 [v err_Display@num num `[4]uc  1 a 4 7 ]
 "152
-[v err_Display@F2117 F2117 `[4]uc  1 s 4 F2117 ]
+[v err_Display@F2123 F2123 `[4]uc  1 s 4 F2123 ]
 "157
 } 0
 "109
@@ -640,10 +672,10 @@ ADC 11
 [v ___lwdiv@dividend dividend `ui  1 p 2 3 ]
 "31
 } 0
-"200 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+"210 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _one_temperature_trans one_temperature_trans `(v  1 e 1 0 ]
 {
-"217
+"227
 } 0
 "114
 [v _maxim_start_conversion maxim_start_conversion `(v  1 e 1 0 ]
@@ -718,7 +750,7 @@ ADC 11
 "137
 [v Two_Display@number number `uc  1 a 1 wreg ]
 "138
-[v Two_Display@F2114 F2114 `[4]uc  1 s 4 F2114 ]
+[v Two_Display@F2120 F2120 `[4]uc  1 s 4 F2120 ]
 [v Two_Display@number number `uc  1 a 1 11 ]
 "143
 } 0
@@ -749,7 +781,17 @@ ADC 11
 [v SendDataBit_1621@data data `uc  1 a 1 6 ]
 "53
 } 0
-"61
+"16 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
+[v _Set_start_flag Set_start_flag `(v  1 e 1 0 ]
+{
+"20
+} 0
+"28
+[v _Set_finish_flag Set_finish_flag `(v  1 e 1 0 ]
+{
+"32
+} 0
+"61 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
 [v _SendCmd_1621 SendCmd_1621 `(v  1 e 1 0 ]
 {
 [v SendCmd_1621@command command `uc  1 a 1 wreg ]
@@ -771,12 +813,20 @@ ADC 11
 [v SendBit_1621@data data `uc  1 a 1 6 ]
 "33
 } 0
-"17 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
+"18 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
 [v _Key_Scan Key_Scan `(uc  1 e 1 0 ]
 {
-"19
+"20
 [v Key_Scan@Key_val Key_val `uc  1 a 1 5 ]
-"30
+"31
+} 0
+"91 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
+[v _EUSART_Write EUSART_Write `(v  1 e 1 0 ]
+{
+[v EUSART_Write@txData txData `uc  1 a 1 wreg ]
+[v EUSART_Write@txData txData `uc  1 a 1 wreg ]
+[v EUSART_Write@txData txData `uc  1 a 1 3 ]
+"96
 } 0
 "17 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/bq32k.c
 [v _Bq32k_Time_Init Bq32k_Time_Init `(v  1 e 1 0 ]
@@ -784,7 +834,7 @@ ADC 11
 "20
 [v Bq32k_Time_Init@temp temp `[10]uc  1 a 10 7 ]
 "19
-[v Bq32k_Time_Init@F2009 F2009 `[10]uc  1 s 10 F2009 ]
+[v Bq32k_Time_Init@F2015 F2015 `[10]uc  1 s 10 F2015 ]
 "22
 } 0
 "173 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/i2c.c

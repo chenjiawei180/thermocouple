@@ -1,0 +1,22 @@
+---- uch_reg Matches (26 in 3 files) ----
+Global.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):OS_EXT unsigned char uch_reg[8];
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):  * @param  uint8_t uch_register_address , uint8_t uch_register_value .
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value)
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SPI_Exchange8bit(uch_register_address);
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SPI_Exchange8bit(uch_register_value);
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):  * @param  uint8_t uch_register_address.
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):uint8_t maxim_31856_read_register(uint8_t uch_register_address)
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    uint8_t uch_register_data;
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SPI_Exchange8bit(uch_register_address);
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    uch_register_data=SPI_Exchange8bit(0xff);
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    return (uch_register_data);
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):  * @param  uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes.
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes)
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SPI_Exchange8bit(uch_register_address);
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):        maxim_31856_read_nregisters(0x0A, uch_reg,6);
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):        uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];                //将读取到的结果赋值给对应的寄存器变量
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):        uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):        uch_sr=uch_reg[5]; 
+Max31856.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
+Max31856.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):uint8_t maxim_31856_read_register(uint8_t uch_register_address);
+Max31856.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);

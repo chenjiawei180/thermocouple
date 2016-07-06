@@ -15,7 +15,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATA2 `Vb ~T0 @X0 0 e@2146 ]
 "4441
 [v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
-"81 main.c
+"82 main.c
 [c E1890 30 31 11 .. ]
 [n E1890 . channel_Temp channel_FVR ADC  ]
 "249 mcc_generated_files/adc.h
@@ -24,7 +24,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _maxim_31856_init `(v ~T0 @X0 0 ef ]
 "4723 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _TRISB3 `Vb ~T0 @X0 0 e@1131 ]
-"37 mcc_generated_files/bq32k.h
+"38 mcc_generated_files/bq32k.h
 [v _Bq32k_Time_Init `(v ~T0 @X0 0 ef ]
 "25 mcc_generated_files/ht1621.h
 [v _SendCmd_1621 `(v ~T0 @X0 0 ef1`uc ]
@@ -32,6 +32,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _WriteAll_1621 `(v ~T0 @X0 0 ef3`uc`*uc`uc ]
 "21
 [v _Dis_TAB `Cuc ~T0 @X0 -> 0 `x e ]
+"21 mcc_generated_files/save.h
+[v _Serach_Flash_Head `(v ~T0 @X0 0 ef ]
+"135 mcc_generated_files/eusart.h
+[v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
 "343 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [s S27 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S27 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
@@ -45,7 +49,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
 "96 mcc_generated_files/max31856.h
 [v _temperature_process `(v ~T0 @X0 0 ef ]
-"155 main.c
+"170 main.c
 [v _Key_Process `(i ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1945,63 +1949,81 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 31: uint8_t month;
 [; ;global.h: 32: uint8_t years;
 [; ;global.h: 33: }bq32k_t;
-"38 mcc_generated_files/global.h
+"41 mcc_generated_files/global.h
 [v _uch_cr0 `uc ~T0 @X0 1 e ]
-[; ;global.h: 38: unsigned char uch_cr0;
-"39
-[v _uch_cr1 `uc ~T0 @X0 1 e ]
-[; ;global.h: 39: unsigned char uch_cr1;
-"40
-[v _uch_mask `uc ~T0 @X0 1 e ]
-[; ;global.h: 40: unsigned char uch_mask;
+[; ;global.h: 41: unsigned char uch_cr0;
 "42
-[v _uch_reg `uc ~T0 @X0 -> 8 `i e ]
-[; ;global.h: 42: unsigned char uch_reg[8];
+[v _uch_cr1 `uc ~T0 @X0 1 e ]
+[; ;global.h: 42: unsigned char uch_cr1;
 "43
+[v _uch_mask `uc ~T0 @X0 1 e ]
+[; ;global.h: 43: unsigned char uch_mask;
+"45
+[v _uch_reg `uc ~T0 @X0 -> 8 `i e ]
+[; ;global.h: 45: unsigned char uch_reg[8];
+"46
 [v _uch_cjth `uc ~T0 @X0 1 e ]
 [v _uch_cjtl `uc ~T0 @X0 1 e ]
 [v _uch_ltcbh `uc ~T0 @X0 1 e ]
 [v _uch_ltcbm `uc ~T0 @X0 1 e ]
 [v _uch_ltcbl `uc ~T0 @X0 1 e ]
 [v _uch_sr `uc ~T0 @X0 1 e ]
-[; ;global.h: 43: unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-"44
+[; ;global.h: 46: unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+"47
 [v _temperature_value `ul ~T0 @X0 1 e ]
-[; ;global.h: 44: unsigned long temperature_value;
-"45
+[; ;global.h: 47: unsigned long temperature_value;
+"48
 [v _temperature_int `ui ~T0 @X0 1 e ]
-[; ;global.h: 45: unsigned int temperature_int;
-"46
+[; ;global.h: 48: unsigned int temperature_int;
+"49
 [v _temperature_decimal `uc ~T0 @X0 1 e ]
 [v _temperature_sign `uc ~T0 @X0 1 e ]
-[; ;global.h: 46: unsigned char temperature_decimal,temperature_sign;
-"47
-[v _display_buff `uc ~T0 @X0 -> 4 `i e ]
-[; ;global.h: 47: unsigned char display_buff[4];
-"48
-[v _s `uc ~T0 @X0 -> 64 `i e ]
-[; ;global.h: 48: char s[64];
-"49
-[v _f_cold_junction_temperature `f ~T0 @X0 1 e ]
-[; ;global.h: 49: float f_cold_junction_temperature;
+[; ;global.h: 49: unsigned char temperature_decimal,temperature_sign;
 "50
-[v _f_linearized_tc_temperature `f ~T0 @X0 1 e ]
-[; ;global.h: 50: float f_linearized_tc_temperature;
-"51
-[v _time_count `uc ~T0 @X0 1 e ]
-[; ;global.h: 51: unsigned char time_count;
-"52
-[v _tmr_flag `uc ~T0 @X0 1 e ]
-[; ;global.h: 52: unsigned char tmr_flag;
+[v _display_buff `uc ~T0 @X0 -> 4 `i e ]
+[; ;global.h: 50: unsigned char display_buff[4];
 "54
-[v _LongPressSec `uc ~T0 @X0 1 e ]
-[; ;global.h: 54: unsigned char LongPressSec;
+[v _time_count `uc ~T0 @X0 1 e ]
+[; ;global.h: 54: unsigned char time_count;
 "55
+[v _tmr_flag `uc ~T0 @X0 1 e ]
+[; ;global.h: 55: unsigned char tmr_flag;
+"57
+[v _LongPressSec `uc ~T0 @X0 1 e ]
+[; ;global.h: 57: unsigned char LongPressSec;
+"58
 [v _MAX31856Sec `uc ~T0 @X0 1 e ]
-[; ;global.h: 55: unsigned char MAX31856Sec;
-"56
-[v _tm `S233 ~T0 @X0 1 e ]
-[; ;global.h: 56: bq32k_t tm;
+[; ;global.h: 58: unsigned char MAX31856Sec;
+"59
+[v _rtc_tm `S233 ~T0 @X0 1 e ]
+[; ;global.h: 59: bq32k_t rtc_tm;
+"60
+[v _Flash_buff `ui ~T0 @X0 -> 32 `i e ]
+[; ;global.h: 60: unsigned int Flash_buff[32];
+"62
+[v _Record_flag `uc ~T0 @X0 1 e ]
+[; ;global.h: 62: unsigned char Record_flag;
+"63
+[v _CH1_state `uc ~T0 @X0 1 e ]
+[; ;global.h: 63: unsigned char CH1_state;
+"64
+[v _CH2_state `uc ~T0 @X0 1 e ]
+[; ;global.h: 64: unsigned char CH2_state;
+"65
+[v _CH1_temperature `ui ~T0 @X0 1 e ]
+[; ;global.h: 65: unsigned int CH1_temperature;
+"66
+[v _CH2_temperature `ui ~T0 @X0 1 e ]
+[; ;global.h: 66: unsigned int CH2_temperature;
+"67
+[v _Cur_temperature `ui ~T0 @X0 1 e ]
+[; ;global.h: 67: unsigned int Cur_temperature;
+"68
+[v _Cur_Save_Index `ui ~T0 @X0 1 e ]
+[; ;global.h: 68: unsigned int Cur_Save_Index;
+"69
+[v _Cur_temperature_time `uc ~T0 @X0 1 e ]
+[; ;global.h: 69: unsigned char Cur_temperature_time;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
@@ -2025,25 +2047,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.h: 29: void Two_Display(unsigned char number);
 [; ;ht1621.h: 30: void err_Display(void);
 [; ;ht1621.h: 31: void time_Display(void);
-[; ;FLash.h: 53: unsigned FLASH_read( unsigned address);
-[; ;FLash.h: 62: unsigned FLASH_readConfig( unsigned address);
-[; ;FLash.h: 71: void FLASH_readBlock( unsigned* buffer, unsigned address, char count);
-[; ;FLash.h: 82: void FLASH_write( unsigned address, unsigned data, char latch);
-[; ;FLash.h: 90: void FLASH_erase( unsigned address);
-[; ;HEFLash.h: 22: char HEFLASH_writeBlock( char radd, char* buffer, char count);
-[; ;HEFLash.h: 33: char HEFLASH_readBlock( char* buffer, char radd, char count);
-[; ;HEFLash.h: 43: char HEFLASH_readByte( char radd, char offset);
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
 [; ;i2c.h: 26: void I2C_Stop(void);
 [; ;i2c.h: 27: unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
 [; ;i2c.h: 28: unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
-[; ;bq32k.h: 37: void Bq32k_Time_Init(void);
-[; ;bq32k.h: 38: void Bq32k_Rtc_Read_Time(bq32k_t *p);
-[; ;bq32k.h: 39: void Bq32k_Rtc_Write_Time(bq32k_t *p);
-[; ;bq32k.h: 41: unsigned char bcd2bin(unsigned char val);
-[; ;bq32k.h: 42: unsigned char bin2bcd(unsigned char val);
+[; ;bq32k.h: 38: void Bq32k_Time_Init(void);
+[; ;bq32k.h: 39: void Bq32k_Rtc_Read_Time(bq32k_t *p);
+[; ;bq32k.h: 40: void Bq32k_Rtc_Write_Time(bq32k_t *p);
+[; ;bq32k.h: 42: unsigned char bcd2bin(unsigned char val);
+[; ;bq32k.h: 43: unsigned char bin2bcd(unsigned char val);
+[; ;save.h: 19: void Set_start_flag(void);
+[; ;save.h: 20: void Set_finish_flag(void);
+[; ;save.h: 21: void Serach_Flash_Head(void);
+[; ;save.h: 22: void Write_Flash_head(void);
+[; ;save.h: 23: void Write_Flash_finish(void);
 [; ;debug.h: 17: void EUSART_SendString(char *s);
 [; ;stdarg.h: 7: typedef void * va_list[1];
 [; ;stdarg.h: 10: extern void * __va_start(void);
@@ -2115,14 +2134,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _bat_data `ui ~T0 @X0 1 a ]
 [; ;main.c: 69: unsigned int bat_data = 0;
 [e = _bat_data -> -> 0 `i `ui ]
-[; ;main.c: 71: SYSTEM_Initialize();
-"71
-[e ( _SYSTEM_Initialize ..  ]
-[; ;main.c: 72: _delay((unsigned long)((3000)*(16000000/4000.0)));
+"70
+[v _data_temp `ui ~T0 @X0 1 a ]
+[; ;main.c: 70: unsigned int data_temp = 0;
+[e = _data_temp -> -> 0 `i `ui ]
+[; ;main.c: 72: SYSTEM_Initialize();
 "72
-[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;main.c: 73: if(RB5 == 0 ) do { LATA2 = 1; } while(0);
+[e ( _SYSTEM_Initialize ..  ]
+[; ;main.c: 73: _delay((unsigned long)((3000)*(16000000/4000.0)));
 "73
+[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;main.c: 74: if(RB5 == 0 ) do { LATA2 = 1; } while(0);
+"74
 [e $ ! == -> _RB5 `i -> 0 `i 236  ]
 [e :U 239 ]
 {
@@ -2130,187 +2153,205 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 238 ]
 [e $U 240  ]
-"74
+"75
 [e :U 236 ]
-[; ;main.c: 74: else do { LATA2 = 0; } while(0);
+[; ;main.c: 75: else do { LATA2 = 0; } while(0);
 [e :U 243 ]
 {
 [e = _LATA2 -> -> 0 `i `b ]
 }
 [e :U 242 ]
 [e :U 240 ]
-[; ;main.c: 75: do { LATA3 = 0; } while(0);
-"75
+[; ;main.c: 76: do { LATA3 = 0; } while(0);
+"76
 [e :U 246 ]
 {
 [e = _LATA3 -> -> 0 `i `b ]
 }
 [e :U 245 ]
-[; ;main.c: 78: bat_data = 0;
-"78
-[e = _bat_data -> -> 0 `i `ui ]
-[; ;main.c: 79: for(i=0;i<16;i++)
+[; ;main.c: 79: bat_data = 0;
 "79
+[e = _bat_data -> -> 0 `i `ui ]
+[; ;main.c: 80: for(i=0;i<16;i++)
+"80
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 16 `i 247  ]
 [e $U 248  ]
-"80
-[e :U 247 ]
-[; ;main.c: 80: {
-{
-[; ;main.c: 81: bat_data = bat_data + ADC_GetConversion(ADC);
 "81
-[e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1890 2 ]
+[e :U 247 ]
+[; ;main.c: 81: {
+{
+[; ;main.c: 82: bat_data = bat_data + ADC_GetConversion(ADC);
 "82
+[e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1890 2 ]
+"83
 }
-"79
+"80
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 16 `i 247  ]
 [e :U 248 ]
-"82
-}
-[; ;main.c: 82: }
-[; ;main.c: 83: bat_data = bat_data>>4;
 "83
-[e = _bat_data >> _bat_data -> 4 `i ]
-[; ;main.c: 84: if( bat_data < 800)
+}
+[; ;main.c: 83: }
+[; ;main.c: 84: bat_data = bat_data>>4;
 "84
-[e $ ! < _bat_data -> -> 800 `i `ui 250  ]
-[; ;main.c: 85: {
+[e = _bat_data >> _bat_data -> 4 `i ]
+[; ;main.c: 85: if( bat_data < 800)
 "85
-{
-[; ;main.c: 86: do { LATA2 = 0; } while(0);
+[e $ ! < _bat_data -> -> 800 `i `ui 250  ]
+[; ;main.c: 86: {
 "86
+{
+[; ;main.c: 87: do { LATA2 = 0; } while(0);
+"87
 [e :U 253 ]
 {
 [e = _LATA2 -> -> 0 `i `b ]
 }
 [e :U 252 ]
-[; ;main.c: 87: while(1);
-"87
+[; ;main.c: 88: while(1);
+"88
 [e :U 255 ]
 [e :U 254 ]
 [e $U 255  ]
 [e :U 256 ]
-"88
+"89
 }
 [e :U 250 ]
-[; ;main.c: 88: }
-[; ;main.c: 89: i = 0 ;
-"89
-[e = _i -> -> 0 `i `uc ]
-[; ;main.c: 90: bat_data = 0 ;
+[; ;main.c: 89: }
+[; ;main.c: 90: i = 0 ;
 "90
+[e = _i -> -> 0 `i `uc ]
+[; ;main.c: 91: bat_data = 0 ;
+"91
 [e = _bat_data -> -> 0 `i `ui ]
-[; ;main.c: 93: maxim_31856_init();
-"93
-[e ( _maxim_31856_init ..  ]
-[; ;main.c: 94: do { TRISB3 = 1; } while(0);
+[; ;main.c: 94: maxim_31856_init();
 "94
+[e ( _maxim_31856_init ..  ]
+[; ;main.c: 95: do { TRISB3 = 1; } while(0);
+"95
 [e :U 259 ]
 {
 [e = _TRISB3 -> -> 1 `i `b ]
 }
 [e :U 258 ]
-[; ;main.c: 95: Bq32k_Time_Init();
-"95
-[e ( _Bq32k_Time_Init ..  ]
-[; ;main.c: 96: SendCmd_1621(0x52);
+[; ;main.c: 96: Bq32k_Time_Init();
 "96
-[e ( _SendCmd_1621 (1 -> -> 82 `i `uc ]
-[; ;main.c: 97: SendCmd_1621(0X28);
+[e ( _Bq32k_Time_Init ..  ]
+[; ;main.c: 97: SendCmd_1621(0x52);
 "97
-[e ( _SendCmd_1621 (1 -> -> 40 `i `uc ]
-[; ;main.c: 98: SendCmd_1621(0x02);
+[e ( _SendCmd_1621 (1 -> -> 82 `i `uc ]
+[; ;main.c: 98: SendCmd_1621(0X28);
 "98
-[e ( _SendCmd_1621 (1 -> -> 2 `i `uc ]
-[; ;main.c: 99: SendCmd_1621(0x06);
+[e ( _SendCmd_1621 (1 -> -> 40 `i `uc ]
+[; ;main.c: 99: SendCmd_1621(0x02);
 "99
+[e ( _SendCmd_1621 (1 -> -> 2 `i `uc ]
+[; ;main.c: 100: SendCmd_1621(0x06);
+"100
 [e ( _SendCmd_1621 (1 -> -> 6 `i `uc ]
-[; ;main.c: 101: WriteAll_1621(0,Dis_TAB+17,4);
-"101
+[; ;main.c: 102: WriteAll_1621(0,Dis_TAB+17,4);
+"102
 [e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc -> + &U _Dis_TAB * -> -> 17 `i `x -> -> # *U &U _Dis_TAB `i `x `*uc -> -> 4 `i `uc ]
-[; ;main.c: 103: time_count = 0;
-"103
-[e = _time_count -> -> 0 `i `uc ]
-[; ;main.c: 104: bat_data = 0;
+[; ;main.c: 104: time_count = 0;
 "104
+[e = _time_count -> -> 0 `i `uc ]
+[; ;main.c: 105: Record_flag = 0;
+"105
+[e = _Record_flag -> -> 0 `i `uc ]
+[; ;main.c: 106: Cur_temperature_time = 0;
+"106
+[e = _Cur_temperature_time -> -> 0 `i `uc ]
+[; ;main.c: 107: bat_data = 0;
+"107
 [e = _bat_data -> -> 0 `i `ui ]
-[; ;main.c: 121: (INTCONbits.GIE = 1);
-"121
+[; ;main.c: 108: Cur_Save_Index = 0x2000;
+"108
+[e = _Cur_Save_Index -> -> 8192 `i `ui ]
+[; ;main.c: 109: Serach_Flash_Head();
+"109
+[e ( _Serach_Flash_Head ..  ]
+[; ;main.c: 110: EUSART_Write(Cur_Save_Index>>8);
+"110
+[e ( _EUSART_Write (1 -> >> _Cur_Save_Index -> 8 `i `uc ]
+[; ;main.c: 111: EUSART_Write(Cur_Save_Index&0XFF);
+"111
+[e ( _EUSART_Write (1 -> & _Cur_Save_Index -> -> 255 `i `ui `uc ]
+[; ;main.c: 135: (INTCONbits.GIE = 1);
+"135
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 124: (INTCONbits.PEIE = 1);
-"124
-[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 132: while (1)
-"132
-[e :U 261 ]
-[; ;main.c: 133: {
-"133
-{
-[; ;main.c: 137: bat_data = bat_data + ADC_GetConversion(ADC);
-"137
-[e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1890 2 ]
-[; ;main.c: 138: i++;
+[; ;main.c: 138: (INTCONbits.PEIE = 1);
 "138
+[e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 146: while (1)
+"146
+[e :U 261 ]
+[; ;main.c: 147: {
+"147
+{
+[; ;main.c: 152: bat_data = bat_data + ADC_GetConversion(ADC);
+"152
+[e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1890 2 ]
+[; ;main.c: 153: i++;
+"153
 [e ++ _i -> -> 1 `i `uc ]
-[; ;main.c: 139: if(i == 16)
-"139
+[; ;main.c: 154: if(i == 16)
+"154
 [e $ ! == -> _i `i -> 16 `i 263  ]
-[; ;main.c: 140: {
-"140
+[; ;main.c: 155: {
+"155
 {
-[; ;main.c: 141: i = 0;
-"141
+[; ;main.c: 156: i = 0;
+"156
 [e = _i -> -> 0 `i `uc ]
-[; ;main.c: 142: bat_data = bat_data>>4;
-"142
+[; ;main.c: 157: bat_data = bat_data>>4;
+"157
 [e = _bat_data >> _bat_data -> 4 `i ]
-[; ;main.c: 143: if( bat_data < 800)
-"143
+[; ;main.c: 158: if( bat_data < 800)
+"158
 [e $ ! < _bat_data -> -> 800 `i `ui 264  ]
-[; ;main.c: 144: {
-"144
+[; ;main.c: 159: {
+"159
 {
-[; ;main.c: 145: do { LATA2 = 0; } while(0);
-"145
+[; ;main.c: 160: do { LATA2 = 0; } while(0);
+"160
 [e :U 267 ]
 {
 [e = _LATA2 -> -> 0 `i `b ]
 }
 [e :U 266 ]
-[; ;main.c: 146: while(1);
-"146
+[; ;main.c: 161: while(1);
+"161
 [e :U 269 ]
 [e :U 268 ]
 [e $U 269  ]
 [e :U 270 ]
-"147
+"162
 }
 [e :U 264 ]
-[; ;main.c: 147: }
-[; ;main.c: 148: bat_data = 0;
-"148
+[; ;main.c: 162: }
+[; ;main.c: 163: bat_data = 0;
+"163
 [e = _bat_data -> -> 0 `i `ui ]
-"149
+"164
 }
 [e :U 263 ]
-[; ;main.c: 149: }
-[; ;main.c: 154: temperature_process();
-"154
+[; ;main.c: 164: }
+[; ;main.c: 169: temperature_process();
+"169
 [e ( _temperature_process ..  ]
-[; ;main.c: 155: Key_Process();
-"155
+[; ;main.c: 170: Key_Process();
+"170
 [e ( _Key_Process ..  ]
-"241
+"256
 }
 [e :U 260 ]
-"132
+"146
 [e $U 261  ]
 [e :U 262 ]
-[; ;main.c: 241: }
-[; ;main.c: 242: }
-"242
+[; ;main.c: 256: }
+[; ;main.c: 257: }
+"257
 [e :UE 235 ]
 }
