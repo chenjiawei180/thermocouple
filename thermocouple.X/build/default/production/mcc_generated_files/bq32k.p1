@@ -1922,15 +1922,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 57: extern unsigned char LongPressSec;
 [; ;global.h: 58: extern unsigned char MAX31856Sec;
 [; ;global.h: 59: extern bq32k_t rtc_tm;
-[; ;global.h: 60: extern unsigned int Flash_buff[32];
-[; ;global.h: 62: extern unsigned char Record_flag;
-[; ;global.h: 63: extern unsigned char CH1_state;
-[; ;global.h: 64: extern unsigned char CH2_state;
-[; ;global.h: 65: extern unsigned int CH1_temperature;
-[; ;global.h: 66: extern unsigned int CH2_temperature;
-[; ;global.h: 67: extern unsigned int Cur_temperature;
-[; ;global.h: 68: extern unsigned int Cur_Save_Index;
-[; ;global.h: 69: extern unsigned char Cur_temperature_time;
+[; ;global.h: 60: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 61: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 62: extern unsigned int Flash_buff[32];
+[; ;global.h: 64: extern unsigned char Record_flag;
+[; ;global.h: 65: extern unsigned char CH1_state;
+[; ;global.h: 66: extern unsigned char CH2_state;
+[; ;global.h: 67: extern unsigned int CH1_temperature;
+[; ;global.h: 68: extern unsigned int CH2_temperature;
+[; ;global.h: 69: extern unsigned int Cur_temperature;
+[; ;global.h: 70: extern unsigned int Cur_Save_Index;
+[; ;global.h: 71: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch2;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
@@ -1962,8 +1965,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 "19
 [v _time `S233 ~T0 @X0 1 a ]
-[v F2015 `uc ~T0 @X0 -> 10 `i s ]
-[i F2015
+[v F2018 `uc ~T0 @X0 -> 10 `i s ]
+[i F2018
 :U ..
 "20
 -> -> 1 `i `uc
@@ -1978,7 +1981,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _temp `uc ~T0 @X0 -> 10 `i a ]
 [; ;bq32k.c: 19: bq32k_t time;
 [; ;bq32k.c: 20: unsigned char temp[10] = { 0x01,0x40,0x14,0x02,0x04,0x07,0x16 };
-[e = _temp F2015 ]
+[e = _temp F2018 ]
 [; ;bq32k.c: 21: I2C_Send_Buffer(0, temp, 7);
 "21
 [e ( _I2C_Send_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]

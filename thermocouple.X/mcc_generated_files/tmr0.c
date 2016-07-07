@@ -128,7 +128,19 @@ void TMR0_CallBack(void) {
     time_count++;
     if(time_count == 4 || time_count > 8)    time_count = 0;   // ¿ØÖÆÁ÷³Ì
     LongPressSec++;
-    
+	
+    Cur_temperature_time_ch1++;
+    if(Cur_temperature_time_ch1 > 65)
+    {
+        Cur_temperature_time_ch1 = 0;
+    }
+	
+    Cur_temperature_time_ch2++;
+    if(Cur_temperature_time_ch2 > 65)
+    {
+        Cur_temperature_time_ch2= 0;
+    }
+	
 }
 /**
   End of File

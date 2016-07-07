@@ -120,10 +120,11 @@ void Tc_Display(void)
     {
         case 3:display_buff[0] = Dis_TAB[temperature_int/100]; 
         case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
-        case 1:display_buff[2] = Dis_TAB[temperature_int%10];
+        case 1:display_buff[2] = Dis_TAB[temperature_int%10]; break;
+	 case 0:display_buff[2] = Dis_TAB[0];
         default:break;
     }
-    if(temperature_sign == 1) display_buff[0]|=0x08; //赋值符号
+    if(temperature_sign == 1) display_buff[0]=0x20; //赋值符号
     display_buff[3] = Dis_TAB[temperature_decimal] | 0x08; //幅值小数与小数点
     WriteAll_1621(0,display_buff,4);
 }

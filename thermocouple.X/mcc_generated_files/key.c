@@ -7,7 +7,9 @@
 
 #include "key.h"
 #include "ht1621.h"
+#include "max31856.h"
 #include "save.h"
+
 
 /**
   * @brief  This function is Key scan.
@@ -40,6 +42,10 @@ unsigned char Key_Scan(void)
 void Key_Process(void)
 {
     unsigned char gKeyValue=0;
+#if DEBUG
+    unsigned int i;
+    unsigned int data_temp;
+#endif
     LongPressSec = 0;
     gKeyValue=Key_Scan();
     if(gKeyValue)
@@ -54,6 +60,17 @@ void Key_Process(void)
 		      LED1_SetHigh(); //off led  off lcd
 		      SendCmd_1621(LCDOFF);
                 }
+#if DEBUG
+                else
+        	 {
+        	      for(i=Record_Add;i<Record_Add+1000;i++)
+        	      {
+        	            data_temp = FLASH_ReadWord(i);
+			     EUSART_Write(data_temp>>8);
+			     EUSART_Write(data_temp&0xff);
+        	      }
+        	 }
+#endif
 		  while(KEY_GetValue() == 0);
 			break;
 	     case KEY2:
@@ -63,10 +80,15 @@ void Key_Process(void)
 		      if(Record_flag == 0) 
 		      {
                         Set_start_flag();
+			   Write_Flash_head();
+			   Save_Write_time();
+			   Cur_temperature_time_ch1 = 0;
+			   Cur_temperature_time_ch2 = 0;
 		      }
 		      else 
 		      {
                         Set_finish_flag();
+			   Write_Flash_finish();
 		      }
                 }
                 else

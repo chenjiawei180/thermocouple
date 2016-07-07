@@ -1974,15 +1974,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 57: extern unsigned char LongPressSec;
 [; ;global.h: 58: extern unsigned char MAX31856Sec;
 [; ;global.h: 59: extern bq32k_t rtc_tm;
-[; ;global.h: 60: extern unsigned int Flash_buff[32];
-[; ;global.h: 62: extern unsigned char Record_flag;
-[; ;global.h: 63: extern unsigned char CH1_state;
-[; ;global.h: 64: extern unsigned char CH2_state;
-[; ;global.h: 65: extern unsigned int CH1_temperature;
-[; ;global.h: 66: extern unsigned int CH2_temperature;
-[; ;global.h: 67: extern unsigned int Cur_temperature;
-[; ;global.h: 68: extern unsigned int Cur_Save_Index;
-[; ;global.h: 69: extern unsigned char Cur_temperature_time;
+[; ;global.h: 60: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 61: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 62: extern unsigned int Flash_buff[32];
+[; ;global.h: 64: extern unsigned char Record_flag;
+[; ;global.h: 65: extern unsigned char CH1_state;
+[; ;global.h: 66: extern unsigned char CH2_state;
+[; ;global.h: 67: extern unsigned int CH1_temperature;
+[; ;global.h: 68: extern unsigned int CH2_temperature;
+[; ;global.h: 69: extern unsigned int Cur_temperature;
+[; ;global.h: 70: extern unsigned int Cur_Save_Index;
+[; ;global.h: 71: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch2;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
@@ -2363,146 +2366,152 @@ Version 3.2 HI-TECH Software Intermediate Code
 "122
 [e :U 304 ]
 [e = *U + &U _display_buff * -> -> -> 1 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> / % _temperature_int -> -> 100 `i `ui -> -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 123: case 1:display_buff[2] = Dis_TAB[temperature_int%10];
+[; ;ht1621.c: 123: case 1:display_buff[2] = Dis_TAB[temperature_int%10]; break;
 "123
 [e :U 305 ]
 [e = *U + &U _display_buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> % _temperature_int -> -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 124: default:break;
+[e $U 301  ]
+[; ;ht1621.c: 124: case 0:display_buff[2] = Dis_TAB[0];
 "124
 [e :U 306 ]
-[e $U 301  ]
+[e = *U + &U _display_buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 125: default:break;
 "125
+[e :U 307 ]
+[e $U 301  ]
+"126
 }
-[; ;ht1621.c: 125: }
+[; ;ht1621.c: 126: }
 [e $U 301  ]
 "119
 [e :U 302 ]
 [e [\ _count , $ -> -> 3 `i `uc 303
  , $ -> -> 2 `i `uc 304
  , $ -> -> 1 `i `uc 305
- 306 ]
-"125
-[e :U 301 ]
-[; ;ht1621.c: 126: if(temperature_sign == 1) display_buff[0]|=0x08;
+ , $ -> -> 0 `i `uc 306
+ 307 ]
 "126
-[e $ ! == -> _temperature_sign `i -> 1 `i 307  ]
-[e =| *U + &U _display_buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> -> 8 `i `uc ]
-[e :U 307 ]
-[; ;ht1621.c: 127: display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
+[e :U 301 ]
+[; ;ht1621.c: 127: if(temperature_sign == 1) display_buff[0]=0x20;
 "127
-[e = *U + &U _display_buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> | -> *U + &U _Dis_TAB * -> _temperature_decimal `ux -> -> # *U &U _Dis_TAB `ui `ux `i -> 8 `i `uc ]
-[; ;ht1621.c: 128: WriteAll_1621(0,display_buff,4);
+[e $ ! == -> _temperature_sign `i -> 1 `i 308  ]
+[e = *U + &U _display_buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> -> 32 `i `uc ]
+[e :U 308 ]
+[; ;ht1621.c: 128: display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
 "128
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _display_buff -> -> 4 `i `uc ]
-[; ;ht1621.c: 129: }
+[e = *U + &U _display_buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> | -> *U + &U _Dis_TAB * -> _temperature_decimal `ux -> -> # *U &U _Dis_TAB `ui `ux `i -> 8 `i `uc ]
+[; ;ht1621.c: 129: WriteAll_1621(0,display_buff,4);
 "129
+[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _display_buff -> -> 4 `i `uc ]
+[; ;ht1621.c: 130: }
+"130
 [e :UE 297 ]
 }
-"137
+"138
 [v _Two_Display `(v ~T0 @X0 1 ef1`uc ]
-"138
-{
-[; ;ht1621.c: 137: void Two_Display(unsigned char number)
-[; ;ht1621.c: 138: {
-[e :U _Two_Display ]
-"137
-[v _number `uc ~T0 @X0 1 r1 ]
-"138
-[f ]
-[v F2120 `uc ~T0 @X0 -> 4 `i s ]
-[i F2120
-:U ..
 "139
--> -> 0 `i `uc
-..
-]
-[v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 139: unsigned char num[4]={0};
-[e = _num F2120 ]
-[; ;ht1621.c: 140: num[1] = Dis_TAB[0];
-"140
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 141: num[2] = Dis_TAB[number];
-"141
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> _number `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 142: WriteAll_1621(0, num, 4);
-"142
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 143: }
-"143
-[e :UE 308 ]
-}
-"151
-[v _err_Display `(v ~T0 @X0 1 ef ]
-"152
 {
-[; ;ht1621.c: 151: void err_Display(void)
-[; ;ht1621.c: 152: {
-[e :U _err_Display ]
+[; ;ht1621.c: 138: void Two_Display(unsigned char number)
+[; ;ht1621.c: 139: {
+[e :U _Two_Display ]
+"138
+[v _number `uc ~T0 @X0 1 r1 ]
+"139
 [f ]
 [v F2123 `uc ~T0 @X0 -> 4 `i s ]
 [i F2123
 :U ..
-"153
+"140
 -> -> 0 `i `uc
 ..
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 153: unsigned char num[4]={0};
+[; ;ht1621.c: 140: unsigned char num[4]={0};
 [e = _num F2123 ]
-[; ;ht1621.c: 154: num[1] = Dis_TAB[0x10];
-"154
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 155: num[2] = Dis_TAB[0x0c];
-"155
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 12 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 156: WriteAll_1621(0, num, 4);
-"156
+[; ;ht1621.c: 141: num[1] = Dis_TAB[0];
+"141
+[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 142: num[2] = Dis_TAB[number];
+"142
+[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> _number `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 143: WriteAll_1621(0, num, 4);
+"143
 [e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 157: }
-"157
+[; ;ht1621.c: 144: }
+"144
 [e :UE 309 ]
 }
-"165
-[v _time_Display `(v ~T0 @X0 1 ef ]
-"166
+"152
+[v _err_Display `(v ~T0 @X0 1 ef ]
+"153
 {
-[; ;ht1621.c: 165: void time_Display(void)
-[; ;ht1621.c: 166: {
-[e :U _time_Display ]
+[; ;ht1621.c: 152: void err_Display(void)
+[; ;ht1621.c: 153: {
+[e :U _err_Display ]
 [f ]
 [v F2126 `uc ~T0 @X0 -> 4 `i s ]
 [i F2126
 :U ..
-"167
+"154
 -> -> 0 `i `uc
 ..
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 167: unsigned char num[4]={0};
+[; ;ht1621.c: 154: unsigned char num[4]={0};
 [e = _num F2126 ]
-[; ;ht1621.c: 168: Bq32k_Rtc_Read_Time(&rtc_tm);
-"168
-[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
-[; ;ht1621.c: 169: num[0] = Dis_TAB[rtc_tm.hours / 10];
-"169
-[e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 170: num[0] |= 0x08;
-"170
-[e =| *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux -> -> 8 `i `uc ]
-[; ;ht1621.c: 171: num[1] = Dis_TAB[rtc_tm.hours % 10];
-"171
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 172: num[2] = Dis_TAB[rtc_tm.minutes / 10];
-"172
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 173: num[3] = Dis_TAB[rtc_tm.minutes % 10];
-"173
-[e = *U + &U _num * -> -> -> 3 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 174: WriteAll_1621(0, num, 4);
-"174
+[; ;ht1621.c: 155: num[1] = Dis_TAB[0x10];
+"155
+[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 156: num[2] = Dis_TAB[0x0c];
+"156
+[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 12 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 157: WriteAll_1621(0, num, 4);
+"157
 [e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 176: }
-"176
+[; ;ht1621.c: 158: }
+"158
 [e :UE 310 ]
+}
+"166
+[v _time_Display `(v ~T0 @X0 1 ef ]
+"167
+{
+[; ;ht1621.c: 166: void time_Display(void)
+[; ;ht1621.c: 167: {
+[e :U _time_Display ]
+[f ]
+[v F2129 `uc ~T0 @X0 -> 4 `i s ]
+[i F2129
+:U ..
+"168
+-> -> 0 `i `uc
+..
+]
+[v _num `uc ~T0 @X0 -> 4 `i a ]
+[; ;ht1621.c: 168: unsigned char num[4]={0};
+[e = _num F2129 ]
+[; ;ht1621.c: 169: Bq32k_Rtc_Read_Time(&rtc_tm);
+"169
+[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
+[; ;ht1621.c: 170: num[0] = Dis_TAB[rtc_tm.hours / 10];
+"170
+[e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 171: num[0] |= 0x08;
+"171
+[e =| *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux -> -> 8 `i `uc ]
+[; ;ht1621.c: 172: num[1] = Dis_TAB[rtc_tm.hours % 10];
+"172
+[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 173: num[2] = Dis_TAB[rtc_tm.minutes / 10];
+"173
+[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 174: num[3] = Dis_TAB[rtc_tm.minutes % 10];
+"174
+[e = *U + &U _num * -> -> -> 3 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 175: WriteAll_1621(0, num, 4);
+"175
+[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
+[; ;ht1621.c: 177: }
+"177
+[e :UE 311 ]
 }

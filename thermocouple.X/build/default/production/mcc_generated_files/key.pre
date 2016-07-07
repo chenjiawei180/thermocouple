@@ -2727,6 +2727,8 @@ extern unsigned char tmr_flag;
 extern unsigned char LongPressSec;
 extern unsigned char MAX31856Sec;
 extern bq32k_t rtc_tm;
+extern bq32k_t rtc_save_ch1;
+extern bq32k_t rtc_save_ch2;
 extern unsigned int Flash_buff[32];
 
 extern unsigned char Record_flag;
@@ -2736,7 +2738,8 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
-extern unsigned char Cur_temperature_time;
+extern unsigned char Cur_temperature_time_ch1;
+extern unsigned char Cur_temperature_time_ch2;
 
 # 21 "mcc_generated_files/key.h"
 unsigned char Key_Scan(void);
@@ -2755,14 +2758,36 @@ void Two_Display(unsigned char number);
 void err_Display(void);
 void time_Display(void);
 
+# 82 "mcc_generated_files/max31856.h"
+void maxim_31856_init(void);
+void maxim_stop_conversion(void);
+void maxim_start_conversion(uint8_t uch_conversion_mode);
+void maxim_disable_oc_fault_detection(void);
+void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable);
+void maxim_clear_fault_status(void);
+
+void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
+uint8_t maxim_31856_read_register(uint8_t uch_register_address);
+void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+void tc_temperature_trans(void);
+
+void one_temperature_trans(void);
+void temperature_display(void);
+void temperature_process(void);
+
 # 19 "mcc_generated_files/save.h"
 void Set_start_flag(void);
 void Set_finish_flag(void);
 void Serach_Flash_Head(void);
 void Write_Flash_head(void);
 void Write_Flash_finish(void);
+void Write_Cur_Time(void);
+void Save_process(void);
+unsigned char Calculate_Time(void);
+void Save_Write_word(unsigned int data);
+void Save_Write_time(void);
 
-# 18 "mcc_generated_files/key.c"
+# 20 "mcc_generated_files/key.c"
 unsigned char Key_Scan(void)
 {
 unsigned char Key_val=0xff;
@@ -2778,10 +2803,14 @@ if(RA7 == 0 ) Key_val = 0x02;
 return Key_val;
 }
 
-# 40
+# 42
 void Key_Process(void)
 {
 unsigned char gKeyValue=0;
+
+unsigned int i;
+unsigned int data_temp;
+
 LongPressSec = 0;
 gKeyValue=Key_Scan();
 if(gKeyValue)
@@ -2796,6 +2825,17 @@ do { LATA2 = 0; } while(0);
 do { LATA3 = 1; } while(0);
 SendCmd_1621(0x04);
 }
+
+else
+{
+for(i=0x2000;i<0x2000+1000;i++)
+{
+data_temp = FLASH_ReadWord(i);
+EUSART_Write(data_temp>>8);
+EUSART_Write(data_temp&0xff);
+}
+}
+
 while(RB5 == 0);
 break;
 case 0x02:
@@ -2805,10 +2845,15 @@ if(LongPressSec > 2)
 if(Record_flag == 0)
 {
 Set_start_flag();
+Write_Flash_head();
+Save_Write_time();
+Cur_temperature_time_ch1 = 0;
+Cur_temperature_time_ch2 = 0;
 }
 else
 {
 Set_finish_flag();
+Write_Flash_finish();
 }
 }
 else

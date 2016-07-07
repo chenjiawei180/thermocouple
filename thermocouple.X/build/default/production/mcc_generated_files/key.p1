@@ -15,16 +15,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
 "25 mcc_generated_files/ht1621.h
 [v _SendCmd_1621 `(v ~T0 @X0 0 ef1`uc ]
-"62 mcc_generated_files/global.h
+"99 mcc_generated_files/memory.h
+[v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ui ]
+"135 mcc_generated_files/eusart.h
+[v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
+"64 mcc_generated_files/global.h
 [v _Record_flag `uc ~T0 @X0 0 e ]
 "19 mcc_generated_files/save.h
 [v _Set_start_flag `(v ~T0 @X0 0 ef ]
-"20
+"22
+[v _Write_Flash_head `(v ~T0 @X0 0 ef ]
+"28
+[v _Save_Write_time `(v ~T0 @X0 0 ef ]
+"71 mcc_generated_files/global.h
+[v _Cur_temperature_time_ch1 `uc ~T0 @X0 0 e ]
+"72
+[v _Cur_temperature_time_ch2 `uc ~T0 @X0 0 e ]
+"20 mcc_generated_files/save.h
 [v _Set_finish_flag `(v ~T0 @X0 0 ef ]
+"23
+[v _Write_Flash_finish `(v ~T0 @X0 0 ef ]
 "54 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
-"75 mcc_generated_files/key.c
-[v _temperature_process `(i ~T0 @X0 0 ef ]
+"96 mcc_generated_files/max31856.h
+[v _temperature_process `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1937,15 +1951,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 57: extern unsigned char LongPressSec;
 [; ;global.h: 58: extern unsigned char MAX31856Sec;
 [; ;global.h: 59: extern bq32k_t rtc_tm;
-[; ;global.h: 60: extern unsigned int Flash_buff[32];
-[; ;global.h: 62: extern unsigned char Record_flag;
-[; ;global.h: 63: extern unsigned char CH1_state;
-[; ;global.h: 64: extern unsigned char CH2_state;
-[; ;global.h: 65: extern unsigned int CH1_temperature;
-[; ;global.h: 66: extern unsigned int CH2_temperature;
-[; ;global.h: 67: extern unsigned int Cur_temperature;
-[; ;global.h: 68: extern unsigned int Cur_Save_Index;
-[; ;global.h: 69: extern unsigned char Cur_temperature_time;
+[; ;global.h: 60: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 61: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 62: extern unsigned int Flash_buff[32];
+[; ;global.h: 64: extern unsigned char Record_flag;
+[; ;global.h: 65: extern unsigned char CH1_state;
+[; ;global.h: 66: extern unsigned char CH2_state;
+[; ;global.h: 67: extern unsigned int CH1_temperature;
+[; ;global.h: 68: extern unsigned int CH2_temperature;
+[; ;global.h: 69: extern unsigned int Cur_temperature;
+[; ;global.h: 70: extern unsigned int Cur_Save_Index;
+[; ;global.h: 71: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch2;
 [; ;key.h: 21: unsigned char Key_Scan(void);
 [; ;key.h: 22: void Key_Process(void);
 [; ;ht1621.h: 21: extern unsigned char const Dis_TAB[];
@@ -1958,233 +1975,310 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.h: 29: void Two_Display(unsigned char number);
 [; ;ht1621.h: 30: void err_Display(void);
 [; ;ht1621.h: 31: void time_Display(void);
+[; ;max31856.h: 82: void maxim_31856_init(void);
+[; ;max31856.h: 83: void maxim_stop_conversion(void);
+[; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
+[; ;max31856.h: 85: void maxim_disable_oc_fault_detection(void);
+[; ;max31856.h: 86: void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable);
+[; ;max31856.h: 87: void maxim_clear_fault_status(void);
+[; ;max31856.h: 89: void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value);
+[; ;max31856.h: 90: uint8_t maxim_31856_read_register(uint8_t uch_register_address);
+[; ;max31856.h: 91: void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes);
+[; ;max31856.h: 92: void tc_temperature_trans(void);
+[; ;max31856.h: 94: void one_temperature_trans(void);
+[; ;max31856.h: 95: void temperature_display(void);
+[; ;max31856.h: 96: void temperature_process(void);
 [; ;save.h: 19: void Set_start_flag(void);
 [; ;save.h: 20: void Set_finish_flag(void);
 [; ;save.h: 21: void Serach_Flash_Head(void);
 [; ;save.h: 22: void Write_Flash_head(void);
 [; ;save.h: 23: void Write_Flash_finish(void);
-"18 mcc_generated_files/key.c
+[; ;save.h: 24: void Write_Cur_Time(void);
+[; ;save.h: 25: void Save_process(void);
+[; ;save.h: 26: unsigned char Calculate_Time(void);
+[; ;save.h: 27: void Save_Write_word(unsigned int data);
+[; ;save.h: 28: void Save_Write_time(void);
+"20 mcc_generated_files/key.c
 [v _Key_Scan `(uc ~T0 @X0 1 ef ]
-"19
+"21
 {
-[; ;key.c: 18: unsigned char Key_Scan(void)
-[; ;key.c: 19: {
+[; ;key.c: 20: unsigned char Key_Scan(void)
+[; ;key.c: 21: {
 [e :U _Key_Scan ]
 [f ]
-"20
-[v _Key_val `uc ~T0 @X0 1 a ]
-[; ;key.c: 20: unsigned char Key_val=0xff;
-[e = _Key_val -> -> 255 `i `uc ]
-[; ;key.c: 21: if( RA7 == 0 || RB5 == 0 )
-"21
-[e $ ! || == -> _RA7 `i -> 0 `i == -> _RB5 `i -> 0 `i 235  ]
-[; ;key.c: 22: {
 "22
-{
-[; ;key.c: 23: _delay((unsigned long)((10)*(16000000/4000.0)));
+[v _Key_val `uc ~T0 @X0 1 a ]
+[; ;key.c: 22: unsigned char Key_val=0xff;
+[e = _Key_val -> -> 255 `i `uc ]
+[; ;key.c: 23: if( RA7 == 0 || RB5 == 0 )
 "23
-[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;key.c: 24: if( RA7 == 0 || RB5 == 0)
+[e $ ! || == -> _RA7 `i -> 0 `i == -> _RB5 `i -> 0 `i 235  ]
+[; ;key.c: 24: {
 "24
-[e $ ! || == -> _RA7 `i -> 0 `i == -> _RB5 `i -> 0 `i 236  ]
-[; ;key.c: 25: {
-"25
 {
-[; ;key.c: 26: if(RB5 == 0 ) Key_val = 0x01;
+[; ;key.c: 25: _delay((unsigned long)((10)*(16000000/4000.0)));
+"25
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;key.c: 26: if( RA7 == 0 || RB5 == 0)
 "26
+[e $ ! || == -> _RA7 `i -> 0 `i == -> _RB5 `i -> 0 `i 236  ]
+[; ;key.c: 27: {
+"27
+{
+[; ;key.c: 28: if(RB5 == 0 ) Key_val = 0x01;
+"28
 [e $ ! == -> _RB5 `i -> 0 `i 237  ]
 [e = _Key_val -> -> 1 `i `uc ]
 [e :U 237 ]
-[; ;key.c: 27: if(RA7 == 0 ) Key_val = 0x02;
-"27
+[; ;key.c: 29: if(RA7 == 0 ) Key_val = 0x02;
+"29
 [e $ ! == -> _RA7 `i -> 0 `i 238  ]
 [e = _Key_val -> -> 2 `i `uc ]
 [e :U 238 ]
-"28
+"30
 }
 [e :U 236 ]
-"29
+"31
 }
 [e :U 235 ]
-[; ;key.c: 28: }
-[; ;key.c: 29: }
-[; ;key.c: 30: return Key_val;
-"30
+[; ;key.c: 30: }
+[; ;key.c: 31: }
+[; ;key.c: 32: return Key_val;
+"32
 [e ) _Key_val ]
 [e $UE 234  ]
-[; ;key.c: 31: }
-"31
+[; ;key.c: 33: }
+"33
 [e :UE 234 ]
 }
-"40
+"42
 [v _Key_Process `(v ~T0 @X0 1 ef ]
-"41
+"43
 {
-[; ;key.c: 40: void Key_Process(void)
-[; ;key.c: 41: {
+[; ;key.c: 42: void Key_Process(void)
+[; ;key.c: 43: {
 [e :U _Key_Process ]
 [f ]
-"42
-[v _gKeyValue `uc ~T0 @X0 1 a ]
-[; ;key.c: 42: unsigned char gKeyValue=0;
-[e = _gKeyValue -> -> 0 `i `uc ]
-[; ;key.c: 43: LongPressSec = 0;
-"43
-[e = _LongPressSec -> -> 0 `i `uc ]
-[; ;key.c: 44: gKeyValue=Key_Scan();
 "44
-[e = _gKeyValue ( _Key_Scan ..  ]
-[; ;key.c: 45: if(gKeyValue)
-"45
-[e $ ! != -> _gKeyValue `i -> -> -> 0 `i `uc `i 240  ]
-[; ;key.c: 46: {
+[v _gKeyValue `uc ~T0 @X0 1 a ]
+[; ;key.c: 44: unsigned char gKeyValue=0;
+[e = _gKeyValue -> -> 0 `i `uc ]
 "46
-{
-[; ;key.c: 47: switch(gKeyValue)
+[v _i `ui ~T0 @X0 1 a ]
 "47
-[e $U 242  ]
-[; ;key.c: 48: {
-"48
-{
-[; ;key.c: 49: case 0x01:
+[v _data_temp `ui ~T0 @X0 1 a ]
+[; ;key.c: 46: unsigned int i;
+[; ;key.c: 47: unsigned int data_temp;
+[; ;key.c: 49: LongPressSec = 0;
 "49
-[e :U 243 ]
-[; ;key.c: 50: while( !(LongPressSec > 2 || RB5 == 1) );
+[e = _LongPressSec -> -> 0 `i `uc ]
+[; ;key.c: 50: gKeyValue=Key_Scan();
 "50
+[e = _gKeyValue ( _Key_Scan ..  ]
+[; ;key.c: 51: if(gKeyValue)
+"51
+[e $ ! != -> _gKeyValue `i -> -> -> 0 `i `uc `i 240  ]
+[; ;key.c: 52: {
+"52
+{
+[; ;key.c: 53: switch(gKeyValue)
+"53
+[e $U 242  ]
+[; ;key.c: 54: {
+"54
+{
+[; ;key.c: 55: case 0x01:
+"55
+[e :U 243 ]
+[; ;key.c: 56: while( !(LongPressSec > 2 || RB5 == 1) );
+"56
 [e $U 244  ]
 [e :U 245 ]
 [e :U 244 ]
 [e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RB5 `i -> 1 `i 245  ]
 [e :U 246 ]
-[; ;key.c: 51: if(LongPressSec > 2)
-"51
+[; ;key.c: 57: if(LongPressSec > 2)
+"57
 [e $ ! > -> _LongPressSec `i -> 2 `i 247  ]
-[; ;key.c: 52: {
-"52
+[; ;key.c: 58: {
+"58
 {
-[; ;key.c: 53: do { LATA2 = 0; } while(0);
-"53
+[; ;key.c: 59: do { LATA2 = 0; } while(0);
+"59
 [e :U 250 ]
 {
 [e = _LATA2 -> -> 0 `i `b ]
 }
 [e :U 249 ]
-[; ;key.c: 54: do { LATA3 = 1; } while(0);
-"54
+[; ;key.c: 60: do { LATA3 = 1; } while(0);
+"60
 [e :U 253 ]
 {
 [e = _LATA3 -> -> 1 `i `b ]
 }
 [e :U 252 ]
-[; ;key.c: 55: SendCmd_1621(0x04);
-"55
+[; ;key.c: 61: SendCmd_1621(0x04);
+"61
 [e ( _SendCmd_1621 (1 -> -> 4 `i `uc ]
-"56
+"62
 }
-[e :U 247 ]
-[; ;key.c: 56: }
-[; ;key.c: 57: while(RB5 == 0);
-"57
+[; ;key.c: 62: }
 [e $U 254  ]
+"64
+[e :U 247 ]
+[; ;key.c: 64: else
+[; ;key.c: 65: {
+"65
+{
+[; ;key.c: 66: for(i=0x2000;i<0x2000+1000;i++)
+"66
+{
+[e = _i -> -> 8192 `i `ui ]
+[e $ < _i -> + -> 8192 `i -> 1000 `i `ui 255  ]
+[e $U 256  ]
+"67
 [e :U 255 ]
-[e :U 254 ]
-[e $ == -> _RB5 `i -> 0 `i 255  ]
+[; ;key.c: 67: {
+{
+[; ;key.c: 68: data_temp = FLASH_ReadWord(i);
+"68
+[e = _data_temp ( _FLASH_ReadWord (1 _i ]
+[; ;key.c: 69: EUSART_Write(data_temp>>8);
+"69
+[e ( _EUSART_Write (1 -> >> _data_temp -> 8 `i `uc ]
+[; ;key.c: 70: EUSART_Write(data_temp&0xff);
+"70
+[e ( _EUSART_Write (1 -> & _data_temp -> -> 255 `i `ui `uc ]
+"71
+}
+"66
+[e ++ _i -> -> 1 `i `ui ]
+[e $ < _i -> + -> 8192 `i -> 1000 `i `ui 255  ]
 [e :U 256 ]
-[; ;key.c: 58: break;
-"58
-[e $U 241  ]
-[; ;key.c: 59: case 0x02:
-"59
-[e :U 257 ]
-[; ;key.c: 60: while( !(LongPressSec > 2 || RA7 == 1) );
-"60
+"71
+}
+"72
+}
+[e :U 254 ]
+[; ;key.c: 71: }
+[; ;key.c: 72: }
+[; ;key.c: 74: while(RB5 == 0);
+"74
 [e $U 258  ]
 [e :U 259 ]
 [e :U 258 ]
-[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RA7 `i -> 1 `i 259  ]
+[e $ == -> _RB5 `i -> 0 `i 259  ]
 [e :U 260 ]
-[; ;key.c: 61: if(LongPressSec > 2)
-"61
-[e $ ! > -> _LongPressSec `i -> 2 `i 261  ]
-[; ;key.c: 62: {
-"62
-{
-[; ;key.c: 63: if(Record_flag == 0)
-"63
-[e $ ! == -> _Record_flag `i -> 0 `i 262  ]
-[; ;key.c: 64: {
-"64
-{
-[; ;key.c: 65: Set_start_flag();
-"65
-[e ( _Set_start_flag ..  ]
-"66
-}
-[; ;key.c: 66: }
-[e $U 263  ]
-"67
-[e :U 262 ]
-[; ;key.c: 67: else
-[; ;key.c: 68: {
-"68
-{
-[; ;key.c: 69: Set_finish_flag();
-"69
-[e ( _Set_finish_flag ..  ]
-"70
-}
-[e :U 263 ]
-"71
-}
-[; ;key.c: 70: }
-[; ;key.c: 71: }
-[e $U 264  ]
-"72
-[e :U 261 ]
-[; ;key.c: 72: else
-[; ;key.c: 73: {
-"73
-{
-[; ;key.c: 74: time_count = 5;
-"74
-[e = _time_count -> -> 5 `i `uc ]
-[; ;key.c: 75: temperature_process();
+[; ;key.c: 75: break;
 "75
-[e ( _temperature_process ..  ]
+[e $U 241  ]
+[; ;key.c: 76: case 0x02:
 "76
-}
-[e :U 264 ]
-[; ;key.c: 76: }
-[; ;key.c: 77: while(RA7 == 0);
+[e :U 261 ]
+[; ;key.c: 77: while( !(LongPressSec > 2 || RA7 == 1) );
 "77
-[e $U 265  ]
-[e :U 266 ]
-[e :U 265 ]
-[e $ == -> _RA7 `i -> 0 `i 266  ]
-[e :U 267 ]
-[; ;key.c: 78: break;
+[e $U 262  ]
+[e :U 263 ]
+[e :U 262 ]
+[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RA7 `i -> 1 `i 263  ]
+[e :U 264 ]
+[; ;key.c: 78: if(LongPressSec > 2)
 "78
-[e $U 241  ]
-[; ;key.c: 79: default:break;
+[e $ ! > -> _LongPressSec `i -> 2 `i 265  ]
+[; ;key.c: 79: {
 "79
-[e :U 268 ]
-[e $U 241  ]
+{
+[; ;key.c: 80: if(Record_flag == 0)
 "80
+[e $ ! == -> _Record_flag `i -> 0 `i 266  ]
+[; ;key.c: 81: {
+"81
+{
+[; ;key.c: 82: Set_start_flag();
+"82
+[e ( _Set_start_flag ..  ]
+[; ;key.c: 83: Write_Flash_head();
+"83
+[e ( _Write_Flash_head ..  ]
+[; ;key.c: 84: Save_Write_time();
+"84
+[e ( _Save_Write_time ..  ]
+[; ;key.c: 85: Cur_temperature_time_ch1 = 0;
+"85
+[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
+[; ;key.c: 86: Cur_temperature_time_ch2 = 0;
+"86
+[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
+"87
 }
-[; ;key.c: 80: }
+[; ;key.c: 87: }
+[e $U 267  ]
+"88
+[e :U 266 ]
+[; ;key.c: 88: else
+[; ;key.c: 89: {
+"89
+{
+[; ;key.c: 90: Set_finish_flag();
+"90
+[e ( _Set_finish_flag ..  ]
+[; ;key.c: 91: Write_Flash_finish();
+"91
+[e ( _Write_Flash_finish ..  ]
+"92
+}
+[e :U 267 ]
+"93
+}
+[; ;key.c: 92: }
+[; ;key.c: 93: }
+[e $U 268  ]
+"94
+[e :U 265 ]
+[; ;key.c: 94: else
+[; ;key.c: 95: {
+"95
+{
+[; ;key.c: 96: time_count = 5;
+"96
+[e = _time_count -> -> 5 `i `uc ]
+[; ;key.c: 97: temperature_process();
+"97
+[e ( _temperature_process ..  ]
+"98
+}
+[e :U 268 ]
+[; ;key.c: 98: }
+[; ;key.c: 99: while(RA7 == 0);
+"99
+[e $U 269  ]
+[e :U 270 ]
+[e :U 269 ]
+[e $ == -> _RA7 `i -> 0 `i 270  ]
+[e :U 271 ]
+[; ;key.c: 100: break;
+"100
 [e $U 241  ]
-"47
+[; ;key.c: 101: default:break;
+"101
+[e :U 272 ]
+[e $U 241  ]
+"102
+}
+[; ;key.c: 102: }
+[e $U 241  ]
+"53
 [e :U 242 ]
 [e [\ _gKeyValue , $ -> -> 1 `i `uc 243
- , $ -> -> 2 `i `uc 257
- 268 ]
-"80
+ , $ -> -> 2 `i `uc 261
+ 272 ]
+"102
 [e :U 241 ]
-"81
+"103
 }
 [e :U 240 ]
-[; ;key.c: 81: }
-[; ;key.c: 82: }
-"82
+[; ;key.c: 103: }
+[; ;key.c: 104: }
+"104
 [e :UE 239 ]
 }

@@ -2727,6 +2727,8 @@ extern unsigned char tmr_flag;
 extern unsigned char LongPressSec;
 extern unsigned char MAX31856Sec;
 extern bq32k_t rtc_tm;
+extern bq32k_t rtc_save_ch1;
+extern bq32k_t rtc_save_ch2;
 extern unsigned int Flash_buff[32];
 
 extern unsigned char Record_flag;
@@ -2736,7 +2738,8 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
-extern unsigned char Cur_temperature_time;
+extern unsigned char Cur_temperature_time_ch1;
+extern unsigned char Cur_temperature_time_ch2;
 
 # 82 "mcc_generated_files/max31856.h"
 void maxim_31856_init(void);
@@ -2768,7 +2771,19 @@ void Two_Display(unsigned char number);
 void err_Display(void);
 void time_Display(void);
 
-# 19 "mcc_generated_files/max31856.c"
+# 19 "mcc_generated_files/save.h"
+void Set_start_flag(void);
+void Set_finish_flag(void);
+void Serach_Flash_Head(void);
+void Write_Flash_head(void);
+void Write_Flash_finish(void);
+void Write_Cur_Time(void);
+void Save_process(void);
+unsigned char Calculate_Time(void);
+void Save_Write_word(unsigned int data);
+void Save_Write_time(void);
+
+# 20 "mcc_generated_files/max31856.c"
 void maxim_31856_write_register(uint8_t uch_register_address, uint8_t uch_register_value)
 {
 do { LATA5 = 0; } while(0);
@@ -2777,7 +2792,7 @@ SPI_Exchange8bit(uch_register_value);
 do { LATA5 = 1; } while(0);
 }
 
-# 33
+# 34
 uint8_t maxim_31856_read_register(uint8_t uch_register_address)
 {
 uint8_t uch_register_data;
@@ -2788,7 +2803,7 @@ do { LATA5 = 1; } while(0);
 return (uch_register_data);
 }
 
-# 49
+# 50
 void maxim_31856_read_nregisters(uint8_t uch_register_address, uint8_t *uch_buff,uint8_t uch_nBytes)
 {
 do { LATA5 = 0; } while(0);
@@ -2797,7 +2812,7 @@ SPI_Exchange8bitBuffer((0), uch_nBytes, uch_buff);
 do { LATA5 = 1; } while(0);
 }
 
-# 63
+# 64
 void maxim_31856_init(void)
 {
 
@@ -2830,7 +2845,7 @@ maxim_31856_write_register(0x8B,0x00);
 
 }
 
-# 101
+# 102
 void maxim_stop_conversion(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2838,7 +2853,7 @@ uch_cr0&=(uint8_t) 0x3F;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 114
+# 115
 void maxim_start_conversion(uint8_t uch_conversion_mode)
 {
 uch_cr0=maxim_31856_read_register(0x00);
@@ -2847,7 +2862,7 @@ uch_cr0|=uch_conversion_mode;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 128
+# 129
 void maxim_disable_oc_fault_detection(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2855,7 +2870,7 @@ uch_cr0&=(uint8_t) 0xCF;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 141
+# 142
 void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2864,7 +2879,7 @@ uch_cr0|=uch_oc_fault_enable;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 155
+# 156
 void maxim_clear_fault_status(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2872,44 +2887,112 @@ uch_cr0|= (uint8_t) 0x02 ;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 168
+# 169
 void tc_temperature_trans(void)
 {
+unsigned int temperature_absolute = 0;
+unsigned int temperature_temp = 0;
+unsigned int var_time=0;
 temperature_value = 0;
 temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
 if(uch_ltcbh & 0x80) temperature_value |=0x2000;
+temperature_temp = temperature_value;
 
-if(time_count == 1)
+
+if(time_count == 1 && Record_flag == 1)
 {
-CH1_temperature= temperature_value;
+if( CH1_temperature & 0x2000 != temperature_temp & 0x2000)
+{
+var_time = Calculate_Time();
+var_time |= 0x100;
+if(CH1_state == 1) var_time |= 0x400;
+
+var_time |= 0x2000;
+
+Save_Write_word(var_time);
+Save_Write_word(temperature_value);
+Cur_temperature_time_ch1 = 0;
 }
-else if(time_count == 3)
+else
 {
-CH2_temperature= temperature_value;
+if(CH1_temperature & 0x2000) CH1_temperature=0x3FFF-CH1_temperature + 1 ;
+if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ;
+if( temperature_temp > CH1_temperature ) temperature_absolute = temperature_temp - CH1_temperature;
+else temperature_absolute = CH1_temperature - temperature_temp;
+if( temperature_absolute > 4)
+{
+var_time = Calculate_Time();
+var_time |= 0x100;
+if(CH1_state == 1) var_time |= 0x400;
+
+var_time |= 0x2000;
+
+Save_Write_word(var_time);
+Save_Write_word(temperature_value);
+Cur_temperature_time_ch1 = 0;
+}
+}
+CH1_temperature = temperature_value;
+}
+else if( time_count == 3 && Record_flag == 1)
+{
+if( CH2_temperature & 0x2000 != temperature_temp & 0x2000)
+{
+var_time = Calculate_Time();
+var_time |= 0x200;
+if(CH2_state == 1) var_time |= 0x800;
+
+var_time |= 0x2000;
+
+Save_Write_word(var_time);
+Save_Write_word(temperature_value);
+Cur_temperature_time_ch2 = 0;
+}
+else
+{
+if(CH2_temperature & 0x2000) CH2_temperature=0x3FFF-CH2_temperature + 1 ;
+if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ;
+if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;
+else temperature_absolute = CH2_temperature - temperature_temp;
+if( temperature_absolute > 4)
+{
+var_time = Calculate_Time();
+var_time |= 0x200;
+if(CH2_state == 1) var_time |= 0x800;
+
+var_time |= 0x2000;
+
+Save_Write_word(var_time);
+Save_Write_word(temperature_value);
+Cur_temperature_time_ch2 = 0;
+}
+}
+CH2_temperature = temperature_value;
 }
 
+temperature_temp = temperature_value;
 if((uch_ltcbh&0x80)==0x80)
 {
 temperature_sign = 1;
-temperature_value=0x3FFF-temperature_value+1;
+temperature_temp=0x3FFF-temperature_temp + 1 ;
 
-temperature_int = temperature_value>>3;
-temperature_decimal = temperature_value & 0x07;
+temperature_int = temperature_temp>>3;
+temperature_decimal = temperature_temp & 0x07;
 if(temperature_decimal > 3) temperature_decimal++;
 if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++;
 }
 else
 {
 temperature_sign = 0;
-temperature_int = temperature_value>>3;
-temperature_decimal = temperature_value & 0x07;
+temperature_int = temperature_temp>>3;
+temperature_decimal = temperature_temp & 0x07;
 if(temperature_decimal > 3) temperature_decimal++;
 if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
 }
 
 }
 
-# 210
+# 279
 void one_temperature_trans(void)
 {
 maxim_start_conversion((uint8_t) 0x40);
@@ -2917,7 +3000,7 @@ MAX31856Sec = 0;
 while( !(RB3 == 0 || MAX31856Sec > 2) ) ;
 if( MAX31856Sec > 2)
 {
-uch_sr = 0x01;
+
 }
 else
 {
@@ -2929,13 +3012,21 @@ uch_sr=uch_reg[5];
 
 }
 
-# 235
+# 304
 void temperature_display(void)
 {
 if(uch_sr==(uint8_t)0x00)
 {
 tc_temperature_trans();
 Tc_Display();
+if(time_count == 1)
+{
+CH1_state = 0;
+}
+else if(time_count == 3)
+{
+CH2_state = 0;
+}
 }
 else
 {
@@ -2954,7 +3045,7 @@ maxim_31856_write_register(0x82, 0x00);
 }
 }
 
-# 265
+# 342
 void temperature_process(void)
 {
 switch(time_count)

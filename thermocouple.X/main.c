@@ -103,7 +103,12 @@ void main(void) {
     //开机显示4 个 - - - -  
     time_count = 0;
     Record_flag = 0;
-    Cur_temperature_time = 0;
+    Cur_temperature_time_ch1 = 0;
+    Cur_temperature_time_ch2 = 0;
+    CH1_temperature = 0;
+    CH2_temperature = 0;
+    CH1_state = 0;
+    CH2_state = 0;
     bat_data = 0;
     Cur_Save_Index = Record_Add;
     Serach_Flash_Head();
@@ -168,6 +173,7 @@ void main(void) {
 
         temperature_process();
         Key_Process();
+	 Save_process();
 #endif
 
 #if 0

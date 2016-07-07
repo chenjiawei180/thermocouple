@@ -21,8 +21,11 @@ void Set_finish_flag(void);
 void Serach_Flash_Head(void);
 void Write_Flash_head(void);
 void Write_Flash_finish(void);
-
-
+void Write_Cur_Time(void);
+void Save_process(void);
+unsigned char Calculate_Time(void);
+void Save_Write_word(unsigned int data);
+void Save_Write_time(void);
 
 #ifdef	__cplusplus
 }

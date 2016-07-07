@@ -2777,6 +2777,8 @@ extern unsigned char tmr_flag;
 extern unsigned char LongPressSec;
 extern unsigned char MAX31856Sec;
 extern bq32k_t rtc_tm;
+extern bq32k_t rtc_save_ch1;
+extern bq32k_t rtc_save_ch2;
 extern unsigned int Flash_buff[32];
 
 extern unsigned char Record_flag;
@@ -2786,7 +2788,8 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
-extern unsigned char Cur_temperature_time;
+extern unsigned char Cur_temperature_time_ch1;
+extern unsigned char Cur_temperature_time_ch2;
 
 # 23 "mcc_generated_files/i2c.h"
 void I2C_Start(void);
@@ -2885,15 +2888,16 @@ switch(count)
 {
 case 3:display_buff[0] = Dis_TAB[temperature_int/100];
 case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
-case 1:display_buff[2] = Dis_TAB[temperature_int%10];
+case 1:display_buff[2] = Dis_TAB[temperature_int%10]; break;
+case 0:display_buff[2] = Dis_TAB[0];
 default:break;
 }
-if(temperature_sign == 1) display_buff[0]|=0x08;
+if(temperature_sign == 1) display_buff[0]=0x20;
 display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
 WriteAll_1621(0,display_buff,4);
 }
 
-# 137
+# 138
 void Two_Display(unsigned char number)
 {
 unsigned char num[4]={0};
@@ -2902,7 +2906,7 @@ num[2] = Dis_TAB[number];
 WriteAll_1621(0, num, 4);
 }
 
-# 151
+# 152
 void err_Display(void)
 {
 unsigned char num[4]={0};
@@ -2911,7 +2915,7 @@ num[2] = Dis_TAB[0x0c];
 WriteAll_1621(0, num, 4);
 }
 
-# 165
+# 166
 void time_Display(void)
 {
 unsigned char num[4]={0};

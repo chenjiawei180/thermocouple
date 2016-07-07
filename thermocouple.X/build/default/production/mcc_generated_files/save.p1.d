@@ -1,6 +1,8 @@
  build/default/production/mcc_generated_files/save.d  \
  build/default/production/mcc_generated_files/save.p1:  \
  mcc_generated_files/save.c  \
+mcc_generated_files/bq32k.h  \
+mcc_generated_files/i2c.h  \
 mcc_generated_files/fvr.h  \
 mcc_generated_files/mcc.h  \
 mcc_generated_files/global.h  \

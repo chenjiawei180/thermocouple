@@ -9,6 +9,7 @@
 #include "max31856.h"
 #include "mcc.h"
 #include "ht1621.h"
+#include "save.h"
 
 /**
   * @brief  This function is write a value to register of max31856.
@@ -167,34 +168,102 @@ void maxim_clear_fault_status(void)
   
 void tc_temperature_trans(void)
 {
+    unsigned int temperature_absolute = 0;
+    unsigned int temperature_temp = 0;
+    unsigned int var_time=0;
     temperature_value = 0;
     temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
     if(uch_ltcbh & 0x80)    temperature_value |=0x2000;
-
-    if(time_count == 1)    //recoder the temperature of each channel
+    temperature_temp = temperature_value;
+#if 1
+    //judge temperature 
+    if(time_count == 1 && Record_flag == 1)
     {
-         CH1_temperature= temperature_value;
+        if( CH1_temperature & 0x2000  != temperature_temp & 0x2000)    //different sign temperature
+        {
+	     var_time = Calculate_Time();
+            var_time |= 0x100; //add number of channel 1
+            if(CH1_state == 1)    var_time |= 0x400;
+#if DEBUG
+                     var_time |= 0x2000;
+#endif
+            Save_Write_word(var_time);
+	     Save_Write_word(temperature_value);    //save original value
+	     Cur_temperature_time_ch1 = 0;
+        }
+        else
+        {
+            if(CH1_temperature & 0x2000) CH1_temperature=0x3FFF-CH1_temperature + 1 ;     //wipe off sign
+	     if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
+	     if( temperature_temp > CH1_temperature ) temperature_absolute = temperature_temp - CH1_temperature;    //calculate the absolute of temperature
+	     else temperature_absolute = CH1_temperature - temperature_temp;
+	     if( temperature_absolute > 4) // 4*0.125
+	     {
+	         var_time = Calculate_Time();
+	         var_time |= 0x100; //add number of channel 1
+	         if(CH1_state == 1)    var_time |= 0x400;
+#if DEBUG
+                     var_time |= 0x2000;
+#endif
+                Save_Write_word(var_time);
+	         Save_Write_word(temperature_value);    //save original value
+		  Cur_temperature_time_ch1 = 0;
+	     }
+        }
+        CH1_temperature = temperature_value;
     }
-    else if(time_count == 3)
+    else if( time_count == 3 && Record_flag == 1)
     {
-        CH2_temperature= temperature_value;
+        if( CH2_temperature & 0x2000  != temperature_temp & 0x2000)    //different sign temperature
+        {
+	     var_time = Calculate_Time();
+            var_time |= 0x200; //add number of channel 2
+            if(CH2_state == 1)    var_time |= 0x800;
+#if DEBUG
+                     var_time |= 0x2000;
+#endif
+            Save_Write_word(var_time);
+	     Save_Write_word(temperature_value);
+	     Cur_temperature_time_ch2 = 0;
+        }
+        else
+        {
+            if(CH2_temperature & 0x2000) CH2_temperature=0x3FFF-CH2_temperature + 1 ;     //wipe off sign
+	     if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
+	     if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;    //calculate the absolute of temperature
+	     else temperature_absolute = CH2_temperature - temperature_temp;
+	     if( temperature_absolute > 4) // 4*0.125
+	     {
+	         var_time = Calculate_Time();
+	         var_time |= 0x200; //add number of channel 1
+	         if(CH2_state == 1)    var_time |= 0x800;
+#if DEBUG
+                     var_time |= 0x2000;
+#endif
+                Save_Write_word(var_time);
+	         Save_Write_word(temperature_value);
+		  Cur_temperature_time_ch2 = 0;
+	     }
+        }
+        CH2_temperature = temperature_value;
     }
-    
+#endif
+    temperature_temp = temperature_value;
     if((uch_ltcbh&0x80)==0x80)                                          //如果LTCBH最高位为1，则为负温度值
     {
         temperature_sign = 1; 
-        temperature_value=0x3FFF-temperature_value+1;
+        temperature_temp=0x3FFF-temperature_temp + 1 ; 
         //f_linearized_tc_temperature=0-temperature_value*TC_Resolution;  //计算得到热电偶转换温度值(负值)
-        temperature_int = temperature_value>>3; //高10位为温度值的整数
-        temperature_decimal = temperature_value & 0x07;//低3位为温度值的小数
+        temperature_int = temperature_temp>>3; //高10位为温度值的整数
+        temperature_decimal = temperature_temp & 0x07;//低3位为温度值的小数
         if(temperature_decimal > 3)    temperature_decimal++;  // 变为0123 5678
         if(( temperature_decimal == 3 || temperature_decimal == 8 ) && (temperature_int & 0x01)) temperature_decimal++; //变为 0123 4 5678 9
     }
     else
     {
         temperature_sign = 0; 
-        temperature_int = temperature_value>>3;
-        temperature_decimal = temperature_value & 0x07;
+        temperature_int = temperature_temp>>3;
+        temperature_decimal = temperature_temp & 0x07;
         if(temperature_decimal > 3)    temperature_decimal++;// 变为0123 5678
         if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;  //变为 0123 4 5678 9 
     }
@@ -214,7 +283,7 @@ void one_temperature_trans(void)
     while( !(DRDY_GetValue() == 0 || MAX31856Sec > 2) )  ;  //需要添加超时退出
     if( MAX31856Sec > 2)
     {
-        uch_sr = 0x01;
+        //uch_sr = 0x01;
     }
     else
     {
@@ -238,6 +307,14 @@ void temperature_display(void)
     { 
         tc_temperature_trans();  //把寄存器的值进行转换
         Tc_Display(); //显示温度
+        if(time_count == 1)    //judge the number of channel
+        {
+             CH1_state = 0;
+        }
+	 else if(time_count == 3)
+	 {
+	      CH2_state = 0;
+	 }
     }
     else
     {

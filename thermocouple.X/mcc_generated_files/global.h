@@ -14,7 +14,7 @@ extern "C" {
 
 #include "mcc.h"
     
-#define DEBUG
+#define DEBUG 1
 
 #ifdef OS_GLOBALS
 #define OS_EXT
@@ -57,6 +57,8 @@ OS_EXT unsigned char tmr_flag;
 OS_EXT unsigned char LongPressSec;
 OS_EXT unsigned char MAX31856Sec;
 OS_EXT bq32k_t rtc_tm;
+OS_EXT bq32k_t rtc_save_ch1;
+OS_EXT bq32k_t rtc_save_ch2;
 OS_EXT unsigned int Flash_buff[32];
 
 OS_EXT unsigned char Record_flag;
@@ -66,7 +68,8 @@ OS_EXT unsigned int CH1_temperature;
 OS_EXT unsigned int CH2_temperature;
 OS_EXT unsigned int Cur_temperature;
 OS_EXT unsigned int Cur_Save_Index;
-OS_EXT unsigned char Cur_temperature_time;
+OS_EXT unsigned char Cur_temperature_time_ch1;
+OS_EXT unsigned char Cur_temperature_time_ch2;
 
 
 #ifdef	__cplusplus

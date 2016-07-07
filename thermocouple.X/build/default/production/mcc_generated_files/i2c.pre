@@ -2727,6 +2727,8 @@ extern unsigned char tmr_flag;
 extern unsigned char LongPressSec;
 extern unsigned char MAX31856Sec;
 extern bq32k_t rtc_tm;
+extern bq32k_t rtc_save_ch1;
+extern bq32k_t rtc_save_ch2;
 extern unsigned int Flash_buff[32];
 
 extern unsigned char Record_flag;
@@ -2736,7 +2738,8 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
-extern unsigned char Cur_temperature_time;
+extern unsigned char Cur_temperature_time_ch1;
+extern unsigned char Cur_temperature_time_ch2;
 
 # 23 "mcc_generated_files/i2c.h"
 void I2C_Start(void);

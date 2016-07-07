@@ -2727,6 +2727,8 @@ uint8_t years;
  unsigned char LongPressSec;
  unsigned char MAX31856Sec;
  bq32k_t rtc_tm;
+ bq32k_t rtc_save_ch1;
+ bq32k_t rtc_save_ch2;
  unsigned int Flash_buff[32];
 
  unsigned char Record_flag;
@@ -2736,7 +2738,8 @@ uint8_t years;
  unsigned int CH2_temperature;
  unsigned int Cur_temperature;
  unsigned int Cur_Save_Index;
- unsigned char Cur_temperature_time;
+ unsigned char Cur_temperature_time_ch1;
+ unsigned char Cur_temperature_time_ch2;
 
 # 82 "mcc_generated_files/max31856.h"
 void maxim_31856_init(void);
@@ -2790,6 +2793,11 @@ void Set_finish_flag(void);
 void Serach_Flash_Head(void);
 void Write_Flash_head(void);
 void Write_Flash_finish(void);
+void Write_Cur_Time(void);
+void Save_process(void);
+unsigned char Calculate_Time(void);
+void Save_Write_word(unsigned int data);
+void Save_Write_time(void);
 
 # 17 "mcc_generated_files/debug.h"
 void EUSART_SendString(char *s);
@@ -2933,20 +2941,23 @@ WriteAll_1621(0,Dis_TAB+17,4);
 
 time_count = 0;
 Record_flag = 0;
-Cur_temperature_time = 0;
+Cur_temperature_time_ch1 = 0;
+Cur_temperature_time_ch2 = 0;
+CH1_temperature = 0;
+CH2_temperature = 0;
+CH1_state = 0;
+CH2_state = 0;
 bat_data = 0;
 Cur_Save_Index = 0x2000;
 Serach_Flash_Head();
-EUSART_Write(Cur_Save_Index>>8);
-EUSART_Write(Cur_Save_Index&0XFF);
 
-# 135
+# 140
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 146
+# 151
 while (1)
 {
 
@@ -2972,8 +2983,9 @@ bat_data = 0;
 
 temperature_process();
 Key_Process();
+Save_process();
 
-# 256
+# 262
 }
 }
 

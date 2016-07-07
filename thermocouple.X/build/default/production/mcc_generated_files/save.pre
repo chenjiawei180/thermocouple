@@ -2727,6 +2727,8 @@ extern unsigned char tmr_flag;
 extern unsigned char LongPressSec;
 extern unsigned char MAX31856Sec;
 extern bq32k_t rtc_tm;
+extern bq32k_t rtc_save_ch1;
+extern bq32k_t rtc_save_ch2;
 extern unsigned int Flash_buff[32];
 
 extern unsigned char Record_flag;
@@ -2736,7 +2738,8 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
-extern unsigned char Cur_temperature_time;
+extern unsigned char Cur_temperature_time_ch1;
+extern unsigned char Cur_temperature_time_ch2;
 
 # 19 "mcc_generated_files/save.h"
 void Set_start_flag(void);
@@ -2744,22 +2747,80 @@ void Set_finish_flag(void);
 void Serach_Flash_Head(void);
 void Write_Flash_head(void);
 void Write_Flash_finish(void);
+void Write_Cur_Time(void);
+void Save_process(void);
+unsigned char Calculate_Time(void);
+void Save_Write_word(unsigned int data);
+void Save_Write_time(void);
 
-# 16 "mcc_generated_files/save.c"
+# 23 "mcc_generated_files/i2c.h"
+void I2C_Start(void);
+unsigned char I2C_Send_Byte(unsigned char Data);
+unsigned char I2C_Receive_Byte(void);
+void I2C_Stop(void);
+unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
+unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
+
+# 38 "mcc_generated_files/bq32k.h"
+void Bq32k_Time_Init(void);
+void Bq32k_Rtc_Read_Time(bq32k_t *p);
+void Bq32k_Rtc_Write_Time(bq32k_t *p);
+
+unsigned char bcd2bin(unsigned char val);
+unsigned char bin2bcd(unsigned char val);
+
+# 14 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+
+
+extern void * __builtin_memcpy(void *, const void *, size_t);
+#pragma intrinsic(__builtin_memcpy)
+
+# 34
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 18 "mcc_generated_files/save.c"
 void Set_start_flag(void)
 {
 Record_flag = 1;
 do { LATA4 = 0; } while(0);
 }
 
-# 28
+# 30
 void Set_finish_flag(void)
 {
 Record_flag = 0;
 do { LATA4 = 1; } while(0);
 }
 
-# 40
+# 42
 void Serach_Flash_Head(void)
 {
 unsigned int i=0;
@@ -2776,21 +2837,123 @@ break;
 }
 }
 
-# 62
+# 64
 void Write_Flash_head(void)
 {
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAA);
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
 Cur_Save_Index++;
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAA);
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
 Cur_Save_Index++;
 }
 
-# 76
+# 78
 void Write_Flash_finish(void)
 {
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x55);
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
 Cur_Save_Index++;
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x55);
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
 Cur_Save_Index++;
+}
+
+# 92
+void Save_process(void)
+{
+unsigned int var_time=0;
+if( time_count == 1 && Record_flag == 1 )
+{
+if(Cur_temperature_time_ch1 > 60)
+{
+var_time = Calculate_Time();
+var_time |= 0x100;
+if(CH1_state == 1) var_time |= 0x400;
+
+var_time |= 0x1000;
+
+Save_Write_word(var_time);
+Save_Write_word(temperature_value);
+
+Cur_temperature_time_ch1 = 0;
+}
+
+}
+else if(time_count == 3 && Record_flag == 1)
+{
+if(Cur_temperature_time_ch2 > 60)
+{
+var_time = Calculate_Time();
+var_time |= 0x200;
+if(CH2_state == 1) var_time |= 0x800;
+
+var_time |= 0x1000;
+
+Save_Write_word(var_time);
+Save_Write_word(temperature_value);
+
+Cur_temperature_time_ch2 = 0;
+}
+}
+}
+
+# 136
+unsigned char Calculate_Time(void)
+{
+unsigned long temp = 0 ;
+unsigned long temp1 = 0 ;
+unsigned long temp2 = 0 ;
+Bq32k_Rtc_Read_Time(&rtc_tm);
+if( time_count == 1 )
+{
+if(rtc_tm.date != rtc_save_ch1.date)
+{
+
+}
+else
+{
+temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
+temp2 = rtc_save_ch1.hours*3600+rtc_save_ch1.minutes*60+rtc_save_ch1.seconds;
+temp = temp1 - temp2;
+__builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
+return temp;
+}
+}
+else if( time_count == 3 )
+{
+if(rtc_tm.date != rtc_save_ch2.date)
+{
+
+}
+else
+{
+temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
+temp2 = rtc_save_ch2.hours*3600+rtc_save_ch2.minutes*60+rtc_save_ch2.seconds;
+temp = temp1 - temp2;
+__builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
+return temp;
+}
+}
+return 0;
+}
+
+# 181
+void Save_Write_word(unsigned int data)
+{
+FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
+Cur_Save_Index++;
+}
+
+# 193
+void Save_Write_time(void)
+{
+unsigned char i;
+Bq32k_Rtc_Read_Time(&rtc_tm);
+__builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
+__builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
+Save_Write_word( rtc_tm.years);
+Save_Write_word( rtc_tm.month);
+Save_Write_word( rtc_tm.date);
+Save_Write_word( rtc_tm.hours);
+Save_Write_word( rtc_tm.minutes);
+Save_Write_word( rtc_tm.seconds);
+Save_Write_word( rtc_tm.wday);
 }
 
