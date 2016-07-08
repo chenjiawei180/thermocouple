@@ -35,12 +35,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _CH1_temperature `ui ~T0 @X0 0 e ]
 "68
 [v _CH2_temperature `ui ~T0 @X0 0 e ]
+"54
+[v _time_count `uc ~T0 @X0 0 e ]
 "20 mcc_generated_files/save.h
 [v _Set_finish_flag `(v ~T0 @X0 0 ef ]
 "23
 [v _Write_Flash_finish `(v ~T0 @X0 0 ef ]
-"54 mcc_generated_files/global.h
-[v _time_count `uc ~T0 @X0 0 e ]
 "96 mcc_generated_files/max31856.h
 [v _temperature_process `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
@@ -2219,76 +2219,79 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key.c: 88: CH2_temperature = 0;
 "88
 [e = _CH2_temperature -> -> 0 `i `ui ]
+[; ;key.c: 89: time_count = 0;
 "89
-}
-[; ;key.c: 89: }
-[e $U 267  ]
+[e = _time_count -> -> 0 `i `uc ]
 "90
-[e :U 266 ]
-[; ;key.c: 90: else
-[; ;key.c: 91: {
-"91
-{
-[; ;key.c: 92: Set_finish_flag();
-"92
-[e ( _Set_finish_flag ..  ]
-[; ;key.c: 93: Write_Flash_finish();
-"93
-[e ( _Write_Flash_finish ..  ]
-"94
 }
-[e :U 267 ]
+[; ;key.c: 90: }
+[e $U 267  ]
+"91
+[e :U 266 ]
+[; ;key.c: 91: else
+[; ;key.c: 92: {
+"92
+{
+[; ;key.c: 93: Set_finish_flag();
+"93
+[e ( _Set_finish_flag ..  ]
+[; ;key.c: 94: Write_Flash_finish();
+"94
+[e ( _Write_Flash_finish ..  ]
 "95
 }
-[; ;key.c: 94: }
-[; ;key.c: 95: }
-[e $U 268  ]
+[e :U 267 ]
 "96
-[e :U 265 ]
-[; ;key.c: 96: else
-[; ;key.c: 97: {
+}
+[; ;key.c: 95: }
+[; ;key.c: 96: }
+[e $U 268  ]
 "97
-{
-[; ;key.c: 98: time_count = 5;
+[e :U 265 ]
+[; ;key.c: 97: else
+[; ;key.c: 98: {
 "98
-[e = _time_count -> -> 5 `i `uc ]
-[; ;key.c: 99: temperature_process();
+{
+[; ;key.c: 99: time_count = 5;
 "99
-[e ( _temperature_process ..  ]
+[e = _time_count -> -> 5 `i `uc ]
+[; ;key.c: 100: temperature_process();
 "100
+[e ( _temperature_process ..  ]
+"101
 }
 [e :U 268 ]
-[; ;key.c: 100: }
-[; ;key.c: 101: while(RA7 == 0);
-"101
+[; ;key.c: 101: }
+[; ;key.c: 102: while(RA7 == 0);
+"102
 [e $U 269  ]
 [e :U 270 ]
 [e :U 269 ]
 [e $ == -> _RA7 `i -> 0 `i 270  ]
 [e :U 271 ]
-[; ;key.c: 102: break;
-"102
-[e $U 241  ]
-[; ;key.c: 103: default:break;
+[; ;key.c: 103: break;
 "103
+[e $U 241  ]
+[; ;key.c: 104: default:break;
+"104
 [e :U 272 ]
 [e $U 241  ]
-"104
+"105
 }
-[; ;key.c: 104: }
+[; ;key.c: 105: }
 [e $U 241  ]
 "53
 [e :U 242 ]
 [e [\ _gKeyValue , $ -> -> 1 `i `uc 243
  , $ -> -> 2 `i `uc 261
  272 ]
-"104
-[e :U 241 ]
 "105
+[e :U 241 ]
+"106
 }
 [e :U 240 ]
-[; ;key.c: 105: }
 [; ;key.c: 106: }
-"106
+[; ;key.c: 107: }
+"107
 [e :UE 239 ]
 }

@@ -137,9 +137,9 @@ ADC 11
 [v _Save_process Save_process `(v  1 e 1 0 ]
 "135
 [v _Calculate_Time Calculate_Time `(uc  1 e 1 0 ]
-"194
+"196
 [v _Save_Write_word Save_Write_word `(v  1 e 1 0 ]
-"206
+"211
 [v _Save_Write_time Save_Write_time `(v  1 e 1 0 ]
 "64 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
 [v _SPI_Initialize SPI_Initialize `(v  1 e 1 0 ]
@@ -466,16 +466,16 @@ ADC 11
 [v _Serach_Flash_Head Serach_Flash_Head `(v  1 e 1 0 ]
 {
 "44
-[v Serach_Flash_Head@i i `ui  1 a 2 2 ]
+[v Serach_Flash_Head@i i `ui  1 a 2 21 ]
 "45
-[v Serach_Flash_Head@data data `ui  1 a 2 0 ]
+[v Serach_Flash_Head@data data `ui  1 a 2 19 ]
 "56
 } 0
 "92
 [v _Save_process Save_process `(v  1 e 1 0 ]
 {
 "94
-[v Save_process@var_time var_time `ui  1 a 2 47 ]
+[v Save_process@var_time var_time `ui  1 a 2 49 ]
 "127
 } 0
 "70 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
@@ -522,12 +522,12 @@ ADC 11
 [v _Key_Process Key_Process `(i  1 e 2 0 ]
 {
 "46
-[v Key_Process@i i `ui  1 a 2 60 ]
+[v Key_Process@i i `ui  1 a 2 62 ]
 "47
-[v Key_Process@data_temp data_temp `ui  1 a 2 57 ]
+[v Key_Process@data_temp data_temp `ui  1 a 2 59 ]
 "44
-[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 59 ]
-"106
+[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 61 ]
+"107
 } 0
 "339 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _temperature_process temperature_process `(v  1 e 1 0 ]
@@ -576,23 +576,23 @@ ADC 11
 [v _tc_temperature_trans tc_temperature_trans `(v  1 e 1 0 ]
 {
 "171
-[v tc_temperature_trans@temperature_temp temperature_temp `ui  1 a 2 53 ]
+[v tc_temperature_trans@temperature_temp temperature_temp `ui  1 a 2 55 ]
 "172
-[v tc_temperature_trans@var_time var_time `ui  1 a 2 51 ]
+[v tc_temperature_trans@var_time var_time `ui  1 a 2 53 ]
 "170
-[v tc_temperature_trans@temperature_absolute temperature_absolute `ui  1 a 2 49 ]
+[v tc_temperature_trans@temperature_absolute temperature_absolute `ui  1 a 2 51 ]
 "269
 } 0
 "135 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
 [v _Calculate_Time Calculate_Time `(uc  1 e 1 0 ]
 {
 "139
-[v Calculate_Time@temp2 temp2 `ul  1 a 4 41 ]
+[v Calculate_Time@temp2 temp2 `ul  1 a 4 43 ]
 "138
-[v Calculate_Time@temp1 temp1 `ul  1 a 4 37 ]
+[v Calculate_Time@temp1 temp1 `ul  1 a 4 39 ]
 "137
-[v Calculate_Time@temp temp `ul  1 a 4 33 ]
-"186
+[v Calculate_Time@temp temp `ul  1 a 4 35 ]
+"188
 } 0
 "15 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -614,16 +614,16 @@ ADC 11
 {
 "84
 } 0
-"206
+"211
 [v _Save_Write_time Save_Write_time `(v  1 e 1 0 ]
 {
-"219
+"224
 } 0
-"194
+"196
 [v _Save_Write_word Save_Write_word `(v  1 e 1 0 ]
 {
 [v Save_Write_word@data data `ui  1 p 2 19 ]
-"198
+"203
 } 0
 "74 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/memory.c
 [v _FLASH_WriteWord FLASH_WriteWord `(v  1 e 1 0 ]

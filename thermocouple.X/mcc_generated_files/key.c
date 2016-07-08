@@ -86,6 +86,7 @@ void Key_Process(void)
                         Cur_temperature_time_ch2 = 0;
                         CH1_temperature = 0;
                         CH2_temperature = 0;
+                        time_count = 0;
                     }
                     else 
                     {

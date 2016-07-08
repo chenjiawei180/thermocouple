@@ -48,8 +48,8 @@ void Serach_Flash_Head(void)
         data = FLASH_ReadWord(i);
         if( data == 0x3fff)
         {
-            i++;
             Cur_Save_Index = i;
+            Write_Flash_finish();
             break;
         } 
     }
@@ -148,8 +148,9 @@ unsigned char Calculate_Time(void)
             Save_Write_time();
             Cur_temperature_time_ch1 = 0;
             Cur_temperature_time_ch2 = 0;
-            CH1_temperature = 0;
-            CH2_temperature = 0;
+            //CH1_temperature = 0;
+            //CH2_temperature = 0;
+            time_count = 0;
         }
         else
         {
@@ -170,8 +171,9 @@ unsigned char Calculate_Time(void)
             Save_Write_time();
             Cur_temperature_time_ch1 = 0;
             Cur_temperature_time_ch2 = 0;
-            CH1_temperature = 0;
-            CH2_temperature = 0;
+            //CH1_temperature = 0;
+            //CH2_temperature = 0;
+            time_count = 0;
         }
         else
         {
@@ -193,6 +195,9 @@ unsigned char Calculate_Time(void)
   
 void Save_Write_word(unsigned int data)
 {
+    if( (data & 0x3fff) == 0x3fff) 
+    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x3ffe);
+    else
     FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
     Cur_Save_Index++;
 }

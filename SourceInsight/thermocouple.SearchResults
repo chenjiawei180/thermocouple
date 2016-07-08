@@ -1,6 +1,16 @@
----- MAX31856Sec Matches (5 in 3 files) ----
-Global.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):OS_EXT unsigned char MAX31856Sec;
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    MAX31856Sec = 0;
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    while( !(DRDY_GetValue() == 0 || MAX31856Sec > 2) )  ;  //需要添加超时退出
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    if( MAX31856Sec > 2)
-Tmr0.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    MAX31856Sec++;
+---- Cur_Save_Index Matches (15 in 3 files) ----
+Global.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):OS_EXT unsigned int Cur_Save_Index;
+Main.c (e:\github\thermocouple\thermocouple.x):    Cur_Save_Index = Record_Add;
+Main.c (e:\github\thermocouple\thermocouple.x):    //EUSART_Write(Cur_Save_Index>>8);
+Main.c (e:\github\thermocouple\thermocouple.x):    //EUSART_Write(Cur_Save_Index&0XFF);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):            Cur_Save_Index = i;
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    Cur_Save_Index++;
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    Cur_Save_Index++;
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    Cur_Save_Index++;
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    Cur_Save_Index++;
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    Cur_Save_Index++;

@@ -7,6 +7,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ui ]
 "70 mcc_generated_files/global.h
 [v _Cur_Save_Index `ui ~T0 @X0 0 e ]
+"23 mcc_generated_files/save.h
+[v _Write_Flash_finish `(v ~T0 @X0 0 ef ]
 "128 mcc_generated_files/memory.h
 [v _FLASH_WriteWord `(v ~T0 @X0 0 ef3`ui`*ui`ui ]
 "62 mcc_generated_files/global.h
@@ -2096,12 +2098,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;save.c: 50: {
 "50
 {
-[; ;save.c: 51: i++;
+[; ;save.c: 51: Cur_Save_Index = i;
 "51
-[e ++ _i -> -> 1 `i `ui ]
-[; ;save.c: 52: Cur_Save_Index = i;
-"52
 [e = _Cur_Save_Index _i ]
+[; ;save.c: 52: Write_Flash_finish();
+"52
+[e ( _Write_Flash_finish ..  ]
 [; ;save.c: 53: break;
 "53
 [e $U 244  ]
@@ -2324,186 +2326,191 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;save.c: 150: Cur_temperature_time_ch2 = 0;
 "150
 [e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
-[; ;save.c: 151: CH1_temperature = 0;
-"151
-[e = _CH1_temperature -> -> 0 `i `ui ]
-[; ;save.c: 152: CH2_temperature = 0;
-"152
-[e = _CH2_temperature -> -> 0 `i `ui ]
+[; ;save.c: 153: time_count = 0;
 "153
-}
-[; ;save.c: 153: }
-[e $U 260  ]
+[e = _time_count -> -> 0 `i `uc ]
 "154
-[e :U 259 ]
-[; ;save.c: 154: else
-[; ;save.c: 155: {
+}
+[; ;save.c: 154: }
+[e $U 260  ]
 "155
-{
-[; ;save.c: 156: temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
+[e :U 259 ]
+[; ;save.c: 155: else
+[; ;save.c: 156: {
 "156
-[e = _temp1 -> -> + + * -> . _rtc_tm 2 `i -> 3600 `i * -> . _rtc_tm 1 `i -> 60 `i -> . _rtc_tm 0 `i `l `ul ]
-[; ;save.c: 157: temp2 = rtc_save_ch1.hours*3600+rtc_save_ch1.minutes*60+rtc_save_ch1.seconds;
+{
+[; ;save.c: 157: temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
 "157
-[e = _temp2 -> -> + + * -> . _rtc_save_ch1 2 `i -> 3600 `i * -> . _rtc_save_ch1 1 `i -> 60 `i -> . _rtc_save_ch1 0 `i `l `ul ]
-[; ;save.c: 158: temp = temp1 - temp2;
+[e = _temp1 -> -> + + * -> . _rtc_tm 2 `i -> 3600 `i * -> . _rtc_tm 1 `i -> 60 `i -> . _rtc_tm 0 `i `l `ul ]
+[; ;save.c: 158: temp2 = rtc_save_ch1.hours*3600+rtc_save_ch1.minutes*60+rtc_save_ch1.seconds;
 "158
-[e = _temp - _temp1 _temp2 ]
-[; ;save.c: 159: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
+[e = _temp2 -> -> + + * -> . _rtc_save_ch1 2 `i -> 3600 `i * -> . _rtc_save_ch1 1 `i -> 60 `i -> . _rtc_save_ch1 0 `i `l `ul ]
+[; ;save.c: 159: temp = temp1 - temp2;
 "159
-[e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch1 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 160: return temp;
+[e = _temp - _temp1 _temp2 ]
+[; ;save.c: 160: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
 "160
+[e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch1 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
+[; ;save.c: 161: return temp;
+"161
 [e ) -> _temp `uc ]
 [e $UE 257  ]
-"161
-}
-[e :U 260 ]
 "162
 }
-[; ;save.c: 161: }
-[; ;save.c: 162: }
-[e $U 261  ]
+[e :U 260 ]
 "163
-[e :U 258 ]
-[; ;save.c: 163: else if( time_count == 3 )
-[e $ ! == -> _time_count `i -> 3 `i 262  ]
-[; ;save.c: 164: {
-"164
-{
-[; ;save.c: 165: if(rtc_tm.date != rtc_save_ch2.date)
-"165
-[e $ ! != -> . _rtc_tm 4 `i -> . _rtc_save_ch2 4 `i 263  ]
-[; ;save.c: 166: {
-"166
-{
-[; ;save.c: 168: Write_Flash_finish();
-"168
-[e ( _Write_Flash_finish ..  ]
-[; ;save.c: 169: Write_Flash_head();
-"169
-[e ( _Write_Flash_head ..  ]
-[; ;save.c: 170: Save_Write_time();
-"170
-[e ( _Save_Write_time ..  ]
-[; ;save.c: 171: Cur_temperature_time_ch1 = 0;
-"171
-[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
-[; ;save.c: 172: Cur_temperature_time_ch2 = 0;
-"172
-[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
-[; ;save.c: 173: CH1_temperature = 0;
-"173
-[e = _CH1_temperature -> -> 0 `i `ui ]
-[; ;save.c: 174: CH2_temperature = 0;
-"174
-[e = _CH2_temperature -> -> 0 `i `ui ]
-"175
 }
-[; ;save.c: 175: }
-[e $U 264  ]
-"176
-[e :U 263 ]
-[; ;save.c: 176: else
-[; ;save.c: 177: {
-"177
+[; ;save.c: 162: }
+[; ;save.c: 163: }
+[e $U 261  ]
+"164
+[e :U 258 ]
+[; ;save.c: 164: else if( time_count == 3 )
+[e $ ! == -> _time_count `i -> 3 `i 262  ]
+[; ;save.c: 165: {
+"165
 {
-[; ;save.c: 178: temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
+[; ;save.c: 166: if(rtc_tm.date != rtc_save_ch2.date)
+"166
+[e $ ! != -> . _rtc_tm 4 `i -> . _rtc_save_ch2 4 `i 263  ]
+[; ;save.c: 167: {
+"167
+{
+[; ;save.c: 169: Write_Flash_finish();
+"169
+[e ( _Write_Flash_finish ..  ]
+[; ;save.c: 170: Write_Flash_head();
+"170
+[e ( _Write_Flash_head ..  ]
+[; ;save.c: 171: Save_Write_time();
+"171
+[e ( _Save_Write_time ..  ]
+[; ;save.c: 172: Cur_temperature_time_ch1 = 0;
+"172
+[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
+[; ;save.c: 173: Cur_temperature_time_ch2 = 0;
+"173
+[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
+[; ;save.c: 176: time_count = 0;
+"176
+[e = _time_count -> -> 0 `i `uc ]
+"177
+}
+[; ;save.c: 177: }
+[e $U 264  ]
 "178
-[e = _temp1 -> -> + + * -> . _rtc_tm 2 `i -> 3600 `i * -> . _rtc_tm 1 `i -> 60 `i -> . _rtc_tm 0 `i `l `ul ]
-[; ;save.c: 179: temp2 = rtc_save_ch2.hours*3600+rtc_save_ch2.minutes*60+rtc_save_ch2.seconds;
+[e :U 263 ]
+[; ;save.c: 178: else
+[; ;save.c: 179: {
 "179
-[e = _temp2 -> -> + + * -> . _rtc_save_ch2 2 `i -> 3600 `i * -> . _rtc_save_ch2 1 `i -> 60 `i -> . _rtc_save_ch2 0 `i `l `ul ]
-[; ;save.c: 180: temp = temp1 - temp2;
+{
+[; ;save.c: 180: temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
 "180
-[e = _temp - _temp1 _temp2 ]
-[; ;save.c: 181: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
+[e = _temp1 -> -> + + * -> . _rtc_tm 2 `i -> 3600 `i * -> . _rtc_tm 1 `i -> 60 `i -> . _rtc_tm 0 `i `l `ul ]
+[; ;save.c: 181: temp2 = rtc_save_ch2.hours*3600+rtc_save_ch2.minutes*60+rtc_save_ch2.seconds;
 "181
-[e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch2 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 182: return temp;
+[e = _temp2 -> -> + + * -> . _rtc_save_ch2 2 `i -> 3600 `i * -> . _rtc_save_ch2 1 `i -> 60 `i -> . _rtc_save_ch2 0 `i `l `ul ]
+[; ;save.c: 182: temp = temp1 - temp2;
 "182
+[e = _temp - _temp1 _temp2 ]
+[; ;save.c: 183: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
+"183
+[e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch2 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
+[; ;save.c: 184: return temp;
+"184
 [e ) -> _temp `uc ]
 [e $UE 257  ]
-"183
+"185
 }
 [e :U 264 ]
-"184
+"186
 }
 [e :U 262 ]
-"185
+"187
 [e :U 261 ]
-[; ;save.c: 183: }
-[; ;save.c: 184: }
-[; ;save.c: 185: return 0;
+[; ;save.c: 185: }
+[; ;save.c: 186: }
+[; ;save.c: 187: return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 257  ]
-[; ;save.c: 186: }
-"186
+[; ;save.c: 188: }
+"188
 [e :UE 257 ]
 }
-"194
-[v _Save_Write_word `(v ~T0 @X0 1 ef1`ui ]
-"195
-{
-[; ;save.c: 194: void Save_Write_word(unsigned int data)
-[; ;save.c: 195: {
-[e :U _Save_Write_word ]
-"194
-[v _data `ui ~T0 @X0 1 r1 ]
-"195
-[f ]
-[; ;save.c: 196: FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
 "196
-[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff _data ]
-[; ;save.c: 197: Cur_Save_Index++;
+[v _Save_Write_word `(v ~T0 @X0 1 ef1`ui ]
 "197
-[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[; ;save.c: 198: }
+{
+[; ;save.c: 196: void Save_Write_word(unsigned int data)
+[; ;save.c: 197: {
+[e :U _Save_Write_word ]
+"196
+[v _data `ui ~T0 @X0 1 r1 ]
+"197
+[f ]
+[; ;save.c: 198: if( (data & 0x3fff) == 0x3fff)
 "198
+[e $ ! == & _data -> -> 16383 `i `ui -> -> 16383 `i `ui 266  ]
+[; ;save.c: 199: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x3ffe);
+"199
+[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> -> 16382 `i `ui ]
+[e $U 267  ]
+"200
+[e :U 266 ]
+[; ;save.c: 200: else
+[; ;save.c: 201: FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
+"201
+[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff _data ]
+[e :U 267 ]
+[; ;save.c: 202: Cur_Save_Index++;
+"202
+[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
+[; ;save.c: 203: }
+"203
 [e :UE 265 ]
 }
-"206
+"211
 [v _Save_Write_time `(v ~T0 @X0 1 ef ]
-"207
+"212
 {
-[; ;save.c: 206: void Save_Write_time(void)
-[; ;save.c: 207: {
+[; ;save.c: 211: void Save_Write_time(void)
+[; ;save.c: 212: {
 [e :U _Save_Write_time ]
 [f ]
-"208
-[v _i `uc ~T0 @X0 1 a ]
-[; ;save.c: 208: unsigned char i;
-[; ;save.c: 209: Bq32k_Rtc_Read_Time(&rtc_tm);
-"209
-[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
-[; ;save.c: 210: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
-"210
-[e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch1 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 211: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
-"211
-[e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch2 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 212: Save_Write_word( rtc_tm.years);
-"212
-[e ( _Save_Write_word (1 -> . _rtc_tm 6 `ui ]
-[; ;save.c: 213: Save_Write_word( rtc_tm.month);
 "213
-[e ( _Save_Write_word (1 -> . _rtc_tm 5 `ui ]
-[; ;save.c: 214: Save_Write_word( rtc_tm.date);
+[v _i `uc ~T0 @X0 1 a ]
+[; ;save.c: 213: unsigned char i;
+[; ;save.c: 214: Bq32k_Rtc_Read_Time(&rtc_tm);
 "214
-[e ( _Save_Write_word (1 -> . _rtc_tm 4 `ui ]
-[; ;save.c: 215: Save_Write_word( rtc_tm.hours);
+[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
+[; ;save.c: 215: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
 "215
-[e ( _Save_Write_word (1 -> . _rtc_tm 2 `ui ]
-[; ;save.c: 216: Save_Write_word( rtc_tm.minutes);
+[e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch1 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
+[; ;save.c: 216: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
 "216
-[e ( _Save_Write_word (1 -> . _rtc_tm 1 `ui ]
-[; ;save.c: 217: Save_Write_word( rtc_tm.seconds);
+[e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch2 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
+[; ;save.c: 217: Save_Write_word( rtc_tm.years);
 "217
-[e ( _Save_Write_word (1 -> . _rtc_tm 0 `ui ]
-[; ;save.c: 218: Save_Write_word( rtc_tm.wday);
+[e ( _Save_Write_word (1 -> . _rtc_tm 6 `ui ]
+[; ;save.c: 218: Save_Write_word( rtc_tm.month);
 "218
-[e ( _Save_Write_word (1 -> . _rtc_tm 3 `ui ]
-[; ;save.c: 219: }
+[e ( _Save_Write_word (1 -> . _rtc_tm 5 `ui ]
+[; ;save.c: 219: Save_Write_word( rtc_tm.date);
 "219
-[e :UE 266 ]
+[e ( _Save_Write_word (1 -> . _rtc_tm 4 `ui ]
+[; ;save.c: 220: Save_Write_word( rtc_tm.hours);
+"220
+[e ( _Save_Write_word (1 -> . _rtc_tm 2 `ui ]
+[; ;save.c: 221: Save_Write_word( rtc_tm.minutes);
+"221
+[e ( _Save_Write_word (1 -> . _rtc_tm 1 `ui ]
+[; ;save.c: 222: Save_Write_word( rtc_tm.seconds);
+"222
+[e ( _Save_Write_word (1 -> . _rtc_tm 0 `ui ]
+[; ;save.c: 223: Save_Write_word( rtc_tm.wday);
+"223
+[e ( _Save_Write_word (1 -> . _rtc_tm 3 `ui ]
+[; ;save.c: 224: }
+"224
+[e :UE 268 ]
 }
