@@ -2842,10 +2842,9 @@ maxim_31856_write_register(0x89,0x00);
 
 maxim_31856_write_register(0x8A,0x00);
 maxim_31856_write_register(0x8B,0x00);
-
 }
 
-# 102
+# 101
 void maxim_stop_conversion(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2853,7 +2852,7 @@ uch_cr0&=(uint8_t) 0x3F;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 115
+# 114
 void maxim_start_conversion(uint8_t uch_conversion_mode)
 {
 uch_cr0=maxim_31856_read_register(0x00);
@@ -2862,7 +2861,7 @@ uch_cr0|=uch_conversion_mode;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 129
+# 128
 void maxim_disable_oc_fault_detection(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2870,7 +2869,7 @@ uch_cr0&=(uint8_t) 0xCF;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 142
+# 141
 void maxim_set_oc_fault_detection(uint8_t uch_oc_fault_enable)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2879,7 +2878,7 @@ uch_cr0|=uch_oc_fault_enable;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 156
+# 155
 void maxim_clear_fault_status(void)
 {
 uch_cr0= maxim_31856_read_register(0x00);
@@ -2887,7 +2886,7 @@ uch_cr0|= (uint8_t) 0x02 ;
 maxim_31856_write_register(0x80, uch_cr0);
 }
 
-# 169
+# 168
 void tc_temperature_trans(void)
 {
 unsigned int temperature_absolute = 0;
@@ -2989,18 +2988,17 @@ temperature_decimal = temperature_temp & 0x07;
 if(temperature_decimal > 3) temperature_decimal++;
 if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;
 }
-
 }
 
-# 279
+# 277
 void one_temperature_trans(void)
 {
 maxim_start_conversion((uint8_t) 0x40);
 MAX31856Sec = 0;
-while( !(RB3 == 0 || MAX31856Sec > 2) ) ;
-if( MAX31856Sec > 2)
+while( !(RB3 == 0 || MAX31856Sec > 30) ) ;
+if( MAX31856Sec > 30)
 {
-
+uch_sr = 0x01;
 }
 else
 {
@@ -3009,10 +3007,9 @@ uch_cjth=uch_reg[0];uch_cjtl=uch_reg[1];
 uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
 uch_sr=uch_reg[5];
 }
-
 }
 
-# 304
+# 301
 void temperature_display(void)
 {
 if(uch_sr==(uint8_t)0x00)
@@ -3045,28 +3042,34 @@ maxim_31856_write_register(0x82, 0x00);
 }
 }
 
-# 342
+# 339
 void temperature_process(void)
 {
 switch(time_count)
 {
-case 0: Two_Display(1);
+case 0:
+Two_Display(1);
 do { LATA1 = 1; } while(0);
 do { LATA0 = 1; } while(0);
 do { LATA0 = 0; } while(0);
 one_temperature_trans();
 break;
 case 1:
-temperature_display();break;
-case 2: Two_Display(2);
+temperature_display();
+break;
+case 2:
+Two_Display(2);
 do { LATA0 = 1; } while(0);
 do { LATA1 = 1; } while(0);
 do { LATA1 = 0; } while(0);
 one_temperature_trans();
 break;
 case 3:
-temperature_display();break;
-case 5: time_Display();break;
+temperature_display();
+break;
+case 5:
+time_Display();
+break;
 default:break;
 }
 }

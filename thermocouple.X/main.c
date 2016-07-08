@@ -84,8 +84,8 @@ void main(void) {
     bat_data = bat_data>>4;
     if( bat_data < BAT_V)
     {
-         POWER_SetLow();
-	  while(1);
+        POWER_SetLow();
+        while(1);
     }
     i = 0 ;
     bat_data = 0 ;
@@ -130,9 +130,8 @@ void main(void) {
 
 #ifdef DEBUG
     //EUSART_SendString("hello pic16f1518 \n\r");
-    
 #endif
-	
+    
     // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
     // Use the following macros to:
 
@@ -152,28 +151,28 @@ void main(void) {
     {
     // Add your application code
        // EUSART_SendString("ONE CYCLE \n\r");
-	
+    
 #if 1
         bat_data = bat_data + ADC_GetConversion(ADC);
         i++;
-	 if(i == 16)
-	 {
-	     i = 0;
-	     bat_data = bat_data>>4;
+        if(i == 16)
+        {
+            i = 0;
+            bat_data = bat_data>>4;
             if( bat_data < BAT_V)
             {
                 POWER_SetLow();
                 while(1);
             }
-	     bat_data = 0;
-	 }
+            bat_data = 0;
+        }
         
         //EUSART_Write(bat_data>>8);
-	 //EUSART_Write(bat_data&0xff);
+        //EUSART_Write(bat_data&0xff);
 
         temperature_process();
         Key_Process();
-	 Save_process();
+        Save_process();
 #endif
 
 #if 0
@@ -219,7 +218,7 @@ void main(void) {
             temperature_value = 0;
            // temperature_value = (( (uch_ltcbh<<16) | (uch_ltcbm<<8) | uch_ltcbl ) >> 5) ;         //构造热电偶温度数据
             temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
-	        if(uch_ltcbh & 0x80)    temperature_value |=0x2000;
+            if(uch_ltcbh & 0x80)    temperature_value |=0x2000;
             if((uch_ltcbh&0x80)==0x80)                                          //如果LTCBH最高位为1，则为负温度值
             {
                 temperature_value=0x7FFFF-temperature_value+1;

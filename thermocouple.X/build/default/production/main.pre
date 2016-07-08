@@ -2951,13 +2951,13 @@ bat_data = 0;
 Cur_Save_Index = 0x2000;
 Serach_Flash_Head();
 
-# 140
+# 139
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 151
+# 150
 while (1)
 {
 
@@ -2985,7 +2985,7 @@ temperature_process();
 Key_Process();
 Save_process();
 
-# 262
+# 261
 }
 }
 

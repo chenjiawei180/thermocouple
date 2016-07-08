@@ -2025,32 +2025,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ]
 [; ;ht1621.c: 14: unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x57,0x20,0x20,0x20,0x20};
-"21
-[v _SendBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
 "22
+[v _SendBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
+"23
 {
-[; ;ht1621.c: 21: void SendBit_1621(unsigned char data,unsigned char cnt)
-[; ;ht1621.c: 22: {
+[; ;ht1621.c: 22: void SendBit_1621(unsigned char data,unsigned char cnt)
+[; ;ht1621.c: 23: {
 [e :U _SendBit_1621 ]
-"21
+"22
 [v _data `uc ~T0 @X0 1 r1 ]
 [v _cnt `uc ~T0 @X0 1 r2 ]
-"22
-[f ]
 "23
-[v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 23: unsigned char i;
-[; ;ht1621.c: 24: for(i =0; i <cnt; i ++)
+[f ]
 "24
+[v _i `uc ~T0 @X0 1 a ]
+[; ;ht1621.c: 24: unsigned char i;
+[; ;ht1621.c: 25: for(i =0; i <cnt; i ++)
+"25
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 238  ]
-"25
-[e :U 235 ]
-[; ;ht1621.c: 25: {
-{
-[; ;ht1621.c: 26: if((data&0x80)==0) do { LATC2 = 0; } while(0);
 "26
+[e :U 235 ]
+[; ;ht1621.c: 26: {
+{
+[; ;ht1621.c: 27: if((data&0x80)==0) do { LATC2 = 0; } while(0);
+"27
 [e $ ! == & -> _data `i -> 128 `i -> 0 `i 239  ]
 [e :U 242 ]
 {
@@ -2058,75 +2058,75 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 241 ]
 [e $U 243  ]
-"27
+"28
 [e :U 239 ]
-[; ;ht1621.c: 27: else do { LATC2 = 1; } while(0);
+[; ;ht1621.c: 28: else do { LATC2 = 1; } while(0);
 [e :U 246 ]
 {
 [e = _LATC2 -> -> 1 `i `b ]
 }
 [e :U 245 ]
 [e :U 243 ]
-[; ;ht1621.c: 28: do { LATC1 = 0; } while(0);
-"28
+[; ;ht1621.c: 29: do { LATC1 = 0; } while(0);
+"29
 [e :U 249 ]
 {
 [e = _LATC1 -> -> 0 `i `b ]
 }
 [e :U 248 ]
-[; ;ht1621.c: 29: _delay((unsigned long)((1)*(16000000/4000.0)));
-"29
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;ht1621.c: 30: do { LATC1 = 1; } while(0);
+[; ;ht1621.c: 30: _delay((unsigned long)((1)*(16000000/4000.0)));
 "30
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;ht1621.c: 31: do { LATC1 = 1; } while(0);
+"31
 [e :U 252 ]
 {
 [e = _LATC1 -> -> 1 `i `b ]
 }
 [e :U 251 ]
-[; ;ht1621.c: 31: data<<=1;
-"31
-[e =<< _data -> 1 `i ]
+[; ;ht1621.c: 32: data<<=1;
 "32
+[e =<< _data -> 1 `i ]
+"33
 }
-"24
+"25
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 238 ]
 [e $ < -> _i `i -> _cnt `i 235  ]
 [e :U 236 ]
-"32
-}
-[; ;ht1621.c: 32: }
-[; ;ht1621.c: 33: }
 "33
+}
+[; ;ht1621.c: 33: }
+[; ;ht1621.c: 34: }
+"34
 [e :UE 234 ]
 }
-"41
-[v _SendDataBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
 "42
+[v _SendDataBit_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
+"43
 {
-[; ;ht1621.c: 41: void SendDataBit_1621(unsigned char data,unsigned char cnt)
-[; ;ht1621.c: 42: {
+[; ;ht1621.c: 42: void SendDataBit_1621(unsigned char data,unsigned char cnt)
+[; ;ht1621.c: 43: {
 [e :U _SendDataBit_1621 ]
-"41
+"42
 [v _data `uc ~T0 @X0 1 r1 ]
 [v _cnt `uc ~T0 @X0 1 r2 ]
-"42
-[f ]
 "43
-[v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 43: unsigned char i;
-[; ;ht1621.c: 44: for(i =0; i <cnt; i ++)
+[f ]
 "44
+[v _i `uc ~T0 @X0 1 a ]
+[; ;ht1621.c: 44: unsigned char i;
+[; ;ht1621.c: 45: for(i =0; i <cnt; i ++)
+"45
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 257  ]
-"45
-[e :U 254 ]
-[; ;ht1621.c: 45: {
-{
-[; ;ht1621.c: 46: if((data&0x01)==0) do { LATC2 = 0; } while(0);
 "46
+[e :U 254 ]
+[; ;ht1621.c: 46: {
+{
+[; ;ht1621.c: 47: if((data&0x01)==0) do { LATC2 = 0; } while(0);
+"47
 [e $ ! == & -> _data `i -> 1 `i -> 0 `i 258  ]
 [e :U 261 ]
 {
@@ -2134,382 +2134,382 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 260 ]
 [e $U 262  ]
-"47
+"48
 [e :U 258 ]
-[; ;ht1621.c: 47: else do { LATC2 = 1; } while(0);
+[; ;ht1621.c: 48: else do { LATC2 = 1; } while(0);
 [e :U 265 ]
 {
 [e = _LATC2 -> -> 1 `i `b ]
 }
 [e :U 264 ]
 [e :U 262 ]
-[; ;ht1621.c: 48: do { LATC1 = 0; } while(0);
-"48
+[; ;ht1621.c: 49: do { LATC1 = 0; } while(0);
+"49
 [e :U 268 ]
 {
 [e = _LATC1 -> -> 0 `i `b ]
 }
 [e :U 267 ]
-[; ;ht1621.c: 49: _delay((unsigned long)((1)*(16000000/4000.0)));
-"49
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
-[; ;ht1621.c: 50: do { LATC1 = 1; } while(0);
+[; ;ht1621.c: 50: _delay((unsigned long)((1)*(16000000/4000.0)));
 "50
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 16000000 `l `d .4000.0 `ul ]
+[; ;ht1621.c: 51: do { LATC1 = 1; } while(0);
+"51
 [e :U 271 ]
 {
 [e = _LATC1 -> -> 1 `i `b ]
 }
 [e :U 270 ]
-[; ;ht1621.c: 51: data>>=1;
-"51
-[e =>> _data -> 1 `i ]
+[; ;ht1621.c: 52: data>>=1;
 "52
+[e =>> _data -> 1 `i ]
+"53
 }
-"44
+"45
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 257 ]
 [e $ < -> _i `i -> _cnt `i 254  ]
 [e :U 255 ]
-"52
-}
-[; ;ht1621.c: 52: }
-[; ;ht1621.c: 53: }
 "53
+}
+[; ;ht1621.c: 53: }
+[; ;ht1621.c: 54: }
+"54
 [e :UE 253 ]
 }
-"61
+"62
 [v _SendCmd_1621 `(v ~T0 @X0 1 ef1`uc ]
-"62
-{
-[; ;ht1621.c: 61: void SendCmd_1621(unsigned char command)
-[; ;ht1621.c: 62: {
-[e :U _SendCmd_1621 ]
-"61
-[v _command `uc ~T0 @X0 1 r1 ]
-"62
-[f ]
-[; ;ht1621.c: 63: do { LATC0 = 0; } while(0);
 "63
+{
+[; ;ht1621.c: 62: void SendCmd_1621(unsigned char command)
+[; ;ht1621.c: 63: {
+[e :U _SendCmd_1621 ]
+"62
+[v _command `uc ~T0 @X0 1 r1 ]
+"63
+[f ]
+[; ;ht1621.c: 64: do { LATC0 = 0; } while(0);
+"64
 [e :U 275 ]
 {
 [e = _LATC0 -> -> 0 `i `b ]
 }
 [e :U 274 ]
-[; ;ht1621.c: 64: SendBit_1621(0x80,4);
-"64
-[e ( _SendBit_1621 (2 , -> -> 128 `i `uc -> -> 4 `i `uc ]
-[; ;ht1621.c: 65: SendBit_1621(command,8);
+[; ;ht1621.c: 65: SendBit_1621(0x80,4);
 "65
-[e ( _SendBit_1621 (2 , _command -> -> 8 `i `uc ]
-[; ;ht1621.c: 66: do { LATC0 = 1; } while(0);
+[e ( _SendBit_1621 (2 , -> -> 128 `i `uc -> -> 4 `i `uc ]
+[; ;ht1621.c: 66: SendBit_1621(command,8);
 "66
+[e ( _SendBit_1621 (2 , _command -> -> 8 `i `uc ]
+[; ;ht1621.c: 67: do { LATC0 = 1; } while(0);
+"67
 [e :U 278 ]
 {
 [e = _LATC0 -> -> 1 `i `b ]
 }
 [e :U 277 ]
-[; ;ht1621.c: 67: }
-"67
+[; ;ht1621.c: 68: }
+"68
 [e :UE 272 ]
 }
-"75
-[v _Write_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
 "76
+[v _Write_1621 `(v ~T0 @X0 1 ef2`uc`uc ]
+"77
 {
-[; ;ht1621.c: 75: void Write_1621(unsigned char addr,unsigned char data)
-[; ;ht1621.c: 76: {
+[; ;ht1621.c: 76: void Write_1621(unsigned char addr,unsigned char data)
+[; ;ht1621.c: 77: {
 [e :U _Write_1621 ]
-"75
+"76
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _data `uc ~T0 @X0 1 r2 ]
-"76
-[f ]
-[; ;ht1621.c: 77: do { LATC0 = 0; } while(0);
 "77
+[f ]
+[; ;ht1621.c: 78: do { LATC0 = 0; } while(0);
+"78
 [e :U 282 ]
 {
 [e = _LATC0 -> -> 0 `i `b ]
 }
 [e :U 281 ]
-[; ;ht1621.c: 78: SendBit_1621(0xa0,3);
-"78
-[e ( _SendBit_1621 (2 , -> -> 160 `i `uc -> -> 3 `i `uc ]
-[; ;ht1621.c: 79: SendBit_1621(addr,6);
+[; ;ht1621.c: 79: SendBit_1621(0xa0,3);
 "79
-[e ( _SendBit_1621 (2 , _addr -> -> 6 `i `uc ]
-[; ;ht1621.c: 80: SendDataBit_1621(data,4);
+[e ( _SendBit_1621 (2 , -> -> 160 `i `uc -> -> 3 `i `uc ]
+[; ;ht1621.c: 80: SendBit_1621(addr,6);
 "80
-[e ( _SendDataBit_1621 (2 , _data -> -> 4 `i `uc ]
-[; ;ht1621.c: 81: do { LATC0 = 1; } while(0);
+[e ( _SendBit_1621 (2 , _addr -> -> 6 `i `uc ]
+[; ;ht1621.c: 81: SendDataBit_1621(data,4);
 "81
+[e ( _SendDataBit_1621 (2 , _data -> -> 4 `i `uc ]
+[; ;ht1621.c: 82: do { LATC0 = 1; } while(0);
+"82
 [e :U 285 ]
 {
 [e = _LATC0 -> -> 1 `i `b ]
 }
 [e :U 284 ]
-[; ;ht1621.c: 82: }
-"82
+[; ;ht1621.c: 83: }
+"83
 [e :UE 279 ]
 }
-"90
-[v _WriteAll_1621 `(v ~T0 @X0 1 ef3`uc`*uc`uc ]
 "91
+[v _WriteAll_1621 `(v ~T0 @X0 1 ef3`uc`*uc`uc ]
+"92
 {
-[; ;ht1621.c: 90: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt)
-[; ;ht1621.c: 91: {
+[; ;ht1621.c: 91: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt)
+[; ;ht1621.c: 92: {
 [e :U _WriteAll_1621 ]
-"90
+"91
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _p `*uc ~T0 @X0 1 r2 ]
 [v _cnt `uc ~T0 @X0 1 r3 ]
-"91
-[f ]
 "92
-[v _i `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 92: unsigned char i;
-[; ;ht1621.c: 93: do { LATC0 = 0; } while(0);
+[f ]
 "93
+[v _i `uc ~T0 @X0 1 a ]
+[; ;ht1621.c: 93: unsigned char i;
+[; ;ht1621.c: 94: do { LATC0 = 0; } while(0);
+"94
 [e :U 289 ]
 {
 [e = _LATC0 -> -> 0 `i `b ]
 }
 [e :U 288 ]
-[; ;ht1621.c: 94: SendBit_1621(0xa0,3);
-"94
-[e ( _SendBit_1621 (2 , -> -> 160 `i `uc -> -> 3 `i `uc ]
-[; ;ht1621.c: 95: SendBit_1621(addr,6);
+[; ;ht1621.c: 95: SendBit_1621(0xa0,3);
 "95
-[e ( _SendBit_1621 (2 , _addr -> -> 6 `i `uc ]
-[; ;ht1621.c: 96: for(i =0; i <cnt; i ++,p++)
+[e ( _SendBit_1621 (2 , -> -> 160 `i `uc -> -> 3 `i `uc ]
+[; ;ht1621.c: 96: SendBit_1621(addr,6);
 "96
+[e ( _SendBit_1621 (2 , _addr -> -> 6 `i `uc ]
+[; ;ht1621.c: 97: for(i =0; i <cnt; i ++,p++)
+"97
 {
 [e = _i -> -> 0 `i `uc ]
 [e $U 293  ]
-"97
-[e :U 290 ]
-[; ;ht1621.c: 97: {
-{
-[; ;ht1621.c: 98: SendDataBit_1621(*p,8);
 "98
-[e ( _SendDataBit_1621 (2 , *U _p -> -> 8 `i `uc ]
+[e :U 290 ]
+[; ;ht1621.c: 98: {
+{
+[; ;ht1621.c: 99: SendDataBit_1621(*p,8);
 "99
+[e ( _SendDataBit_1621 (2 , *U _p -> -> 8 `i `uc ]
+"100
 }
-"96
+"97
 [e ; ++ _i -> -> 1 `i `uc ++ _p * -> -> 1 `i `x -> -> # *U _p `i `x ]
 [e :U 293 ]
 [e $ < -> _i `i -> _cnt `i 290  ]
 [e :U 291 ]
-"99
-}
-[; ;ht1621.c: 99: }
-[; ;ht1621.c: 100: do { LATC0 = 1; } while(0);
 "100
+}
+[; ;ht1621.c: 100: }
+[; ;ht1621.c: 101: do { LATC0 = 1; } while(0);
+"101
 [e :U 296 ]
 {
 [e = _LATC0 -> -> 1 `i `b ]
 }
 [e :U 295 ]
-[; ;ht1621.c: 101: }
-"101
+[; ;ht1621.c: 102: }
+"102
 [e :UE 286 ]
 }
-"109
-[v _Tc_Display `(v ~T0 @X0 1 ef ]
 "110
+[v _Tc_Display `(v ~T0 @X0 1 ef ]
+"111
 {
-[; ;ht1621.c: 109: void Tc_Display(void)
-[; ;ht1621.c: 110: {
+[; ;ht1621.c: 110: void Tc_Display(void)
+[; ;ht1621.c: 111: {
 [e :U _Tc_Display ]
 [f ]
-"111
-[v _count `uc ~T0 @X0 1 a ]
-[; ;ht1621.c: 111: unsigned char count = 0;
-[e = _count -> -> 0 `i `uc ]
 "112
-[v _data `ui ~T0 @X0 1 a ]
-[; ;ht1621.c: 112: unsigned int data = temperature_int;
-[e = _data _temperature_int ]
-[; ;ht1621.c: 113: memset(display_buff,0,4);
+[v _count `uc ~T0 @X0 1 a ]
+[; ;ht1621.c: 112: unsigned char count = 0;
+[e = _count -> -> 0 `i `uc ]
 "113
-[e ( _memset (3 , , -> &U _display_buff `*v -> 0 `i -> -> 4 `i `ui ]
-[; ;ht1621.c: 114: while(data)
+[v _data `ui ~T0 @X0 1 a ]
+[; ;ht1621.c: 113: unsigned int data = temperature_int;
+[e = _data _temperature_int ]
+[; ;ht1621.c: 114: memset(display_buff,0,4);
 "114
+[e ( _memset (3 , , -> &U _display_buff `*v -> 0 `i -> -> 4 `i `ui ]
+[; ;ht1621.c: 115: while(data)
+"115
 [e $U 298  ]
 [e :U 299 ]
-[; ;ht1621.c: 115: {
-"115
-{
-[; ;ht1621.c: 116: count++;
+[; ;ht1621.c: 116: {
 "116
-[e ++ _count -> -> 1 `i `uc ]
-[; ;ht1621.c: 117: data /=10;
+{
+[; ;ht1621.c: 117: count++;
 "117
-[e =/ _data -> -> 10 `uc `ui ]
+[e ++ _count -> -> 1 `i `uc ]
+[; ;ht1621.c: 118: data /=10;
 "118
+[e =/ _data -> -> 10 `uc `ui ]
+"119
 }
 [e :U 298 ]
-"114
+"115
 [e $ != _data -> -> 0 `i `ui 299  ]
 [e :U 300 ]
-[; ;ht1621.c: 118: }
-[; ;ht1621.c: 119: switch(count)
-"119
-[e $U 302  ]
-[; ;ht1621.c: 120: {
+[; ;ht1621.c: 119: }
+[; ;ht1621.c: 120: switch(count)
 "120
-{
-[; ;ht1621.c: 121: case 3:display_buff[0] = Dis_TAB[temperature_int/100];
+[e $U 302  ]
+[; ;ht1621.c: 121: {
 "121
+{
+[; ;ht1621.c: 122: case 3:display_buff[0] = Dis_TAB[temperature_int/100];
+"122
 [e :U 303 ]
 [e = *U + &U _display_buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> / _temperature_int -> -> 100 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 122: case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
-"122
+[; ;ht1621.c: 123: case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
+"123
 [e :U 304 ]
 [e = *U + &U _display_buff * -> -> -> 1 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> / % _temperature_int -> -> 100 `i `ui -> -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 123: case 1:display_buff[2] = Dis_TAB[temperature_int%10]; break;
-"123
+[; ;ht1621.c: 124: case 1:display_buff[2] = Dis_TAB[temperature_int%10]; break;
+"124
 [e :U 305 ]
 [e = *U + &U _display_buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> % _temperature_int -> -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
 [e $U 301  ]
-[; ;ht1621.c: 124: case 0:display_buff[2] = Dis_TAB[0];
-"124
+[; ;ht1621.c: 125: case 0:display_buff[2] = Dis_TAB[0];
+"125
 [e :U 306 ]
 [e = *U + &U _display_buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _display_buff `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 125: default:break;
-"125
+[; ;ht1621.c: 126: default:break;
+"126
 [e :U 307 ]
 [e $U 301  ]
-"126
+"127
 }
-[; ;ht1621.c: 126: }
+[; ;ht1621.c: 127: }
 [e $U 301  ]
-"119
+"120
 [e :U 302 ]
 [e [\ _count , $ -> -> 3 `i `uc 303
  , $ -> -> 2 `i `uc 304
  , $ -> -> 1 `i `uc 305
  , $ -> -> 0 `i `uc 306
  307 ]
-"126
-[e :U 301 ]
-[; ;ht1621.c: 127: if(temperature_sign == 1) display_buff[0]=0x20;
 "127
+[e :U 301 ]
+[; ;ht1621.c: 128: if(temperature_sign == 1) display_buff[0]=0x20;
+"128
 [e $ ! == -> _temperature_sign `i -> 1 `i 308  ]
 [e = *U + &U _display_buff * -> -> -> 0 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> -> 32 `i `uc ]
 [e :U 308 ]
-[; ;ht1621.c: 128: display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
-"128
-[e = *U + &U _display_buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> | -> *U + &U _Dis_TAB * -> _temperature_decimal `ux -> -> # *U &U _Dis_TAB `ui `ux `i -> 8 `i `uc ]
-[; ;ht1621.c: 129: WriteAll_1621(0,display_buff,4);
+[; ;ht1621.c: 129: display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
 "129
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _display_buff -> -> 4 `i `uc ]
-[; ;ht1621.c: 130: }
+[e = *U + &U _display_buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _display_buff `ui `ux -> | -> *U + &U _Dis_TAB * -> _temperature_decimal `ux -> -> # *U &U _Dis_TAB `ui `ux `i -> 8 `i `uc ]
+[; ;ht1621.c: 130: WriteAll_1621(0,display_buff,4);
 "130
+[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _display_buff -> -> 4 `i `uc ]
+[; ;ht1621.c: 131: }
+"131
 [e :UE 297 ]
 }
-"138
+"139
 [v _Two_Display `(v ~T0 @X0 1 ef1`uc ]
-"139
+"140
 {
-[; ;ht1621.c: 138: void Two_Display(unsigned char number)
-[; ;ht1621.c: 139: {
+[; ;ht1621.c: 139: void Two_Display(unsigned char number)
+[; ;ht1621.c: 140: {
 [e :U _Two_Display ]
-"138
-[v _number `uc ~T0 @X0 1 r1 ]
 "139
+[v _number `uc ~T0 @X0 1 r1 ]
+"140
 [f ]
 [v F2123 `uc ~T0 @X0 -> 4 `i s ]
 [i F2123
 :U ..
-"140
+"141
 -> -> 0 `i `uc
 ..
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 140: unsigned char num[4]={0};
+[; ;ht1621.c: 141: unsigned char num[4]={0};
 [e = _num F2123 ]
-[; ;ht1621.c: 141: num[1] = Dis_TAB[0];
-"141
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 142: num[2] = Dis_TAB[number];
+[; ;ht1621.c: 142: num[1] = Dis_TAB[0];
 "142
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> _number `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 143: WriteAll_1621(0, num, 4);
+[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 143: num[2] = Dis_TAB[number];
 "143
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 144: }
+[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> _number `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 144: WriteAll_1621(0, num, 4);
 "144
+[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
+[; ;ht1621.c: 145: }
+"145
 [e :UE 309 ]
 }
-"152
-[v _err_Display `(v ~T0 @X0 1 ef ]
 "153
+[v _err_Display `(v ~T0 @X0 1 ef ]
+"154
 {
-[; ;ht1621.c: 152: void err_Display(void)
-[; ;ht1621.c: 153: {
+[; ;ht1621.c: 153: void err_Display(void)
+[; ;ht1621.c: 154: {
 [e :U _err_Display ]
 [f ]
 [v F2126 `uc ~T0 @X0 -> 4 `i s ]
 [i F2126
 :U ..
-"154
+"155
 -> -> 0 `i `uc
 ..
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 154: unsigned char num[4]={0};
+[; ;ht1621.c: 155: unsigned char num[4]={0};
 [e = _num F2126 ]
-[; ;ht1621.c: 155: num[1] = Dis_TAB[0x10];
-"155
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 156: num[2] = Dis_TAB[0x0c];
+[; ;ht1621.c: 156: num[1] = Dis_TAB[0x10];
 "156
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 12 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 157: WriteAll_1621(0, num, 4);
+[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 157: num[2] = Dis_TAB[0x0c];
 "157
-[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
-[; ;ht1621.c: 158: }
+[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 12 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 158: WriteAll_1621(0, num, 4);
 "158
+[e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
+[; ;ht1621.c: 159: }
+"159
 [e :UE 310 ]
 }
-"166
-[v _time_Display `(v ~T0 @X0 1 ef ]
 "167
+[v _time_Display `(v ~T0 @X0 1 ef ]
+"168
 {
-[; ;ht1621.c: 166: void time_Display(void)
-[; ;ht1621.c: 167: {
+[; ;ht1621.c: 167: void time_Display(void)
+[; ;ht1621.c: 168: {
 [e :U _time_Display ]
 [f ]
 [v F2129 `uc ~T0 @X0 -> 4 `i s ]
 [i F2129
 :U ..
-"168
+"169
 -> -> 0 `i `uc
 ..
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
-[; ;ht1621.c: 168: unsigned char num[4]={0};
+[; ;ht1621.c: 169: unsigned char num[4]={0};
 [e = _num F2129 ]
-[; ;ht1621.c: 169: Bq32k_Rtc_Read_Time(&rtc_tm);
-"169
-[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
-[; ;ht1621.c: 170: num[0] = Dis_TAB[rtc_tm.hours / 10];
+[; ;ht1621.c: 170: Bq32k_Rtc_Read_Time(&rtc_tm);
 "170
-[e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 171: num[0] |= 0x08;
+[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
+[; ;ht1621.c: 171: num[0] = Dis_TAB[rtc_tm.hours / 10];
 "171
-[e =| *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux -> -> 8 `i `uc ]
-[; ;ht1621.c: 172: num[1] = Dis_TAB[rtc_tm.hours % 10];
+[e = *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 172: num[0] |= 0x08;
 "172
-[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 173: num[2] = Dis_TAB[rtc_tm.minutes / 10];
+[e =| *U + &U _num * -> -> -> 0 `i `ui `ux -> -> # *U &U _num `ui `ux -> -> 8 `i `uc ]
+[; ;ht1621.c: 173: num[1] = Dis_TAB[rtc_tm.hours % 10];
 "173
-[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 174: num[3] = Dis_TAB[rtc_tm.minutes % 10];
+[e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 2 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 174: num[2] = Dis_TAB[rtc_tm.minutes / 10];
 "174
-[e = *U + &U _num * -> -> -> 3 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
-[; ;ht1621.c: 175: WriteAll_1621(0, num, 4);
+[e = *U + &U _num * -> -> -> 2 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> / -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 175: num[3] = Dis_TAB[rtc_tm.minutes % 10];
 "175
+[e = *U + &U _num * -> -> -> 3 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> % -> . _rtc_tm 1 `i -> 10 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
+[; ;ht1621.c: 176: WriteAll_1621(0, num, 4);
+"176
 [e ( _WriteAll_1621 (3 , , -> -> 0 `i `uc &U _num -> -> 4 `i `uc ]
 [; ;ht1621.c: 177: }
 "177

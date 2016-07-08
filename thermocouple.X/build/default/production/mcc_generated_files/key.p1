@@ -31,6 +31,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Cur_temperature_time_ch1 `uc ~T0 @X0 0 e ]
 "72
 [v _Cur_temperature_time_ch2 `uc ~T0 @X0 0 e ]
+"67
+[v _CH1_temperature `ui ~T0 @X0 0 e ]
+"68
+[v _CH2_temperature `ui ~T0 @X0 0 e ]
 "20 mcc_generated_files/save.h
 [v _Set_finish_flag `(v ~T0 @X0 0 ef ]
 "23
@@ -2209,76 +2213,82 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key.c: 86: Cur_temperature_time_ch2 = 0;
 "86
 [e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
+[; ;key.c: 87: CH1_temperature = 0;
 "87
-}
-[; ;key.c: 87: }
-[e $U 267  ]
+[e = _CH1_temperature -> -> 0 `i `ui ]
+[; ;key.c: 88: CH2_temperature = 0;
 "88
-[e :U 266 ]
-[; ;key.c: 88: else
-[; ;key.c: 89: {
+[e = _CH2_temperature -> -> 0 `i `ui ]
 "89
-{
-[; ;key.c: 90: Set_finish_flag();
+}
+[; ;key.c: 89: }
+[e $U 267  ]
 "90
-[e ( _Set_finish_flag ..  ]
-[; ;key.c: 91: Write_Flash_finish();
+[e :U 266 ]
+[; ;key.c: 90: else
+[; ;key.c: 91: {
 "91
-[e ( _Write_Flash_finish ..  ]
+{
+[; ;key.c: 92: Set_finish_flag();
 "92
+[e ( _Set_finish_flag ..  ]
+[; ;key.c: 93: Write_Flash_finish();
+"93
+[e ( _Write_Flash_finish ..  ]
+"94
 }
 [e :U 267 ]
-"93
-}
-[; ;key.c: 92: }
-[; ;key.c: 93: }
-[e $U 268  ]
-"94
-[e :U 265 ]
-[; ;key.c: 94: else
-[; ;key.c: 95: {
 "95
-{
-[; ;key.c: 96: time_count = 5;
+}
+[; ;key.c: 94: }
+[; ;key.c: 95: }
+[e $U 268  ]
 "96
-[e = _time_count -> -> 5 `i `uc ]
-[; ;key.c: 97: temperature_process();
+[e :U 265 ]
+[; ;key.c: 96: else
+[; ;key.c: 97: {
 "97
-[e ( _temperature_process ..  ]
+{
+[; ;key.c: 98: time_count = 5;
 "98
+[e = _time_count -> -> 5 `i `uc ]
+[; ;key.c: 99: temperature_process();
+"99
+[e ( _temperature_process ..  ]
+"100
 }
 [e :U 268 ]
-[; ;key.c: 98: }
-[; ;key.c: 99: while(RA7 == 0);
-"99
+[; ;key.c: 100: }
+[; ;key.c: 101: while(RA7 == 0);
+"101
 [e $U 269  ]
 [e :U 270 ]
 [e :U 269 ]
 [e $ == -> _RA7 `i -> 0 `i 270  ]
 [e :U 271 ]
-[; ;key.c: 100: break;
-"100
+[; ;key.c: 102: break;
+"102
 [e $U 241  ]
-[; ;key.c: 101: default:break;
-"101
+[; ;key.c: 103: default:break;
+"103
 [e :U 272 ]
 [e $U 241  ]
-"102
+"104
 }
-[; ;key.c: 102: }
+[; ;key.c: 104: }
 [e $U 241  ]
 "53
 [e :U 242 ]
 [e [\ _gKeyValue , $ -> -> 1 `i `uc 243
  , $ -> -> 2 `i `uc 261
  272 ]
-"102
+"104
 [e :U 241 ]
-"103
+"105
 }
 [e :U 240 ]
-[; ;key.c: 103: }
-[; ;key.c: 104: }
-"104
+[; ;key.c: 105: }
+[; ;key.c: 106: }
+"106
 [e :UE 239 ]
 }

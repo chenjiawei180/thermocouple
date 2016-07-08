@@ -2861,7 +2861,7 @@ void Save_process(void)
 unsigned int var_time=0;
 if( time_count == 1 && Record_flag == 1 )
 {
-if(Cur_temperature_time_ch1 > 60)
+if(Cur_temperature_time_ch1 > 120)
 {
 var_time = Calculate_Time();
 var_time |= 0x100;
@@ -2870,15 +2870,14 @@ if(CH1_state == 1) var_time |= 0x400;
 var_time |= 0x1000;
 
 Save_Write_word(var_time);
-Save_Write_word(temperature_value);
+Save_Write_word(CH1_temperature);
 
 Cur_temperature_time_ch1 = 0;
 }
-
 }
 else if(time_count == 3 && Record_flag == 1)
 {
-if(Cur_temperature_time_ch2 > 60)
+if(Cur_temperature_time_ch2 > 120)
 {
 var_time = Calculate_Time();
 var_time |= 0x200;
@@ -2887,14 +2886,14 @@ if(CH2_state == 1) var_time |= 0x800;
 var_time |= 0x1000;
 
 Save_Write_word(var_time);
-Save_Write_word(temperature_value);
+Save_Write_word(CH2_temperature);
 
 Cur_temperature_time_ch2 = 0;
 }
 }
 }
 
-# 136
+# 135
 unsigned char Calculate_Time(void)
 {
 unsigned long temp = 0 ;
@@ -2906,6 +2905,13 @@ if( time_count == 1 )
 if(rtc_tm.date != rtc_save_ch1.date)
 {
 
+Write_Flash_finish();
+Write_Flash_head();
+Save_Write_time();
+Cur_temperature_time_ch1 = 0;
+Cur_temperature_time_ch2 = 0;
+CH1_temperature = 0;
+CH2_temperature = 0;
 }
 else
 {
@@ -2921,6 +2927,13 @@ else if( time_count == 3 )
 if(rtc_tm.date != rtc_save_ch2.date)
 {
 
+Write_Flash_finish();
+Write_Flash_head();
+Save_Write_time();
+Cur_temperature_time_ch1 = 0;
+Cur_temperature_time_ch2 = 0;
+CH1_temperature = 0;
+CH2_temperature = 0;
 }
 else
 {
@@ -2934,14 +2947,14 @@ return temp;
 return 0;
 }
 
-# 181
+# 194
 void Save_Write_word(unsigned int data)
 {
 FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
 Cur_Save_Index++;
 }
 
-# 193
+# 206
 void Save_Write_time(void)
 {
 unsigned char i;

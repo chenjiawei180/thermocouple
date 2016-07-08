@@ -90,7 +90,6 @@ void maxim_31856_init(void)
     //冷端温度寄存器。
     maxim_31856_write_register(0x8A,0x00);
     maxim_31856_write_register(0x8B,0x00);
-
 }
 
 /**
@@ -181,34 +180,34 @@ void tc_temperature_trans(void)
     {
         if( CH1_temperature & 0x2000  != temperature_temp & 0x2000)    //different sign temperature
         {
-	     var_time = Calculate_Time();
+            var_time = Calculate_Time();
             var_time |= 0x100; //add number of channel 1
             if(CH1_state == 1)    var_time |= 0x400;
 #if DEBUG
-                     var_time |= 0x2000;
+            var_time |= 0x2000;
 #endif
             Save_Write_word(var_time);
-	     Save_Write_word(temperature_value);    //save original value
-	     Cur_temperature_time_ch1 = 0;
+            Save_Write_word(temperature_value);    //save original value
+            Cur_temperature_time_ch1 = 0;
         }
         else
         {
             if(CH1_temperature & 0x2000) CH1_temperature=0x3FFF-CH1_temperature + 1 ;     //wipe off sign
-	     if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
-	     if( temperature_temp > CH1_temperature ) temperature_absolute = temperature_temp - CH1_temperature;    //calculate the absolute of temperature
-	     else temperature_absolute = CH1_temperature - temperature_temp;
-	     if( temperature_absolute > 4) // 4*0.125
-	     {
-	         var_time = Calculate_Time();
-	         var_time |= 0x100; //add number of channel 1
-	         if(CH1_state == 1)    var_time |= 0x400;
+            if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
+            if( temperature_temp > CH1_temperature ) temperature_absolute = temperature_temp - CH1_temperature;    //calculate the absolute of temperature
+            else temperature_absolute = CH1_temperature - temperature_temp;
+            if( temperature_absolute > 4) // 4*0.125
+            {
+                var_time = Calculate_Time();
+                var_time |= 0x100; //add number of channel 1
+                if(CH1_state == 1)    var_time |= 0x400;
 #if DEBUG
-                     var_time |= 0x2000;
+                var_time |= 0x2000;
 #endif
                 Save_Write_word(var_time);
-	         Save_Write_word(temperature_value);    //save original value
-		  Cur_temperature_time_ch1 = 0;
-	     }
+                Save_Write_word(temperature_value);    //save original value
+                Cur_temperature_time_ch1 = 0;
+            }
         }
         CH1_temperature = temperature_value;
     }
@@ -216,34 +215,34 @@ void tc_temperature_trans(void)
     {
         if( CH2_temperature & 0x2000  != temperature_temp & 0x2000)    //different sign temperature
         {
-	     var_time = Calculate_Time();
+            var_time = Calculate_Time();
             var_time |= 0x200; //add number of channel 2
             if(CH2_state == 1)    var_time |= 0x800;
 #if DEBUG
-                     var_time |= 0x2000;
+            var_time |= 0x2000;
 #endif
             Save_Write_word(var_time);
-	     Save_Write_word(temperature_value);
-	     Cur_temperature_time_ch2 = 0;
+            Save_Write_word(temperature_value);
+            Cur_temperature_time_ch2 = 0;
         }
         else
         {
             if(CH2_temperature & 0x2000) CH2_temperature=0x3FFF-CH2_temperature + 1 ;     //wipe off sign
-	     if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
-	     if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;    //calculate the absolute of temperature
-	     else temperature_absolute = CH2_temperature - temperature_temp;
-	     if( temperature_absolute > 4) // 4*0.125
-	     {
-	         var_time = Calculate_Time();
-	         var_time |= 0x200; //add number of channel 1
-	         if(CH2_state == 1)    var_time |= 0x800;
+            if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
+            if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;    //calculate the absolute of temperature
+            else temperature_absolute = CH2_temperature - temperature_temp;
+            if( temperature_absolute > 4) // 4*0.125
+            {
+                var_time = Calculate_Time();
+                var_time |= 0x200; //add number of channel 1
+                if(CH2_state == 1)    var_time |= 0x800;
 #if DEBUG
-                     var_time |= 0x2000;
+                var_time |= 0x2000;
 #endif
                 Save_Write_word(var_time);
-	         Save_Write_word(temperature_value);
-		  Cur_temperature_time_ch2 = 0;
-	     }
+                Save_Write_word(temperature_value);
+                Cur_temperature_time_ch2 = 0;
+            }
         }
         CH2_temperature = temperature_value;
     }
@@ -267,7 +266,6 @@ void tc_temperature_trans(void)
         if(temperature_decimal > 3)    temperature_decimal++;// 变为0123 5678
         if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 0x01)) temperature_decimal++;  //变为 0123 4 5678 9 
     }
-        
 }
 
 /**
@@ -280,10 +278,10 @@ void one_temperature_trans(void)
 {
     maxim_start_conversion(One_Shot_Conversion);  //使能单次转换
     MAX31856Sec = 0;
-    while( !(DRDY_GetValue() == 0 || MAX31856Sec > 2) )  ;  //需要添加超时退出
-    if( MAX31856Sec > 2)
+    while( !(DRDY_GetValue() == 0 || MAX31856Sec > 30) )  ;  //需要添加超时退出
+    if( MAX31856Sec > 30)
     {
-        //uch_sr = 0x01;
+        uch_sr = 0x01;
     }
     else
     {
@@ -292,7 +290,6 @@ void one_temperature_trans(void)
         uch_ltcbh=uch_reg[2];uch_ltcbm=uch_reg[3];uch_ltcbl=uch_reg[4];
         uch_sr=uch_reg[5]; 
     }
-
 }
 
 /**
@@ -309,23 +306,23 @@ void temperature_display(void)
         Tc_Display(); //显示温度
         if(time_count == 1)    //judge the number of channel
         {
-             CH1_state = 0;
+            CH1_state = 0;
         }
-	 else if(time_count == 3)
-	 {
-	      CH2_state = 0;
-	 }
+        else if(time_count == 3)
+        {
+            CH2_state = 0;
+        }
     }
     else
     {
         if(time_count == 1)    //judge the number of channel
         {
-             CH1_state = 1;
+            CH1_state = 1;
         }
-	 else if(time_count == 3)
-	 {
-	      CH2_state = 1;
-	 }
+        else if(time_count == 3)
+        {
+            CH2_state = 1;
+        }
         err_Display();//添加错误显示代码 暂定nc
         maxim_31856_write_register(0x82, 0xFF);        //屏蔽/FAULT输出
         maxim_clear_fault_status();                       //清除故障状态
@@ -343,24 +340,30 @@ void temperature_process(void)
 {
     switch(time_count)
     {
-        case 0:    Two_Display(1);
-		        CS2_SetHigh();
-			 CS1_SetHigh();
-		        CS1_SetLow();
-		        one_temperature_trans();
-			 break;
-	 case 1:   
-	 	        temperature_display();break;
-	 case 2:   Two_Display(2);
-	 	        CS1_SetHigh();
-			 CS2_SetHigh();
-		        CS2_SetLow();
-			 one_temperature_trans();
-		        break;
-	 case 3:   
-	 	        temperature_display();break;
-	 case 5:    time_Display();break;
-	 default:break;
+        case 0:    
+                    Two_Display(1);
+                    CS2_SetHigh();
+                    CS1_SetHigh();
+                    CS1_SetLow();
+                    one_temperature_trans();
+                    break;
+        case 1:   
+                    temperature_display();
+                    break;
+        case 2:    
+                    Two_Display(2);
+                    CS1_SetHigh();
+                    CS2_SetHigh();
+                    CS2_SetLow();
+                    one_temperature_trans();
+                    break;
+        case 3:   
+                    temperature_display();
+                    break;
+        case 5:    
+                    time_Display();
+                    break;
+        default:break;
     }
 }
 

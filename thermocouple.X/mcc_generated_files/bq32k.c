@@ -17,7 +17,7 @@
 void Bq32k_Time_Init(void)
 {
     bq32k_t time;
-    unsigned char temp[10] = { 0x01,0x40,0x14,0x02,0x04,0x07,0x16 }; //2016 07 04  monday 14:40:01
+    unsigned char temp[10] = { 0x01,0x50,0x23,0x02,0x08,0x07,0x16 }; //2016 07 04  monday 14:40:01
     I2C_Send_Buffer(0, temp, 7);
 }
 
@@ -59,13 +59,23 @@ void Bq32k_Rtc_Write_Time(bq32k_t *p)
     I2C_Send_Buffer( 0 , temp , 7);
 }
 
-//BCD码转为二进制 
+/**
+  * @brief  This function is bcd2bin.
+  * @param  unsigned char val
+  * @retval None
+  */
+  
 unsigned char bcd2bin(unsigned char val)
 {
     return (val & 0x0f) + (val >> 4) * 10;
 }
  
-//二进制转为BCD码 
+/**
+  * @brief  This function is bin2bcd.
+  * @param  unsigned char val
+  * @retval None
+  */
+  
 unsigned char bin2bcd(unsigned char val)
 {
     return ((val / 10) << 4) + val % 10;

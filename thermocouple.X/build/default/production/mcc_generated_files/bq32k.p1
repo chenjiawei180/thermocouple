@@ -1970,17 +1970,17 @@ Version 3.2 HI-TECH Software Intermediate Code
 :U ..
 "20
 -> -> 1 `i `uc
--> -> 64 `i `uc
--> -> 20 `i `uc
+-> -> 80 `i `uc
+-> -> 35 `i `uc
 -> -> 2 `i `uc
--> -> 4 `i `uc
+-> -> 8 `i `uc
 -> -> 7 `i `uc
 -> -> 22 `i `uc
 ..
 ]
 [v _temp `uc ~T0 @X0 -> 10 `i a ]
 [; ;bq32k.c: 19: bq32k_t time;
-[; ;bq32k.c: 20: unsigned char temp[10] = { 0x01,0x40,0x14,0x02,0x04,0x07,0x16 };
+[; ;bq32k.c: 20: unsigned char temp[10] = { 0x01,0x50,0x23,0x02,0x08,0x07,0x16 };
 [e = _temp F2018 ]
 [; ;bq32k.c: 21: I2C_Send_Buffer(0, temp, 7);
 "21
@@ -2073,41 +2073,41 @@ Version 3.2 HI-TECH Software Intermediate Code
 "60
 [e :UE 236 ]
 }
-"63
+"68
 [v _bcd2bin `(uc ~T0 @X0 1 ef1`uc ]
-"64
+"69
 {
-[; ;bq32k.c: 63: unsigned char bcd2bin(unsigned char val)
-[; ;bq32k.c: 64: {
+[; ;bq32k.c: 68: unsigned char bcd2bin(unsigned char val)
+[; ;bq32k.c: 69: {
 [e :U _bcd2bin ]
-"63
+"68
 [v _val `uc ~T0 @X0 1 r1 ]
-"64
+"69
 [f ]
-[; ;bq32k.c: 65: return (val & 0x0f) + (val >> 4) * 10;
-"65
+[; ;bq32k.c: 70: return (val & 0x0f) + (val >> 4) * 10;
+"70
 [e ) -> + & -> _val `i -> 15 `i * >> -> _val `i -> 4 `i -> 10 `i `uc ]
 [e $UE 237  ]
-[; ;bq32k.c: 66: }
-"66
+[; ;bq32k.c: 71: }
+"71
 [e :UE 237 ]
 }
-"69
+"79
 [v _bin2bcd `(uc ~T0 @X0 1 ef1`uc ]
-"70
+"80
 {
-[; ;bq32k.c: 69: unsigned char bin2bcd(unsigned char val)
-[; ;bq32k.c: 70: {
+[; ;bq32k.c: 79: unsigned char bin2bcd(unsigned char val)
+[; ;bq32k.c: 80: {
 [e :U _bin2bcd ]
-"69
+"79
 [v _val `uc ~T0 @X0 1 r1 ]
-"70
+"80
 [f ]
-[; ;bq32k.c: 71: return ((val / 10) << 4) + val % 10;
-"71
+[; ;bq32k.c: 81: return ((val / 10) << 4) + val % 10;
+"81
 [e ) -> + << / -> _val `i -> 10 `i -> 4 `i % -> _val `i -> 10 `i `uc ]
 [e $UE 238  ]
-[; ;bq32k.c: 72: }
-"72
+[; ;bq32k.c: 82: }
+"82
 [e :UE 238 ]
 }

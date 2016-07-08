@@ -57,39 +57,41 @@ void Key_Process(void)
                 if(LongPressSec > 2)
                 {
                     POWER_SetLow();
-		      LED1_SetHigh(); //off led  off lcd
-		      SendCmd_1621(LCDOFF);
+                    LED1_SetHigh(); //off led  off lcd
+                    SendCmd_1621(LCDOFF);
                 }
 #if DEBUG
                 else
-        	 {
-        	      for(i=Record_Add;i<Record_Add+1000;i++)
-        	      {
-        	            data_temp = FLASH_ReadWord(i);
-			     EUSART_Write(data_temp>>8);
-			     EUSART_Write(data_temp&0xff);
-        	      }
-        	 }
+                {
+                    for(i=Record_Add;i<Record_Add+1000;i++)
+                    {
+                        data_temp = FLASH_ReadWord(i);
+                        EUSART_Write(data_temp>>8);
+                        EUSART_Write(data_temp&0xff);
+                    }
+                }
 #endif
-		  while(KEY_GetValue() == 0);
-			break;
-	     case KEY2:
+                while(KEY_GetValue() == 0);
+                break;
+            case KEY2:
                 while(  !(LongPressSec > 2 || KEY2_GetValue() == 1) ); //判断长按短按
                 if(LongPressSec > 2)
                 {
-		      if(Record_flag == 0) 
-		      {
+                    if(Record_flag == 0) 
+                    {
                         Set_start_flag();
-			   Write_Flash_head();
-			   Save_Write_time();
-			   Cur_temperature_time_ch1 = 0;
-			   Cur_temperature_time_ch2 = 0;
-		      }
-		      else 
-		      {
+                        Write_Flash_head();
+                        Save_Write_time();
+                        Cur_temperature_time_ch1 = 0;
+                        Cur_temperature_time_ch2 = 0;
+                        CH1_temperature = 0;
+                        CH2_temperature = 0;
+                    }
+                    else 
+                    {
                         Set_finish_flag();
-			   Write_Flash_finish();
-		      }
+                        Write_Flash_finish();
+                    }
                 }
                 else
                 {
@@ -97,8 +99,8 @@ void Key_Process(void)
                     temperature_process();    //显示时间
                 }
                 while(KEY2_GetValue() == 0);//等待按键释放
-			break;
-                default:break;
+                break;
+            default:break;
         }
     }
 }

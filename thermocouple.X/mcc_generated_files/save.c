@@ -9,11 +9,11 @@
 #include "bq32k.h"
 #include "string.h"
 
-  /**
-  * @brief  This function is Set_start_flag.Set led2 low and set on record_flag.
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Set_start_flag.Set led2 low and set on record_flag.
+* @param  None
+* @retval None
+*/
   
 void Set_start_flag(void)
 {
@@ -21,11 +21,11 @@ void Set_start_flag(void)
     LED2_SetLow();
 }
 
-  /**
-  * @brief  This function is Set_finish_flag.Set led2 high and set off record_flag.
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Set_finish_flag.Set led2 high and set off record_flag.
+* @param  None
+* @retval None
+*/
   
 void Set_finish_flag(void)
 {
@@ -33,11 +33,11 @@ void Set_finish_flag(void)
     LED2_SetHigh();
 }
   
-  /**
-  * @brief  This function is Set_finish_flag.Set led2 high and set off record_flag.
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Set_finish_flag.Set led2 high and set off record_flag.
+* @param  None
+* @retval None
+*/
   
 void Serach_Flash_Head(void)
 {
@@ -46,20 +46,20 @@ void Serach_Flash_Head(void)
     for(i = Record_Add; i<END_FLASH;i++ )
     {
         data = FLASH_ReadWord(i);
-	 if( data == 0x3fff)
-	 {
-	     i++;
-	     Cur_Save_Index = i;
-	     break;
-	 } 
+        if( data == 0x3fff)
+        {
+            i++;
+            Cur_Save_Index = i;
+            break;
+        } 
     }
 }
 
-  /**
-  * @brief  This function is Write_Flash_head.write two 0XAAAA 0XAAAA
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Write_Flash_head.write two 0XAAAA 0XAAAA
+* @param  None
+* @retval None
+*/
   
 void Write_Flash_head(void)
 {
@@ -69,11 +69,11 @@ void Write_Flash_head(void)
     Cur_Save_Index++;
 }
 
-  /**
-  * @brief  This function is Write_Flash_finish.write two 0x5555 0x5555
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Write_Flash_finish.write two 0x5555 0x5555
+* @param  None
+* @retval None
+*/
   
 void Write_Flash_finish(void)
 {
@@ -83,55 +83,54 @@ void Write_Flash_finish(void)
     Cur_Save_Index++;
 }
 
-  /**
-  * @brief  This function is Save_process.
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Save_process.
+* @param  None
+* @retval None
+*/
 
- void Save_process(void)
- {
+void Save_process(void)
+{
     unsigned int var_time=0;
-     if( time_count == 1 && Record_flag == 1 )  // is decoder
-     {
-         if(Cur_temperature_time_ch1 > 60)
-         {
-			var_time = Calculate_Time();
-			var_time |= 0x100; //add number of channel 1
-                     if(CH1_state == 1)    var_time |= 0x400;    //error
+    if( time_count == 1 && Record_flag == 1 )  // is decoder
+    {
+        if(Cur_temperature_time_ch1 > 120)
+        {
+            var_time = Calculate_Time();
+            var_time |= 0x100; //add number of channel 1
+            if(CH1_state == 1)    var_time |= 0x400;    //error
 #if DEBUG
-                     var_time |= 0x1000;
+            var_time |= 0x1000;
 #endif
-			Save_Write_word(var_time);
-			Save_Write_word(temperature_value);
-			          //CH1_temperature = temperature_value;
-			          Cur_temperature_time_ch1 = 0;
-          }
-
-     }
-     else if(time_count == 3 && Record_flag == 1)
-     {
-		     if(Cur_temperature_time_ch2 > 60)
-		     {
-		     	var_time = Calculate_Time();
-			var_time |= 0x200; //add number of channel 2
-			if(CH2_state == 1)    var_time |= 0x800;    //error
+            Save_Write_word(var_time);
+            Save_Write_word(CH1_temperature);
+            //CH1_temperature = temperature_value;
+            Cur_temperature_time_ch1 = 0;
+        }
+    }
+    else if(time_count == 3 && Record_flag == 1)
+    {
+        if(Cur_temperature_time_ch2 > 120)
+        {
+            var_time = Calculate_Time();
+            var_time |= 0x200; //add number of channel 2
+            if(CH2_state == 1)    var_time |= 0x800;    //error
 #if DEBUG
-                     var_time |= 0x1000;
+            var_time |= 0x1000;
 #endif
-			Save_Write_word(var_time);
-			Save_Write_word(temperature_value);
-			          //CH2_temperature = temperature_value;
-			          Cur_temperature_time_ch2 = 0;
-		    }
-     }
- }
+            Save_Write_word(var_time);
+            Save_Write_word(CH2_temperature);
+            //CH2_temperature = temperature_value;
+            Cur_temperature_time_ch2 = 0;
+        }
+    }
+}
 
-  /**
-  * @brief  This function is Calculate_Time.
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Calculate_Time.
+* @param  None
+* @retval None
+*/
   
 unsigned char Calculate_Time(void)
 {
@@ -144,6 +143,13 @@ unsigned char Calculate_Time(void)
         if(rtc_tm.date != rtc_save_ch1.date)
         {
             //date is update . must finish.
+            Write_Flash_finish();
+            Write_Flash_head();
+            Save_Write_time();
+            Cur_temperature_time_ch1 = 0;
+            Cur_temperature_time_ch2 = 0;
+            CH1_temperature = 0;
+            CH2_temperature = 0;
         }
         else
         {
@@ -159,6 +165,13 @@ unsigned char Calculate_Time(void)
         if(rtc_tm.date != rtc_save_ch2.date)
         {
             //date is update . must finish.
+            Write_Flash_finish();
+            Write_Flash_head();
+            Save_Write_time();
+            Cur_temperature_time_ch1 = 0;
+            Cur_temperature_time_ch2 = 0;
+            CH1_temperature = 0;
+            CH2_temperature = 0;
         }
         else
         {
@@ -172,11 +185,11 @@ unsigned char Calculate_Time(void)
     return 0;
 }
 
-  /**
-  * @brief  This function is Save_Write_word.
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Save_Write_word.
+* @param  None
+* @retval None
+*/
   
 void Save_Write_word(unsigned int data)
 {
@@ -184,11 +197,11 @@ void Save_Write_word(unsigned int data)
     Cur_Save_Index++;
 }
 
-  /**
-  * @brief  This function is Save_Write_time.
-  * @param  None
-  * @retval None
-  */
+/**
+* @brief  This function is Save_Write_time.
+* @param  None
+* @retval None
+*/
   
 void Save_Write_time(void)
 {

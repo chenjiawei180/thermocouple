@@ -1955,62 +1955,62 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 56: extern char * strichr(const char *, int);
 [; ;string.h: 57: extern char * strrchr(const char *, int);
 [; ;string.h: 58: extern char * strrichr(const char *, int);
-"20 mcc_generated_files/debug.c
+"21 mcc_generated_files/debug.c
 [v _EUSART_SendString `(v ~T0 @X0 1 ef1`*uc ]
-"21
-{
-[; ;debug.c: 20: void EUSART_SendString(char *s)
-[; ;debug.c: 21: {
-[e :U _EUSART_SendString ]
-"20
-[v _s `*uc ~T0 @X0 1 r1 ]
-"21
-[f ]
 "22
+{
+[; ;debug.c: 21: void EUSART_SendString(char *s)
+[; ;debug.c: 22: {
+[e :U _EUSART_SendString ]
+"21
+[v _s `*uc ~T0 @X0 1 r1 ]
+"22
+[f ]
+"23
 [v _length `i ~T0 @X0 1 a ]
 [v _i `i ~T0 @X0 1 a ]
-"23
-[v _pointer `*uc ~T0 @X0 1 a ]
 "24
+[v _pointer `*uc ~T0 @X0 1 a ]
+"25
 [v _x `uc ~T0 @X0 1 a ]
-[; ;debug.c: 22: int length,i;
-[; ;debug.c: 23: char *pointer;
-[; ;debug.c: 24: char x;
-[; ;debug.c: 26: length=strlen(s);
-"26
-[e = _length -> ( _strlen (1 -> _s `*Cuc `i ]
-[; ;debug.c: 27: pointer=s;
+[; ;debug.c: 23: int length,i;
+[; ;debug.c: 24: char *pointer;
+[; ;debug.c: 25: char x;
+[; ;debug.c: 27: length=strlen(s);
 "27
-[e = _pointer _s ]
-[; ;debug.c: 28: for(i=0;i<length;i++)
+[e = _length -> ( _strlen (1 -> _s `*Cuc `i ]
+[; ;debug.c: 28: pointer=s;
 "28
+[e = _pointer _s ]
+[; ;debug.c: 29: for(i=0;i<length;i++)
+"29
 {
 [e = _i -> 0 `i ]
 [e $U 238  ]
-"29
-[e :U 235 ]
-[; ;debug.c: 29: {
-{
-[; ;debug.c: 30: x=*pointer;
 "30
-[e = _x *U _pointer ]
-[; ;debug.c: 31: EUSART_Write(x);
+[e :U 235 ]
+[; ;debug.c: 30: {
+{
+[; ;debug.c: 31: x=*pointer;
 "31
-[e ( _EUSART_Write (1 _x ]
-[; ;debug.c: 32: pointer++;
+[e = _x *U _pointer ]
+[; ;debug.c: 32: EUSART_Write(x);
 "32
-[e ++ _pointer * -> -> 1 `i `x -> -> # *U _pointer `i `x ]
+[e ( _EUSART_Write (1 _x ]
+[; ;debug.c: 33: pointer++;
 "33
+[e ++ _pointer * -> -> 1 `i `x -> -> # *U _pointer `i `x ]
+"34
 }
-"28
+"29
 [e ++ _i -> 1 `i ]
 [e :U 238 ]
 [e $ < _i _length 235  ]
 [e :U 236 ]
-"33
-}
-[; ;debug.c: 33: }
-[; ;debug.c: 34: }
 "34
+}
+[; ;debug.c: 34: }
+[; ;debug.c: 35: }
+"35
 [e :UE 234 ]
 }

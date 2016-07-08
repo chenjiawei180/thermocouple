@@ -86,7 +86,7 @@ unsigned char I2C_Receive_Byte(void)
             SDA_SetDigitalOutput();
             Data |= 0x01;
         }
- 	 SDA_SetDigitalOutput();
+        SDA_SetDigitalOutput();
         SCL_SetLow();
         __delay_us(10);
     }

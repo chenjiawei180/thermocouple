@@ -2781,7 +2781,7 @@ extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
 
-# 20 "mcc_generated_files/debug.c"
+# 21 "mcc_generated_files/debug.c"
 void EUSART_SendString(char *s)
 {
 int length,i;

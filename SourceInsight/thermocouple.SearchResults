@@ -1,8 +1,6 @@
----- CH2_temperature Matches (10 in 3 files) ----
-Global.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):OS_EXT unsigned int CH2_temperature;
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):        if( CH2_temperature & 0x2000  != temperature_temp & 0x2000)    //different sign temperature
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):            if(CH2_temperature & 0x2000) CH2_temperature=0x3FFF-CH2_temperature + 1 ;     //wipe off sign
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):	     if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;    //calculate the absolute of temperature
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):	     else temperature_absolute = CH2_temperature - temperature_temp;
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):        CH2_temperature = temperature_value;
-Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):			          CH2_temperature = temperature_value;
+---- MAX31856Sec Matches (5 in 3 files) ----
+Global.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):OS_EXT unsigned char MAX31856Sec;
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    MAX31856Sec = 0;
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    while( !(DRDY_GetValue() == 0 || MAX31856Sec > 2) )  ;  //需要添加超时退出
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    if( MAX31856Sec > 2)
+Tmr0.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    MAX31856Sec++;

@@ -47,7 +47,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
 "96 mcc_generated_files/max31856.h
 [v _temperature_process `(v ~T0 @X0 0 ef ]
-"175 main.c
+"174 main.c
 [v _Key_Process `(i ~T0 @X0 0 ef ]
 "25 mcc_generated_files/save.h
 [v _Save_process `(v ~T0 @X0 0 ef ]
@@ -2301,83 +2301,83 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 114: Serach_Flash_Head();
 "114
 [e ( _Serach_Flash_Head ..  ]
-[; ;main.c: 140: (INTCONbits.GIE = 1);
-"140
+[; ;main.c: 139: (INTCONbits.GIE = 1);
+"139
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 143: (INTCONbits.PEIE = 1);
-"143
+[; ;main.c: 142: (INTCONbits.PEIE = 1);
+"142
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 151: while (1)
-"151
+[; ;main.c: 150: while (1)
+"150
 [e :U 261 ]
-[; ;main.c: 152: {
-"152
+[; ;main.c: 151: {
+"151
 {
-[; ;main.c: 157: bat_data = bat_data + ADC_GetConversion(ADC);
-"157
+[; ;main.c: 156: bat_data = bat_data + ADC_GetConversion(ADC);
+"156
 [e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1890 2 ]
-[; ;main.c: 158: i++;
-"158
+[; ;main.c: 157: i++;
+"157
 [e ++ _i -> -> 1 `i `uc ]
-[; ;main.c: 159: if(i == 16)
-"159
+[; ;main.c: 158: if(i == 16)
+"158
 [e $ ! == -> _i `i -> 16 `i 263  ]
-[; ;main.c: 160: {
+[; ;main.c: 159: {
+"159
+{
+[; ;main.c: 160: i = 0;
 "160
-{
-[; ;main.c: 161: i = 0;
-"161
 [e = _i -> -> 0 `i `uc ]
-[; ;main.c: 162: bat_data = bat_data>>4;
-"162
+[; ;main.c: 161: bat_data = bat_data>>4;
+"161
 [e = _bat_data >> _bat_data -> 4 `i ]
-[; ;main.c: 163: if( bat_data < 800)
-"163
+[; ;main.c: 162: if( bat_data < 800)
+"162
 [e $ ! < _bat_data -> -> 800 `i `ui 264  ]
-[; ;main.c: 164: {
-"164
+[; ;main.c: 163: {
+"163
 {
-[; ;main.c: 165: do { LATA2 = 0; } while(0);
-"165
+[; ;main.c: 164: do { LATA2 = 0; } while(0);
+"164
 [e :U 267 ]
 {
 [e = _LATA2 -> -> 0 `i `b ]
 }
 [e :U 266 ]
-[; ;main.c: 166: while(1);
-"166
+[; ;main.c: 165: while(1);
+"165
 [e :U 269 ]
 [e :U 268 ]
 [e $U 269  ]
 [e :U 270 ]
-"167
+"166
 }
 [e :U 264 ]
-[; ;main.c: 167: }
-[; ;main.c: 168: bat_data = 0;
-"168
+[; ;main.c: 166: }
+[; ;main.c: 167: bat_data = 0;
+"167
 [e = _bat_data -> -> 0 `i `ui ]
-"169
+"168
 }
 [e :U 263 ]
-[; ;main.c: 169: }
-[; ;main.c: 174: temperature_process();
-"174
+[; ;main.c: 168: }
+[; ;main.c: 173: temperature_process();
+"173
 [e ( _temperature_process ..  ]
-[; ;main.c: 175: Key_Process();
-"175
+[; ;main.c: 174: Key_Process();
+"174
 [e ( _Key_Process ..  ]
-[; ;main.c: 176: Save_process();
-"176
+[; ;main.c: 175: Save_process();
+"175
 [e ( _Save_process ..  ]
-"262
+"261
 }
 [e :U 260 ]
-"151
+"150
 [e $U 261  ]
 [e :U 262 ]
+[; ;main.c: 261: }
 [; ;main.c: 262: }
-[; ;main.c: 263: }
-"263
+"262
 [e :UE 235 ]
 }

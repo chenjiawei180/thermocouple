@@ -11,6 +11,7 @@
 #include "string.h"
 
 #ifdef DEBUG
+
 /**
   * @brief  This function is use the usart to send string.
   * @param  char *s .

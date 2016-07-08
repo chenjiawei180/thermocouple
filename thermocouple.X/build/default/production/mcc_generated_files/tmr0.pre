@@ -2793,7 +2793,7 @@ TMR0 = timer0ReloadVal;
 MAX31856Sec++;
 
 
-if (++CountCallBack >= 100) {
+if (++CountCallBack >= 50) {
 
 TMR0_CallBack();
 
@@ -2808,17 +2808,17 @@ void TMR0_CallBack(void) {
 
 
 time_count++;
-if(time_count == 4 || time_count > 8) time_count = 0;
+if(time_count == 4 || time_count > 12) time_count = 0;
 LongPressSec++;
 
 Cur_temperature_time_ch1++;
-if(Cur_temperature_time_ch1 > 65)
+if(Cur_temperature_time_ch1 > 130)
 {
 Cur_temperature_time_ch1 = 0;
 }
 
 Cur_temperature_time_ch2++;
-if(Cur_temperature_time_ch2 > 65)
+if(Cur_temperature_time_ch2 > 130)
 {
 Cur_temperature_time_ch2= 0;
 }
