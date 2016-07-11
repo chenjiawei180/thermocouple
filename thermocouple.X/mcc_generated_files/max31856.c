@@ -167,8 +167,9 @@ void maxim_clear_fault_status(void)
   
 void tc_temperature_trans(void)
 {
-    unsigned int temperature_absolute = 0;
-    unsigned int temperature_temp = 0;
+    unsigned int temperature_absolute = 0;    // calculate absolute of temperature 
+    unsigned int temperature_temp = 0;    //global temperature save 
+    unsigned int temperature_back = 0;    // channal 1 or channal 2 temperature back.
     unsigned int var_time=0;
     temperature_value = 0;
     temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
@@ -178,6 +179,7 @@ void tc_temperature_trans(void)
     //judge temperature 
     if(time_count == 1 && Record_flag == 1)
     {
+        temperature_back = CH1_temperature;
         if( CH1_temperature & 0x2000  != temperature_temp & 0x2000)    //different sign temperature
         {
             var_time = Calculate_Time();
@@ -189,6 +191,7 @@ void tc_temperature_trans(void)
             Save_Write_word(var_time);
             Save_Write_word(temperature_value);    //save original value
             Cur_temperature_time_ch1 = 0;
+            CH1_temperature = temperature_value;
         }
         else
         {
@@ -207,12 +210,18 @@ void tc_temperature_trans(void)
                 Save_Write_word(var_time);
                 Save_Write_word(temperature_value);    //save original value
                 Cur_temperature_time_ch1 = 0;
+                CH1_temperature = temperature_value;
+            }
+            else
+            {
+                CH1_temperature = temperature_back;
             }
         }
-        CH1_temperature = temperature_value;
+        //CH1_temperature = temperature_value;
     }
     else if( time_count == 3 && Record_flag == 1)
     {
+        temperature_back = CH2_temperature;
         if( CH2_temperature & 0x2000  != temperature_temp & 0x2000)    //different sign temperature
         {
             var_time = Calculate_Time();
@@ -224,6 +233,7 @@ void tc_temperature_trans(void)
             Save_Write_word(var_time);
             Save_Write_word(temperature_value);
             Cur_temperature_time_ch2 = 0;
+            CH2_temperature = temperature_value;
         }
         else
         {
@@ -242,9 +252,14 @@ void tc_temperature_trans(void)
                 Save_Write_word(var_time);
                 Save_Write_word(temperature_value);
                 Cur_temperature_time_ch2 = 0;
+                CH2_temperature = temperature_value;
+            }
+            else
+            {
+                CH2_temperature = temperature_back;
             }
         }
-        CH2_temperature = temperature_value;
+        //CH2_temperature = temperature_value;
     }
 #endif
     temperature_temp = temperature_value;

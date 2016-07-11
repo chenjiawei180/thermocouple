@@ -103,11 +103,11 @@ ADC 11
 [v _maxim_clear_fault_status maxim_clear_fault_status `(v  1 e 1 0 ]
 "168
 [v _tc_temperature_trans tc_temperature_trans `(v  1 e 1 0 ]
-"277
+"292
 [v _one_temperature_trans one_temperature_trans `(v  1 e 1 0 ]
-"301
+"316
 [v _temperature_display temperature_display `(v  1 e 1 0 ]
-"339
+"354
 [v _temperature_process temperature_process `(v  1 e 1 0 ]
 "70 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -129,17 +129,17 @@ ADC 11
 [v _Set_finish_flag Set_finish_flag `(v  1 e 1 0 ]
 "42
 [v _Serach_Flash_Head Serach_Flash_Head `(v  1 e 1 0 ]
-"64
+"93
 [v _Write_Flash_head Write_Flash_head `(v  1 e 1 0 ]
-"78
+"107
 [v _Write_Flash_finish Write_Flash_finish `(v  1 e 1 0 ]
-"92
+"121
 [v _Save_process Save_process `(v  1 e 1 0 ]
-"135
+"164
 [v _Calculate_Time Calculate_Time `(uc  1 e 1 0 ]
-"196
+"225
 [v _Save_Write_word Save_Write_word `(v  1 e 1 0 ]
-"211
+"240
 [v _Save_Write_time Save_Write_time `(v  1 e 1 0 ]
 "64 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
 [v _SPI_Initialize SPI_Initialize `(v  1 e 1 0 ]
@@ -466,17 +466,19 @@ ADC 11
 [v _Serach_Flash_Head Serach_Flash_Head `(v  1 e 1 0 ]
 {
 "44
-[v Serach_Flash_Head@i i `ui  1 a 2 21 ]
+[v Serach_Flash_Head@i i `ui  1 a 2 22 ]
 "45
-[v Serach_Flash_Head@data data `ui  1 a 2 19 ]
-"56
+[v Serach_Flash_Head@data data `ui  1 a 2 20 ]
+"46
+[v Serach_Flash_Head@count count `uc  1 a 1 19 ]
+"85
 } 0
-"92
+"121
 [v _Save_process Save_process `(v  1 e 1 0 ]
 {
-"94
+"123
 [v Save_process@var_time var_time `ui  1 a 2 49 ]
-"127
+"156
 } 0
 "70 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -522,17 +524,17 @@ ADC 11
 [v _Key_Process Key_Process `(i  1 e 2 0 ]
 {
 "46
-[v Key_Process@i i `ui  1 a 2 62 ]
+[v Key_Process@i i `ui  1 a 2 64 ]
 "47
-[v Key_Process@data_temp data_temp `ui  1 a 2 59 ]
+[v Key_Process@data_temp data_temp `ui  1 a 2 61 ]
 "44
-[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 61 ]
+[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 63 ]
 "107
 } 0
-"339 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+"354 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _temperature_process temperature_process `(v  1 e 1 0 ]
 {
-"368
+"383
 } 0
 "167 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/ht1621.c
 [v _time_Display time_Display `(v  1 e 1 0 ]
@@ -567,32 +569,34 @@ ADC 11
 [v ___awdiv@dividend dividend `i  1 p 2 5 ]
 "42
 } 0
-"301 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+"316 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _temperature_display temperature_display `(v  1 e 1 0 ]
 {
-"331
+"346
 } 0
 "168
 [v _tc_temperature_trans tc_temperature_trans `(v  1 e 1 0 ]
 {
 "171
-[v tc_temperature_trans@temperature_temp temperature_temp `ui  1 a 2 55 ]
-"172
-[v tc_temperature_trans@var_time var_time `ui  1 a 2 53 ]
+[v tc_temperature_trans@temperature_temp temperature_temp `ui  1 a 2 57 ]
+"173
+[v tc_temperature_trans@var_time var_time `ui  1 a 2 55 ]
 "170
-[v tc_temperature_trans@temperature_absolute temperature_absolute `ui  1 a 2 51 ]
-"269
+[v tc_temperature_trans@temperature_absolute temperature_absolute `ui  1 a 2 53 ]
+"172
+[v tc_temperature_trans@temperature_back temperature_back `ui  1 a 2 51 ]
+"284
 } 0
-"135 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
+"164 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
 [v _Calculate_Time Calculate_Time `(uc  1 e 1 0 ]
 {
-"139
+"168
 [v Calculate_Time@temp2 temp2 `ul  1 a 4 43 ]
-"138
+"167
 [v Calculate_Time@temp1 temp1 `ul  1 a 4 39 ]
-"137
+"166
 [v Calculate_Time@temp temp `ul  1 a 4 35 ]
-"188
+"217
 } 0
 "15 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -604,26 +608,26 @@ ADC 11
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 5 ]
 "53
 } 0
-"64 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
+"93 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
 [v _Write_Flash_head Write_Flash_head `(v  1 e 1 0 ]
 {
-"70
+"99
 } 0
-"78
+"107
 [v _Write_Flash_finish Write_Flash_finish `(v  1 e 1 0 ]
 {
-"84
+"113
 } 0
-"211
+"240
 [v _Save_Write_time Save_Write_time `(v  1 e 1 0 ]
 {
-"224
+"253
 } 0
-"196
+"225
 [v _Save_Write_word Save_Write_word `(v  1 e 1 0 ]
 {
 [v Save_Write_word@data data `ui  1 p 2 19 ]
-"203
+"232
 } 0
 "74 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/memory.c
 [v _FLASH_WriteWord FLASH_WriteWord `(v  1 e 1 0 ]
@@ -789,10 +793,10 @@ ADC 11
 [v ___lwdiv@dividend dividend `ui  1 p 2 3 ]
 "31
 } 0
-"277 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
+"292 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _one_temperature_trans one_temperature_trans `(v  1 e 1 0 ]
 {
-"293
+"308
 } 0
 "114
 [v _maxim_start_conversion maxim_start_conversion `(v  1 e 1 0 ]

@@ -43,15 +43,44 @@ void Serach_Flash_Head(void)
 {
     unsigned int i=0;
     unsigned int data=0;
+    unsigned char count =0;
     for(i = Record_Add; i<END_FLASH;i++ )
     {
         data = FLASH_ReadWord(i);
+#if 0
+        if( data == 0x1555 && count <2)
+        {
+            count++;
+            if( count == 2)
+            {
+                i++;
+                Cur_Save_Index = i;
+                break;
+            }
+        }
+        else
+        {
+            if( data == 0x3fff)
+            {
+                Cur_Save_Index = i;
+                Write_Flash_finish();
+                break;
+            } 
+            else
+            {
+                count = 0;
+            }
+        }
+#endif
+
+#if 1
         if( data == 0x3fff)
         {
             Cur_Save_Index = i;
             Write_Flash_finish();
             break;
         } 
+#endif
     }
 }
 

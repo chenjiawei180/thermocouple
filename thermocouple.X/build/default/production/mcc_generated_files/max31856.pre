@@ -2891,6 +2891,7 @@ void tc_temperature_trans(void)
 {
 unsigned int temperature_absolute = 0;
 unsigned int temperature_temp = 0;
+unsigned int temperature_back = 0;
 unsigned int var_time=0;
 temperature_value = 0;
 temperature_value = (((uch_ltcbh&0x3f)<<8) | (uch_ltcbm) )>>1;
@@ -2900,6 +2901,7 @@ temperature_temp = temperature_value;
 
 if(time_count == 1 && Record_flag == 1)
 {
+temperature_back = CH1_temperature;
 if( CH1_temperature & 0x2000 != temperature_temp & 0x2000)
 {
 var_time = Calculate_Time();
@@ -2911,6 +2913,7 @@ var_time |= 0x2000;
 Save_Write_word(var_time);
 Save_Write_word(temperature_value);
 Cur_temperature_time_ch1 = 0;
+CH1_temperature = temperature_value;
 }
 else
 {
@@ -2929,12 +2932,18 @@ var_time |= 0x2000;
 Save_Write_word(var_time);
 Save_Write_word(temperature_value);
 Cur_temperature_time_ch1 = 0;
-}
-}
 CH1_temperature = temperature_value;
+}
+else
+{
+CH1_temperature = temperature_back;
+}
+}
+
 }
 else if( time_count == 3 && Record_flag == 1)
 {
+temperature_back = CH2_temperature;
 if( CH2_temperature & 0x2000 != temperature_temp & 0x2000)
 {
 var_time = Calculate_Time();
@@ -2946,6 +2955,7 @@ var_time |= 0x2000;
 Save_Write_word(var_time);
 Save_Write_word(temperature_value);
 Cur_temperature_time_ch2 = 0;
+CH2_temperature = temperature_value;
 }
 else
 {
@@ -2964,9 +2974,14 @@ var_time |= 0x2000;
 Save_Write_word(var_time);
 Save_Write_word(temperature_value);
 Cur_temperature_time_ch2 = 0;
-}
-}
 CH2_temperature = temperature_value;
+}
+else
+{
+CH2_temperature = temperature_back;
+}
+}
+
 }
 
 temperature_temp = temperature_value;
@@ -2990,7 +3005,7 @@ if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 
 }
 }
 
-# 277
+# 292
 void one_temperature_trans(void)
 {
 maxim_start_conversion((uint8_t) 0x40);
@@ -3009,7 +3024,7 @@ uch_sr=uch_reg[5];
 }
 }
 
-# 301
+# 316
 void temperature_display(void)
 {
 if(uch_sr==(uint8_t)0x00)
@@ -3042,7 +3057,7 @@ maxim_31856_write_register(0x82, 0x00);
 }
 }
 
-# 339
+# 354
 void temperature_process(void)
 {
 switch(time_count)
