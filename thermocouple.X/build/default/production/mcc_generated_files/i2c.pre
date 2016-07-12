@@ -2666,6 +2666,12 @@ adc_result_t ADC_GetConversionResult(void);
 # 249
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 104 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
@@ -2683,12 +2689,6 @@ void TMR0_ISR(void);
 
 # 248
 void TMR0_CallBack(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);

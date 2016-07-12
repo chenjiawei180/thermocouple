@@ -2666,6 +2666,12 @@ adc_result_t ADC_GetConversionResult(void);
 # 249
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 104 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
@@ -2683,12 +2689,6 @@ void TMR0_ISR(void);
 
 # 248
 void TMR0_CallBack(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -2906,6 +2906,13 @@ unsigned char i=0;
 
 unsigned int bat_data = 0;
 unsigned int data_temp = 0;
+SWDTEN = 0;
+WDTPS0 = 1;
+WDTPS1 = 0;
+WDTPS2 = 0;
+WDTPS3 = 1;
+WDTPS4 = 0;
+asm("clrwdt");
 
 SYSTEM_Initialize();
 _delay((unsigned long)((3000)*(16000000/4000.0)));
@@ -2923,7 +2930,7 @@ bat_data = bat_data>>4;
 if( bat_data < 800)
 {
 do { LATA2 = 0; } while(0);
-while(1);
+while(1)asm("clrwdt");
 }
 i = 0 ;
 bat_data = 0 ;
@@ -2950,14 +2957,16 @@ CH2_state = 0;
 bat_data = 0;
 Cur_Save_Index = 0x2000;
 Serach_Flash_Head();
+asm("clrwdt");
+SWDTEN = 1;
 
-# 139
+# 148
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 150
+# 159
 while (1)
 {
 
@@ -2973,7 +2982,7 @@ bat_data = bat_data>>4;
 if( bat_data < 800)
 {
 do { LATA2 = 0; } while(0);
-while(1);
+while(1)asm("clrwdt");
 }
 bat_data = 0;
 }
@@ -2984,8 +2993,24 @@ bat_data = 0;
 temperature_process();
 Key_Process();
 Save_process();
+asm("sleep");
 
-# 261
+time_count++;
+if(time_count == 4 || time_count > 12) time_count = 0;
+
+Cur_temperature_time_ch1++;
+if(Cur_temperature_time_ch1 > 130)
+{
+Cur_temperature_time_ch1 = 0;
+}
+
+Cur_temperature_time_ch2++;
+if(Cur_temperature_time_ch2 > 130)
+{
+Cur_temperature_time_ch2= 0;
+}
+
+# 286
 }
 }
 

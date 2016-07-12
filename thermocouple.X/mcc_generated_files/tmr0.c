@@ -109,8 +109,8 @@ void TMR0_ISR(void) {
     TMR0 = timer0ReloadVal;
 
     MAX31856Sec++;
-    
-    // callback function - called every 200th pass
+
+    // callback function - called every 50th pass
     if (++CountCallBack >= TMR0_INTERRUPT_TICKER_FACTOR) {
         // ticker function call
         TMR0_CallBack();
@@ -124,23 +124,8 @@ void TMR0_ISR(void) {
 
 void TMR0_CallBack(void) {
     // Add your custom callback code here
-    // this code executes every 200 TMR0 periods
-    time_count++;
-    if(time_count == 4 || time_count > 12)    time_count = 0;   // ¿ØÖÆÁ÷³Ì
+    // this code executes every 50 TMR0 periods
     LongPressSec++;
-
-    Cur_temperature_time_ch1++;
-    if(Cur_temperature_time_ch1 > 130)
-    {
-        Cur_temperature_time_ch1 = 0;
-    }
-
-    Cur_temperature_time_ch2++;
-    if(Cur_temperature_time_ch2 > 130)
-    {
-        Cur_temperature_time_ch2= 0;
-    }
-
 }
 /**
   End of File

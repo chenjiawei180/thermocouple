@@ -2666,6 +2666,12 @@ adc_result_t ADC_GetConversionResult(void);
 # 249
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 104 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
@@ -2683,12 +2689,6 @@ void TMR0_ISR(void);
 
 # 248
 void TMR0_CallBack(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -2830,18 +2830,34 @@ for(i = 0x2000; i<16384;i++ )
 {
 data = FLASH_ReadWord(i);
 
-# 77
-if( data == 0x3fff)
+if( data == 0x1555 )
+{
+count++;
+}
+else
+{
+if( data == 0x3fff && count >1 )
+{
+Cur_Save_Index = i;
+break;
+}
+else if( data == 0x3fff )
 {
 Cur_Save_Index = i;
 Write_Flash_finish();
 break;
 }
-
+else
+{
+count = 0;
 }
 }
 
-# 93
+# 83
+}
+}
+
+# 92
 void Write_Flash_head(void)
 {
 FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
@@ -2850,7 +2866,7 @@ FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
 Cur_Save_Index++;
 }
 
-# 107
+# 106
 void Write_Flash_finish(void)
 {
 FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
@@ -2859,7 +2875,7 @@ FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
 Cur_Save_Index++;
 }
 
-# 121
+# 120
 void Save_process(void)
 {
 unsigned int var_time=0;
@@ -2897,7 +2913,7 @@ Cur_temperature_time_ch2 = 0;
 }
 }
 
-# 164
+# 163
 unsigned char Calculate_Time(void)
 {
 unsigned long temp = 0 ;
@@ -2953,7 +2969,7 @@ return temp;
 return 0;
 }
 
-# 225
+# 224
 void Save_Write_word(unsigned int data)
 {
 if( (data & 0x3fff) == 0x3fff)
@@ -2963,7 +2979,7 @@ FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
 Cur_Save_Index++;
 }
 
-# 240
+# 239
 void Save_Write_time(void)
 {
 unsigned char i;

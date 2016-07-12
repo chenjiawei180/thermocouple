@@ -9,10 +9,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _EUSART_Initialize `(v ~T0 @X0 0 ef ]
 "125 mcc_generated_files/adc.h
 [v _ADC_Initialize `(v ~T0 @X0 0 ef ]
-"104 mcc_generated_files/tmr0.h
-[v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
 "93 mcc_generated_files/fvr.h
 [v _FVR_Initialize `(v ~T0 @X0 0 ef ]
+"104 mcc_generated_files/tmr0.h
+[v _TMR0_Initialize `(v ~T0 @X0 0 ef ]
 "1501 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _OSCCON `Vuc ~T0 @X0 0 e@153 ]
 "1566
@@ -24,7 +24,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 "52
 [p x MCLRE=ON ]
 "53
-[p x WDTE=OFF ]
+[p x WDTE=SWDTEN ]
 "54
 [p x FOSC=INTOSC ]
 "55
@@ -1926,14 +1926,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 186: bool ADC_IsConversionDone();
 [; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;tmr0.h: 104: void TMR0_Initialize(void);
 [; ;tmr0.h: 137: uint8_t TMR0_ReadTimer(void);
 [; ;tmr0.h: 176: void TMR0_WriteTimer(uint8_t timerVal);
 [; ;tmr0.h: 212: void TMR0_Reload(void);
 [; ;tmr0.h: 230: void TMR0_ISR(void);
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;mcc.h: 74: void SYSTEM_Initialize(void);
 [; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
 "70 mcc_generated_files/mcc.c
@@ -1957,12 +1957,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 75: ADC_Initialize();
 "75
 [e ( _ADC_Initialize ..  ]
-[; ;mcc.c: 76: TMR0_Initialize();
+[; ;mcc.c: 76: FVR_Initialize();
 "76
-[e ( _TMR0_Initialize ..  ]
-[; ;mcc.c: 77: FVR_Initialize();
-"77
 [e ( _FVR_Initialize ..  ]
+[; ;mcc.c: 77: TMR0_Initialize();
+"77
+[e ( _TMR0_Initialize ..  ]
 [; ;mcc.c: 78: }
 "78
 [e :UE 233 ]

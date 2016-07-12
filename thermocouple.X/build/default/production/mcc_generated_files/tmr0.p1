@@ -18,14 +18,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _MAX31856Sec `uc ~T0 @X0 0 e ]
 "248 mcc_generated_files/tmr0.h
 [v _TMR0_CallBack `(v ~T0 @X0 0 ef ]
-"54 mcc_generated_files/global.h
-[v _time_count `uc ~T0 @X0 0 e ]
-"57
+"57 mcc_generated_files/global.h
 [v _LongPressSec `uc ~T0 @X0 0 e ]
-"71
-[v _Cur_temperature_time_ch1 `uc ~T0 @X0 0 e ]
-"72
-[v _Cur_temperature_time_ch2 `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2046,9 +2040,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 111: MAX31856Sec++;
 "111
 [e ++ _MAX31856Sec -> -> 1 `i `uc ]
-[; ;tmr0.c: 114: if (++CountCallBack >= 50) {
+[; ;tmr0.c: 114: if (++CountCallBack >= 100) {
 "114
-[e $ ! >= =+ F1972 -> -> 1 `i `ui -> -> 50 `i `ui 239  ]
+[e $ ! >= =+ F1972 -> -> 1 `i `ui -> -> 100 `i `ui 239  ]
 {
 [; ;tmr0.c: 116: TMR0_CallBack();
 "116
@@ -2070,50 +2064,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 125: void TMR0_CallBack(void) {
 [e :U _TMR0_CallBack ]
 [f ]
-[; ;tmr0.c: 128: time_count++;
+[; ;tmr0.c: 128: LongPressSec++;
 "128
-[e ++ _time_count -> -> 1 `i `uc ]
-[; ;tmr0.c: 129: if(time_count == 4 || time_count > 12) time_count = 0;
-"129
-[e $ ! || == -> _time_count `i -> 4 `i > -> _time_count `i -> 12 `i 241  ]
-[e = _time_count -> -> 0 `i `uc ]
-[e :U 241 ]
-[; ;tmr0.c: 130: LongPressSec++;
-"130
 [e ++ _LongPressSec -> -> 1 `i `uc ]
-[; ;tmr0.c: 132: Cur_temperature_time_ch1++;
-"132
-[e ++ _Cur_temperature_time_ch1 -> -> 1 `i `uc ]
-[; ;tmr0.c: 133: if(Cur_temperature_time_ch1 > 130)
-"133
-[e $ ! > -> _Cur_temperature_time_ch1 `i -> 130 `i 242  ]
-[; ;tmr0.c: 134: {
-"134
-{
-[; ;tmr0.c: 135: Cur_temperature_time_ch1 = 0;
-"135
-[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
-"136
-}
-[e :U 242 ]
-[; ;tmr0.c: 136: }
-[; ;tmr0.c: 138: Cur_temperature_time_ch2++;
-"138
-[e ++ _Cur_temperature_time_ch2 -> -> 1 `i `uc ]
-[; ;tmr0.c: 139: if(Cur_temperature_time_ch2 > 130)
-"139
-[e $ ! > -> _Cur_temperature_time_ch2 `i -> 130 `i 243  ]
-[; ;tmr0.c: 140: {
-"140
-{
-[; ;tmr0.c: 141: Cur_temperature_time_ch2= 0;
-"141
-[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
-"142
-}
-[e :U 243 ]
-[; ;tmr0.c: 142: }
-[; ;tmr0.c: 144: }
-"144
+[; ;tmr0.c: 129: }
+"129
 [e :UE 240 ]
 }

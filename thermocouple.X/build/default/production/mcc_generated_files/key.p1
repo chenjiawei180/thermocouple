@@ -1922,14 +1922,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 186: bool ADC_IsConversionDone();
 [; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;tmr0.h: 104: void TMR0_Initialize(void);
 [; ;tmr0.h: 137: uint8_t TMR0_ReadTimer(void);
 [; ;tmr0.h: 176: void TMR0_WriteTimer(uint8_t timerVal);
 [; ;tmr0.h: 212: void TMR0_Reload(void);
 [; ;tmr0.h: 230: void TMR0_ISR(void);
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;mcc.h: 74: void SYSTEM_Initialize(void);
 [; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
 [; ;global.h: 25: typedef struct bq32k_regs {
@@ -2094,10 +2094,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key.c: 55: case 0x01:
 "55
 [e :U 243 ]
-[; ;key.c: 56: while( !(LongPressSec > 2 || RB5 == 1) );
+[; ;key.c: 56: while( !(LongPressSec > 2 || RB5 == 1) ) asm("clrwdt");
 "56
 [e $U 244  ]
 [e :U 245 ]
+[; <" clrwdt ;# ">
 [e :U 244 ]
 [e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RB5 `i -> 1 `i 245  ]
 [e :U 246 ]
@@ -2134,11 +2135,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key.c: 65: {
 "65
 {
-[; ;key.c: 66: for(i=0x2000;i<0x2000+1000;i++)
+[; ;key.c: 66: for(i=0x1000;i<0x1000+1000;i++)
 "66
 {
-[e = _i -> -> 8192 `i `ui ]
-[e $ < _i -> + -> 8192 `i -> 1000 `i `ui 255  ]
+[e = _i -> -> 4096 `i `ui ]
+[e $ < _i -> + -> 4096 `i -> 1000 `i `ui 255  ]
 [e $U 256  ]
 "67
 [e :U 255 ]
@@ -2157,7 +2158,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 "66
 [e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> + -> 8192 `i -> 1000 `i `ui 255  ]
+[e $ < _i -> + -> 4096 `i -> 1000 `i `ui 255  ]
 [e :U 256 ]
 "71
 }
@@ -2166,10 +2167,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 254 ]
 [; ;key.c: 71: }
 [; ;key.c: 72: }
-[; ;key.c: 74: while(RB5 == 0);
+[; ;key.c: 74: while(RB5 == 0) asm("clrwdt");
 "74
 [e $U 258  ]
 [e :U 259 ]
+[; <" clrwdt ;# ">
 [e :U 258 ]
 [e $ == -> _RB5 `i -> 0 `i 259  ]
 [e :U 260 ]
@@ -2179,10 +2181,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key.c: 76: case 0x02:
 "76
 [e :U 261 ]
-[; ;key.c: 77: while( !(LongPressSec > 2 || RA7 == 1) );
+[; ;key.c: 77: while( !(LongPressSec > 2 || RA7 == 1) )asm("clrwdt");
 "77
 [e $U 262  ]
 [e :U 263 ]
+[; <" clrwdt ;# ">
 [e :U 262 ]
 [e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RA7 `i -> 1 `i 263  ]
 [e :U 264 ]
@@ -2262,10 +2265,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 }
 [e :U 268 ]
 [; ;key.c: 101: }
-[; ;key.c: 102: while(RA7 == 0);
+[; ;key.c: 102: while(RA7 == 0)asm("clrwdt");
 "102
 [e $U 269  ]
 [e :U 270 ]
+[; <" clrwdt ;# ">
 [e :U 269 ]
 [e $ == -> _RA7 `i -> 0 `i 270  ]
 [e :U 271 ]

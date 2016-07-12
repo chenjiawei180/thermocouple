@@ -50,7 +50,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #pragma config CLKOUTEN = OFF    // Clock Out Enable->CLKOUT function is disabled. I/O or oscillator function on the CLKOUT pin
 #pragma config FCMEN = ON    // Fail-Safe Clock Monitor Enable->Fail-Safe Clock Monitor is enabled
 #pragma config MCLRE = ON    // MCLR Pin Function Select->MCLR/VPP pin function is MCLR
-#pragma config WDTE = OFF    // Watchdog Timer Enable->WDT disabled
+#pragma config WDTE = SWDTEN    // Watchdog Timer Enable->WDT controlled by the SWDTEN bit in the WDTCON register
 #pragma config FOSC = INTOSC    // Oscillator Selection->INTOSC oscillator: I/O function on CLKIN pin
 #pragma config BOREN = ON    // Brown-out Reset Enable->Brown-out Reset enabled
 #pragma config IESO = ON    // Internal/External Switchover->Internal/External Switchover mode is enabled
@@ -73,8 +73,8 @@ void SYSTEM_Initialize(void) {
     SPI_Initialize();
     EUSART_Initialize();
     ADC_Initialize();
-    TMR0_Initialize();
     FVR_Initialize();
+    TMR0_Initialize();
 }
 
 void OSCILLATOR_Initialize(void) {

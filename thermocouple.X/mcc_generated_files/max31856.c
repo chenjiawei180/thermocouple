@@ -293,7 +293,7 @@ void one_temperature_trans(void)
 {
     maxim_start_conversion(One_Shot_Conversion);  //使能单次转换
     MAX31856Sec = 0;
-    while( !(DRDY_GetValue() == 0 || MAX31856Sec > 30) )  ;  //需要添加超时退出
+    while( !(DRDY_GetValue() == 0 || MAX31856Sec > 30) ) CLRWDT();  //需要添加超时退出
     if( MAX31856Sec > 30)
     {
         uch_sr = 0x01;

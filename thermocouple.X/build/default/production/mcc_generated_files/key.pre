@@ -2666,6 +2666,12 @@ adc_result_t ADC_GetConversionResult(void);
 # 249
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 104 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
@@ -2683,12 +2689,6 @@ void TMR0_ISR(void);
 
 # 248
 void TMR0_CallBack(void);
-
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
 
 # 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
@@ -2818,7 +2818,7 @@ if(gKeyValue)
 switch(gKeyValue)
 {
 case 0x01:
-while( !(LongPressSec > 2 || RB5 == 1) );
+while( !(LongPressSec > 2 || RB5 == 1) ) asm("clrwdt");
 if(LongPressSec > 2)
 {
 do { LATA2 = 0; } while(0);
@@ -2828,7 +2828,7 @@ SendCmd_1621(0x04);
 
 else
 {
-for(i=0x2000;i<0x2000+1000;i++)
+for(i=0x1000;i<0x1000+1000;i++)
 {
 data_temp = FLASH_ReadWord(i);
 EUSART_Write(data_temp>>8);
@@ -2836,10 +2836,10 @@ EUSART_Write(data_temp&0xff);
 }
 }
 
-while(RB5 == 0);
+while(RB5 == 0) asm("clrwdt");
 break;
 case 0x02:
-while( !(LongPressSec > 2 || RA7 == 1) );
+while( !(LongPressSec > 2 || RA7 == 1) )asm("clrwdt");
 if(LongPressSec > 2)
 {
 if(Record_flag == 0)
@@ -2864,7 +2864,7 @@ else
 time_count = 5;
 temperature_process();
 }
-while(RA7 == 0);
+while(RA7 == 0)asm("clrwdt");
 break;
 default:break;
 }

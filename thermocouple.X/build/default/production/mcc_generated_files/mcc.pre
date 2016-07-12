@@ -6,7 +6,7 @@
 #pragma config CLKOUTEN = OFF
 #pragma config FCMEN = ON
 #pragma config MCLRE = ON
-#pragma config WDTE = OFF
+#pragma config WDTE = SWDTEN
 #pragma config FOSC = INTOSC
 #pragma config BOREN = ON
 #pragma config IESO = ON
@@ -2686,6 +2686,12 @@ adc_result_t ADC_GetConversionResult(void);
 # 249
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
+# 93 "mcc_generated_files/fvr.h"
+void FVR_Initialize(void);
+
+# 127
+bool FVR_IsOutputReady(void);
+
 # 104 "mcc_generated_files/tmr0.h"
 void TMR0_Initialize(void);
 
@@ -2704,12 +2710,6 @@ void TMR0_ISR(void);
 # 248
 void TMR0_CallBack(void);
 
-# 93 "mcc_generated_files/fvr.h"
-void FVR_Initialize(void);
-
-# 127
-bool FVR_IsOutputReady(void);
-
 # 74 "mcc_generated_files/mcc.h"
 void SYSTEM_Initialize(void);
 
@@ -2723,8 +2723,8 @@ PIN_MANAGER_Initialize();
 SPI_Initialize();
 EUSART_Initialize();
 ADC_Initialize();
-TMR0_Initialize();
 FVR_Initialize();
+TMR0_Initialize();
 }
 
 void OSCILLATOR_Initialize(void) {

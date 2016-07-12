@@ -68,13 +68,20 @@ void main(void) {
     //a[0]=0x51;a[1]=0x00;a[2]=0x00;a[3]=0x00;a[4]=0x00;
     unsigned int  bat_data = 0;
     unsigned int  data_temp = 0;
+    SWDTEN = 0;
+    WDTPS0 = 1;
+    WDTPS1 = 0;
+    WDTPS2 = 0;
+    WDTPS3 = 1;
+    WDTPS4 = 0;    //512ms
+    CLRWDT();    //clear the watch dog timer 
     // initialize the device
     SYSTEM_Initialize();
     __delay_ms(3000);
     if(KEY_GetValue() == 0 ) POWER_SetHigh();
     else POWER_SetLow();
     LED1_SetLow();
-
+    
 #if 1
     bat_data = 0;
     for(i=0;i<16;i++)
@@ -85,7 +92,7 @@ void main(void) {
     if( bat_data < BAT_V)
     {
         POWER_SetLow();
-        while(1);
+        while(1)CLRWDT();
     }
     i = 0 ;
     bat_data = 0 ;
@@ -112,6 +119,8 @@ void main(void) {
     bat_data = 0;
     Cur_Save_Index = Record_Add;
     Serach_Flash_Head();
+    CLRWDT();
+    SWDTEN = 1;
     //EUSART_Write(Cur_Save_Index>>8);
     //EUSART_Write(Cur_Save_Index&0XFF);
 #if 0
@@ -162,7 +171,7 @@ void main(void) {
             if( bat_data < BAT_V)
             {
                 POWER_SetLow();
-                while(1);
+                while(1)CLRWDT();
             }
             bat_data = 0;
         }
@@ -173,6 +182,22 @@ void main(void) {
         temperature_process();
         Key_Process();
         Save_process();
+        SLEEP();
+        //LED2_Toggle();
+        time_count++;
+        if(time_count == 4 || time_count > 12)    time_count = 0;   // ????¨¢¡Â3¨¬
+
+        Cur_temperature_time_ch1++;
+        if(Cur_temperature_time_ch1 > 130)
+        {
+            Cur_temperature_time_ch1 = 0;
+        }
+
+        Cur_temperature_time_ch2++;
+        if(Cur_temperature_time_ch2 > 130)
+        {
+            Cur_temperature_time_ch2= 0;
+        }
 #endif
 
 #if 0

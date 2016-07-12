@@ -53,7 +53,7 @@ void Key_Process(void)
         switch(gKeyValue)
         {
             case KEY1:
-                while(  !(LongPressSec > 2 || KEY_GetValue() == 1) );
+                while(  !(LongPressSec > 2 || KEY_GetValue() == 1) ) CLRWDT();
                 if(LongPressSec > 2)
                 {
                     POWER_SetLow();
@@ -63,7 +63,7 @@ void Key_Process(void)
 #if DEBUG
                 else
                 {
-                    for(i=Record_Add;i<Record_Add+1000;i++)
+                    for(i=0x1000;i<0x1000+1000;i++)
                     {
                         data_temp = FLASH_ReadWord(i);
                         EUSART_Write(data_temp>>8);
@@ -71,10 +71,10 @@ void Key_Process(void)
                     }
                 }
 #endif
-                while(KEY_GetValue() == 0);
+                while(KEY_GetValue() == 0) CLRWDT();
                 break;
             case KEY2:
-                while(  !(LongPressSec > 2 || KEY2_GetValue() == 1) ); //判断长按短按
+                while(  !(LongPressSec > 2 || KEY2_GetValue() == 1) )CLRWDT(); //判断长按短按
                 if(LongPressSec > 2)
                 {
                     if(Record_flag == 0) 
@@ -99,7 +99,7 @@ void Key_Process(void)
                     time_count = 5;     //调入显示时间步骤
                     temperature_process();    //显示时间
                 }
-                while(KEY2_GetValue() == 0);//等待按键释放
+                while(KEY2_GetValue() == 0)CLRWDT();//等待按键释放
                 break;
             default:break;
         }

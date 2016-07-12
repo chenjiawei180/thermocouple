@@ -1889,14 +1889,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 186: bool ADC_IsConversionDone();
 [; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;tmr0.h: 104: void TMR0_Initialize(void);
 [; ;tmr0.h: 137: uint8_t TMR0_ReadTimer(void);
 [; ;tmr0.h: 176: void TMR0_WriteTimer(uint8_t timerVal);
 [; ;tmr0.h: 212: void TMR0_Reload(void);
 [; ;tmr0.h: 230: void TMR0_ISR(void);
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
-[; ;fvr.h: 93: void FVR_Initialize(void);
-[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;mcc.h: 74: void SYSTEM_Initialize(void);
 [; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
 [; ;global.h: 25: typedef struct bq32k_regs {
