@@ -6,6 +6,7 @@
   ******************************************************************************/
 
 #include "power.h"
+#include "ht1621.h"
 
 /**
   * @brief  This function is Sleep_process.
@@ -20,6 +21,14 @@ void Sleep_process(void)
     CS1_SetHigh();
     CS2_SetHigh();
     //ADON = 0;
+    //SendCmd_1621(LCDOFF);
+    //SendCmd_1621(SYSDIS);
+    HT_CS_SetHigh();
+    HT_DATA_SetHigh();
+    HT_RD_SetHigh();
+    HT_WR_SetHigh();
+    SCL_SetHigh();
+    SDA_SetHigh();
     SLEEP();
     if( time_count == 0 ||  time_count == 2 )
     {

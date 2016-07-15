@@ -2494,10 +2494,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 418 "mcc_generated_files/pin_manager.h"
+# 390 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 430
+# 402
 void PIN_MANAGER_IOC(void);
 
 # 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
@@ -2745,7 +2745,20 @@ extern unsigned char Cur_temperature_time_ch2;
 void Sleep_process(void);
 void Step_control(void);
 
-# 16 "mcc_generated_files/power.c"
+# 22 "mcc_generated_files/ht1621.h"
+extern unsigned char const Dis_TAB[];
+
+void SendBit_1621(unsigned char data,unsigned char cnt);
+void SendDataBit_1621(unsigned char data,unsigned char cnt);
+void SendCmd_1621(unsigned char command);
+void Write_1621(unsigned char addr,unsigned char data);
+void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
+void Tc_Display(void);
+void Two_Display(unsigned char number);
+void err_Display(void);
+void time_Display(void);
+
+# 17 "mcc_generated_files/power.c"
 void Sleep_process(void)
 {
 do { LATA3 = 1; } while(0);
@@ -2753,6 +2766,14 @@ do { LATA4 = 1; } while(0);
 do { LATA0 = 1; } while(0);
 do { LATA1 = 1; } while(0);
 
+
+
+do { LATC0 = 1; } while(0);
+do { LATC2 = 1; } while(0);
+do { LATA6 = 1; } while(0);
+do { LATC1 = 1; } while(0);
+do { LATB0 = 1; } while(0);
+do { LATB1 = 1; } while(0);
 asm("sleep");
 if( time_count == 0 || time_count == 2 )
 {
@@ -2763,7 +2784,7 @@ if( Record_flag == 1 ) do { LATA4 = 0; } while(0);
 Step_control();
 }
 
-# 39
+# 48
 void Step_control(void)
 {
 time_count++;

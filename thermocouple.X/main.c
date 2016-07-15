@@ -110,7 +110,7 @@ void main(void) {
     SendCmd_1621(SYSEN);	//打开系统振荡器
     SendCmd_1621(LCDON);	//打开LCD偏压发生器
     //Write_1621(0x24,0x01);	//0x24：(地址)的高6位有效，0x01：(数据)的低4位有效
-    WriteAll_1621(0,Dis_TAB+17,4);	//0：(起始地址)高6位有效，a：(写入数据的起始地址)8位 
+    WriteAll_1621(0,Dis_TAB+17,4);    //0：(起始地址)高6位有效，a：(写入数据的起始地址)8位 
     //开机显示4 个 - - - -  
     time_count = 0;
     Record_flag = 0;

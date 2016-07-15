@@ -121,9 +121,9 @@ ADC 11
 [v _FLASH_EraseBlock FLASH_EraseBlock `(v  1 e 1 0 ]
 "50 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/pin_manager.c
 [v _PIN_MANAGER_Initialize PIN_MANAGER_Initialize `(v  1 e 1 0 ]
-"16 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/power.c
+"17 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/power.c
 [v _Sleep_process Sleep_process `(v  1 e 1 0 ]
-"39
+"48
 [v _Step_control Step_control `(v  1 e 1 0 ]
 "18 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
 [v _Set_start_flag Set_start_flag `(v  1 e 1 0 ]
@@ -367,6 +367,8 @@ ADC 11
 [v _LATA4 LATA4 `VEb  1 e 0 @2148 ]
 "4445
 [v _LATA5 LATA5 `VEb  1 e 0 @2149 ]
+"4447
+[v _LATA6 LATA6 `VEb  1 e 0 @2150 ]
 "4451
 [v _LATB0 LATB0 `VEb  1 e 0 @2152 ]
 "4453
@@ -471,15 +473,15 @@ ADC 11
 [v main@i i `uc  1 a 1 2 ]
 "277
 } 0
-"16 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/power.c
+"17 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/power.c
 [v _Sleep_process Sleep_process `(v  1 e 1 0 ]
 {
-"31
+"40
 } 0
-"39
+"48
 [v _Step_control Step_control `(v  1 e 1 0 ]
 {
-"55
+"64
 } 0
 "42 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
 [v _Serach_Flash_Head Serach_Flash_Head `(v  1 e 1 0 ]

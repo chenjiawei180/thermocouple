@@ -264,34 +264,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define KEY_ResetPullup()   do { WPUB5 = 0; } while(0)
 #define KEY_SetAnalogMode()   do { ANSB5 = 1; } while(0)
 #define KEY_SetDigitalMode()   do { ANSB5 = 0; } while(0)
-// get/set IO_RB6 aliases
-#define IO_RB6_TRIS               TRISB6
-#define IO_RB6_LAT                LATB6
-#define IO_RB6_PORT               RB6
-#define IO_RB6_WPU                WPUB6
-#define IO_RB6_SetHigh()    do { LATB6 = 1; } while(0)
-#define IO_RB6_SetLow()   do { LATB6 = 0; } while(0)
-#define IO_RB6_Toggle()   do { LATB6 = ~LATB6; } while(0)
-#define IO_RB6_GetValue()         RB6
-#define IO_RB6_SetDigitalInput()    do { TRISB6 = 1; } while(0)
-#define IO_RB6_SetDigitalOutput()   do { TRISB6 = 0; } while(0)
-
-#define IO_RB6_SetPullup()    do { WPUB6 = 1; } while(0)
-#define IO_RB6_ResetPullup()   do { WPUB6 = 0; } while(0)
-// get/set IO_RB7 aliases
-#define IO_RB7_TRIS               TRISB7
-#define IO_RB7_LAT                LATB7
-#define IO_RB7_PORT               RB7
-#define IO_RB7_WPU                WPUB7
-#define IO_RB7_SetHigh()    do { LATB7 = 1; } while(0)
-#define IO_RB7_SetLow()   do { LATB7 = 0; } while(0)
-#define IO_RB7_Toggle()   do { LATB7 = ~LATB7; } while(0)
-#define IO_RB7_GetValue()         RB7
-#define IO_RB7_SetDigitalInput()    do { TRISB7 = 1; } while(0)
-#define IO_RB7_SetDigitalOutput()   do { TRISB7 = 0; } while(0)
-
-#define IO_RB7_SetPullup()    do { WPUB7 = 1; } while(0)
-#define IO_RB7_ResetPullup()   do { WPUB7 = 0; } while(0)
 // get/set HT_CS aliases
 #define HT_CS_TRIS               TRISC0
 #define HT_CS_LAT                LATC0

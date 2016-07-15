@@ -7,6 +7,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _LATA0 `Vb ~T0 @X0 0 e@2144 ]
 "4437
 [v _LATA1 `Vb ~T0 @X0 0 e@2145 ]
+"4467
+[v _LATC0 `Vb ~T0 @X0 0 e@2160 ]
+"4471
+[v _LATC2 `Vb ~T0 @X0 0 e@2162 ]
+"4447
+[v _LATA6 `Vb ~T0 @X0 0 e@2150 ]
+"4469
+[v _LATC1 `Vb ~T0 @X0 0 e@2161 ]
+"4451
+[v _LATB0 `Vb ~T0 @X0 0 e@2152 ]
+"4453
+[v _LATB1 `Vb ~T0 @X0 0 e@2153 ]
 "55 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
 "65
@@ -1838,8 +1850,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 186: extern unsigned char __resetbits;
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
-[; ;pin_manager.h: 418: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 430: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -1943,127 +1955,179 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 73: extern unsigned char Cur_temperature_time_ch2;
 [; ;power.h: 18: void Sleep_process(void);
 [; ;power.h: 19: void Step_control(void);
-"16 mcc_generated_files/power.c
+[; ;ht1621.h: 22: extern unsigned char const Dis_TAB[];
+[; ;ht1621.h: 24: void SendBit_1621(unsigned char data,unsigned char cnt);
+[; ;ht1621.h: 25: void SendDataBit_1621(unsigned char data,unsigned char cnt);
+[; ;ht1621.h: 26: void SendCmd_1621(unsigned char command);
+[; ;ht1621.h: 27: void Write_1621(unsigned char addr,unsigned char data);
+[; ;ht1621.h: 28: void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
+[; ;ht1621.h: 29: void Tc_Display(void);
+[; ;ht1621.h: 30: void Two_Display(unsigned char number);
+[; ;ht1621.h: 31: void err_Display(void);
+[; ;ht1621.h: 32: void time_Display(void);
+"17 mcc_generated_files/power.c
 [v _Sleep_process `(v ~T0 @X0 1 ef ]
-"17
+"18
 {
-[; ;power.c: 16: void Sleep_process(void)
-[; ;power.c: 17: {
+[; ;power.c: 17: void Sleep_process(void)
+[; ;power.c: 18: {
 [e :U _Sleep_process ]
 [f ]
-[; ;power.c: 18: do { LATA3 = 1; } while(0);
-"18
+[; ;power.c: 19: do { LATA3 = 1; } while(0);
+"19
 [e :U 237 ]
 {
 [e = _LATA3 -> -> 1 `i `b ]
 }
 [e :U 236 ]
-[; ;power.c: 19: do { LATA4 = 1; } while(0);
-"19
+[; ;power.c: 20: do { LATA4 = 1; } while(0);
+"20
 [e :U 240 ]
 {
 [e = _LATA4 -> -> 1 `i `b ]
 }
 [e :U 239 ]
-[; ;power.c: 20: do { LATA0 = 1; } while(0);
-"20
+[; ;power.c: 21: do { LATA0 = 1; } while(0);
+"21
 [e :U 243 ]
 {
 [e = _LATA0 -> -> 1 `i `b ]
 }
 [e :U 242 ]
-[; ;power.c: 21: do { LATA1 = 1; } while(0);
-"21
+[; ;power.c: 22: do { LATA1 = 1; } while(0);
+"22
 [e :U 246 ]
 {
 [e = _LATA1 -> -> 1 `i `b ]
 }
 [e :U 245 ]
-[; ;power.c: 23: asm("sleep");
-"23
-[; <" sleep ;# ">
-[; ;power.c: 24: if( time_count == 0 || time_count == 2 )
-"24
-[e $ ! || == -> _time_count `i -> 0 `i == -> _time_count `i -> 2 `i 247  ]
-[; ;power.c: 25: {
-"25
-{
-[; ;power.c: 26: do { LATA3 = 0; } while(0);
+[; ;power.c: 26: do { LATC0 = 1; } while(0);
 "26
-[e :U 250 ]
+[e :U 249 ]
+{
+[e = _LATC0 -> -> 1 `i `b ]
+}
+[e :U 248 ]
+[; ;power.c: 27: do { LATC2 = 1; } while(0);
+"27
+[e :U 252 ]
+{
+[e = _LATC2 -> -> 1 `i `b ]
+}
+[e :U 251 ]
+[; ;power.c: 28: do { LATA6 = 1; } while(0);
+"28
+[e :U 255 ]
+{
+[e = _LATA6 -> -> 1 `i `b ]
+}
+[e :U 254 ]
+[; ;power.c: 29: do { LATC1 = 1; } while(0);
+"29
+[e :U 258 ]
+{
+[e = _LATC1 -> -> 1 `i `b ]
+}
+[e :U 257 ]
+[; ;power.c: 30: do { LATB0 = 1; } while(0);
+"30
+[e :U 261 ]
+{
+[e = _LATB0 -> -> 1 `i `b ]
+}
+[e :U 260 ]
+[; ;power.c: 31: do { LATB1 = 1; } while(0);
+"31
+[e :U 264 ]
+{
+[e = _LATB1 -> -> 1 `i `b ]
+}
+[e :U 263 ]
+[; ;power.c: 32: asm("sleep");
+"32
+[; <" sleep ;# ">
+[; ;power.c: 33: if( time_count == 0 || time_count == 2 )
+"33
+[e $ ! || == -> _time_count `i -> 0 `i == -> _time_count `i -> 2 `i 265  ]
+[; ;power.c: 34: {
+"34
+{
+[; ;power.c: 35: do { LATA3 = 0; } while(0);
+"35
+[e :U 268 ]
 {
 [e = _LATA3 -> -> 0 `i `b ]
 }
-[e :U 249 ]
-[; ;power.c: 27: if( Record_flag == 1 ) do { LATA4 = 0; } while(0);
-"27
-[e $ ! == -> _Record_flag `i -> 1 `i 251  ]
-[e :U 254 ]
+[e :U 267 ]
+[; ;power.c: 36: if( Record_flag == 1 ) do { LATA4 = 0; } while(0);
+"36
+[e $ ! == -> _Record_flag `i -> 1 `i 269  ]
+[e :U 272 ]
 {
 [e = _LATA4 -> -> 0 `i `b ]
 }
-[e :U 253 ]
-[e :U 251 ]
-"28
+[e :U 271 ]
+[e :U 269 ]
+"37
 }
-[e :U 247 ]
-[; ;power.c: 28: }
-[; ;power.c: 30: Step_control();
-"30
+[e :U 265 ]
+[; ;power.c: 37: }
+[; ;power.c: 39: Step_control();
+"39
 [e ( _Step_control ..  ]
-[; ;power.c: 31: }
-"31
+[; ;power.c: 40: }
+"40
 [e :UE 234 ]
 }
-"39
+"48
 [v _Step_control `(v ~T0 @X0 1 ef ]
-"40
+"49
 {
-[; ;power.c: 39: void Step_control(void)
-[; ;power.c: 40: {
+[; ;power.c: 48: void Step_control(void)
+[; ;power.c: 49: {
 [e :U _Step_control ]
 [f ]
-[; ;power.c: 41: time_count++;
-"41
-[e ++ _time_count -> -> 1 `i `uc ]
-[; ;power.c: 42: if(time_count == 4 || time_count > 12) time_count = 0;
-"42
-[e $ ! || == -> _time_count `i -> 4 `i > -> _time_count `i -> 12 `i 256  ]
-[e = _time_count -> -> 0 `i `uc ]
-[e :U 256 ]
-[; ;power.c: 44: Cur_temperature_time_ch1++;
-"44
-[e ++ _Cur_temperature_time_ch1 -> -> 1 `i `uc ]
-[; ;power.c: 45: if(Cur_temperature_time_ch1 > 130)
-"45
-[e $ ! > -> _Cur_temperature_time_ch1 `i -> 130 `i 257  ]
-[; ;power.c: 46: {
-"46
-{
-[; ;power.c: 47: Cur_temperature_time_ch1 = 0;
-"47
-[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
-"48
-}
-[e :U 257 ]
-[; ;power.c: 48: }
-[; ;power.c: 50: Cur_temperature_time_ch2++;
+[; ;power.c: 50: time_count++;
 "50
-[e ++ _Cur_temperature_time_ch2 -> -> 1 `i `uc ]
-[; ;power.c: 51: if(Cur_temperature_time_ch2 > 130)
+[e ++ _time_count -> -> 1 `i `uc ]
+[; ;power.c: 51: if(time_count == 4 || time_count > 12) time_count = 0;
 "51
-[e $ ! > -> _Cur_temperature_time_ch2 `i -> 130 `i 258  ]
-[; ;power.c: 52: {
-"52
-{
-[; ;power.c: 53: Cur_temperature_time_ch2= 0;
+[e $ ! || == -> _time_count `i -> 4 `i > -> _time_count `i -> 12 `i 274  ]
+[e = _time_count -> -> 0 `i `uc ]
+[e :U 274 ]
+[; ;power.c: 53: Cur_temperature_time_ch1++;
 "53
-[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
+[e ++ _Cur_temperature_time_ch1 -> -> 1 `i `uc ]
+[; ;power.c: 54: if(Cur_temperature_time_ch1 > 130)
 "54
-}
-[e :U 258 ]
-[; ;power.c: 54: }
-[; ;power.c: 55: }
+[e $ ! > -> _Cur_temperature_time_ch1 `i -> 130 `i 275  ]
+[; ;power.c: 55: {
 "55
-[e :UE 255 ]
+{
+[; ;power.c: 56: Cur_temperature_time_ch1 = 0;
+"56
+[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
+"57
+}
+[e :U 275 ]
+[; ;power.c: 57: }
+[; ;power.c: 59: Cur_temperature_time_ch2++;
+"59
+[e ++ _Cur_temperature_time_ch2 -> -> 1 `i `uc ]
+[; ;power.c: 60: if(Cur_temperature_time_ch2 > 130)
+"60
+[e $ ! > -> _Cur_temperature_time_ch2 `i -> 130 `i 276  ]
+[; ;power.c: 61: {
+"61
+{
+[; ;power.c: 62: Cur_temperature_time_ch2= 0;
+"62
+[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
+"63
+}
+[e :U 276 ]
+[; ;power.c: 63: }
+[; ;power.c: 64: }
+"64
+[e :UE 273 ]
 }
