@@ -2612,10 +2612,10 @@ adc_result_t ADC_GetConversionResult(void);
 # 249
 adc_result_t ADC_GetConversion(adc_channel_t channel);
 
-# 390 "mcc_generated_files/pin_manager.h"
+# 418 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 402
+# 430
 void PIN_MANAGER_IOC(void);
 
 # 111 "mcc_generated_files/interrupt_manager.h"
@@ -2722,7 +2722,7 @@ ADCON0bits.CHS = channel;
 ADCON0bits.ADON = 1;
 
 
-_delay((unsigned long)((5)*(16000000/4000000.0)));
+_delay((unsigned long)((5)*(4000000/4000000.0)));
 
 
 ADCON0bits.GO_nDONE = 1;
@@ -2746,7 +2746,7 @@ ADCON0bits.CHS = channel;
 ADCON0bits.ADON = 1;
 
 
-_delay((unsigned long)((5)*(16000000/4000000.0)));
+_delay((unsigned long)((5)*(4000000/4000000.0)));
 
 
 ADCON0bits.GO_nDONE = 1;

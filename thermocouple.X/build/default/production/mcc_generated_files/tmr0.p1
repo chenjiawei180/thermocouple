@@ -14,11 +14,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S26 . . . ]
 "360
 [v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
-"58 mcc_generated_files/global.h
+"59 mcc_generated_files/global.h
 [v _MAX31856Sec `uc ~T0 @X0 0 e ]
 "248 mcc_generated_files/tmr0.h
 [v _TMR0_CallBack `(v ~T0 @X0 0 ef ]
-"57 mcc_generated_files/global.h
+"58 mcc_generated_files/global.h
 [v _LongPressSec `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1876,8 +1876,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 212: void TMR0_Reload(void);
 [; ;tmr0.h: 230: void TMR0_ISR(void);
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
-[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 418: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 430: void PIN_MANAGER_IOC(void);
 [; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
@@ -1909,41 +1909,41 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;fvr.h: 127: bool FVR_IsOutputReady(void);
 [; ;mcc.h: 74: void SYSTEM_Initialize(void);
 [; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
-[; ;global.h: 25: typedef struct bq32k_regs {
-[; ;global.h: 26: uint8_t seconds;
-[; ;global.h: 27: uint8_t minutes;
-[; ;global.h: 28: uint8_t hours;
-[; ;global.h: 29: uint8_t wday;
-[; ;global.h: 30: uint8_t date;
-[; ;global.h: 31: uint8_t month;
-[; ;global.h: 32: uint8_t years;
-[; ;global.h: 33: }bq32k_t;
-[; ;global.h: 41: extern unsigned char uch_cr0;
-[; ;global.h: 42: extern unsigned char uch_cr1;
-[; ;global.h: 43: extern unsigned char uch_mask;
-[; ;global.h: 45: extern unsigned char uch_reg[8];
-[; ;global.h: 46: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 47: extern unsigned long temperature_value;
-[; ;global.h: 48: extern unsigned int temperature_int;
-[; ;global.h: 49: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 50: extern unsigned char display_buff[4];
-[; ;global.h: 54: extern unsigned char time_count;
-[; ;global.h: 55: extern unsigned char tmr_flag;
-[; ;global.h: 57: extern unsigned char LongPressSec;
-[; ;global.h: 58: extern unsigned char MAX31856Sec;
-[; ;global.h: 59: extern bq32k_t rtc_tm;
-[; ;global.h: 60: extern bq32k_t rtc_save_ch1;
-[; ;global.h: 61: extern bq32k_t rtc_save_ch2;
-[; ;global.h: 62: extern unsigned int Flash_buff[32];
-[; ;global.h: 64: extern unsigned char Record_flag;
-[; ;global.h: 65: extern unsigned char CH1_state;
-[; ;global.h: 66: extern unsigned char CH2_state;
-[; ;global.h: 67: extern unsigned int CH1_temperature;
-[; ;global.h: 68: extern unsigned int CH2_temperature;
-[; ;global.h: 69: extern unsigned int Cur_temperature;
-[; ;global.h: 70: extern unsigned int Cur_Save_Index;
-[; ;global.h: 71: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 26: typedef struct bq32k_regs {
+[; ;global.h: 27: uint8_t seconds;
+[; ;global.h: 28: uint8_t minutes;
+[; ;global.h: 29: uint8_t hours;
+[; ;global.h: 30: uint8_t wday;
+[; ;global.h: 31: uint8_t date;
+[; ;global.h: 32: uint8_t month;
+[; ;global.h: 33: uint8_t years;
+[; ;global.h: 34: }bq32k_t;
+[; ;global.h: 42: extern unsigned char uch_cr0;
+[; ;global.h: 43: extern unsigned char uch_cr1;
+[; ;global.h: 44: extern unsigned char uch_mask;
+[; ;global.h: 46: extern unsigned char uch_reg[8];
+[; ;global.h: 47: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 48: extern unsigned long temperature_value;
+[; ;global.h: 49: extern unsigned int temperature_int;
+[; ;global.h: 50: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 51: extern unsigned char display_buff[4];
+[; ;global.h: 55: extern unsigned char time_count;
+[; ;global.h: 56: extern unsigned char tmr_flag;
+[; ;global.h: 58: extern unsigned char LongPressSec;
+[; ;global.h: 59: extern unsigned char MAX31856Sec;
+[; ;global.h: 60: extern bq32k_t rtc_tm;
+[; ;global.h: 61: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 62: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 63: extern unsigned int Flash_buff[32];
+[; ;global.h: 65: extern unsigned char Record_flag;
+[; ;global.h: 66: extern unsigned char CH1_state;
+[; ;global.h: 67: extern unsigned char CH2_state;
+[; ;global.h: 68: extern unsigned int CH1_temperature;
+[; ;global.h: 69: extern unsigned int CH2_temperature;
+[; ;global.h: 70: extern unsigned int Cur_temperature;
+[; ;global.h: 71: extern unsigned int Cur_Save_Index;
+[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch2;
 "60 mcc_generated_files/tmr0.c
 [v _timer0ReloadVal `Vuc ~T0 @X0 1 e ]
 [; ;tmr0.c: 60: volatile uint8_t timer0ReloadVal;
@@ -1956,12 +1956,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 70: OPTION_REG = (OPTION_REG & 0xC0) | 0xD7 & 0x3F;
 "70
 [e = _OPTION_REG -> | & -> _OPTION_REG `i -> 192 `i & -> 215 `i -> 63 `i `uc ]
-[; ;tmr0.c: 73: TMR0 = 0x64;
+[; ;tmr0.c: 73: TMR0 = 0xD9;
 "73
-[e = _TMR0 -> -> 100 `i `uc ]
-[; ;tmr0.c: 76: timer0ReloadVal = 100;
+[e = _TMR0 -> -> 217 `i `uc ]
+[; ;tmr0.c: 76: timer0ReloadVal = 217;
 "76
-[e = _timer0ReloadVal -> -> 100 `i `uc ]
+[e = _timer0ReloadVal -> -> 217 `i `uc ]
 [; ;tmr0.c: 79: INTCONbits.TMR0IF = 0;
 "79
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]

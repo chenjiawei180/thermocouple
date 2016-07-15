@@ -2494,10 +2494,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 390 "mcc_generated_files/pin_manager.h"
+# 418 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 402
+# 430
 void PIN_MANAGER_IOC(void);
 
 # 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
@@ -2696,7 +2696,7 @@ void SYSTEM_Initialize(void);
 # 87
 void OSCILLATOR_Initialize(void);
 
-# 25 "mcc_generated_files/global.h"
+# 26 "mcc_generated_files/global.h"
 typedef struct bq32k_regs {
 uint8_t seconds;
 uint8_t minutes;
@@ -2707,7 +2707,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-# 41
+# 42
 extern unsigned char uch_cr0;
 extern unsigned char uch_cr1;
 extern unsigned char uch_mask;
@@ -2745,7 +2745,7 @@ extern unsigned char Cur_temperature_time_ch2;
 unsigned char Key_Scan(void);
 void Key_Process(void);
 
-# 21 "mcc_generated_files/ht1621.h"
+# 22 "mcc_generated_files/ht1621.h"
 extern unsigned char const Dis_TAB[];
 
 void SendBit_1621(unsigned char data,unsigned char cnt);
@@ -2793,7 +2793,7 @@ unsigned char Key_Scan(void)
 unsigned char Key_val=0xff;
 if( RA7 == 0 || RB5 == 0 )
 {
-_delay((unsigned long)((10)*(16000000/4000.0)));
+_delay((unsigned long)((10)*(4000000/4000.0)));
 if( RA7 == 0 || RB5 == 0)
 {
 if(RB5 == 0 ) Key_val = 0x01;
@@ -2828,11 +2828,12 @@ SendCmd_1621(0x04);
 
 else
 {
-for(i=0x1000;i<0x1000+1000;i++)
+for(i=0x2000;i<0x2000+1000;i++)
 {
 data_temp = FLASH_ReadWord(i);
 EUSART_Write(data_temp>>8);
 EUSART_Write(data_temp&0xff);
+asm("clrwdt");
 }
 }
 

@@ -1,7 +1,7 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "87 mcc_generated_files/mcc.h
 [v _OSCILLATOR_Initialize `(v ~T0 @X0 0 ef ]
-"390 mcc_generated_files/pin_manager.h
+"418 mcc_generated_files/pin_manager.h
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
 "117 mcc_generated_files/spi.h
 [v _SPI_Initialize `(v ~T0 @X0 0 ef ]
@@ -1868,8 +1868,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic.h: 186: extern unsigned char __resetbits;
 [; ;pic.h: 187: extern __bit __powerdown;
 [; ;pic.h: 188: extern __bit __timeout;
-[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 418: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 430: void PIN_MANAGER_IOC(void);
 [; ;stdint.h: 13: typedef signed char int8_t;
 [; ;stdint.h: 20: typedef signed int int16_t;
 [; ;stdint.h: 28: typedef signed short long int int24_t;
@@ -1973,9 +1973,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;mcc.c: 80: void OSCILLATOR_Initialize(void) {
 [e :U _OSCILLATOR_Initialize ]
 [f ]
-[; ;mcc.c: 82: OSCCON = 0x78;
+[; ;mcc.c: 82: OSCCON = 0x68;
 "82
-[e = _OSCCON -> -> 120 `i `uc ]
+[e = _OSCCON -> -> 104 `i `uc ]
 [; ;mcc.c: 84: OSCSTAT = 0x00;
 "84
 [e = _OSCSTAT -> -> 0 `i `uc ]

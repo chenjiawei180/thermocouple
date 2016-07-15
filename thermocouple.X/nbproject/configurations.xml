@@ -45,6 +45,8 @@
       <itemPath>mcc_generated_files/bq32k.h</itemPath>
       <itemPath>mcc_generated_files/save.c</itemPath>
       <itemPath>mcc_generated_files/save.h</itemPath>
+      <itemPath>mcc_generated_files/power.h</itemPath>
+      <itemPath>mcc_generated_files/power.c</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript" displayName="链接器文件" projectFiles="true">
     </logicalFolder>

@@ -1897,12 +1897,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.c: 66: TXSTA = 0x26;
 "66
 [e = _TXSTA -> -> 38 `i `uc ]
-[; ;eusart.c: 69: SPBRGL = 0xA0;
+[; ;eusart.c: 69: SPBRGL = 0x67;
 "69
-[e = _SPBRGL -> -> 160 `i `uc ]
-[; ;eusart.c: 72: SPBRGH = 0x01;
+[e = _SPBRGL -> -> 103 `i `uc ]
+[; ;eusart.c: 72: SPBRGH = 0x00;
 "72
-[e = _SPBRGH -> -> 1 `i `uc ]
+[e = _SPBRGH -> -> 0 `i `uc ]
 [; ;eusart.c: 74: }
 "74
 [e :UE 233 ]

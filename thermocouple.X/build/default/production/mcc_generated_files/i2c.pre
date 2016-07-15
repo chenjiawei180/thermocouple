@@ -2494,10 +2494,10 @@ extern unsigned char __resetbits;
 extern __bit __powerdown;
 extern __bit __timeout;
 
-# 390 "mcc_generated_files/pin_manager.h"
+# 418 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 402
+# 430
 void PIN_MANAGER_IOC(void);
 
 # 13 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\stdint.h"
@@ -2696,7 +2696,7 @@ void SYSTEM_Initialize(void);
 # 87
 void OSCILLATOR_Initialize(void);
 
-# 25 "mcc_generated_files/global.h"
+# 26 "mcc_generated_files/global.h"
 typedef struct bq32k_regs {
 uint8_t seconds;
 uint8_t minutes;
@@ -2707,7 +2707,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-# 41
+# 42
 extern unsigned char uch_cr0;
 extern unsigned char uch_cr1;
 extern unsigned char uch_mask;
@@ -2753,13 +2753,13 @@ unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned cha
 void I2C_Start(void)
 {
 do { LATB1 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB1 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 }
 
 # 34
@@ -2772,17 +2772,17 @@ if(Data&0x80)
 do { LATB1 = 1; } while(0);
 else
 do { LATB1 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 Data<<=1;
 do { LATB0 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 }
 do { LATB1 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { TRISB1 = 1; } while(0);
 if(RB1)
 {
@@ -2791,9 +2791,9 @@ return 0x01;
 }
 do { TRISB1 = 0; } while(0);
 do { LATB0 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB1 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 return 0x00;
 }
 
@@ -2806,7 +2806,7 @@ for(i=0;i<8;i++)
 {
 Data <<= 1;
 do { LATB0 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { TRISB1 = 1; } while(0);
 if(RB1)
 {
@@ -2815,7 +2815,7 @@ Data |= 0x01;
 }
 do { TRISB1 = 0; } while(0);
 do { LATB0 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 }
 return Data;
 }
@@ -2824,13 +2824,13 @@ return Data;
 void I2C_Stop(void)
 {
 do { LATB0 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB1 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB1 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 }
 
 # 120
@@ -2858,11 +2858,11 @@ while(Length>1)
 *buff = I2C_Receive_Byte();
 
 do { LATB1 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 
 buff++;
 Length--;
@@ -2870,11 +2870,11 @@ Length--;
 *buff = I2C_Receive_Byte();
 
 do { LATB1 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 1; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 do { LATB0 = 0; } while(0);
-_delay((unsigned long)((10)*(16000000/4000000.0)));
+_delay((unsigned long)((10)*(4000000/4000000.0)));
 
 I2C_Stop();
 

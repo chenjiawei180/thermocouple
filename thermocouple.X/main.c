@@ -52,6 +52,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "mcc_generated_files/i2c.h"
 #include "mcc_generated_files/bq32k.h"
 #include "mcc_generated_files/save.h"
+#include "mcc_generated_files/power.h"
+#include "mcc_generated_files/key.h"
 #ifdef DEBUG
 #include "mcc_generated_files/debug.h"
 #endif
@@ -77,12 +79,14 @@ void main(void) {
     CLRWDT();    //clear the watch dog timer 
     // initialize the device
     SYSTEM_Initialize();
+
+    //ADON = 0;
     __delay_ms(3000);
     if(KEY_GetValue() == 0 ) POWER_SetHigh();
     else POWER_SetLow();
     LED1_SetLow();
-    
-#if 1
+
+#if P_check
     bat_data = 0;
     for(i=0;i<16;i++)
     {
@@ -98,11 +102,11 @@ void main(void) {
     bat_data = 0 ;
 #endif
     //LED2_SetLow();
-    maxim_31856_init();
+    //maxim_31856_init();
     DRDY_SetDigitalInput();
     Bq32k_Time_Init();
-    SendCmd_1621(BIAS);		//设置偏压和占空比
-    SendCmd_1621(0X28);
+    SendCmd_1621(BIAS);		//设置偏压和占空比 1/3  4 com
+    SendCmd_1621(0X28);    //    XTAL 32K
     SendCmd_1621(SYSEN);	//打开系统振荡器
     SendCmd_1621(LCDON);	//打开LCD偏压发生器
     //Write_1621(0x24,0x01);	//0x24：(地址)的高6位有效，0x01：(数据)的低4位有效
@@ -161,7 +165,7 @@ void main(void) {
     // Add your application code
        // EUSART_SendString("ONE CYCLE \n\r");
     
-#if 1
+#if P_check
         bat_data = bat_data + ADC_GetConversion(ADC);
         i++;
         if(i == 16)
@@ -175,30 +179,16 @@ void main(void) {
             }
             bat_data = 0;
         }
-        
+#endif 
         //EUSART_Write(bat_data>>8);
         //EUSART_Write(bat_data&0xff);
 
         temperature_process();
         Key_Process();
         Save_process();
-        SLEEP();
-        //LED2_Toggle();
-        time_count++;
-        if(time_count == 4 || time_count > 12)    time_count = 0;   // ????á÷3ì
+        Sleep_process();
 
-        Cur_temperature_time_ch1++;
-        if(Cur_temperature_time_ch1 > 130)
-        {
-            Cur_temperature_time_ch1 = 0;
-        }
 
-        Cur_temperature_time_ch2++;
-        if(Cur_temperature_time_ch2 > 130)
-        {
-            Cur_temperature_time_ch2= 0;
-        }
-#endif
 
 #if 0
         //memset(a,0xaa,10);

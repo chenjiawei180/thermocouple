@@ -63,11 +63,12 @@ void Key_Process(void)
 #if DEBUG
                 else
                 {
-                    for(i=0x1000;i<0x1000+1000;i++)
+                    for(i=Record_Add;i<Record_Add+1000;i++)
                     {
                         data_temp = FLASH_ReadWord(i);
                         EUSART_Write(data_temp>>8);
                         EUSART_Write(data_temp&0xff);
+                        CLRWDT();
                     }
                 }
 #endif

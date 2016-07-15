@@ -15,6 +15,7 @@ extern "C" {
 #include "mcc.h"
     
 #define DEBUG 1
+#define P_check 1
 
 #ifdef OS_GLOBALS
 #define OS_EXT

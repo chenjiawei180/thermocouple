@@ -58,7 +58,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "fvr.h"
 #include "tmr0.h"
 
-#define _XTAL_FREQ  16000000
+#define _XTAL_FREQ  4000000
 
 /**
  * @Param

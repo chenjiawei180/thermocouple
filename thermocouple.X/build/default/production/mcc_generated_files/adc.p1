@@ -1889,8 +1889,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.h: 186: bool ADC_IsConversionDone();
 [; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
 [; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
-[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
-[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
+[; ;pin_manager.h: 418: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 430: void PIN_MANAGER_IOC(void);
 [; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
@@ -1952,9 +1952,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.c: 87: ADCON0bits.ADON = 1;
 "87
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-[; ;adc.c: 90: _delay((unsigned long)((5)*(16000000/4000000.0)));
+[; ;adc.c: 90: _delay((unsigned long)((5)*(4000000/4000000.0)));
 "90
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
 [; ;adc.c: 93: ADCON0bits.GO_nDONE = 1;
 "93
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
@@ -2003,9 +2003,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;adc.c: 111: ADCON0bits.ADON = 1;
 "111
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
-[; ;adc.c: 114: _delay((unsigned long)((5)*(16000000/4000000.0)));
+[; ;adc.c: 114: _delay((unsigned long)((5)*(4000000/4000000.0)));
 "114
-[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 16000000 `l `d .4000000.0 `ul ]
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 4000000 `l `d .4000000.0 `ul ]
 [; ;adc.c: 117: ADCON0bits.GO_nDONE = 1;
 "117
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]

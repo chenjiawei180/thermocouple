@@ -2610,10 +2610,10 @@ RCSTA = 0x80;
 TXSTA = 0x26;
 
 
-SPBRGL = 0xA0;
+SPBRGL = 0x67;
 
 
-SPBRGH = 0x01;
+SPBRGH = 0x00;
 
 }
 

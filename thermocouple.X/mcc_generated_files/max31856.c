@@ -292,12 +292,39 @@ void tc_temperature_trans(void)
 void one_temperature_trans(void)
 {
     maxim_start_conversion(One_Shot_Conversion);  //使能单次转换
+#if 1
     MAX31856Sec = 0;
     while( !(DRDY_GetValue() == 0 || MAX31856Sec > 30) ) CLRWDT();  //需要添加超时退出
     if( MAX31856Sec > 30)
     {
         uch_sr = 0x01;
     }
+#endif
+
+#if 0
+    SWDTEN = 0;
+    WDTPS0 = 0;
+    WDTPS1 = 0;
+    WDTPS2 = 0;
+    WDTPS3 = 1;
+    WDTPS4 = 0;    //256ms
+    CLRWDT();    //clear the watch dog timer 
+    SWDTEN = 1;    //start wdt
+    SLEEP();
+    SWDTEN = 0;
+    WDTPS0 = 1;
+    WDTPS1 = 0;
+    WDTPS2 = 0;
+    WDTPS3 = 1;
+    WDTPS4 = 0;    //512ms
+    CLRWDT();    //clear the watch dog timer 
+    SWDTEN = 1;    //start wdt
+    if( DRDY_GetValue() == 1)
+    {
+        uch_sr = 0x01;
+    }
+#endif
+
     else
     {
         maxim_31856_read_nregisters(0x0A, uch_reg,6);
@@ -361,6 +388,7 @@ void temperature_process(void)
                     CS1_SetHigh();
                     CS1_SetLow();
                     one_temperature_trans();
+                    CS1_SetHigh();
                     break;
         case 1:   
                     temperature_display();
@@ -371,6 +399,7 @@ void temperature_process(void)
                     CS2_SetHigh();
                     CS2_SetLow();
                     one_temperature_trans();
+                    CS2_SetHigh();
                     break;
         case 3:   
                     temperature_display();

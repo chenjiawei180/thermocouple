@@ -2605,10 +2605,10 @@ void TMR0_ISR(void);
 # 248
 void TMR0_CallBack(void);
 
-# 390 "mcc_generated_files/pin_manager.h"
+# 418 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize(void);
 
-# 402
+# 430
 void PIN_MANAGER_IOC(void);
 
 # 111 "mcc_generated_files/interrupt_manager.h"
@@ -2696,7 +2696,7 @@ void SYSTEM_Initialize(void);
 # 87
 void OSCILLATOR_Initialize(void);
 
-# 25 "mcc_generated_files/global.h"
+# 26 "mcc_generated_files/global.h"
 typedef struct bq32k_regs {
 uint8_t seconds;
 uint8_t minutes;
@@ -2707,7 +2707,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-# 41
+# 42
 extern unsigned char uch_cr0;
 extern unsigned char uch_cr1;
 extern unsigned char uch_mask;
@@ -2752,10 +2752,10 @@ void TMR0_Initialize(void) {
 OPTION_REG = (OPTION_REG & 0xC0) | 0xD7 & 0x3F;
 
 
-TMR0 = 0x64;
+TMR0 = 0xD9;
 
 
-timer0ReloadVal = 100;
+timer0ReloadVal = 217;
 
 
 INTCONbits.TMR0IF = 0;

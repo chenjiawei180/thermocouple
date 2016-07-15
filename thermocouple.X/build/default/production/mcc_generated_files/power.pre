@@ -1,18 +1,5 @@
 
-# 1 "mcc_generated_files/ht1621.c"
-
-# 22 "mcc_generated_files/ht1621.h"
-extern unsigned char const Dis_TAB[];
-
-void SendBit_1621(unsigned char data,unsigned char cnt);
-void SendDataBit_1621(unsigned char data,unsigned char cnt);
-void SendCmd_1621(unsigned char command);
-void Write_1621(unsigned char addr,unsigned char data);
-void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt);
-void Tc_Display(void);
-void Two_Display(unsigned char number);
-void err_Display(void);
-void time_Display(void);
+# 1 "mcc_generated_files/power.c"
 
 # 26 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -2709,43 +2696,6 @@ void SYSTEM_Initialize(void);
 # 87
 void OSCILLATOR_Initialize(void);
 
-# 14 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
-extern void * memcpy(void *, const void *, size_t);
-extern void * memmove(void *, const void *, size_t);
-extern void * memset(void *, int, size_t);
-
-
-
-extern void * __builtin_memcpy(void *, const void *, size_t);
-#pragma intrinsic(__builtin_memcpy)
-
-# 34
-extern char * strcat(char *, const char *);
-extern char * strcpy(char *, const char *);
-extern char * strncat(char *, const char *, size_t);
-extern char * strncpy(char *, const char *, size_t);
-extern char * strdup(const char *);
-extern char * strtok(char *, const char *);
-
-
-extern int memcmp(const void *, const void *, size_t);
-extern int strcmp(const char *, const char *);
-extern int stricmp(const char *, const char *);
-extern int strncmp(const char *, const char *, size_t);
-extern int strnicmp(const char *, const char *, size_t);
-extern void * memchr(const void *, int, size_t);
-extern size_t strcspn(const char *, const char *);
-extern char * strpbrk(const char *, const char *);
-extern size_t strspn(const char *, const char *);
-extern char * strstr(const char *, const char *);
-extern char * stristr(const char *, const char *);
-extern char * strerror(int);
-extern size_t strlen(const char *);
-extern char * strchr(const char *, int);
-extern char * strichr(const char *, int);
-extern char * strrchr(const char *, int);
-extern char * strrichr(const char *, int);
-
 # 26 "mcc_generated_files/global.h"
 typedef struct bq32k_regs {
 uint8_t seconds;
@@ -2791,140 +2741,44 @@ extern unsigned int Cur_Save_Index;
 extern unsigned char Cur_temperature_time_ch1;
 extern unsigned char Cur_temperature_time_ch2;
 
-# 23 "mcc_generated_files/i2c.h"
-void I2C_Start(void);
-unsigned char I2C_Send_Byte(unsigned char Data);
-unsigned char I2C_Receive_Byte(void);
-void I2C_Stop(void);
-unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
-unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
+# 18 "mcc_generated_files/power.h"
+void Sleep_process(void);
+void Step_control(void);
 
-# 38 "mcc_generated_files/bq32k.h"
-void Bq32k_Time_Init(void);
-void Bq32k_Rtc_Read_Time(bq32k_t *p);
-void Bq32k_Rtc_Write_Time(bq32k_t *p);
-
-unsigned char bcd2bin(unsigned char val);
-unsigned char bin2bcd(unsigned char val);
-
-# 14 "mcc_generated_files/ht1621.c"
-unsigned char const Dis_TAB[]={0xD7,0x50,0xB5,0xF1,0x72,0xE3,0xE7,0x51,0xF7,0xF3,0x77,0xE6,0x87,0xF4,0xA7,0x27,0x57,0x20,0x20,0x20,0x20};
-
-# 22
-void SendBit_1621(unsigned char data,unsigned char cnt)
+# 16 "mcc_generated_files/power.c"
+void Sleep_process(void)
 {
-unsigned char i;
-for(i =0; i <cnt; i ++)
+do { LATA3 = 1; } while(0);
+do { LATA4 = 1; } while(0);
+do { LATA0 = 1; } while(0);
+do { LATA1 = 1; } while(0);
+
+asm("sleep");
+if( time_count == 0 || time_count == 2 )
 {
-if((data&0x80)==0) do { LATC2 = 0; } while(0);
-else do { LATC2 = 1; } while(0);
-do { LATC1 = 0; } while(0);
-_delay((unsigned long)((1)*(4000000/4000.0)));
-do { LATC1 = 1; } while(0);
-data<<=1;
-}
+do { LATA3 = 0; } while(0);
+if( Record_flag == 1 ) do { LATA4 = 0; } while(0);
 }
 
-# 42
-void SendDataBit_1621(unsigned char data,unsigned char cnt)
-{
-unsigned char i;
-for(i =0; i <cnt; i ++)
-{
-if((data&0x01)==0) do { LATC2 = 0; } while(0);
-else do { LATC2 = 1; } while(0);
-do { LATC1 = 0; } while(0);
-_delay((unsigned long)((1)*(4000000/4000.0)));
-do { LATC1 = 1; } while(0);
-data>>=1;
-}
+Step_control();
 }
 
-# 62
-void SendCmd_1621(unsigned char command)
+# 39
+void Step_control(void)
 {
-do { LATC0 = 0; } while(0);
-SendBit_1621(0x80,4);
-SendBit_1621(command,8);
-do { LATC0 = 1; } while(0);
+time_count++;
+if(time_count == 4 || time_count > 12) time_count = 0;
+
+Cur_temperature_time_ch1++;
+if(Cur_temperature_time_ch1 > 130)
+{
+Cur_temperature_time_ch1 = 0;
 }
 
-# 76
-void Write_1621(unsigned char addr,unsigned char data)
+Cur_temperature_time_ch2++;
+if(Cur_temperature_time_ch2 > 130)
 {
-do { LATC0 = 0; } while(0);
-SendBit_1621(0xa0,3);
-SendBit_1621(addr,6);
-SendDataBit_1621(data,4);
-do { LATC0 = 1; } while(0);
+Cur_temperature_time_ch2= 0;
 }
-
-# 91
-void WriteAll_1621(unsigned char addr,unsigned char *p,unsigned char cnt)
-{
-unsigned char i;
-do { LATC0 = 0; } while(0);
-SendBit_1621(0xa0,3);
-SendBit_1621(addr,6);
-for(i =0; i <cnt; i ++,p++)
-{
-SendDataBit_1621(*p,8);
-}
-do { LATC0 = 1; } while(0);
-}
-
-# 110
-void Tc_Display(void)
-{
-unsigned char count = 0;
-unsigned int data = temperature_int;
-memset(display_buff,0,4);
-while(data)
-{
-count++;
-data /=10;
-}
-switch(count)
-{
-case 3:display_buff[0] = Dis_TAB[temperature_int/100];
-case 2:display_buff[1] = Dis_TAB[temperature_int%100/10];
-case 1:display_buff[2] = Dis_TAB[temperature_int%10]; break;
-case 0:display_buff[2] = Dis_TAB[0];
-default:break;
-}
-if(temperature_sign == 1) display_buff[0]=0x20;
-display_buff[3] = Dis_TAB[temperature_decimal] | 0x08;
-WriteAll_1621(0,display_buff,4);
-}
-
-# 139
-void Two_Display(unsigned char number)
-{
-unsigned char num[4]={0};
-num[1] = Dis_TAB[0];
-num[2] = Dis_TAB[number];
-WriteAll_1621(0, num, 4);
-}
-
-# 153
-void err_Display(void)
-{
-unsigned char num[4]={0};
-num[1] = Dis_TAB[0x10];
-num[2] = Dis_TAB[0x0c];
-WriteAll_1621(0, num, 4);
-}
-
-# 167
-void time_Display(void)
-{
-unsigned char num[4]={0};
-Bq32k_Rtc_Read_Time(&rtc_tm);
-num[0] = Dis_TAB[rtc_tm.hours / 10];
-num[0] |= 0x08;
-num[1] = Dis_TAB[rtc_tm.hours % 10];
-num[2] = Dis_TAB[rtc_tm.minutes / 10];
-num[3] = Dis_TAB[rtc_tm.minutes % 10];
-WriteAll_1621(0, num, 4);
 }
 

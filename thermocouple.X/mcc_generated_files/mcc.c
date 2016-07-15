@@ -78,8 +78,8 @@ void SYSTEM_Initialize(void) {
 }
 
 void OSCILLATOR_Initialize(void) {
-    // SCS FOSC; IRCF 16MHz_HF; 
-    OSCCON = 0x78;
+    // SCS FOSC; IRCF 4MHz_HF; 
+    OSCCON = 0x68;
     // LFIOFR disabled; OSTS intosc; HFIOFS not0.5percent_acc; HFIOFR disabled; 
     OSCSTAT = 0x00;
     // Set the secondary oscillator
