@@ -2,9 +2,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 "26 mcc_generated_files/global.h
 [s S233 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S233 bq32k_regs seconds minutes hours wday date month years ]
+"99 mcc_generated_files/memory.h
+[v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ui ]
 "28 mcc_generated_files/i2c.h
 [v _I2C_Send_Buffer `(uc ~T0 @X0 0 ef3`uc`*uc`uc ]
-"27
+"128 mcc_generated_files/memory.h
+[v _FLASH_WriteWord `(v ~T0 @X0 0 ef3`ui`*ui`ui ]
+"27 mcc_generated_files/i2c.h
 [v _I2C_Read_Buffer `(uc ~T0 @X0 0 ef3`uc`*uc`uc ]
 "42 mcc_generated_files/bq32k.h
 [v _bcd2bin `(uc ~T0 @X0 0 ef1`uc ]
@@ -1908,32 +1912,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 32: uint8_t month;
 [; ;global.h: 33: uint8_t years;
 [; ;global.h: 34: }bq32k_t;
-[; ;global.h: 42: extern unsigned char uch_cr0;
-[; ;global.h: 43: extern unsigned char uch_cr1;
-[; ;global.h: 44: extern unsigned char uch_mask;
-[; ;global.h: 46: extern unsigned char uch_reg[8];
-[; ;global.h: 47: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 48: extern unsigned long temperature_value;
-[; ;global.h: 49: extern unsigned int temperature_int;
-[; ;global.h: 50: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 51: extern unsigned char display_buff[4];
-[; ;global.h: 55: extern unsigned char time_count;
-[; ;global.h: 56: extern unsigned char tmr_flag;
-[; ;global.h: 58: extern unsigned char LongPressSec;
-[; ;global.h: 59: extern unsigned char MAX31856Sec;
-[; ;global.h: 60: extern bq32k_t rtc_tm;
-[; ;global.h: 61: extern bq32k_t rtc_save_ch1;
-[; ;global.h: 62: extern bq32k_t rtc_save_ch2;
-[; ;global.h: 63: extern unsigned int Flash_buff[32];
-[; ;global.h: 65: extern unsigned char Record_flag;
-[; ;global.h: 66: extern unsigned char CH1_state;
-[; ;global.h: 67: extern unsigned char CH2_state;
-[; ;global.h: 68: extern unsigned int CH1_temperature;
-[; ;global.h: 69: extern unsigned int CH2_temperature;
-[; ;global.h: 70: extern unsigned int Cur_temperature;
-[; ;global.h: 71: extern unsigned int Cur_Save_Index;
-[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 43: extern unsigned char uch_cr0;
+[; ;global.h: 44: extern unsigned char uch_cr1;
+[; ;global.h: 45: extern unsigned char uch_mask;
+[; ;global.h: 47: extern unsigned char uch_reg[8];
+[; ;global.h: 48: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 49: extern unsigned long temperature_value;
+[; ;global.h: 50: extern unsigned int temperature_int;
+[; ;global.h: 51: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 52: extern unsigned char display_buff[4];
+[; ;global.h: 56: extern unsigned char time_count;
+[; ;global.h: 57: extern unsigned char tmr_flag;
+[; ;global.h: 59: extern unsigned char LongPressSec;
+[; ;global.h: 60: extern unsigned char MAX31856Sec;
+[; ;global.h: 61: extern bq32k_t rtc_tm;
+[; ;global.h: 62: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 63: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 64: extern unsigned int Flash_buff[32];
+[; ;global.h: 66: extern unsigned char Record_flag;
+[; ;global.h: 67: extern unsigned char CH1_state;
+[; ;global.h: 68: extern unsigned char CH2_state;
+[; ;global.h: 69: extern unsigned int CH1_temperature;
+[; ;global.h: 70: extern unsigned int CH2_temperature;
+[; ;global.h: 71: extern unsigned int Cur_temperature;
+[; ;global.h: 72: extern unsigned int Cur_Save_Index;
+[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 74: extern unsigned char Cur_temperature_time_ch2;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
@@ -1970,144 +1974,157 @@ Version 3.2 HI-TECH Software Intermediate Code
 :U ..
 "20
 -> -> 1 `i `uc
--> -> 80 `i `uc
--> -> 35 `i `uc
+-> -> 68 `i `uc
+-> -> 16 `i `uc
 -> -> 2 `i `uc
--> -> 8 `i `uc
+-> -> 24 `i `uc
 -> -> 7 `i `uc
 -> -> 22 `i `uc
 ..
 ]
 [v _temp `uc ~T0 @X0 -> 10 `i a ]
 [; ;bq32k.c: 19: bq32k_t time;
-[; ;bq32k.c: 20: unsigned char temp[10] = { 0x01,0x50,0x23,0x02,0x08,0x07,0x16 };
+[; ;bq32k.c: 20: unsigned char temp[10] = { 0x01,0x44,0x10,0x02,0x18,0x07,0x16 };
 [e = _temp F2018 ]
-[; ;bq32k.c: 21: I2C_Send_Buffer(0, temp, 7);
+[; ;bq32k.c: 21: if( FLASH_ReadWord(0x1fff) == 0x3fff )
 "21
-[e ( _I2C_Send_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]
-[; ;bq32k.c: 22: }
+[e $ ! == ( _FLASH_ReadWord (1 -> -> 8191 `i `ui -> -> 16383 `i `ui 235  ]
+[; ;bq32k.c: 22: {
 "22
+{
+[; ;bq32k.c: 23: I2C_Send_Buffer(0, temp, 7);
+"23
+[e ( _I2C_Send_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]
+[; ;bq32k.c: 24: FLASH_WriteWord(0x1fff, temp, 1);
+"24
+[e ( _FLASH_WriteWord (3 , , -> -> 8191 `i `ui -> &U _temp `*ui -> -> 1 `i `ui ]
+"25
+}
+[e :U 235 ]
+[; ;bq32k.c: 25: }
+[; ;bq32k.c: 26: }
+"26
 [e :UE 234 ]
 }
-"30
-[v _Bq32k_Rtc_Read_Time `(v ~T0 @X0 1 ef1`*S233 ]
-"31
-{
-[; ;bq32k.c: 30: void Bq32k_Rtc_Read_Time(bq32k_t *p)
-[; ;bq32k.c: 31: {
-[e :U _Bq32k_Rtc_Read_Time ]
-"30
-[v _p `*S233 ~T0 @X0 1 r1 ]
-"31
-[f ]
-"32
-[v _temp `uc ~T0 @X0 -> 10 `i a ]
-[; ;bq32k.c: 32: unsigned char temp[10] ;
-[; ;bq32k.c: 33: I2C_Read_Buffer( 0 , temp , 7);
-"33
-[e ( _I2C_Read_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]
-[; ;bq32k.c: 34: p->seconds = bcd2bin(temp[0] & 0x7F);
 "34
-[e = . *U _p 0 ( _bcd2bin (1 -> & -> *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux `i -> 127 `i `uc ]
-[; ;bq32k.c: 35: p->minutes = bcd2bin(temp[1] & 0x7F);
+[v _Bq32k_Rtc_Read_Time `(v ~T0 @X0 1 ef1`*S233 ]
 "35
-[e = . *U _p 1 ( _bcd2bin (1 -> & -> *U + &U _temp * -> -> -> 1 `i `ui `ux -> -> # *U &U _temp `ui `ux `i -> 127 `i `uc ]
-[; ;bq32k.c: 36: p->hours = bcd2bin(temp[2] & 0x3F);
-"36
-[e = . *U _p 2 ( _bcd2bin (1 -> & -> *U + &U _temp * -> -> -> 2 `i `ui `ux -> -> # *U &U _temp `ui `ux `i -> 63 `i `uc ]
-[; ;bq32k.c: 37: p->wday = bcd2bin(temp[3]);
-"37
-[e = . *U _p 3 ( _bcd2bin (1 *U + &U _temp * -> -> -> 3 `i `ui `ux -> -> # *U &U _temp `ui `ux ]
-[; ;bq32k.c: 38: p->date = bcd2bin(temp[4]);
-"38
-[e = . *U _p 4 ( _bcd2bin (1 *U + &U _temp * -> -> -> 4 `i `ui `ux -> -> # *U &U _temp `ui `ux ]
-[; ;bq32k.c: 39: p->month = bcd2bin(temp[5]);
-"39
-[e = . *U _p 5 ( _bcd2bin (1 *U + &U _temp * -> -> -> 5 `i `ui `ux -> -> # *U &U _temp `ui `ux ]
-[; ;bq32k.c: 40: p->years= bcd2bin(temp[6]);
-"40
-[e = . *U _p 6 ( _bcd2bin (1 *U + &U _temp * -> -> -> 6 `i `ui `ux -> -> # *U &U _temp `ui `ux ]
-[; ;bq32k.c: 41: }
-"41
-[e :UE 235 ]
-}
-"49
-[v _Bq32k_Rtc_Write_Time `(v ~T0 @X0 1 ef1`*S233 ]
-"50
 {
-[; ;bq32k.c: 49: void Bq32k_Rtc_Write_Time(bq32k_t *p)
-[; ;bq32k.c: 50: {
-[e :U _Bq32k_Rtc_Write_Time ]
-"49
+[; ;bq32k.c: 34: void Bq32k_Rtc_Read_Time(bq32k_t *p)
+[; ;bq32k.c: 35: {
+[e :U _Bq32k_Rtc_Read_Time ]
+"34
 [v _p `*S233 ~T0 @X0 1 r1 ]
-"50
+"35
 [f ]
-"51
+"36
 [v _temp `uc ~T0 @X0 -> 10 `i a ]
-[; ;bq32k.c: 51: unsigned char temp[10] ;
-[; ;bq32k.c: 52: temp[0] = bin2bcd(p->seconds);
-"52
-[e = *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 0 ]
-[; ;bq32k.c: 53: temp[1] = bin2bcd(p->minutes);
-"53
-[e = *U + &U _temp * -> -> -> 1 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 1 ]
-[; ;bq32k.c: 54: temp[2] = bin2bcd(p->hours);
-"54
-[e = *U + &U _temp * -> -> -> 2 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 2 ]
-[; ;bq32k.c: 55: temp[3] = bin2bcd(p->wday);
-"55
-[e = *U + &U _temp * -> -> -> 3 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 3 ]
-[; ;bq32k.c: 56: temp[4] = bin2bcd(p->date);
-"56
-[e = *U + &U _temp * -> -> -> 4 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 4 ]
-[; ;bq32k.c: 57: temp[5] = bin2bcd(p->month);
-"57
-[e = *U + &U _temp * -> -> -> 5 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 5 ]
-[; ;bq32k.c: 58: temp[6] = bin2bcd(p->years);
-"58
-[e = *U + &U _temp * -> -> -> 6 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 6 ]
-[; ;bq32k.c: 59: I2C_Send_Buffer( 0 , temp , 7);
-"59
-[e ( _I2C_Send_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]
-[; ;bq32k.c: 60: }
-"60
+[; ;bq32k.c: 36: unsigned char temp[10] ;
+[; ;bq32k.c: 37: I2C_Read_Buffer( 0 , temp , 7);
+"37
+[e ( _I2C_Read_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]
+[; ;bq32k.c: 38: p->seconds = bcd2bin(temp[0] & 0x7F);
+"38
+[e = . *U _p 0 ( _bcd2bin (1 -> & -> *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux `i -> 127 `i `uc ]
+[; ;bq32k.c: 39: p->minutes = bcd2bin(temp[1] & 0x7F);
+"39
+[e = . *U _p 1 ( _bcd2bin (1 -> & -> *U + &U _temp * -> -> -> 1 `i `ui `ux -> -> # *U &U _temp `ui `ux `i -> 127 `i `uc ]
+[; ;bq32k.c: 40: p->hours = bcd2bin(temp[2] & 0x3F);
+"40
+[e = . *U _p 2 ( _bcd2bin (1 -> & -> *U + &U _temp * -> -> -> 2 `i `ui `ux -> -> # *U &U _temp `ui `ux `i -> 63 `i `uc ]
+[; ;bq32k.c: 41: p->wday = bcd2bin(temp[3]);
+"41
+[e = . *U _p 3 ( _bcd2bin (1 *U + &U _temp * -> -> -> 3 `i `ui `ux -> -> # *U &U _temp `ui `ux ]
+[; ;bq32k.c: 42: p->date = bcd2bin(temp[4]);
+"42
+[e = . *U _p 4 ( _bcd2bin (1 *U + &U _temp * -> -> -> 4 `i `ui `ux -> -> # *U &U _temp `ui `ux ]
+[; ;bq32k.c: 43: p->month = bcd2bin(temp[5]);
+"43
+[e = . *U _p 5 ( _bcd2bin (1 *U + &U _temp * -> -> -> 5 `i `ui `ux -> -> # *U &U _temp `ui `ux ]
+[; ;bq32k.c: 44: p->years= bcd2bin(temp[6]);
+"44
+[e = . *U _p 6 ( _bcd2bin (1 *U + &U _temp * -> -> -> 6 `i `ui `ux -> -> # *U &U _temp `ui `ux ]
+[; ;bq32k.c: 45: }
+"45
 [e :UE 236 ]
 }
-"68
-[v _bcd2bin `(uc ~T0 @X0 1 ef1`uc ]
-"69
+"53
+[v _Bq32k_Rtc_Write_Time `(v ~T0 @X0 1 ef1`*S233 ]
+"54
 {
-[; ;bq32k.c: 68: unsigned char bcd2bin(unsigned char val)
-[; ;bq32k.c: 69: {
-[e :U _bcd2bin ]
-"68
-[v _val `uc ~T0 @X0 1 r1 ]
-"69
+[; ;bq32k.c: 53: void Bq32k_Rtc_Write_Time(bq32k_t *p)
+[; ;bq32k.c: 54: {
+[e :U _Bq32k_Rtc_Write_Time ]
+"53
+[v _p `*S233 ~T0 @X0 1 r1 ]
+"54
 [f ]
-[; ;bq32k.c: 70: return (val & 0x0f) + (val >> 4) * 10;
-"70
-[e ) -> + & -> _val `i -> 15 `i * >> -> _val `i -> 4 `i -> 10 `i `uc ]
-[e $UE 237  ]
-[; ;bq32k.c: 71: }
-"71
+"55
+[v _temp `uc ~T0 @X0 -> 10 `i a ]
+[; ;bq32k.c: 55: unsigned char temp[10] ;
+[; ;bq32k.c: 56: temp[0] = bin2bcd(p->seconds);
+"56
+[e = *U + &U _temp * -> -> -> 0 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 0 ]
+[; ;bq32k.c: 57: temp[1] = bin2bcd(p->minutes);
+"57
+[e = *U + &U _temp * -> -> -> 1 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 1 ]
+[; ;bq32k.c: 58: temp[2] = bin2bcd(p->hours);
+"58
+[e = *U + &U _temp * -> -> -> 2 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 2 ]
+[; ;bq32k.c: 59: temp[3] = bin2bcd(p->wday);
+"59
+[e = *U + &U _temp * -> -> -> 3 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 3 ]
+[; ;bq32k.c: 60: temp[4] = bin2bcd(p->date);
+"60
+[e = *U + &U _temp * -> -> -> 4 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 4 ]
+[; ;bq32k.c: 61: temp[5] = bin2bcd(p->month);
+"61
+[e = *U + &U _temp * -> -> -> 5 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 5 ]
+[; ;bq32k.c: 62: temp[6] = bin2bcd(p->years);
+"62
+[e = *U + &U _temp * -> -> -> 6 `i `ui `ux -> -> # *U &U _temp `ui `ux ( _bin2bcd (1 . *U _p 6 ]
+[; ;bq32k.c: 63: I2C_Send_Buffer( 0 , temp , 7);
+"63
+[e ( _I2C_Send_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]
+[; ;bq32k.c: 64: }
+"64
 [e :UE 237 ]
 }
-"79
-[v _bin2bcd `(uc ~T0 @X0 1 ef1`uc ]
-"80
+"72
+[v _bcd2bin `(uc ~T0 @X0 1 ef1`uc ]
+"73
 {
-[; ;bq32k.c: 79: unsigned char bin2bcd(unsigned char val)
-[; ;bq32k.c: 80: {
-[e :U _bin2bcd ]
-"79
+[; ;bq32k.c: 72: unsigned char bcd2bin(unsigned char val)
+[; ;bq32k.c: 73: {
+[e :U _bcd2bin ]
+"72
 [v _val `uc ~T0 @X0 1 r1 ]
-"80
+"73
 [f ]
-[; ;bq32k.c: 81: return ((val / 10) << 4) + val % 10;
-"81
-[e ) -> + << / -> _val `i -> 10 `i -> 4 `i % -> _val `i -> 10 `i `uc ]
+[; ;bq32k.c: 74: return (val & 0x0f) + (val >> 4) * 10;
+"74
+[e ) -> + & -> _val `i -> 15 `i * >> -> _val `i -> 4 `i -> 10 `i `uc ]
 [e $UE 238  ]
-[; ;bq32k.c: 82: }
-"82
+[; ;bq32k.c: 75: }
+"75
 [e :UE 238 ]
+}
+"83
+[v _bin2bcd `(uc ~T0 @X0 1 ef1`uc ]
+"84
+{
+[; ;bq32k.c: 83: unsigned char bin2bcd(unsigned char val)
+[; ;bq32k.c: 84: {
+[e :U _bin2bcd ]
+"83
+[v _val `uc ~T0 @X0 1 r1 ]
+"84
+[f ]
+[; ;bq32k.c: 85: return ((val / 10) << 4) + val % 10;
+"85
+[e ) -> + << / -> _val `i -> 10 `i -> 4 `i % -> _val `i -> 10 `i `uc ]
+[e $UE 239  ]
+[; ;bq32k.c: 86: }
+"86
+[e :UE 239 ]
 }

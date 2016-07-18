@@ -9,13 +9,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i __delay ]
 "4467 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATC0 `Vb ~T0 @X0 0 e@2160 ]
-"49 mcc_generated_files/global.h
+"50 mcc_generated_files/global.h
 [v _temperature_int `ui ~T0 @X0 0 e ]
 "16 D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h
 [v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
-"51 mcc_generated_files/global.h
+"52 mcc_generated_files/global.h
 [v _display_buff `uc ~T0 @X0 -> 0 `x e ]
-"50
+"51
 [v _temperature_sign `uc ~T0 @X0 0 e ]
 [v _temperature_decimal `uc ~T0 @X0 0 e ]
 "26
@@ -23,7 +23,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S233 bq32k_regs seconds minutes hours wday date month years ]
 "39 mcc_generated_files/bq32k.h
 [v _Bq32k_Rtc_Read_Time `(v ~T0 @X0 0 ef1`*S233 ]
-"60 mcc_generated_files/global.h
+"61 mcc_generated_files/global.h
 [v _rtc_tm `S233 ~T0 @X0 0 e ]
 [; ;ht1621.h: 22: extern unsigned char const Dis_TAB[];
 [; ;ht1621.h: 24: void SendBit_1621(unsigned char data,unsigned char cnt);
@@ -1960,32 +1960,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 32: uint8_t month;
 [; ;global.h: 33: uint8_t years;
 [; ;global.h: 34: }bq32k_t;
-[; ;global.h: 42: extern unsigned char uch_cr0;
-[; ;global.h: 43: extern unsigned char uch_cr1;
-[; ;global.h: 44: extern unsigned char uch_mask;
-[; ;global.h: 46: extern unsigned char uch_reg[8];
-[; ;global.h: 47: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 48: extern unsigned long temperature_value;
-[; ;global.h: 49: extern unsigned int temperature_int;
-[; ;global.h: 50: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 51: extern unsigned char display_buff[4];
-[; ;global.h: 55: extern unsigned char time_count;
-[; ;global.h: 56: extern unsigned char tmr_flag;
-[; ;global.h: 58: extern unsigned char LongPressSec;
-[; ;global.h: 59: extern unsigned char MAX31856Sec;
-[; ;global.h: 60: extern bq32k_t rtc_tm;
-[; ;global.h: 61: extern bq32k_t rtc_save_ch1;
-[; ;global.h: 62: extern bq32k_t rtc_save_ch2;
-[; ;global.h: 63: extern unsigned int Flash_buff[32];
-[; ;global.h: 65: extern unsigned char Record_flag;
-[; ;global.h: 66: extern unsigned char CH1_state;
-[; ;global.h: 67: extern unsigned char CH2_state;
-[; ;global.h: 68: extern unsigned int CH1_temperature;
-[; ;global.h: 69: extern unsigned int CH2_temperature;
-[; ;global.h: 70: extern unsigned int Cur_temperature;
-[; ;global.h: 71: extern unsigned int Cur_Save_Index;
-[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 43: extern unsigned char uch_cr0;
+[; ;global.h: 44: extern unsigned char uch_cr1;
+[; ;global.h: 45: extern unsigned char uch_mask;
+[; ;global.h: 47: extern unsigned char uch_reg[8];
+[; ;global.h: 48: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 49: extern unsigned long temperature_value;
+[; ;global.h: 50: extern unsigned int temperature_int;
+[; ;global.h: 51: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 52: extern unsigned char display_buff[4];
+[; ;global.h: 56: extern unsigned char time_count;
+[; ;global.h: 57: extern unsigned char tmr_flag;
+[; ;global.h: 59: extern unsigned char LongPressSec;
+[; ;global.h: 60: extern unsigned char MAX31856Sec;
+[; ;global.h: 61: extern bq32k_t rtc_tm;
+[; ;global.h: 62: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 63: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 64: extern unsigned int Flash_buff[32];
+[; ;global.h: 66: extern unsigned char Record_flag;
+[; ;global.h: 67: extern unsigned char CH1_state;
+[; ;global.h: 68: extern unsigned char CH2_state;
+[; ;global.h: 69: extern unsigned int CH1_temperature;
+[; ;global.h: 70: extern unsigned int CH2_temperature;
+[; ;global.h: 71: extern unsigned int Cur_temperature;
+[; ;global.h: 72: extern unsigned int Cur_Save_Index;
+[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 74: extern unsigned char Cur_temperature_time_ch2;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);

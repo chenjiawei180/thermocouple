@@ -5,52 +5,52 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SPI_Exchange8bit `(uc ~T0 @X0 0 ef1`uc ]
 "192
 [v _SPI_Exchange8bitBuffer `(uc ~T0 @X0 0 ef3`*uc`uc`*uc ]
-"42 mcc_generated_files/global.h
+"43 mcc_generated_files/global.h
 [v _uch_cr0 `uc ~T0 @X0 0 e ]
-"43
-[v _uch_cr1 `uc ~T0 @X0 0 e ]
 "44
+[v _uch_cr1 `uc ~T0 @X0 0 e ]
+"45
 [v _uch_mask `uc ~T0 @X0 0 e ]
-"48
+"49
 [v _temperature_value `ul ~T0 @X0 0 e ]
-"47
+"48
 [v _uch_ltcbh `uc ~T0 @X0 0 e ]
 [v _uch_ltcbm `uc ~T0 @X0 0 e ]
-"55
+"56
 [v _time_count `uc ~T0 @X0 0 e ]
-"65
+"66
 [v _Record_flag `uc ~T0 @X0 0 e ]
-"68
+"69
 [v _CH1_temperature `ui ~T0 @X0 0 e ]
 "26 mcc_generated_files/save.h
 [v _Calculate_Time `(uc ~T0 @X0 0 ef ]
-"66 mcc_generated_files/global.h
+"67 mcc_generated_files/global.h
 [v _CH1_state `uc ~T0 @X0 0 e ]
 "27 mcc_generated_files/save.h
 [v _Save_Write_word `(v ~T0 @X0 0 ef1`ui ]
-"72 mcc_generated_files/global.h
+"73 mcc_generated_files/global.h
 [v _Cur_temperature_time_ch1 `uc ~T0 @X0 0 e ]
-"69
+"70
 [v _CH2_temperature `ui ~T0 @X0 0 e ]
-"67
+"68
 [v _CH2_state `uc ~T0 @X0 0 e ]
-"73
+"74
 [v _Cur_temperature_time_ch2 `uc ~T0 @X0 0 e ]
-"50
+"51
 [v _temperature_sign `uc ~T0 @X0 0 e ]
-"49
-[v _temperature_int `ui ~T0 @X0 0 e ]
 "50
+[v _temperature_int `ui ~T0 @X0 0 e ]
+"51
 [v _temperature_decimal `uc ~T0 @X0 0 e ]
-"59
+"60
 [v _MAX31856Sec `uc ~T0 @X0 0 e ]
 "4531 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _RB3 `Vb ~T0 @X0 0 e@107 ]
-"47 mcc_generated_files/global.h
+"48 mcc_generated_files/global.h
 [v _uch_sr `uc ~T0 @X0 0 e ]
-"46
-[v _uch_reg `uc ~T0 @X0 -> 0 `x e ]
 "47
+[v _uch_reg `uc ~T0 @X0 -> 0 `x e ]
+"48
 [v _uch_cjth `uc ~T0 @X0 0 e ]
 [v _uch_cjtl `uc ~T0 @X0 0 e ]
 [v _uch_ltcbl `uc ~T0 @X0 0 e ]
@@ -1964,32 +1964,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 32: uint8_t month;
 [; ;global.h: 33: uint8_t years;
 [; ;global.h: 34: }bq32k_t;
-[; ;global.h: 42: extern unsigned char uch_cr0;
-[; ;global.h: 43: extern unsigned char uch_cr1;
-[; ;global.h: 44: extern unsigned char uch_mask;
-[; ;global.h: 46: extern unsigned char uch_reg[8];
-[; ;global.h: 47: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 48: extern unsigned long temperature_value;
-[; ;global.h: 49: extern unsigned int temperature_int;
-[; ;global.h: 50: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 51: extern unsigned char display_buff[4];
-[; ;global.h: 55: extern unsigned char time_count;
-[; ;global.h: 56: extern unsigned char tmr_flag;
-[; ;global.h: 58: extern unsigned char LongPressSec;
-[; ;global.h: 59: extern unsigned char MAX31856Sec;
-[; ;global.h: 60: extern bq32k_t rtc_tm;
-[; ;global.h: 61: extern bq32k_t rtc_save_ch1;
-[; ;global.h: 62: extern bq32k_t rtc_save_ch2;
-[; ;global.h: 63: extern unsigned int Flash_buff[32];
-[; ;global.h: 65: extern unsigned char Record_flag;
-[; ;global.h: 66: extern unsigned char CH1_state;
-[; ;global.h: 67: extern unsigned char CH2_state;
-[; ;global.h: 68: extern unsigned int CH1_temperature;
-[; ;global.h: 69: extern unsigned int CH2_temperature;
-[; ;global.h: 70: extern unsigned int Cur_temperature;
-[; ;global.h: 71: extern unsigned int Cur_Save_Index;
-[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 43: extern unsigned char uch_cr0;
+[; ;global.h: 44: extern unsigned char uch_cr1;
+[; ;global.h: 45: extern unsigned char uch_mask;
+[; ;global.h: 47: extern unsigned char uch_reg[8];
+[; ;global.h: 48: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 49: extern unsigned long temperature_value;
+[; ;global.h: 50: extern unsigned int temperature_int;
+[; ;global.h: 51: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 52: extern unsigned char display_buff[4];
+[; ;global.h: 56: extern unsigned char time_count;
+[; ;global.h: 57: extern unsigned char tmr_flag;
+[; ;global.h: 59: extern unsigned char LongPressSec;
+[; ;global.h: 60: extern unsigned char MAX31856Sec;
+[; ;global.h: 61: extern bq32k_t rtc_tm;
+[; ;global.h: 62: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 63: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 64: extern unsigned int Flash_buff[32];
+[; ;global.h: 66: extern unsigned char Record_flag;
+[; ;global.h: 67: extern unsigned char CH1_state;
+[; ;global.h: 68: extern unsigned char CH2_state;
+[; ;global.h: 69: extern unsigned int CH1_temperature;
+[; ;global.h: 70: extern unsigned int CH2_temperature;
+[; ;global.h: 71: extern unsigned int Cur_temperature;
+[; ;global.h: 72: extern unsigned int Cur_Save_Index;
+[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 74: extern unsigned char Cur_temperature_time_ch2;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);

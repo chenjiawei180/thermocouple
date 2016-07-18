@@ -1961,90 +1961,90 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 32: uint8_t month;
 [; ;global.h: 33: uint8_t years;
 [; ;global.h: 34: }bq32k_t;
-"42 mcc_generated_files/global.h
+"43 mcc_generated_files/global.h
 [v _uch_cr0 `uc ~T0 @X0 1 e ]
-[; ;global.h: 42: unsigned char uch_cr0;
-"43
-[v _uch_cr1 `uc ~T0 @X0 1 e ]
-[; ;global.h: 43: unsigned char uch_cr1;
+[; ;global.h: 43: unsigned char uch_cr0;
 "44
+[v _uch_cr1 `uc ~T0 @X0 1 e ]
+[; ;global.h: 44: unsigned char uch_cr1;
+"45
 [v _uch_mask `uc ~T0 @X0 1 e ]
-[; ;global.h: 44: unsigned char uch_mask;
-"46
-[v _uch_reg `uc ~T0 @X0 -> 8 `i e ]
-[; ;global.h: 46: unsigned char uch_reg[8];
+[; ;global.h: 45: unsigned char uch_mask;
 "47
+[v _uch_reg `uc ~T0 @X0 -> 8 `i e ]
+[; ;global.h: 47: unsigned char uch_reg[8];
+"48
 [v _uch_cjth `uc ~T0 @X0 1 e ]
 [v _uch_cjtl `uc ~T0 @X0 1 e ]
 [v _uch_ltcbh `uc ~T0 @X0 1 e ]
 [v _uch_ltcbm `uc ~T0 @X0 1 e ]
 [v _uch_ltcbl `uc ~T0 @X0 1 e ]
 [v _uch_sr `uc ~T0 @X0 1 e ]
-[; ;global.h: 47: unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-"48
-[v _temperature_value `ul ~T0 @X0 1 e ]
-[; ;global.h: 48: unsigned long temperature_value;
+[; ;global.h: 48: unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
 "49
-[v _temperature_int `ui ~T0 @X0 1 e ]
-[; ;global.h: 49: unsigned int temperature_int;
+[v _temperature_value `ul ~T0 @X0 1 e ]
+[; ;global.h: 49: unsigned long temperature_value;
 "50
+[v _temperature_int `ui ~T0 @X0 1 e ]
+[; ;global.h: 50: unsigned int temperature_int;
+"51
 [v _temperature_decimal `uc ~T0 @X0 1 e ]
 [v _temperature_sign `uc ~T0 @X0 1 e ]
-[; ;global.h: 50: unsigned char temperature_decimal,temperature_sign;
-"51
+[; ;global.h: 51: unsigned char temperature_decimal,temperature_sign;
+"52
 [v _display_buff `uc ~T0 @X0 -> 4 `i e ]
-[; ;global.h: 51: unsigned char display_buff[4];
-"55
-[v _time_count `uc ~T0 @X0 1 e ]
-[; ;global.h: 55: unsigned char time_count;
+[; ;global.h: 52: unsigned char display_buff[4];
 "56
+[v _time_count `uc ~T0 @X0 1 e ]
+[; ;global.h: 56: unsigned char time_count;
+"57
 [v _tmr_flag `uc ~T0 @X0 1 e ]
-[; ;global.h: 56: unsigned char tmr_flag;
-"58
-[v _LongPressSec `uc ~T0 @X0 1 e ]
-[; ;global.h: 58: unsigned char LongPressSec;
+[; ;global.h: 57: unsigned char tmr_flag;
 "59
-[v _MAX31856Sec `uc ~T0 @X0 1 e ]
-[; ;global.h: 59: unsigned char MAX31856Sec;
+[v _LongPressSec `uc ~T0 @X0 1 e ]
+[; ;global.h: 59: unsigned char LongPressSec;
 "60
-[v _rtc_tm `S233 ~T0 @X0 1 e ]
-[; ;global.h: 60: bq32k_t rtc_tm;
+[v _MAX31856Sec `uc ~T0 @X0 1 e ]
+[; ;global.h: 60: unsigned char MAX31856Sec;
 "61
-[v _rtc_save_ch1 `S233 ~T0 @X0 1 e ]
-[; ;global.h: 61: bq32k_t rtc_save_ch1;
+[v _rtc_tm `S233 ~T0 @X0 1 e ]
+[; ;global.h: 61: bq32k_t rtc_tm;
 "62
-[v _rtc_save_ch2 `S233 ~T0 @X0 1 e ]
-[; ;global.h: 62: bq32k_t rtc_save_ch2;
+[v _rtc_save_ch1 `S233 ~T0 @X0 1 e ]
+[; ;global.h: 62: bq32k_t rtc_save_ch1;
 "63
+[v _rtc_save_ch2 `S233 ~T0 @X0 1 e ]
+[; ;global.h: 63: bq32k_t rtc_save_ch2;
+"64
 [v _Flash_buff `ui ~T0 @X0 -> 32 `i e ]
-[; ;global.h: 63: unsigned int Flash_buff[32];
-"65
-[v _Record_flag `uc ~T0 @X0 1 e ]
-[; ;global.h: 65: unsigned char Record_flag;
+[; ;global.h: 64: unsigned int Flash_buff[32];
 "66
-[v _CH1_state `uc ~T0 @X0 1 e ]
-[; ;global.h: 66: unsigned char CH1_state;
+[v _Record_flag `uc ~T0 @X0 1 e ]
+[; ;global.h: 66: unsigned char Record_flag;
 "67
-[v _CH2_state `uc ~T0 @X0 1 e ]
-[; ;global.h: 67: unsigned char CH2_state;
+[v _CH1_state `uc ~T0 @X0 1 e ]
+[; ;global.h: 67: unsigned char CH1_state;
 "68
-[v _CH1_temperature `ui ~T0 @X0 1 e ]
-[; ;global.h: 68: unsigned int CH1_temperature;
+[v _CH2_state `uc ~T0 @X0 1 e ]
+[; ;global.h: 68: unsigned char CH2_state;
 "69
-[v _CH2_temperature `ui ~T0 @X0 1 e ]
-[; ;global.h: 69: unsigned int CH2_temperature;
+[v _CH1_temperature `ui ~T0 @X0 1 e ]
+[; ;global.h: 69: unsigned int CH1_temperature;
 "70
-[v _Cur_temperature `ui ~T0 @X0 1 e ]
-[; ;global.h: 70: unsigned int Cur_temperature;
+[v _CH2_temperature `ui ~T0 @X0 1 e ]
+[; ;global.h: 70: unsigned int CH2_temperature;
 "71
-[v _Cur_Save_Index `ui ~T0 @X0 1 e ]
-[; ;global.h: 71: unsigned int Cur_Save_Index;
+[v _Cur_temperature `ui ~T0 @X0 1 e ]
+[; ;global.h: 71: unsigned int Cur_temperature;
 "72
-[v _Cur_temperature_time_ch1 `uc ~T0 @X0 1 e ]
-[; ;global.h: 72: unsigned char Cur_temperature_time_ch1;
+[v _Cur_Save_Index `ui ~T0 @X0 1 e ]
+[; ;global.h: 72: unsigned int Cur_Save_Index;
 "73
+[v _Cur_temperature_time_ch1 `uc ~T0 @X0 1 e ]
+[; ;global.h: 73: unsigned char Cur_temperature_time_ch1;
+"74
 [v _Cur_temperature_time_ch2 `uc ~T0 @X0 1 e ]
-[; ;global.h: 73: unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 74: unsigned char Cur_temperature_time_ch2;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);

@@ -17,8 +17,12 @@
 void Bq32k_Time_Init(void)
 {
     bq32k_t time;
-    unsigned char temp[10] = { 0x01,0x50,0x23,0x02,0x08,0x07,0x16 }; //2016 07 04  monday 14:40:01
-    I2C_Send_Buffer(0, temp, 7);
+    unsigned char temp[10] = { 0x01,0x44,0x10,0x02,0x18,0x07,0x16 }; //2016 07 18  monday 09:14:01
+    if( FLASH_ReadWord(Time_Add) == 0x3fff )
+    {
+        I2C_Send_Buffer(0, temp, 7);
+        FLASH_WriteWord(Time_Add, temp, 1);
+    }
 }
 
 /**

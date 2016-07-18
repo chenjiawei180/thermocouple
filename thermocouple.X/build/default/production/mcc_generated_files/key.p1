@@ -7,35 +7,39 @@ Version 3.2 HI-TECH Software Intermediate Code
 "152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
 [v __delay `JF1816 ~T0 @X0 0 e ]
 [p i __delay ]
-"58 mcc_generated_files/global.h
+"59 mcc_generated_files/global.h
 [v _LongPressSec `uc ~T0 @X0 0 e ]
-"4439 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[v _LATA2 `Vb ~T0 @X0 0 e@2146 ]
-"4441
+"4441 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
+"66 mcc_generated_files/global.h
+[v _Record_flag `uc ~T0 @X0 0 e ]
+"4443 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _LATA4 `Vb ~T0 @X0 0 e@2148 ]
+"4439
+[v _LATA2 `Vb ~T0 @X0 0 e@2146 ]
 "26 mcc_generated_files/ht1621.h
 [v _SendCmd_1621 `(v ~T0 @X0 0 ef1`uc ]
+"4625 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _SWDTEN `Vb ~T0 @X0 0 e@1208 ]
 "99 mcc_generated_files/memory.h
 [v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ui ]
 "135 mcc_generated_files/eusart.h
 [v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
-"65 mcc_generated_files/global.h
-[v _Record_flag `uc ~T0 @X0 0 e ]
 "19 mcc_generated_files/save.h
 [v _Set_start_flag `(v ~T0 @X0 0 ef ]
 "22
 [v _Write_Flash_head `(v ~T0 @X0 0 ef ]
 "28
 [v _Save_Write_time `(v ~T0 @X0 0 ef ]
-"72 mcc_generated_files/global.h
+"73 mcc_generated_files/global.h
 [v _Cur_temperature_time_ch1 `uc ~T0 @X0 0 e ]
-"73
+"74
 [v _Cur_temperature_time_ch2 `uc ~T0 @X0 0 e ]
-"68
-[v _CH1_temperature `ui ~T0 @X0 0 e ]
 "69
+[v _CH1_temperature `ui ~T0 @X0 0 e ]
+"70
 [v _CH2_temperature `ui ~T0 @X0 0 e ]
-"55
+"56
 [v _time_count `uc ~T0 @X0 0 e ]
 "20 mcc_generated_files/save.h
 [v _Set_finish_flag `(v ~T0 @X0 0 ef ]
@@ -1941,32 +1945,32 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 32: uint8_t month;
 [; ;global.h: 33: uint8_t years;
 [; ;global.h: 34: }bq32k_t;
-[; ;global.h: 42: extern unsigned char uch_cr0;
-[; ;global.h: 43: extern unsigned char uch_cr1;
-[; ;global.h: 44: extern unsigned char uch_mask;
-[; ;global.h: 46: extern unsigned char uch_reg[8];
-[; ;global.h: 47: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 48: extern unsigned long temperature_value;
-[; ;global.h: 49: extern unsigned int temperature_int;
-[; ;global.h: 50: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 51: extern unsigned char display_buff[4];
-[; ;global.h: 55: extern unsigned char time_count;
-[; ;global.h: 56: extern unsigned char tmr_flag;
-[; ;global.h: 58: extern unsigned char LongPressSec;
-[; ;global.h: 59: extern unsigned char MAX31856Sec;
-[; ;global.h: 60: extern bq32k_t rtc_tm;
-[; ;global.h: 61: extern bq32k_t rtc_save_ch1;
-[; ;global.h: 62: extern bq32k_t rtc_save_ch2;
-[; ;global.h: 63: extern unsigned int Flash_buff[32];
-[; ;global.h: 65: extern unsigned char Record_flag;
-[; ;global.h: 66: extern unsigned char CH1_state;
-[; ;global.h: 67: extern unsigned char CH2_state;
-[; ;global.h: 68: extern unsigned int CH1_temperature;
-[; ;global.h: 69: extern unsigned int CH2_temperature;
-[; ;global.h: 70: extern unsigned int Cur_temperature;
-[; ;global.h: 71: extern unsigned int Cur_Save_Index;
-[; ;global.h: 72: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 43: extern unsigned char uch_cr0;
+[; ;global.h: 44: extern unsigned char uch_cr1;
+[; ;global.h: 45: extern unsigned char uch_mask;
+[; ;global.h: 47: extern unsigned char uch_reg[8];
+[; ;global.h: 48: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 49: extern unsigned long temperature_value;
+[; ;global.h: 50: extern unsigned int temperature_int;
+[; ;global.h: 51: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 52: extern unsigned char display_buff[4];
+[; ;global.h: 56: extern unsigned char time_count;
+[; ;global.h: 57: extern unsigned char tmr_flag;
+[; ;global.h: 59: extern unsigned char LongPressSec;
+[; ;global.h: 60: extern unsigned char MAX31856Sec;
+[; ;global.h: 61: extern bq32k_t rtc_tm;
+[; ;global.h: 62: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 63: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 64: extern unsigned int Flash_buff[32];
+[; ;global.h: 66: extern unsigned char Record_flag;
+[; ;global.h: 67: extern unsigned char CH1_state;
+[; ;global.h: 68: extern unsigned char CH2_state;
+[; ;global.h: 69: extern unsigned int CH1_temperature;
+[; ;global.h: 70: extern unsigned int CH2_temperature;
+[; ;global.h: 71: extern unsigned int Cur_temperature;
+[; ;global.h: 72: extern unsigned int Cur_Save_Index;
+[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 74: extern unsigned char Cur_temperature_time_ch2;
 [; ;key.h: 21: unsigned char Key_Scan(void);
 [; ;key.h: 22: void Key_Process(void);
 [; ;ht1621.h: 22: extern unsigned char const Dis_TAB[];
@@ -2085,220 +2089,242 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;key.c: 52: {
 "52
 {
-[; ;key.c: 53: switch(gKeyValue)
+[; ;key.c: 53: do { LATA3 = 0; } while(0);
 "53
-[e $U 242  ]
-[; ;key.c: 54: {
-"54
-{
-[; ;key.c: 55: case 0x01:
-"55
 [e :U 243 ]
-[; ;key.c: 56: while( !(LongPressSec > 2 || RB5 == 1) ) asm("clrwdt");
-"56
-[e $U 244  ]
-[e :U 245 ]
-[; <" clrwdt ;# ">
-[e :U 244 ]
-[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RB5 `i -> 1 `i 245  ]
-[e :U 246 ]
-[; ;key.c: 57: if(LongPressSec > 2)
-"57
-[e $ ! > -> _LongPressSec `i -> 2 `i 247  ]
-[; ;key.c: 58: {
-"58
 {
-[; ;key.c: 59: do { LATA2 = 0; } while(0);
-"59
+[e = _LATA3 -> -> 0 `i `b ]
+}
+[e :U 242 ]
+[; ;key.c: 54: if( Record_flag == 1 ) do { LATA4 = 0; } while(0);
+"54
+[e $ ! == -> _Record_flag `i -> 1 `i 244  ]
+[e :U 247 ]
+{
+[e = _LATA4 -> -> 0 `i `b ]
+}
+[e :U 246 ]
+[e :U 244 ]
+[; ;key.c: 55: switch(gKeyValue)
+"55
+[e $U 249  ]
+[; ;key.c: 56: {
+"56
+{
+[; ;key.c: 57: case 0x01:
+"57
 [e :U 250 ]
+[; ;key.c: 58: while( !(LongPressSec > 2 || RB5 == 1) ) asm("clrwdt");
+"58
+[e $U 251  ]
+[e :U 252 ]
+[; <" clrwdt ;# ">
+[e :U 251 ]
+[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RB5 `i -> 1 `i 252  ]
+[e :U 253 ]
+[; ;key.c: 59: if(LongPressSec > 2)
+"59
+[e $ ! > -> _LongPressSec `i -> 2 `i 254  ]
+[; ;key.c: 60: {
+"60
+{
+[; ;key.c: 61: do { LATA2 = 0; } while(0);
+"61
+[e :U 257 ]
 {
 [e = _LATA2 -> -> 0 `i `b ]
 }
-[e :U 249 ]
-[; ;key.c: 60: do { LATA3 = 1; } while(0);
-"60
-[e :U 253 ]
+[e :U 256 ]
+[; ;key.c: 62: do { LATA3 = 1; } while(0);
+"62
+[e :U 260 ]
 {
 [e = _LATA3 -> -> 1 `i `b ]
 }
-[e :U 252 ]
-[; ;key.c: 61: SendCmd_1621(0x04);
-"61
+[e :U 259 ]
+[; ;key.c: 63: SendCmd_1621(0x04);
+"63
 [e ( _SendCmd_1621 (1 -> -> 4 `i `uc ]
-"62
-}
-[; ;key.c: 62: }
-[e $U 254  ]
 "64
-[e :U 247 ]
-[; ;key.c: 64: else
-[; ;key.c: 65: {
-"65
-{
-[; ;key.c: 66: for(i=0x2000;i<0x2000+1000;i++)
+}
+[; ;key.c: 64: }
+[e $U 261  ]
 "66
+[e :U 254 ]
+[; ;key.c: 66: else
+[; ;key.c: 67: {
+"67
+{
+[; ;key.c: 68: SWDTEN = 0;
+"68
+[e = _SWDTEN -> -> 0 `i `b ]
+[; ;key.c: 69: for(i=0x2000;i<0x2000+1000;i++)
+"69
 {
 [e = _i -> -> 8192 `i `ui ]
-[e $ < _i -> + -> 8192 `i -> 1000 `i `ui 255  ]
-[e $U 256  ]
-"67
-[e :U 255 ]
-[; ;key.c: 67: {
-{
-[; ;key.c: 68: data_temp = FLASH_ReadWord(i);
-"68
-[e = _data_temp ( _FLASH_ReadWord (1 _i ]
-[; ;key.c: 69: EUSART_Write(data_temp>>8);
-"69
-[e ( _EUSART_Write (1 -> >> _data_temp -> 8 `i `uc ]
-[; ;key.c: 70: EUSART_Write(data_temp&0xff);
+[e $ < _i -> + -> 8192 `i -> 1000 `i `ui 262  ]
+[e $U 263  ]
 "70
-[e ( _EUSART_Write (1 -> & _data_temp -> -> 255 `i `ui `uc ]
-[; ;key.c: 71: asm("clrwdt");
-"71
-[; <" clrwdt ;# ">
-"72
-}
-"66
-[e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> + -> 8192 `i -> 1000 `i `ui 255  ]
-[e :U 256 ]
-"72
-}
-"73
-}
-[e :U 254 ]
-[; ;key.c: 72: }
-[; ;key.c: 73: }
-[; ;key.c: 75: while(RB5 == 0) asm("clrwdt");
-"75
-[e $U 258  ]
-[e :U 259 ]
-[; <" clrwdt ;# ">
-[e :U 258 ]
-[e $ == -> _RB5 `i -> 0 `i 259  ]
-[e :U 260 ]
-[; ;key.c: 76: break;
-"76
-[e $U 241  ]
-[; ;key.c: 77: case 0x02:
-"77
-[e :U 261 ]
-[; ;key.c: 78: while( !(LongPressSec > 2 || RA7 == 1) )asm("clrwdt");
-"78
-[e $U 262  ]
-[e :U 263 ]
-[; <" clrwdt ;# ">
 [e :U 262 ]
-[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RA7 `i -> 1 `i 263  ]
-[e :U 264 ]
-[; ;key.c: 79: if(LongPressSec > 2)
-"79
-[e $ ! > -> _LongPressSec `i -> 2 `i 265  ]
-[; ;key.c: 80: {
+[; ;key.c: 70: {
+{
+[; ;key.c: 71: data_temp = FLASH_ReadWord(i);
+"71
+[e = _data_temp ( _FLASH_ReadWord (1 _i ]
+[; ;key.c: 72: EUSART_Write(data_temp>>8);
+"72
+[e ( _EUSART_Write (1 -> >> _data_temp -> 8 `i `uc ]
+[; ;key.c: 73: EUSART_Write(data_temp&0xff);
+"73
+[e ( _EUSART_Write (1 -> & _data_temp -> -> 255 `i `ui `uc ]
+"75
+}
+"69
+[e ++ _i -> -> 1 `i `ui ]
+[e $ < _i -> + -> 8192 `i -> 1000 `i `ui 262  ]
+[e :U 263 ]
+"75
+}
+[; ;key.c: 75: }
+[; ;key.c: 76: SWDTEN = 1;
+"76
+[e = _SWDTEN -> -> 1 `i `b ]
+[; ;key.c: 77: asm("clrwdt");
+"77
+[; <" clrwdt ;# ">
+"78
+}
+[e :U 261 ]
+[; ;key.c: 78: }
+[; ;key.c: 80: while(RB5 == 0) asm("clrwdt");
 "80
-{
-[; ;key.c: 81: if(Record_flag == 0)
-"81
-[e $ ! == -> _Record_flag `i -> 0 `i 266  ]
-[; ;key.c: 82: {
-"82
-{
-[; ;key.c: 83: Set_start_flag();
-"83
-[e ( _Set_start_flag ..  ]
-[; ;key.c: 84: Write_Flash_head();
-"84
-[e ( _Write_Flash_head ..  ]
-[; ;key.c: 85: Save_Write_time();
-"85
-[e ( _Save_Write_time ..  ]
-[; ;key.c: 86: Cur_temperature_time_ch1 = 0;
-"86
-[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
-[; ;key.c: 87: Cur_temperature_time_ch2 = 0;
-"87
-[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
-[; ;key.c: 88: CH1_temperature = 0;
-"88
-[e = _CH1_temperature -> -> 0 `i `ui ]
-[; ;key.c: 89: CH2_temperature = 0;
-"89
-[e = _CH2_temperature -> -> 0 `i `ui ]
-[; ;key.c: 90: time_count = 0;
-"90
-[e = _time_count -> -> 0 `i `uc ]
-"91
-}
-[; ;key.c: 91: }
-[e $U 267  ]
-"92
+[e $U 265  ]
 [e :U 266 ]
-[; ;key.c: 92: else
-[; ;key.c: 93: {
-"93
-{
-[; ;key.c: 94: Set_finish_flag();
-"94
-[e ( _Set_finish_flag ..  ]
-[; ;key.c: 95: Write_Flash_finish();
-"95
-[e ( _Write_Flash_finish ..  ]
-"96
-}
-[e :U 267 ]
-"97
-}
-[; ;key.c: 96: }
-[; ;key.c: 97: }
-[e $U 268  ]
-"98
+[; <" clrwdt ;# ">
 [e :U 265 ]
-[; ;key.c: 98: else
-[; ;key.c: 99: {
-"99
-{
-[; ;key.c: 100: time_count = 5;
-"100
-[e = _time_count -> -> 5 `i `uc ]
-[; ;key.c: 101: temperature_process();
-"101
-[e ( _temperature_process ..  ]
-"102
-}
+[e $ == -> _RB5 `i -> 0 `i 266  ]
+[e :U 267 ]
+[; ;key.c: 81: break;
+"81
+[e $U 248  ]
+[; ;key.c: 82: case 0x02:
+"82
 [e :U 268 ]
-[; ;key.c: 102: }
-[; ;key.c: 103: while(RA7 == 0)asm("clrwdt");
-"103
+[; ;key.c: 83: while( !(LongPressSec > 2 || RA7 == 1) )asm("clrwdt");
+"83
 [e $U 269  ]
 [e :U 270 ]
 [; <" clrwdt ;# ">
 [e :U 269 ]
-[e $ == -> _RA7 `i -> 0 `i 270  ]
+[e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RA7 `i -> 1 `i 270  ]
 [e :U 271 ]
-[; ;key.c: 104: break;
-"104
-[e $U 241  ]
-[; ;key.c: 105: default:break;
-"105
-[e :U 272 ]
-[e $U 241  ]
-"106
+[; ;key.c: 84: if(LongPressSec > 2)
+"84
+[e $ ! > -> _LongPressSec `i -> 2 `i 272  ]
+[; ;key.c: 85: {
+"85
+{
+[; ;key.c: 86: if(Record_flag == 0)
+"86
+[e $ ! == -> _Record_flag `i -> 0 `i 273  ]
+[; ;key.c: 87: {
+"87
+{
+[; ;key.c: 88: Set_start_flag();
+"88
+[e ( _Set_start_flag ..  ]
+[; ;key.c: 89: Write_Flash_head();
+"89
+[e ( _Write_Flash_head ..  ]
+[; ;key.c: 90: Save_Write_time();
+"90
+[e ( _Save_Write_time ..  ]
+[; ;key.c: 91: Cur_temperature_time_ch1 = 0;
+"91
+[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
+[; ;key.c: 92: Cur_temperature_time_ch2 = 0;
+"92
+[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
+[; ;key.c: 93: CH1_temperature = 0;
+"93
+[e = _CH1_temperature -> -> 0 `i `ui ]
+[; ;key.c: 94: CH2_temperature = 0;
+"94
+[e = _CH2_temperature -> -> 0 `i `ui ]
+[; ;key.c: 95: time_count = 0;
+"95
+[e = _time_count -> -> 0 `i `uc ]
+"96
 }
-[; ;key.c: 106: }
-[e $U 241  ]
-"53
-[e :U 242 ]
-[e [\ _gKeyValue , $ -> -> 1 `i `uc 243
- , $ -> -> 2 `i `uc 261
- 272 ]
+[; ;key.c: 96: }
+[e $U 274  ]
+"97
+[e :U 273 ]
+[; ;key.c: 97: else
+[; ;key.c: 98: {
+"98
+{
+[; ;key.c: 99: Set_finish_flag();
+"99
+[e ( _Set_finish_flag ..  ]
+[; ;key.c: 100: Write_Flash_finish();
+"100
+[e ( _Write_Flash_finish ..  ]
+"101
+}
+[e :U 274 ]
+"102
+}
+[; ;key.c: 101: }
+[; ;key.c: 102: }
+[e $U 275  ]
+"103
+[e :U 272 ]
+[; ;key.c: 103: else
+[; ;key.c: 104: {
+"104
+{
+[; ;key.c: 105: time_count = 5;
+"105
+[e = _time_count -> -> 5 `i `uc ]
+[; ;key.c: 106: temperature_process();
 "106
-[e :U 241 ]
+[e ( _temperature_process ..  ]
 "107
 }
-[e :U 240 ]
+[e :U 275 ]
 [; ;key.c: 107: }
-[; ;key.c: 108: }
+[; ;key.c: 108: while(RA7 == 0)asm("clrwdt");
 "108
+[e $U 276  ]
+[e :U 277 ]
+[; <" clrwdt ;# ">
+[e :U 276 ]
+[e $ == -> _RA7 `i -> 0 `i 277  ]
+[e :U 278 ]
+[; ;key.c: 109: break;
+"109
+[e $U 248  ]
+[; ;key.c: 110: default:break;
+"110
+[e :U 279 ]
+[e $U 248  ]
+"111
+}
+[; ;key.c: 111: }
+[e $U 248  ]
+"55
+[e :U 249 ]
+[e [\ _gKeyValue , $ -> -> 1 `i `uc 250
+ , $ -> -> 2 `i `uc 268
+ 279 ]
+"111
+[e :U 248 ]
+"112
+}
+[e :U 240 ]
+[; ;key.c: 112: }
+[; ;key.c: 113: }
+"113
 [e :UE 239 ]
 }

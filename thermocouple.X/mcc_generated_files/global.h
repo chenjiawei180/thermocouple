@@ -38,6 +38,7 @@ typedef struct bq32k_regs {
 // such as OS_EXT unsigned char data;
 
 #define Record_Add 0x2000
+#define Time_Add 0x1fff
 
 OS_EXT unsigned char uch_cr0;
 OS_EXT unsigned char uch_cr1;

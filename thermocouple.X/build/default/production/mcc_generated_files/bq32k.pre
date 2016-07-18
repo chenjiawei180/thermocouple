@@ -2707,7 +2707,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-# 42
+# 43
 extern unsigned char uch_cr0;
 extern unsigned char uch_cr1;
 extern unsigned char uch_mask;
@@ -2774,11 +2774,15 @@ void time_Display(void);
 void Bq32k_Time_Init(void)
 {
 bq32k_t time;
-unsigned char temp[10] = { 0x01,0x50,0x23,0x02,0x08,0x07,0x16 };
+unsigned char temp[10] = { 0x01,0x44,0x10,0x02,0x18,0x07,0x16 };
+if( FLASH_ReadWord(0x1fff) == 0x3fff )
+{
 I2C_Send_Buffer(0, temp, 7);
+FLASH_WriteWord(0x1fff, temp, 1);
+}
 }
 
-# 30
+# 34
 void Bq32k_Rtc_Read_Time(bq32k_t *p)
 {
 unsigned char temp[10] ;
@@ -2792,7 +2796,7 @@ p->month = bcd2bin(temp[5]);
 p->years= bcd2bin(temp[6]);
 }
 
-# 49
+# 53
 void Bq32k_Rtc_Write_Time(bq32k_t *p)
 {
 unsigned char temp[10] ;
@@ -2806,13 +2810,13 @@ temp[6] = bin2bcd(p->years);
 I2C_Send_Buffer( 0 , temp , 7);
 }
 
-# 68
+# 72
 unsigned char bcd2bin(unsigned char val)
 {
 return (val & 0x0f) + (val >> 4) * 10;
 }
 
-# 79
+# 83
 unsigned char bin2bcd(unsigned char val)
 {
 return ((val / 10) << 4) + val % 10;

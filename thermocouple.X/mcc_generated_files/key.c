@@ -50,6 +50,8 @@ void Key_Process(void)
     gKeyValue=Key_Scan();
     if(gKeyValue)
     {
+        LED1_SetLow();
+        if( Record_flag == 1 )    LED2_SetLow();
         switch(gKeyValue)
         {
             case KEY1:
@@ -63,13 +65,16 @@ void Key_Process(void)
 #if DEBUG
                 else
                 {
+                    SWDTEN = 0;
                     for(i=Record_Add;i<Record_Add+1000;i++)
                     {
                         data_temp = FLASH_ReadWord(i);
                         EUSART_Write(data_temp>>8);
                         EUSART_Write(data_temp&0xff);
-                        CLRWDT();
+                        
                     }
+                    SWDTEN = 1;
+                    CLRWDT();
                 }
 #endif
                 while(KEY_GetValue() == 0) CLRWDT();

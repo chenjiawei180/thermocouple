@@ -175,13 +175,13 @@
                 <setting name="CHS" option="AN0" register="ADCON0"/>
                 <setting name="ADFM" option="right" register="ADCON1"/>
                 <setting name="ADPREF" option="FVR" register="ADCON1"/>
-                <setting name="ADCS" option="FOSC/64" register="ADCON1"/>
+                <setting name="ADCS" option="FOSC/4" register="ADCON1"/>
                 <setting name="ADRESL" option="0x0" register="ADRESL"/>
                 <setting name="ADRESH" option="0x0" register="ADRESH"/>
             </initializer>
             <setting name="ADI" option="false"/>
             <resource customName="ADC" function="AN11" name="RB4" type="pin"/>
-            <file checksum="2150231750" modified="false" name="adc.c" path="mcc_generated_files/adc.c"/>
+            <file checksum="3604475534" modified="false" name="adc.c" path="mcc_generated_files/adc.c"/>
             <file checksum="3922828542" modified="false" name="adc.h" path="mcc_generated_files/adc.h"/>
         </module>
         <module generated="true" mode="Timer" name="TMR0" order="6" reloadPin="manual" type="tmr_0">

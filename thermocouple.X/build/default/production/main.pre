@@ -2707,7 +2707,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-# 42
+# 43
  unsigned char uch_cr0;
  unsigned char uch_cr1;
  unsigned char uch_mask;
