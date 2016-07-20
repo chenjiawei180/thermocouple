@@ -47,6 +47,8 @@
       <itemPath>mcc_generated_files/save.h</itemPath>
       <itemPath>mcc_generated_files/power.h</itemPath>
       <itemPath>mcc_generated_files/power.c</itemPath>
+      <itemPath>mcc_generated_files/com.h</itemPath>
+      <itemPath>mcc_generated_files/com.c</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript" displayName="链接器文件" projectFiles="true">
     </logicalFolder>

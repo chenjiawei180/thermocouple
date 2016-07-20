@@ -1,5 +1,13 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"2714 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+"1217 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[s S67 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S67 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE TMR1GIE ]
+"1216
+[u S66 `S67 1 ]
+[n S66 . . ]
+"1228
+[v _PIE1bits `VS66 ~T0 @X0 0 e@145 ]
+"2714
 [v _BAUDCON `Vuc ~T0 @X0 0 e@415 ]
 "2592
 [v _RCSTA `Vuc ~T0 @X0 0 e@413 ]
@@ -9,6 +17,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SPBRGL `Vuc ~T0 @X0 0 e@411 ]
 "2560
 [v _SPBRGH `Vuc ~T0 @X0 0 e@412 ]
+"2477
+[v _TXREG `Vuc ~T0 @X0 0 e@410 ]
 "623
 [s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S38 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF TMR1GIF ]
@@ -17,7 +27,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S37 . . ]
 "634
 [v _PIR1bits `VS37 ~T0 @X0 0 e@17 ]
-"2598
+"28 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
+[v ___nop `(v ~T0 @X0 0 ef ]
+[p i ___nop ]
+"2598 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [s S145 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S145 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
 "2597
@@ -27,8 +40,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RCSTAbits `VS144 ~T0 @X0 0 e@413 ]
 "2458
 [v _RCREG `Vuc ~T0 @X0 0 e@409 ]
-"2477
-[v _TXREG `Vuc ~T0 @X0 0 e@410 ]
+"83 mcc_generated_files/global.h
+[v _Usart_Rx_Buff `uc ~T0 @X0 -> 0 `x e ]
+"84
+[v _Usart_Rx_Cnt `uc ~T0 @X0 0 e ]
+"22 mcc_generated_files/com.h
+[v _RxFrameCheck `(uc ~T0 @X0 0 ef2`*uc`uc ]
+"86 mcc_generated_files/global.h
+[v _Set_time_cmd_flag `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1879,97 +1898,494 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;eusart.h: 95: void EUSART_Initialize(void);
-[; ;eusart.h: 115: uint8_t EUSART_Read(void);
-[; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
-"56 mcc_generated_files/eusart.c
+[; ;eusart.h: 77: extern volatile uint8_t eusartTxBufferRemaining;
+[; ;eusart.h: 78: extern volatile uint8_t eusartRxCount;
+[; ;eusart.h: 106: void EUSART_Initialize(void);
+[; ;eusart.h: 155: uint8_t EUSART_Read(void);
+[; ;eusart.h: 180: void EUSART_Write(uint8_t txData);
+[; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
+[; ;eusart.h: 222: void EUSART_Receive_ISR(void);
+[; ;pin_manager.h: 390: void PIN_MANAGER_Initialize(void);
+[; ;pin_manager.h: 402: void PIN_MANAGER_IOC(void);
+[; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
+[; ;__size_t.h: 4: typedef unsigned size_t;
+[; ;stddef.h: 6: typedef int ptrdiff_t;
+[; ;spi.h: 117: void SPI_Initialize(void);
+[; ;spi.h: 152: uint8_t SPI_Exchange8bit(uint8_t data);
+[; ;spi.h: 192: uint8_t SPI_Exchange8bitBuffer(uint8_t *dataIn, uint8_t bufLen, uint8_t *dataOut);
+[; ;spi.h: 215: bool SPI_IsBufferFull(void);
+[; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
+[; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
+[; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
+[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
+[; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;adc.h: 72: typedef uint16_t adc_result_t;
+[; ;adc.h: 86: typedef enum {
+[; ;adc.h: 87: channel_Temp = 0x1E,
+[; ;adc.h: 88: channel_FVR = 0x1F,
+[; ;adc.h: 89: ADC = 0x0B
+[; ;adc.h: 90: } adc_channel_t;
+[; ;adc.h: 125: void ADC_Initialize(void);
+[; ;adc.h: 154: void ADC_StartConversion(adc_channel_t channel);
+[; ;adc.h: 186: bool ADC_IsConversionDone();
+[; ;adc.h: 219: adc_result_t ADC_GetConversionResult(void);
+[; ;adc.h: 249: adc_result_t ADC_GetConversion(adc_channel_t channel);
+[; ;fvr.h: 93: void FVR_Initialize(void);
+[; ;fvr.h: 127: bool FVR_IsOutputReady(void);
+[; ;tmr0.h: 104: void TMR0_Initialize(void);
+[; ;tmr0.h: 137: uint8_t TMR0_ReadTimer(void);
+[; ;tmr0.h: 176: void TMR0_WriteTimer(uint8_t timerVal);
+[; ;tmr0.h: 212: void TMR0_Reload(void);
+[; ;tmr0.h: 230: void TMR0_ISR(void);
+[; ;tmr0.h: 248: void TMR0_CallBack(void);
+[; ;mcc.h: 74: void SYSTEM_Initialize(void);
+[; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
+[; ;global.h: 27: typedef struct bq32k_regs {
+[; ;global.h: 28: uint8_t seconds;
+[; ;global.h: 29: uint8_t minutes;
+[; ;global.h: 30: uint8_t hours;
+[; ;global.h: 31: uint8_t wday;
+[; ;global.h: 32: uint8_t date;
+[; ;global.h: 33: uint8_t month;
+[; ;global.h: 34: uint8_t years;
+[; ;global.h: 35: }bq32k_t;
+[; ;global.h: 50: extern unsigned char uch_cr0;
+[; ;global.h: 51: extern unsigned char uch_cr1;
+[; ;global.h: 52: extern unsigned char uch_mask;
+[; ;global.h: 54: extern unsigned char uch_reg[8];
+[; ;global.h: 55: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 56: extern unsigned long temperature_value;
+[; ;global.h: 57: extern unsigned int temperature_int;
+[; ;global.h: 58: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 59: extern unsigned char display_buff[4];
+[; ;global.h: 63: extern unsigned char time_count;
+[; ;global.h: 64: extern unsigned char tmr_flag;
+[; ;global.h: 66: extern unsigned char LongPressSec;
+[; ;global.h: 67: extern unsigned char MAX31856Sec;
+[; ;global.h: 68: extern bq32k_t rtc_tm;
+[; ;global.h: 69: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 70: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 71: extern unsigned int Flash_buff[32];
+[; ;global.h: 73: extern unsigned char Record_flag;
+[; ;global.h: 74: extern unsigned char CH1_state;
+[; ;global.h: 75: extern unsigned char CH2_state;
+[; ;global.h: 76: extern unsigned int CH1_temperature;
+[; ;global.h: 77: extern unsigned int CH2_temperature;
+[; ;global.h: 78: extern unsigned int Cur_temperature;
+[; ;global.h: 79: extern unsigned int Cur_Save_Index;
+[; ;global.h: 80: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 81: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
+[; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
+[; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
+[; ;com.h: 18: void Set_time_from_Com(void);
+[; ;com.h: 19: void Read_time_to_Com(void);
+[; ;com.h: 20: void Com_Process(void);
+[; ;com.h: 21: void Erase_from_Com(void);
+[; ;com.h: 22: bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len);
+[; ;com.h: 23: unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len);
+"64 mcc_generated_files/eusart.c
+[v _eusartTxHead `uc ~T0 @X0 1 s ]
+[i _eusartTxHead
+-> -> 0 `i `uc
+]
+[; ;eusart.c: 64: static uint8_t eusartTxHead = 0;
+"65
+[v _eusartTxTail `uc ~T0 @X0 1 s ]
+[i _eusartTxTail
+-> -> 0 `i `uc
+]
+[; ;eusart.c: 65: static uint8_t eusartTxTail = 0;
+"66
+[v _eusartTxBuffer `uc ~T0 @X0 -> 8 `i s ]
+[; ;eusart.c: 66: static uint8_t eusartTxBuffer[8];
+"67
+[v _eusartTxBufferRemaining `Vuc ~T0 @X0 1 e ]
+[; ;eusart.c: 67: volatile uint8_t eusartTxBufferRemaining;
+"69
+[v _eusartRxHead `uc ~T0 @X0 1 s ]
+[i _eusartRxHead
+-> -> 0 `i `uc
+]
+[; ;eusart.c: 69: static uint8_t eusartRxHead = 0;
+"70
+[v _eusartRxTail `uc ~T0 @X0 1 s ]
+[i _eusartRxTail
+-> -> 0 `i `uc
+]
+[; ;eusart.c: 70: static uint8_t eusartRxTail = 0;
+"71
+[v _eusartRxBuffer `uc ~T0 @X0 -> 8 `i s ]
+[; ;eusart.c: 71: static uint8_t eusartRxBuffer[8];
+"72
+[v _eusartRxCount `Vuc ~T0 @X0 1 e ]
+[; ;eusart.c: 72: volatile uint8_t eusartRxCount;
+"78
 [v _EUSART_Initialize `(v ~T0 @X0 1 ef ]
 {
-[; ;eusart.c: 56: void EUSART_Initialize(void) {
+[; ;eusart.c: 78: void EUSART_Initialize(void) {
 [e :U _EUSART_Initialize ]
 [f ]
-[; ;eusart.c: 60: BAUDCON = 0x48;
-"60
-[e = _BAUDCON -> -> 72 `i `uc ]
-[; ;eusart.c: 63: RCSTA = 0x80;
-"63
-[e = _RCSTA -> -> 128 `i `uc ]
-[; ;eusart.c: 66: TXSTA = 0x26;
-"66
-[e = _TXSTA -> -> 38 `i `uc ]
-[; ;eusart.c: 69: SPBRGL = 0x67;
-"69
-[e = _SPBRGL -> -> 103 `i `uc ]
-[; ;eusart.c: 72: SPBRGH = 0x00;
-"72
-[e = _SPBRGH -> -> 0 `i `uc ]
-[; ;eusart.c: 74: }
-"74
-[e :UE 233 ]
-}
-"76
-[v _EUSART_Read `(uc ~T0 @X0 1 ef ]
-{
-[; ;eusart.c: 76: uint8_t EUSART_Read(void) {
-[e :U _EUSART_Read ]
-[f ]
-[; ;eusart.c: 78: while (!PIR1bits.RCIF) {
-"78
-[e $U 235  ]
-[e :U 236 ]
-{
-"79
-}
-[e :U 235 ]
-"78
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 236  ]
-[e :U 237 ]
-[; ;eusart.c: 79: }
-[; ;eusart.c: 81: if (1 == RCSTAbits.OERR) {
+[; ;eusart.c: 80: PIE1bits.RCIE = 0;
+"80
+[e = . . _PIE1bits 0 5 -> -> 0 `i `uc ]
+[; ;eusart.c: 81: PIE1bits.TXIE = 0;
 "81
-[e $ ! == -> 1 `i -> . . _RCSTAbits 0 1 `i 238  ]
-{
-[; ;eusart.c: 84: RCSTAbits.CREN = 0;
-"84
-[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
-[; ;eusart.c: 85: RCSTAbits.CREN = 1;
-"85
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+[e = . . _PIE1bits 0 4 -> -> 0 `i `uc ]
+[; ;eusart.c: 86: BAUDCON = 0x48;
 "86
-}
-[e :U 238 ]
-[; ;eusart.c: 86: }
-[; ;eusart.c: 88: return RCREG;
-"88
-[e ) _RCREG ]
-[e $UE 234  ]
-[; ;eusart.c: 89: }
+[e = _BAUDCON -> -> 72 `i `uc ]
+[; ;eusart.c: 89: RCSTA = 0x90;
 "89
+[e = _RCSTA -> -> 144 `i `uc ]
+[; ;eusart.c: 92: TXSTA = 0x26;
+"92
+[e = _TXSTA -> -> 38 `i `uc ]
+[; ;eusart.c: 95: SPBRGL = 0x33;
+"95
+[e = _SPBRGL -> -> 51 `i `uc ]
+[; ;eusart.c: 98: SPBRGH = 0x00;
+"98
+[e = _SPBRGH -> -> 0 `i `uc ]
+[; ;eusart.c: 102: eusartTxHead = 0;
+"102
+[e = _eusartTxHead -> -> 0 `i `uc ]
+[; ;eusart.c: 103: eusartTxTail = 0;
+"103
+[e = _eusartTxTail -> -> 0 `i `uc ]
+[; ;eusart.c: 104: eusartTxBufferRemaining = sizeof (eusartTxBuffer);
+"104
+[e = _eusartTxBufferRemaining -> -> # _eusartTxBuffer `ui `uc ]
+[; ;eusart.c: 106: eusartRxHead = 0;
+"106
+[e = _eusartRxHead -> -> 0 `i `uc ]
+[; ;eusart.c: 107: eusartRxTail = 0;
+"107
+[e = _eusartRxTail -> -> 0 `i `uc ]
+[; ;eusart.c: 108: eusartRxCount = 0;
+"108
+[e = _eusartRxCount -> -> 0 `i `uc ]
+[; ;eusart.c: 111: PIE1bits.RCIE = 1;
+"111
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+[; ;eusart.c: 112: }
+"112
 [e :UE 234 ]
 }
-"91
+"114
+[v _EUSART_Read `(uc ~T0 @X0 1 ef ]
+{
+[; ;eusart.c: 114: uint8_t EUSART_Read(void) {
+[e :U _EUSART_Read ]
+[f ]
+"115
+[v _readValue `uc ~T0 @X0 1 a ]
+[; ;eusart.c: 115: uint8_t readValue = 0;
+[e = _readValue -> -> 0 `i `uc ]
+[; ;eusart.c: 117: while (0 == eusartRxCount) {
+"117
+[e $U 236  ]
+[e :U 237 ]
+{
+"118
+}
+[e :U 236 ]
+"117
+[e $ == -> 0 `i -> _eusartRxCount `i 237  ]
+[e :U 238 ]
+[; ;eusart.c: 118: }
+[; ;eusart.c: 120: PIE1bits.RCIE = 0;
+"120
+[e = . . _PIE1bits 0 5 -> -> 0 `i `uc ]
+[; ;eusart.c: 122: readValue = eusartRxBuffer[eusartRxTail++];
+"122
+[e = _readValue *U + &U _eusartRxBuffer * -> ++ _eusartRxTail -> -> 1 `i `uc `ux -> -> # *U &U _eusartRxBuffer `ui `ux ]
+[; ;eusart.c: 123: if (sizeof (eusartRxBuffer) <= eusartRxTail) {
+"123
+[e $ ! <= -> # _eusartRxBuffer `ui -> _eusartRxTail `ui 239  ]
+{
+[; ;eusart.c: 124: eusartRxTail = 0;
+"124
+[e = _eusartRxTail -> -> 0 `i `uc ]
+"125
+}
+[e :U 239 ]
+[; ;eusart.c: 125: }
+[; ;eusart.c: 126: eusartRxCount--;
+"126
+[e -- _eusartRxCount -> -> 1 `i `uc ]
+[; ;eusart.c: 127: PIE1bits.RCIE = 1;
+"127
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+[; ;eusart.c: 129: return readValue;
+"129
+[e ) _readValue ]
+[e $UE 235  ]
+[; ;eusart.c: 130: }
+"130
+[e :UE 235 ]
+}
+"132
 [v _EUSART_Write `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;eusart.c: 91: void EUSART_Write(uint8_t txData) {
+[; ;eusart.c: 132: void EUSART_Write(uint8_t txData) {
 [e :U _EUSART_Write ]
 [v _txData `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;eusart.c: 92: while (0 == PIR1bits.TXIF) {
-"92
-[e $U 240  ]
-[e :U 241 ]
-{
-"93
-}
-[e :U 240 ]
-"92
-[e $ == -> 0 `i -> . . _PIR1bits 0 4 `i 241  ]
-[e :U 242 ]
-[; ;eusart.c: 93: }
-[; ;eusart.c: 95: TXREG = txData;
-"95
+[; ;eusart.c: 135: TXREG = txData;
+"135
 [e = _TXREG _txData ]
-[; ;eusart.c: 96: }
-"96
-[e :UE 239 ]
+[; ;eusart.c: 136: PIR1bits.TXIF = 0;
+"136
+[e = . . _PIR1bits 0 4 -> -> 0 `i `uc ]
+[; ;eusart.c: 137: __nop();
+"137
+[e ( ___nop ..  ]
+[; ;eusart.c: 138: while(!PIR1bits.TXIF)
+"138
+[e $U 241  ]
+[e :U 242 ]
+[; ;eusart.c: 139: {__nop();__nop();__nop();__nop();}
+"139
+{
+[e ( ___nop ..  ]
+[e ( ___nop ..  ]
+[e ( ___nop ..  ]
+[e ( ___nop ..  ]
+}
+[e :U 241 ]
+"138
+[e $ ! != -> . . _PIR1bits 0 4 `i -> -> -> 0 `i `Vuc `i 242  ]
+[e :U 243 ]
+[; ;eusart.c: 153: }
+"153
+[e :UE 240 ]
+}
+"155
+[v _EUSART_Transmit_ISR `(v ~T0 @X0 1 ef ]
+{
+[; ;eusart.c: 155: void EUSART_Transmit_ISR(void) {
+[e :U _EUSART_Transmit_ISR ]
+[f ]
+[; ;eusart.c: 158: if (sizeof (eusartTxBuffer) > eusartTxBufferRemaining) {
+"158
+[e $ ! > -> # _eusartTxBuffer `ui -> _eusartTxBufferRemaining `ui 245  ]
+{
+[; ;eusart.c: 159: TXREG = eusartTxBuffer[eusartTxTail++];
+"159
+[e = _TXREG *U + &U _eusartTxBuffer * -> ++ _eusartTxTail -> -> 1 `i `uc `ux -> -> # *U &U _eusartTxBuffer `ui `ux ]
+[; ;eusart.c: 160: if (sizeof (eusartTxBuffer) <= eusartTxTail) {
+"160
+[e $ ! <= -> # _eusartTxBuffer `ui -> _eusartTxTail `ui 246  ]
+{
+[; ;eusart.c: 161: eusartTxTail = 0;
+"161
+[e = _eusartTxTail -> -> 0 `i `uc ]
+"162
+}
+[e :U 246 ]
+[; ;eusart.c: 162: }
+[; ;eusart.c: 163: eusartTxBufferRemaining++;
+"163
+[e ++ _eusartTxBufferRemaining -> -> 1 `i `uc ]
+"164
+}
+[; ;eusart.c: 164: } else {
+[e $U 247  ]
+[e :U 245 ]
+{
+[; ;eusart.c: 165: PIE1bits.TXIE = 0;
+"165
+[e = . . _PIE1bits 0 4 -> -> 0 `i `uc ]
+"166
+}
+[e :U 247 ]
+[; ;eusart.c: 166: }
+[; ;eusart.c: 167: }
+"167
+[e :UE 244 ]
+}
+"169
+[v _EUSART_Receive_ISR `(v ~T0 @X0 1 ef ]
+{
+[; ;eusart.c: 169: void EUSART_Receive_ISR(void) {
+[e :U _EUSART_Receive_ISR ]
+[f ]
+"170
+[v _rx_tmp `uc ~T0 @X0 1 a ]
+[; ;eusart.c: 170: unsigned char rx_tmp;
+[; ;eusart.c: 171: if (1 == RCSTAbits.OERR) {
+"171
+[e $ ! == -> 1 `i -> . . _RCSTAbits 0 1 `i 249  ]
+{
+[; ;eusart.c: 174: RCSTAbits.CREN = 0;
+"174
+[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
+[; ;eusart.c: 175: RCSTAbits.CREN = 1;
+"175
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+"176
+}
+[e :U 249 ]
+[; ;eusart.c: 176: }
+[; ;eusart.c: 177: rx_tmp = RCREG;
+"177
+[e = _rx_tmp _RCREG ]
+[; ;eusart.c: 178: Usart_Rx_Buff[Usart_Rx_Cnt] = rx_tmp ;
+"178
+[e = *U + &U _Usart_Rx_Buff * -> _Usart_Rx_Cnt `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux _rx_tmp ]
+[; ;eusart.c: 179: Usart_Rx_Cnt++;
+"179
+[e ++ _Usart_Rx_Cnt -> -> 1 `i `uc ]
+[; ;eusart.c: 190: if( Usart_Rx_Cnt == 1)
+"190
+[e $ ! == -> _Usart_Rx_Cnt `i -> 1 `i 250  ]
+[; ;eusart.c: 191: {
+"191
+{
+[; ;eusart.c: 192: if( rx_tmp != 0xfe)
+"192
+[e $ ! != -> _rx_tmp `i -> 254 `i 251  ]
+[; ;eusart.c: 193: {
+"193
+{
+[; ;eusart.c: 194: Usart_Rx_Cnt = 0;
+"194
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+"195
+}
+[e :U 251 ]
+"196
+}
+[; ;eusart.c: 195: }
+[; ;eusart.c: 196: }
+[e $U 252  ]
+"197
+[e :U 250 ]
+[; ;eusart.c: 197: else if( Usart_Rx_Cnt == 2)
+[e $ ! == -> _Usart_Rx_Cnt `i -> 2 `i 253  ]
+[; ;eusart.c: 198: {
+"198
+{
+[; ;eusart.c: 199: if( rx_tmp != 0xfe)
+"199
+[e $ ! != -> _rx_tmp `i -> 254 `i 254  ]
+[; ;eusart.c: 200: {
+"200
+{
+[; ;eusart.c: 201: Usart_Rx_Cnt = 0;
+"201
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+"202
+}
+[e :U 254 ]
+"203
+}
+[; ;eusart.c: 202: }
+[; ;eusart.c: 203: }
+[e $U 255  ]
+"204
+[e :U 253 ]
+[; ;eusart.c: 204: else if( Usart_Rx_Cnt == 4)
+[e $ ! == -> _Usart_Rx_Cnt `i -> 4 `i 256  ]
+[; ;eusart.c: 205: {
+"205
+{
+[; ;eusart.c: 206: if( rx_tmp > 7)
+"206
+[e $ ! > -> _rx_tmp `i -> 7 `i 257  ]
+[; ;eusart.c: 207: {
+"207
+{
+[; ;eusart.c: 208: Usart_Rx_Cnt = 0;
+"208
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+"209
+}
+[e :U 257 ]
+"210
+}
+[; ;eusart.c: 209: }
+[; ;eusart.c: 210: }
+[e $U 258  ]
+"211
+[e :U 256 ]
+[; ;eusart.c: 211: else if( Usart_Rx_Cnt > 14)
+[e $ ! > -> _Usart_Rx_Cnt `i -> 14 `i 259  ]
+[; ;eusart.c: 212: {
+"212
+{
+[; ;eusart.c: 213: Usart_Rx_Cnt = 0;
+"213
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+"214
+}
+[; ;eusart.c: 214: }
+[e $U 260  ]
+"215
+[e :U 259 ]
+[; ;eusart.c: 215: else if( (Usart_Rx_Cnt == (Usart_Rx_Buff[3]+7)) && ( rx_tmp == 0Xbb) )
+[e $ ! && == -> _Usart_Rx_Cnt `i + -> *U + &U _Usart_Rx_Buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux `i -> 7 `i == -> _rx_tmp `i -> 187 `i 261  ]
+[; ;eusart.c: 216: {
+"216
+{
+[; ;eusart.c: 217: if(RxFrameCheck(Usart_Rx_Buff,Usart_Rx_Cnt))
+"217
+[e $ ! != -> ( _RxFrameCheck (2 , &U _Usart_Rx_Buff _Usart_Rx_Cnt `i -> -> -> 0 `i `uc `i 262  ]
+[; ;eusart.c: 218: {
+"218
+{
+[; ;eusart.c: 219: switch( Usart_Rx_Buff[2] )
+"219
+[e $U 264  ]
+[; ;eusart.c: 220: {
+"220
+{
+[; ;eusart.c: 221: case 0x01:
+"221
+[e :U 265 ]
+[; ;eusart.c: 222: break;
+"222
+[e $U 263  ]
+[; ;eusart.c: 223: case 0X02: Set_time_cmd_flag = 1;
+"223
+[e :U 266 ]
+[e = _Set_time_cmd_flag -> -> 1 `i `uc ]
+[; ;eusart.c: 224: break;
+"224
+[e $U 263  ]
+[; ;eusart.c: 225: default:break;
+"225
+[e :U 267 ]
+[e $U 263  ]
+"226
+}
+[; ;eusart.c: 226: }
+[e $U 263  ]
+"219
+[e :U 264 ]
+[e [\ *U + &U _Usart_Rx_Buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux , $ -> -> 1 `i `uc 265
+ , $ -> -> 2 `i `uc 266
+ 267 ]
+"226
+[e :U 263 ]
+"227
+}
+[e :U 262 ]
+[; ;eusart.c: 227: }
+[; ;eusart.c: 228: Usart_Rx_Cnt = 0;
+"228
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+"229
+}
+[e :U 261 ]
+"231
+[e :U 260 ]
+[e :U 258 ]
+[e :U 255 ]
+[e :U 252 ]
+[; ;eusart.c: 229: }
+[; ;eusart.c: 231: }
+[e :UE 248 ]
 }

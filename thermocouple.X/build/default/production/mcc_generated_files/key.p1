@@ -7,11 +7,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 "152 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic.h
 [v __delay `JF1816 ~T0 @X0 0 e ]
 [p i __delay ]
-"59 mcc_generated_files/global.h
+"66 mcc_generated_files/global.h
 [v _LongPressSec `uc ~T0 @X0 0 e ]
 "4441 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
-"66 mcc_generated_files/global.h
+"73 mcc_generated_files/global.h
 [v _Record_flag `uc ~T0 @X0 0 e ]
 "4443 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATA4 `Vb ~T0 @X0 0 e@2148 ]
@@ -23,7 +23,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SWDTEN `Vb ~T0 @X0 0 e@1208 ]
 "99 mcc_generated_files/memory.h
 [v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ui ]
-"135 mcc_generated_files/eusart.h
+"180 mcc_generated_files/eusart.h
 [v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
 "19 mcc_generated_files/save.h
 [v _Set_start_flag `(v ~T0 @X0 0 ef ]
@@ -31,15 +31,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Write_Flash_head `(v ~T0 @X0 0 ef ]
 "28
 [v _Save_Write_time `(v ~T0 @X0 0 ef ]
-"73 mcc_generated_files/global.h
+"80 mcc_generated_files/global.h
 [v _Cur_temperature_time_ch1 `uc ~T0 @X0 0 e ]
-"74
+"81
 [v _Cur_temperature_time_ch2 `uc ~T0 @X0 0 e ]
-"69
+"76
 [v _CH1_temperature `ui ~T0 @X0 0 e ]
-"70
+"77
 [v _CH2_temperature `ui ~T0 @X0 0 e ]
-"56
+"63
 [v _time_count `uc ~T0 @X0 0 e ]
 "20 mcc_generated_files/save.h
 [v _Set_finish_flag `(v ~T0 @X0 0 ef ]
@@ -1908,9 +1908,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;spi.h: 215: bool SPI_IsBufferFull(void);
 [; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
 [; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
-[; ;eusart.h: 95: void EUSART_Initialize(void);
-[; ;eusart.h: 115: uint8_t EUSART_Read(void);
-[; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
+[; ;eusart.h: 77: extern volatile uint8_t eusartTxBufferRemaining;
+[; ;eusart.h: 78: extern volatile uint8_t eusartRxCount;
+[; ;eusart.h: 106: void EUSART_Initialize(void);
+[; ;eusart.h: 155: uint8_t EUSART_Read(void);
+[; ;eusart.h: 180: void EUSART_Write(uint8_t txData);
+[; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
+[; ;eusart.h: 222: void EUSART_Receive_ISR(void);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
 [; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
@@ -1936,41 +1940,44 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
 [; ;mcc.h: 74: void SYSTEM_Initialize(void);
 [; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
-[; ;global.h: 26: typedef struct bq32k_regs {
-[; ;global.h: 27: uint8_t seconds;
-[; ;global.h: 28: uint8_t minutes;
-[; ;global.h: 29: uint8_t hours;
-[; ;global.h: 30: uint8_t wday;
-[; ;global.h: 31: uint8_t date;
-[; ;global.h: 32: uint8_t month;
-[; ;global.h: 33: uint8_t years;
-[; ;global.h: 34: }bq32k_t;
-[; ;global.h: 43: extern unsigned char uch_cr0;
-[; ;global.h: 44: extern unsigned char uch_cr1;
-[; ;global.h: 45: extern unsigned char uch_mask;
-[; ;global.h: 47: extern unsigned char uch_reg[8];
-[; ;global.h: 48: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 49: extern unsigned long temperature_value;
-[; ;global.h: 50: extern unsigned int temperature_int;
-[; ;global.h: 51: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 52: extern unsigned char display_buff[4];
-[; ;global.h: 56: extern unsigned char time_count;
-[; ;global.h: 57: extern unsigned char tmr_flag;
-[; ;global.h: 59: extern unsigned char LongPressSec;
-[; ;global.h: 60: extern unsigned char MAX31856Sec;
-[; ;global.h: 61: extern bq32k_t rtc_tm;
-[; ;global.h: 62: extern bq32k_t rtc_save_ch1;
-[; ;global.h: 63: extern bq32k_t rtc_save_ch2;
-[; ;global.h: 64: extern unsigned int Flash_buff[32];
-[; ;global.h: 66: extern unsigned char Record_flag;
-[; ;global.h: 67: extern unsigned char CH1_state;
-[; ;global.h: 68: extern unsigned char CH2_state;
-[; ;global.h: 69: extern unsigned int CH1_temperature;
-[; ;global.h: 70: extern unsigned int CH2_temperature;
-[; ;global.h: 71: extern unsigned int Cur_temperature;
-[; ;global.h: 72: extern unsigned int Cur_Save_Index;
-[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 74: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 27: typedef struct bq32k_regs {
+[; ;global.h: 28: uint8_t seconds;
+[; ;global.h: 29: uint8_t minutes;
+[; ;global.h: 30: uint8_t hours;
+[; ;global.h: 31: uint8_t wday;
+[; ;global.h: 32: uint8_t date;
+[; ;global.h: 33: uint8_t month;
+[; ;global.h: 34: uint8_t years;
+[; ;global.h: 35: }bq32k_t;
+[; ;global.h: 50: extern unsigned char uch_cr0;
+[; ;global.h: 51: extern unsigned char uch_cr1;
+[; ;global.h: 52: extern unsigned char uch_mask;
+[; ;global.h: 54: extern unsigned char uch_reg[8];
+[; ;global.h: 55: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 56: extern unsigned long temperature_value;
+[; ;global.h: 57: extern unsigned int temperature_int;
+[; ;global.h: 58: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 59: extern unsigned char display_buff[4];
+[; ;global.h: 63: extern unsigned char time_count;
+[; ;global.h: 64: extern unsigned char tmr_flag;
+[; ;global.h: 66: extern unsigned char LongPressSec;
+[; ;global.h: 67: extern unsigned char MAX31856Sec;
+[; ;global.h: 68: extern bq32k_t rtc_tm;
+[; ;global.h: 69: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 70: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 71: extern unsigned int Flash_buff[32];
+[; ;global.h: 73: extern unsigned char Record_flag;
+[; ;global.h: 74: extern unsigned char CH1_state;
+[; ;global.h: 75: extern unsigned char CH2_state;
+[; ;global.h: 76: extern unsigned int CH1_temperature;
+[; ;global.h: 77: extern unsigned int CH2_temperature;
+[; ;global.h: 78: extern unsigned int Cur_temperature;
+[; ;global.h: 79: extern unsigned int Cur_Save_Index;
+[; ;global.h: 80: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 81: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
+[; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
+[; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
 [; ;key.h: 21: unsigned char Key_Scan(void);
 [; ;key.h: 22: void Key_Process(void);
 [; ;ht1621.h: 22: extern unsigned char const Dis_TAB[];
@@ -2186,145 +2193,142 @@ Version 3.2 HI-TECH Software Intermediate Code
 "75
 }
 [; ;key.c: 75: }
-[; ;key.c: 76: SWDTEN = 1;
-"76
-[e = _SWDTEN -> -> 1 `i `b ]
-[; ;key.c: 77: asm("clrwdt");
-"77
+[; ;key.c: 79: asm("clrwdt");
+"79
 [; <" clrwdt ;# ">
-"78
+"80
 }
 [e :U 261 ]
-[; ;key.c: 78: }
-[; ;key.c: 80: while(RB5 == 0) asm("clrwdt");
-"80
+[; ;key.c: 80: }
+[; ;key.c: 82: while(RB5 == 0) asm("clrwdt");
+"82
 [e $U 265  ]
 [e :U 266 ]
 [; <" clrwdt ;# ">
 [e :U 265 ]
 [e $ == -> _RB5 `i -> 0 `i 266  ]
 [e :U 267 ]
-[; ;key.c: 81: break;
-"81
-[e $U 248  ]
-[; ;key.c: 82: case 0x02:
-"82
-[e :U 268 ]
-[; ;key.c: 83: while( !(LongPressSec > 2 || RA7 == 1) )asm("clrwdt");
+[; ;key.c: 83: break;
 "83
+[e $U 248  ]
+[; ;key.c: 84: case 0x02:
+"84
+[e :U 268 ]
+[; ;key.c: 85: while( !(LongPressSec > 2 || RA7 == 1) )asm("clrwdt");
+"85
 [e $U 269  ]
 [e :U 270 ]
 [; <" clrwdt ;# ">
 [e :U 269 ]
 [e $ ! || > -> _LongPressSec `i -> 2 `i == -> _RA7 `i -> 1 `i 270  ]
 [e :U 271 ]
-[; ;key.c: 84: if(LongPressSec > 2)
-"84
-[e $ ! > -> _LongPressSec `i -> 2 `i 272  ]
-[; ;key.c: 85: {
-"85
-{
-[; ;key.c: 86: if(Record_flag == 0)
+[; ;key.c: 86: if(LongPressSec > 2)
 "86
-[e $ ! == -> _Record_flag `i -> 0 `i 273  ]
+[e $ ! > -> _LongPressSec `i -> 2 `i 272  ]
 [; ;key.c: 87: {
 "87
 {
-[; ;key.c: 88: Set_start_flag();
+[; ;key.c: 88: if(Record_flag == 0)
 "88
-[e ( _Set_start_flag ..  ]
-[; ;key.c: 89: Write_Flash_head();
+[e $ ! == -> _Record_flag `i -> 0 `i 273  ]
+[; ;key.c: 89: {
 "89
-[e ( _Write_Flash_head ..  ]
-[; ;key.c: 90: Save_Write_time();
-"90
-[e ( _Save_Write_time ..  ]
-[; ;key.c: 91: Cur_temperature_time_ch1 = 0;
-"91
-[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
-[; ;key.c: 92: Cur_temperature_time_ch2 = 0;
-"92
-[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
-[; ;key.c: 93: CH1_temperature = 0;
-"93
-[e = _CH1_temperature -> -> 0 `i `ui ]
-[; ;key.c: 94: CH2_temperature = 0;
-"94
-[e = _CH2_temperature -> -> 0 `i `ui ]
-[; ;key.c: 95: time_count = 0;
-"95
-[e = _time_count -> -> 0 `i `uc ]
-"96
-}
-[; ;key.c: 96: }
-[e $U 274  ]
-"97
-[e :U 273 ]
-[; ;key.c: 97: else
-[; ;key.c: 98: {
-"98
 {
-[; ;key.c: 99: Set_finish_flag();
+[; ;key.c: 90: Set_start_flag();
+"90
+[e ( _Set_start_flag ..  ]
+[; ;key.c: 91: Write_Flash_head();
+"91
+[e ( _Write_Flash_head ..  ]
+[; ;key.c: 92: Save_Write_time();
+"92
+[e ( _Save_Write_time ..  ]
+[; ;key.c: 93: Cur_temperature_time_ch1 = 0;
+"93
+[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
+[; ;key.c: 94: Cur_temperature_time_ch2 = 0;
+"94
+[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
+[; ;key.c: 95: CH1_temperature = 0;
+"95
+[e = _CH1_temperature -> -> 0 `i `ui ]
+[; ;key.c: 96: CH2_temperature = 0;
+"96
+[e = _CH2_temperature -> -> 0 `i `ui ]
+[; ;key.c: 97: time_count = 0;
+"97
+[e = _time_count -> -> 0 `i `uc ]
+"98
+}
+[; ;key.c: 98: }
+[e $U 274  ]
 "99
-[e ( _Set_finish_flag ..  ]
-[; ;key.c: 100: Write_Flash_finish();
+[e :U 273 ]
+[; ;key.c: 99: else
+[; ;key.c: 100: {
 "100
-[e ( _Write_Flash_finish ..  ]
+{
+[; ;key.c: 101: Set_finish_flag();
 "101
+[e ( _Set_finish_flag ..  ]
+[; ;key.c: 102: Write_Flash_finish();
+"102
+[e ( _Write_Flash_finish ..  ]
+"103
 }
 [e :U 274 ]
-"102
-}
-[; ;key.c: 101: }
-[; ;key.c: 102: }
-[e $U 275  ]
-"103
-[e :U 272 ]
-[; ;key.c: 103: else
-[; ;key.c: 104: {
 "104
-{
-[; ;key.c: 105: time_count = 5;
+}
+[; ;key.c: 103: }
+[; ;key.c: 104: }
+[e $U 275  ]
 "105
-[e = _time_count -> -> 5 `i `uc ]
-[; ;key.c: 106: temperature_process();
+[e :U 272 ]
+[; ;key.c: 105: else
+[; ;key.c: 106: {
 "106
-[e ( _temperature_process ..  ]
+{
+[; ;key.c: 107: time_count = 5;
 "107
+[e = _time_count -> -> 5 `i `uc ]
+[; ;key.c: 108: temperature_process();
+"108
+[e ( _temperature_process ..  ]
+"109
 }
 [e :U 275 ]
-[; ;key.c: 107: }
-[; ;key.c: 108: while(RA7 == 0)asm("clrwdt");
-"108
+[; ;key.c: 109: }
+[; ;key.c: 110: while(RA7 == 0)asm("clrwdt");
+"110
 [e $U 276  ]
 [e :U 277 ]
 [; <" clrwdt ;# ">
 [e :U 276 ]
 [e $ == -> _RA7 `i -> 0 `i 277  ]
 [e :U 278 ]
-[; ;key.c: 109: break;
-"109
+[; ;key.c: 111: break;
+"111
 [e $U 248  ]
-[; ;key.c: 110: default:break;
-"110
+[; ;key.c: 112: default:break;
+"112
 [e :U 279 ]
 [e $U 248  ]
-"111
+"113
 }
-[; ;key.c: 111: }
+[; ;key.c: 113: }
 [e $U 248  ]
 "55
 [e :U 249 ]
 [e [\ _gKeyValue , $ -> -> 1 `i `uc 250
  , $ -> -> 2 `i `uc 268
  279 ]
-"111
+"113
 [e :U 248 ]
-"112
+"114
 }
 [e :U 240 ]
-[; ;key.c: 112: }
-[; ;key.c: 113: }
-"113
+[; ;key.c: 114: }
+[; ;key.c: 115: }
+"115
 [e :UE 239 ]
 }

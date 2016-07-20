@@ -2645,14 +2645,24 @@ bool SPI_HasWriteCollisionOccured(void);
 # 264
 void SPI_ClearWriteCollisionStatus(void);
 
-# 95 "mcc_generated_files/eusart.h"
+# 77 "mcc_generated_files/eusart.h"
+extern volatile uint8_t eusartTxBufferRemaining;
+extern volatile uint8_t eusartRxCount;
+
+# 106
 void EUSART_Initialize(void);
 
-# 115
+# 155
 uint8_t EUSART_Read(void);
 
-# 135
+# 180
 void EUSART_Write(uint8_t txData);
+
+# 201
+void EUSART_Transmit_ISR(void);
+
+# 222
+void EUSART_Receive_ISR(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);

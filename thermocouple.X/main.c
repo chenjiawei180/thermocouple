@@ -120,11 +120,15 @@ void main(void) {
     CH2_temperature = 0;
     CH1_state = 0;
     CH2_state = 0;
+    Usart_Rx_Cnt = 0;
+    Set_time_cmd_flag = 0;
     bat_data = 0;
     Cur_Save_Index = Record_Add;
     Serach_Flash_Head();
     CLRWDT();
+#if WDT_SLEEP
     SWDTEN = 1;
+#endif
     //EUSART_Write(Cur_Save_Index>>8);
     //EUSART_Write(Cur_Save_Index&0XFF);
 #if 0
@@ -186,8 +190,10 @@ void main(void) {
         temperature_process();
         Key_Process();
         Save_process();
+        Com_Process();
+#if WDT_SLEEP
         Sleep_process();
-
+#endif
 
 
 #if 0

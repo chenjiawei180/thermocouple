@@ -16,6 +16,7 @@ extern "C" {
     
 #define DEBUG 1
 #define P_check 1
+#define WDT_SLEEP 0
 
 #ifdef OS_GLOBALS
 #define OS_EXT
@@ -39,6 +40,12 @@ typedef struct bq32k_regs {
 
 #define Record_Add 0x2000
 #define Time_Add 0x1fff
+#define HEAD_FLAG 0xfe
+#define FINISH_FLAG 0Xbb
+
+#define INF_CMD 0x01
+#define SET_TIME_CMD 0X02
+
 
 OS_EXT unsigned char uch_cr0;
 OS_EXT unsigned char uch_cr1;
@@ -73,6 +80,10 @@ OS_EXT unsigned int Cur_Save_Index;
 OS_EXT unsigned char Cur_temperature_time_ch1;
 OS_EXT unsigned char Cur_temperature_time_ch2;
 
+OS_EXT unsigned char Usart_Rx_Buff[32];
+OS_EXT unsigned char Usart_Rx_Cnt;
+
+OS_EXT unsigned char Set_time_cmd_flag;
 
 #ifdef	__cplusplus
 }

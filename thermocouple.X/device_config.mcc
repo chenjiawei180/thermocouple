@@ -65,9 +65,11 @@
             <setting name="preemptHigh" option="true"/>
             <setting name="preemptLow" option="true"/>
             <setting name="useIPEN" option="false"/>
-            <interrupt module="TMR0" name="TMRI" priority="2"/>
-            <file checksum="861387996" modified="false" name="interrupt_manager.c" path="mcc_generated_files/interrupt_manager.c"/>
+            <file checksum="3865439293" modified="false" name="interrupt_manager.c" path="mcc_generated_files/interrupt_manager.c"/>
             <file checksum="1729886857" modified="false" name="interrupt_manager.h" path="mcc_generated_files/interrupt_manager.h"/>
+            <interrupt module="TMR0" name="TMRI" priority="2"/>
+            <interrupt module="EUSART" name="RCI" priority="2"/>
+            <interrupt module="EUSART" name="TXI" priority="2"/>
         </manager>
     </managers>
     <modules>
@@ -127,7 +129,7 @@
                 <setting name="OERR" option="no_error" register="RCSTA"/>
                 <setting name="RX9" option="8-bit" register="RCSTA"/>
                 <setting name="RX9D" option="0x0" register="RCSTA"/>
-                <setting name="CREN" option="disabled" register="RCSTA"/>
+                <setting name="CREN" option="enabled" register="RCSTA"/>
                 <setting name="ADDEN" option="disabled" register="RCSTA"/>
                 <setting name="SREN" option="disabled" register="RCSTA"/>
                 <setting name="FERR" option="no_error" register="RCSTA"/>
@@ -139,19 +141,19 @@
                 <setting name="SYNC" option="asynchronous" register="TXSTA"/>
                 <setting name="BRGH" option="hi_speed" register="TXSTA"/>
                 <setting name="CSRC" option="slave_mode" register="TXSTA"/>
-                <setting name="SPBRGL" option="103" register="SPBRGL"/>
+                <setting name="SPBRGL" option="51" register="SPBRGL"/>
                 <setting name="SPBRGH" option="0" register="SPBRGH"/>
                 <setting name="TXREG" option="0x0" register="TXREG"/>
                 <setting name="RCREG" option="0x0" register="RCREG"/>
-                <additionalSetting name="baudrateString" option="9600"/>
+                <additionalSetting name="baudrateString" option="19200"/>
             </initializer>
-            <setting name="RCI" option="false"/>
-            <setting name="TXI" option="false"/>
+            <setting name="RCI" option="true"/>
+            <setting name="TXI" option="true"/>
             <setting name="inputBuffer" option="8"/>
             <setting name="outputBuffer" option="8"/>
             <setting name="stdio" option="false"/>
-            <file checksum="2330166570" modified="false" name="eusart.c" path="mcc_generated_files/eusart.c"/>
-            <file checksum="1841324840" modified="false" name="eusart.h" path="mcc_generated_files/eusart.h"/>
+            <file checksum="1018809609" modified="false" name="eusart.c" path="mcc_generated_files/eusart.c"/>
+            <file checksum="1752656988" modified="false" name="eusart.h" path="mcc_generated_files/eusart.h"/>
         </module>
         <module generated="true" mode="Memory" name="MEMORY" order="3" reloadPin="manual" type="nvm">
             <file checksum="3850180372" modified="false" name="memory.c" path="mcc_generated_files/memory.c"/>

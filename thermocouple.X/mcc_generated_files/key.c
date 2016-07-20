@@ -73,7 +73,9 @@ void Key_Process(void)
                         EUSART_Write(data_temp&0xff);
                         
                     }
+#if WDT_SLEEP
                     SWDTEN = 1;
+#endif
                     CLRWDT();
                 }
 #endif

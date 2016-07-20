@@ -1,7 +1,10 @@
----- ADON Matches (6 in 3 files) ----
-Adc.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    // GO_nDONE stop; ADON enabled; CHS AN0; 
-Adc.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    ADCON0bits.ADON = 1;
-Adc.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    ADCON0bits.ADON = 1;
-Main.c (e:\github\thermocouple\thermocouple.x):    //ADON = 0;
-Power.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    //ADON = 0;
-Power.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    //ADON = 1;
+---- SWDTEN Matches (10 in 4 files) ----
+Key.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):                    SWDTEN = 0;
+Key.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):                    SWDTEN = 1;
+Main.c (e:\github\thermocouple\thermocouple.x):    SWDTEN = 0;
+Main.c (e:\github\thermocouple\thermocouple.x):    SWDTEN = 1;
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SWDTEN = 0;
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SWDTEN = 1;    //start wdt
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SWDTEN = 0;
+Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SWDTEN = 1;    //start wdt
+Mcc.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#pragma config WDTE = SWDTEN    // Watchdog Timer Enable->WDT controlled by the SWDTEN bit in the WDTCON register

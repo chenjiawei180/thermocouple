@@ -2620,14 +2620,24 @@ bool SPI_HasWriteCollisionOccured(void);
 # 264
 void SPI_ClearWriteCollisionStatus(void);
 
-# 95 "mcc_generated_files/eusart.h"
+# 77 "mcc_generated_files/eusart.h"
+extern volatile uint8_t eusartTxBufferRemaining;
+extern volatile uint8_t eusartRxCount;
+
+# 106
 void EUSART_Initialize(void);
 
-# 115
+# 155
 uint8_t EUSART_Read(void);
 
-# 135
+# 180
 void EUSART_Write(uint8_t txData);
+
+# 201
+void EUSART_Transmit_ISR(void);
+
+# 222
+void EUSART_Receive_ISR(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
@@ -2696,7 +2706,7 @@ void SYSTEM_Initialize(void);
 # 87
 void OSCILLATOR_Initialize(void);
 
-# 26 "mcc_generated_files/global.h"
+# 27 "mcc_generated_files/global.h"
 typedef struct bq32k_regs {
 uint8_t seconds;
 uint8_t minutes;
@@ -2707,7 +2717,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-# 43
+# 50
  unsigned char uch_cr0;
  unsigned char uch_cr1;
  unsigned char uch_mask;
@@ -2740,6 +2750,11 @@ uint8_t years;
  unsigned int Cur_Save_Index;
  unsigned char Cur_temperature_time_ch1;
  unsigned char Cur_temperature_time_ch2;
+
+ unsigned char Usart_Rx_Buff[32];
+ unsigned char Usart_Rx_Cnt;
+
+ unsigned char Set_time_cmd_flag;
 
 # 82 "mcc_generated_files/max31856.h"
 void maxim_31856_init(void);
@@ -2964,19 +2979,20 @@ CH1_temperature = 0;
 CH2_temperature = 0;
 CH1_state = 0;
 CH2_state = 0;
+Usart_Rx_Cnt = 0;
+Set_time_cmd_flag = 0;
 bat_data = 0;
 Cur_Save_Index = 0x2000;
 Serach_Flash_Head();
 asm("clrwdt");
-SWDTEN = 1;
 
-# 152
+# 156
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 163
+# 167
 while (1)
 {
 
@@ -3003,9 +3019,9 @@ bat_data = 0;
 temperature_process();
 Key_Process();
 Save_process();
-Sleep_process();
+Com_Process();
 
-# 276
+# 282
 }
 }
 

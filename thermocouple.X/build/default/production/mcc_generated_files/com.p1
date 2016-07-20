@@ -1,38 +1,25 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"343 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[s S27 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S27 . IOCIF INTF TMR0IF IOCIE INTE TMR0IE PEIE GIE ]
-"353
-[s S28 :2 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S28 . . T0IF . T0IE ]
-"342
-[u S26 `S27 1 `S28 1 ]
-[n S26 . . . ]
-"360
-[v _INTCONbits `VS26 ~T0 @X0 0 e@11 ]
-"230 mcc_generated_files/tmr0.h
-[v _TMR0_ISR `(v ~T0 @X0 0 ef ]
-"1217 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[s S67 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S67 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE TMR1GIE ]
-"1216
-[u S66 `S67 1 ]
-[n S66 . . ]
-"1228
-[v _PIE1bits `VS66 ~T0 @X0 0 e@145 ]
-"623
-[s S38 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S38 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF TMR1GIF ]
-"622
-[u S37 `S38 1 ]
-[n S37 . . ]
-"634
-[v _PIR1bits `VS37 ~T0 @X0 0 e@17 ]
-"222 mcc_generated_files/eusart.h
-[v _EUSART_Receive_ISR `(v ~T0 @X0 0 ef ]
-"201
-[v _EUSART_Transmit_ISR `(v ~T0 @X0 0 ef ]
-[; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
+"86 mcc_generated_files/global.h
+[v _Set_time_cmd_flag `uc ~T0 @X0 0 e ]
+"18 mcc_generated_files/com.h
+[v _Set_time_from_Com `(v ~T0 @X0 0 ef ]
+"27 mcc_generated_files/global.h
+[s S233 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
+[n S233 bq32k_regs seconds minutes hours wday date month years ]
+"68
+[v _rtc_tm `S233 ~T0 @X0 0 e ]
+"83
+[v _Usart_Rx_Buff `uc ~T0 @X0 -> 0 `x e ]
+"40 mcc_generated_files/bq32k.h
+[v _Bq32k_Rtc_Write_Time `(v ~T0 @X0 0 ef1`*S233 ]
+"39
+[v _Bq32k_Rtc_Read_Time `(v ~T0 @X0 0 ef1`*S233 ]
+"19 mcc_generated_files/com.h
+[v _Read_time_to_Com `(v ~T0 @X0 0 ef ]
+"23
+[v _CRC_cal `(ui ~T0 @X0 0 ef2`*uc`uc ]
+"180 mcc_generated_files/eusart.h
+[v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1885,6 +1872,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;stdint.h: 210: typedef int16_t intptr_t;
 [; ;stdint.h: 215: typedef uint16_t uintptr_t;
 [; ;stdbool.h: 12: typedef unsigned char bool;
+[; ;interrupt_manager.h: 111: void interrupt INTERRUPT_InterruptManager(void);
 [; ;__size_t.h: 4: typedef unsigned size_t;
 [; ;stddef.h: 6: typedef int ptrdiff_t;
 [; ;spi.h: 117: void SPI_Initialize(void);
@@ -1925,53 +1913,378 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.h: 248: void TMR0_CallBack(void);
 [; ;mcc.h: 74: void SYSTEM_Initialize(void);
 [; ;mcc.h: 87: void OSCILLATOR_Initialize(void);
-[v F3 `(v ~T0 @X0 1 tf ]
-"52 mcc_generated_files/interrupt_manager.c
-[v _INTERRUPT_InterruptManager `IF3 ~T0 @X0 1 e ]
+[; ;global.h: 27: typedef struct bq32k_regs {
+[; ;global.h: 28: uint8_t seconds;
+[; ;global.h: 29: uint8_t minutes;
+[; ;global.h: 30: uint8_t hours;
+[; ;global.h: 31: uint8_t wday;
+[; ;global.h: 32: uint8_t date;
+[; ;global.h: 33: uint8_t month;
+[; ;global.h: 34: uint8_t years;
+[; ;global.h: 35: }bq32k_t;
+[; ;global.h: 50: extern unsigned char uch_cr0;
+[; ;global.h: 51: extern unsigned char uch_cr1;
+[; ;global.h: 52: extern unsigned char uch_mask;
+[; ;global.h: 54: extern unsigned char uch_reg[8];
+[; ;global.h: 55: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 56: extern unsigned long temperature_value;
+[; ;global.h: 57: extern unsigned int temperature_int;
+[; ;global.h: 58: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 59: extern unsigned char display_buff[4];
+[; ;global.h: 63: extern unsigned char time_count;
+[; ;global.h: 64: extern unsigned char tmr_flag;
+[; ;global.h: 66: extern unsigned char LongPressSec;
+[; ;global.h: 67: extern unsigned char MAX31856Sec;
+[; ;global.h: 68: extern bq32k_t rtc_tm;
+[; ;global.h: 69: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 70: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 71: extern unsigned int Flash_buff[32];
+[; ;global.h: 73: extern unsigned char Record_flag;
+[; ;global.h: 74: extern unsigned char CH1_state;
+[; ;global.h: 75: extern unsigned char CH2_state;
+[; ;global.h: 76: extern unsigned int CH1_temperature;
+[; ;global.h: 77: extern unsigned int CH2_temperature;
+[; ;global.h: 78: extern unsigned int Cur_temperature;
+[; ;global.h: 79: extern unsigned int Cur_Save_Index;
+[; ;global.h: 80: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 81: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
+[; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
+[; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
+[; ;com.h: 18: void Set_time_from_Com(void);
+[; ;com.h: 19: void Read_time_to_Com(void);
+[; ;com.h: 20: void Com_Process(void);
+[; ;com.h: 21: void Erase_from_Com(void);
+[; ;com.h: 22: bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len);
+[; ;com.h: 23: unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len);
+[; ;i2c.h: 23: void I2C_Start(void);
+[; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
+[; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
+[; ;i2c.h: 26: void I2C_Stop(void);
+[; ;i2c.h: 27: unsigned char I2C_Read_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
+[; ;i2c.h: 28: unsigned char I2C_Send_Buffer(unsigned char ADD,unsigned char *buff,unsigned char Length);
+[; ;bq32k.h: 38: void Bq32k_Time_Init(void);
+[; ;bq32k.h: 39: void Bq32k_Rtc_Read_Time(bq32k_t *p);
+[; ;bq32k.h: 40: void Bq32k_Rtc_Write_Time(bq32k_t *p);
+[; ;bq32k.h: 42: unsigned char bcd2bin(unsigned char val);
+[; ;bq32k.h: 43: unsigned char bin2bcd(unsigned char val);
+"18 mcc_generated_files/com.c
+[v _Com_Process `(v ~T0 @X0 1 ef ]
+"19
 {
-[; ;interrupt_manager.c: 52: void interrupt INTERRUPT_InterruptManager(void) {
-[e :U _INTERRUPT_InterruptManager ]
+[; ;com.c: 18: void Com_Process(void)
+[; ;com.c: 19: {
+[e :U _Com_Process ]
 [f ]
-[; ;interrupt_manager.c: 54: if (INTCONbits.TMR0IE == 1 && INTCONbits.TMR0IF == 1) {
-"54
-[e $ ! && == -> . . _INTCONbits 0 5 `i -> 1 `i == -> . . _INTCONbits 0 2 `i -> 1 `i 234  ]
+[; ;com.c: 20: if(Set_time_cmd_flag == 1)
+"20
+[e $ ! == -> _Set_time_cmd_flag `i -> 1 `i 235  ]
+[; ;com.c: 21: {
+"21
 {
-[; ;interrupt_manager.c: 55: TMR0_ISR();
-"55
-[e ( _TMR0_ISR ..  ]
-"56
+[; ;com.c: 22: Set_time_from_Com();
+"22
+[e ( _Set_time_from_Com ..  ]
+[; ;com.c: 23: Set_time_cmd_flag = 0;
+"23
+[e = _Set_time_cmd_flag -> -> 0 `i `uc ]
+"24
 }
-[; ;interrupt_manager.c: 56: } else if (PIE1bits.RCIE == 1 && PIR1bits.RCIF == 1) {
-[e $U 235  ]
-[e :U 234 ]
-[e $ ! && == -> . . _PIE1bits 0 5 `i -> 1 `i == -> . . _PIR1bits 0 5 `i -> 1 `i 236  ]
-{
-[; ;interrupt_manager.c: 57: EUSART_Receive_ISR();
-"57
-[e ( _EUSART_Receive_ISR ..  ]
-"58
-}
-[; ;interrupt_manager.c: 58: } else if (PIE1bits.TXIE == 1 && PIR1bits.TXIF == 1) {
-[e $U 237  ]
-[e :U 236 ]
-[e $ ! && == -> . . _PIE1bits 0 4 `i -> 1 `i == -> . . _PIR1bits 0 4 `i -> 1 `i 238  ]
-{
-[; ;interrupt_manager.c: 59: EUSART_Transmit_ISR();
-"59
-[e ( _EUSART_Transmit_ISR ..  ]
-"60
-}
-[; ;interrupt_manager.c: 60: } else {
-[e $U 239  ]
-[e :U 238 ]
-{
-"62
-}
-[e :U 239 ]
-[e :U 237 ]
 [e :U 235 ]
-[; ;interrupt_manager.c: 62: }
-[; ;interrupt_manager.c: 63: }
+[; ;com.c: 24: }
+[; ;com.c: 25: }
+"25
+[e :UE 234 ]
+}
+"33
+[v _Set_time_from_Com `(v ~T0 @X0 1 ef ]
+"34
+{
+[; ;com.c: 33: void Set_time_from_Com(void)
+[; ;com.c: 34: {
+[e :U _Set_time_from_Com ]
+[f ]
+[; ;com.c: 35: rtc_tm.years = Usart_Rx_Buff[4];
+"35
+[e = . _rtc_tm 6 *U + &U _Usart_Rx_Buff * -> -> -> 4 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 36: rtc_tm.month= Usart_Rx_Buff[5];
+"36
+[e = . _rtc_tm 5 *U + &U _Usart_Rx_Buff * -> -> -> 5 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 37: rtc_tm.date= Usart_Rx_Buff[6];
+"37
+[e = . _rtc_tm 4 *U + &U _Usart_Rx_Buff * -> -> -> 6 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 38: rtc_tm.hours= Usart_Rx_Buff[7];
+"38
+[e = . _rtc_tm 2 *U + &U _Usart_Rx_Buff * -> -> -> 7 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 39: rtc_tm.minutes= Usart_Rx_Buff[8];
+"39
+[e = . _rtc_tm 1 *U + &U _Usart_Rx_Buff * -> -> -> 8 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 40: rtc_tm.seconds= Usart_Rx_Buff[9];
+"40
+[e = . _rtc_tm 0 *U + &U _Usart_Rx_Buff * -> -> -> 9 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 41: rtc_tm.wday= Usart_Rx_Buff[10];
+"41
+[e = . _rtc_tm 3 *U + &U _Usart_Rx_Buff * -> -> -> 10 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 42: Bq32k_Rtc_Write_Time(&rtc_tm);
+"42
+[e ( _Bq32k_Rtc_Write_Time (1 &U _rtc_tm ]
+[; ;com.c: 43: Bq32k_Rtc_Read_Time(&rtc_tm);
+"43
+[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
+[; ;com.c: 44: Read_time_to_Com();
+"44
+[e ( _Read_time_to_Com ..  ]
+[; ;com.c: 45: }
+"45
+[e :UE 236 ]
+}
+"53
+[v _Read_time_to_Com `(v ~T0 @X0 1 ef ]
+"54
+{
+[; ;com.c: 53: void Read_time_to_Com(void)
+[; ;com.c: 54: {
+[e :U _Read_time_to_Com ]
+[f ]
+"55
+[v _crc_tmp `ui ~T0 @X0 1 a ]
+[; ;com.c: 55: unsigned int crc_tmp=0;
+[e = _crc_tmp -> -> 0 `i `ui ]
+"56
+[v _tmp_buf `uc ~T0 @X0 -> 16 `i a ]
+"57
+[v _i `uc ~T0 @X0 1 a ]
+[; ;com.c: 56: unsigned char tmp_buf[16];
+[; ;com.c: 57: unsigned char i;
+[; ;com.c: 58: tmp_buf[0] = 0xfe;
+"58
+[e = *U + &U _tmp_buf * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 254 `i `uc ]
+[; ;com.c: 59: tmp_buf[1] = 0xfe;
+"59
+[e = *U + &U _tmp_buf * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 254 `i `uc ]
+[; ;com.c: 60: tmp_buf[2] = 0X02;
+"60
+[e = *U + &U _tmp_buf * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 2 `i `uc ]
+[; ;com.c: 61: tmp_buf[3] = 0x07;
+"61
+[e = *U + &U _tmp_buf * -> -> -> 3 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 7 `i `uc ]
+[; ;com.c: 62: tmp_buf[4] = rtc_tm.years;
+"62
+[e = *U + &U _tmp_buf * -> -> -> 4 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 6 ]
+[; ;com.c: 63: tmp_buf[5] = rtc_tm.month;
 "63
-[e :UE 233 ]
+[e = *U + &U _tmp_buf * -> -> -> 5 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 5 ]
+[; ;com.c: 64: tmp_buf[6] = rtc_tm.date;
+"64
+[e = *U + &U _tmp_buf * -> -> -> 6 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 4 ]
+[; ;com.c: 65: tmp_buf[7] = rtc_tm.hours;
+"65
+[e = *U + &U _tmp_buf * -> -> -> 7 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 2 ]
+[; ;com.c: 66: tmp_buf[8] = rtc_tm.minutes;
+"66
+[e = *U + &U _tmp_buf * -> -> -> 8 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 1 ]
+[; ;com.c: 67: tmp_buf[9] = rtc_tm.seconds;
+"67
+[e = *U + &U _tmp_buf * -> -> -> 9 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 0 ]
+[; ;com.c: 68: tmp_buf[10] = rtc_tm.wday;
+"68
+[e = *U + &U _tmp_buf * -> -> -> 10 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 3 ]
+[; ;com.c: 69: crc_tmp = CRC_cal(tmp_buf,14);
+"69
+[e = _crc_tmp ( _CRC_cal (2 , &U _tmp_buf -> -> 14 `i `uc ]
+[; ;com.c: 70: tmp_buf[11] = crc_tmp >>8;
+"70
+[e = *U + &U _tmp_buf * -> -> -> 11 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> _crc_tmp -> 8 `i `uc ]
+[; ;com.c: 71: tmp_buf[12] = crc_tmp & 0xff;
+"71
+[e = *U + &U _tmp_buf * -> -> -> 12 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & _crc_tmp -> -> 255 `i `ui `uc ]
+[; ;com.c: 72: tmp_buf[13] = 0xbb;
+"72
+[e = *U + &U _tmp_buf * -> -> -> 13 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 187 `i `uc ]
+[; ;com.c: 73: for(i=0;i<14;i++)
+"73
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 14 `i 238  ]
+[e $U 239  ]
+"74
+[e :U 238 ]
+[; ;com.c: 74: {
+{
+[; ;com.c: 75: EUSART_Write(tmp_buf[i]);
+"75
+[e ( _EUSART_Write (1 *U + &U _tmp_buf * -> _i `ux -> -> # *U &U _tmp_buf `ui `ux ]
+"76
+}
+"73
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 14 `i 238  ]
+[e :U 239 ]
+"76
+}
+[; ;com.c: 76: }
+[; ;com.c: 77: }
+"77
+[e :UE 237 ]
+}
+"85
+[v _RxFrameCheck `(uc ~T0 @X0 1 ef2`*uc`uc ]
+"86
+{
+[; ;com.c: 85: bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len)
+[; ;com.c: 86: {
+[e :U _RxFrameCheck ]
+"85
+[v _rx_arr `*uc ~T0 @X0 1 r1 ]
+[v _frame_len `uc ~T0 @X0 1 r2 ]
+"86
+[f ]
+"87
+[v _i `uc ~T0 @X0 1 a ]
+[; ;com.c: 87: unsigned char i = 0;
+[e = _i -> -> 0 `i `uc ]
+"88
+[v _remainder `ui ~T0 @X0 1 a ]
+[; ;com.c: 88: unsigned int remainder = 0;
+[e = _remainder -> -> 0 `i `ui ]
+"89
+[v _tmp_crc `ui ~T0 @X0 1 a ]
+[; ;com.c: 89: unsigned int tmp_crc = 0;
+[e = _tmp_crc -> -> 0 `i `ui ]
+[; ;com.c: 91: for(i = 2; i < frame_len - 3; i++)
+"91
+{
+[e = _i -> -> 2 `i `uc ]
+[e $U 245  ]
+"92
+[e :U 242 ]
+[; ;com.c: 92: {
+{
+[; ;com.c: 93: remainder = (unsigned int)((remainder >> 8) | (remainder << 8));
+"93
+[e = _remainder | >> _remainder -> 8 `i << _remainder -> 8 `i ]
+[; ;com.c: 94: remainder ^= rx_arr[i];
+"94
+[e =^ _remainder -> *U + _rx_arr * -> _i `ux -> -> # *U _rx_arr `ui `ux `ui ]
+[; ;com.c: 95: remainder ^= (unsigned int)((remainder & 0xFF) >> 4);
+"95
+[e =^ _remainder >> & _remainder -> -> 255 `i `ui -> 4 `i ]
+[; ;com.c: 96: remainder ^= (unsigned int)((remainder << 8) << 4);
+"96
+[e =^ _remainder << << _remainder -> 8 `i -> 4 `i ]
+[; ;com.c: 97: remainder ^= (unsigned int)(((remainder & 0xFF) << 4) << 1);
+"97
+[e =^ _remainder << << & _remainder -> -> 255 `i `ui -> 4 `i -> 1 `i ]
+"98
+}
+"91
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 245 ]
+[e $ < -> _i `i - -> _frame_len `i -> 3 `i 242  ]
+[e :U 243 ]
+"98
+}
+[; ;com.c: 98: }
+[; ;com.c: 100: tmp_crc = rx_arr[frame_len - 2];
+"100
+[e = _tmp_crc -> *U + _rx_arr * -> - -> _frame_len `i -> 2 `i `x -> -> # *U _rx_arr `i `x `ui ]
+[; ;com.c: 101: tmp_crc<<=8;
+"101
+[e =<< _tmp_crc -> 8 `i ]
+[; ;com.c: 102: tmp_crc|=rx_arr[frame_len - 3];
+"102
+[e =| _tmp_crc -> *U + _rx_arr * -> - -> _frame_len `i -> 3 `i `x -> -> # *U _rx_arr `i `x `ui ]
+[; ;com.c: 108: if(remainder == tmp_crc)
+"108
+[e $ ! == _remainder _tmp_crc 246  ]
+[; ;com.c: 109: {
+"109
+{
+[; ;com.c: 110: return 1;
+"110
+[e ) -> -> 1 `i `uc ]
+[e $UE 241  ]
+"111
+}
+[; ;com.c: 111: }
+[e $U 247  ]
+"112
+[e :U 246 ]
+[; ;com.c: 112: else
+[; ;com.c: 113: {
+"113
+{
+[; ;com.c: 114: return 0;
+"114
+[e ) -> -> 0 `i `uc ]
+[e $UE 241  ]
+"115
+}
+[e :U 247 ]
+[; ;com.c: 115: }
+[; ;com.c: 116: }
+"116
+[e :UE 241 ]
+}
+"124
+[v _CRC_cal `(ui ~T0 @X0 1 ef2`*uc`uc ]
+"125
+{
+[; ;com.c: 124: unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len)
+[; ;com.c: 125: {
+[e :U _CRC_cal ]
+"124
+[v _rx_arr `*uc ~T0 @X0 1 r1 ]
+[v _frame_len `uc ~T0 @X0 1 r2 ]
+"125
+[f ]
+"126
+[v _i `uc ~T0 @X0 1 a ]
+[; ;com.c: 126: unsigned char i = 0;
+[e = _i -> -> 0 `i `uc ]
+"127
+[v _remainder `ui ~T0 @X0 1 a ]
+[; ;com.c: 127: unsigned int remainder = 0;
+[e = _remainder -> -> 0 `i `ui ]
+[; ;com.c: 129: for(i = 2; i < frame_len - 3; i++)
+"129
+{
+[e = _i -> -> 2 `i `uc ]
+[e $U 252  ]
+"130
+[e :U 249 ]
+[; ;com.c: 130: {
+{
+[; ;com.c: 131: remainder = (unsigned int)((remainder >> 8) | (remainder << 8));
+"131
+[e = _remainder | >> _remainder -> 8 `i << _remainder -> 8 `i ]
+[; ;com.c: 132: remainder ^= rx_arr[i];
+"132
+[e =^ _remainder -> *U + _rx_arr * -> _i `ux -> -> # *U _rx_arr `ui `ux `ui ]
+[; ;com.c: 133: remainder ^= (unsigned int)((remainder & 0xFF) >> 4);
+"133
+[e =^ _remainder >> & _remainder -> -> 255 `i `ui -> 4 `i ]
+[; ;com.c: 134: remainder ^= (unsigned int)((remainder << 8) << 4);
+"134
+[e =^ _remainder << << _remainder -> 8 `i -> 4 `i ]
+[; ;com.c: 135: remainder ^= (unsigned int)(((remainder & 0xFF) << 4) << 1);
+"135
+[e =^ _remainder << << & _remainder -> -> 255 `i `ui -> 4 `i -> 1 `i ]
+"136
+}
+"129
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 252 ]
+[e $ < -> _i `i - -> _frame_len `i -> 3 `i 249  ]
+[e :U 250 ]
+"136
+}
+[; ;com.c: 136: }
+[; ;com.c: 137: return remainder;
+"137
+[e ) _remainder ]
+[e $UE 248  ]
+[; ;com.c: 138: }
+"138
+[e :UE 248 ]
 }

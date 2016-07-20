@@ -9,21 +9,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i __delay ]
 "4467 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _LATC0 `Vb ~T0 @X0 0 e@2160 ]
-"50 mcc_generated_files/global.h
+"57 mcc_generated_files/global.h
 [v _temperature_int `ui ~T0 @X0 0 e ]
 "16 D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h
 [v _memset `(*v ~T0 @X0 0 ef3`*v`i`ui ]
-"52 mcc_generated_files/global.h
+"59 mcc_generated_files/global.h
 [v _display_buff `uc ~T0 @X0 -> 0 `x e ]
-"51
+"58
 [v _temperature_sign `uc ~T0 @X0 0 e ]
 [v _temperature_decimal `uc ~T0 @X0 0 e ]
-"26
+"27
 [s S233 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S233 bq32k_regs seconds minutes hours wday date month years ]
 "39 mcc_generated_files/bq32k.h
 [v _Bq32k_Rtc_Read_Time `(v ~T0 @X0 0 ef1`*S233 ]
-"61 mcc_generated_files/global.h
+"68 mcc_generated_files/global.h
 [v _rtc_tm `S233 ~T0 @X0 0 e ]
 [; ;ht1621.h: 22: extern unsigned char const Dis_TAB[];
 [; ;ht1621.h: 24: void SendBit_1621(unsigned char data,unsigned char cnt);
@@ -1896,9 +1896,13 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;spi.h: 215: bool SPI_IsBufferFull(void);
 [; ;spi.h: 240: bool SPI_HasWriteCollisionOccured(void);
 [; ;spi.h: 264: void SPI_ClearWriteCollisionStatus(void);
-[; ;eusart.h: 95: void EUSART_Initialize(void);
-[; ;eusart.h: 115: uint8_t EUSART_Read(void);
-[; ;eusart.h: 135: void EUSART_Write(uint8_t txData);
+[; ;eusart.h: 77: extern volatile uint8_t eusartTxBufferRemaining;
+[; ;eusart.h: 78: extern volatile uint8_t eusartRxCount;
+[; ;eusart.h: 106: void EUSART_Initialize(void);
+[; ;eusart.h: 155: uint8_t EUSART_Read(void);
+[; ;eusart.h: 180: void EUSART_Write(uint8_t txData);
+[; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
+[; ;eusart.h: 222: void EUSART_Receive_ISR(void);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
 [; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
@@ -1951,41 +1955,44 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;string.h: 56: extern char * strichr(const char *, int);
 [; ;string.h: 57: extern char * strrchr(const char *, int);
 [; ;string.h: 58: extern char * strrichr(const char *, int);
-[; ;global.h: 26: typedef struct bq32k_regs {
-[; ;global.h: 27: uint8_t seconds;
-[; ;global.h: 28: uint8_t minutes;
-[; ;global.h: 29: uint8_t hours;
-[; ;global.h: 30: uint8_t wday;
-[; ;global.h: 31: uint8_t date;
-[; ;global.h: 32: uint8_t month;
-[; ;global.h: 33: uint8_t years;
-[; ;global.h: 34: }bq32k_t;
-[; ;global.h: 43: extern unsigned char uch_cr0;
-[; ;global.h: 44: extern unsigned char uch_cr1;
-[; ;global.h: 45: extern unsigned char uch_mask;
-[; ;global.h: 47: extern unsigned char uch_reg[8];
-[; ;global.h: 48: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
-[; ;global.h: 49: extern unsigned long temperature_value;
-[; ;global.h: 50: extern unsigned int temperature_int;
-[; ;global.h: 51: extern unsigned char temperature_decimal,temperature_sign;
-[; ;global.h: 52: extern unsigned char display_buff[4];
-[; ;global.h: 56: extern unsigned char time_count;
-[; ;global.h: 57: extern unsigned char tmr_flag;
-[; ;global.h: 59: extern unsigned char LongPressSec;
-[; ;global.h: 60: extern unsigned char MAX31856Sec;
-[; ;global.h: 61: extern bq32k_t rtc_tm;
-[; ;global.h: 62: extern bq32k_t rtc_save_ch1;
-[; ;global.h: 63: extern bq32k_t rtc_save_ch2;
-[; ;global.h: 64: extern unsigned int Flash_buff[32];
-[; ;global.h: 66: extern unsigned char Record_flag;
-[; ;global.h: 67: extern unsigned char CH1_state;
-[; ;global.h: 68: extern unsigned char CH2_state;
-[; ;global.h: 69: extern unsigned int CH1_temperature;
-[; ;global.h: 70: extern unsigned int CH2_temperature;
-[; ;global.h: 71: extern unsigned int Cur_temperature;
-[; ;global.h: 72: extern unsigned int Cur_Save_Index;
-[; ;global.h: 73: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 74: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 27: typedef struct bq32k_regs {
+[; ;global.h: 28: uint8_t seconds;
+[; ;global.h: 29: uint8_t minutes;
+[; ;global.h: 30: uint8_t hours;
+[; ;global.h: 31: uint8_t wday;
+[; ;global.h: 32: uint8_t date;
+[; ;global.h: 33: uint8_t month;
+[; ;global.h: 34: uint8_t years;
+[; ;global.h: 35: }bq32k_t;
+[; ;global.h: 50: extern unsigned char uch_cr0;
+[; ;global.h: 51: extern unsigned char uch_cr1;
+[; ;global.h: 52: extern unsigned char uch_mask;
+[; ;global.h: 54: extern unsigned char uch_reg[8];
+[; ;global.h: 55: extern unsigned char uch_cjth,uch_cjtl,uch_ltcbh,uch_ltcbm,uch_ltcbl,uch_sr;
+[; ;global.h: 56: extern unsigned long temperature_value;
+[; ;global.h: 57: extern unsigned int temperature_int;
+[; ;global.h: 58: extern unsigned char temperature_decimal,temperature_sign;
+[; ;global.h: 59: extern unsigned char display_buff[4];
+[; ;global.h: 63: extern unsigned char time_count;
+[; ;global.h: 64: extern unsigned char tmr_flag;
+[; ;global.h: 66: extern unsigned char LongPressSec;
+[; ;global.h: 67: extern unsigned char MAX31856Sec;
+[; ;global.h: 68: extern bq32k_t rtc_tm;
+[; ;global.h: 69: extern bq32k_t rtc_save_ch1;
+[; ;global.h: 70: extern bq32k_t rtc_save_ch2;
+[; ;global.h: 71: extern unsigned int Flash_buff[32];
+[; ;global.h: 73: extern unsigned char Record_flag;
+[; ;global.h: 74: extern unsigned char CH1_state;
+[; ;global.h: 75: extern unsigned char CH2_state;
+[; ;global.h: 76: extern unsigned int CH1_temperature;
+[; ;global.h: 77: extern unsigned int CH2_temperature;
+[; ;global.h: 78: extern unsigned int Cur_temperature;
+[; ;global.h: 79: extern unsigned int Cur_Save_Index;
+[; ;global.h: 80: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 81: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
+[; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
+[; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
@@ -2418,8 +2425,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _number `uc ~T0 @X0 1 r1 ]
 "140
 [f ]
-[v F2123 `uc ~T0 @X0 -> 4 `i s ]
-[i F2123
+[v F2132 `uc ~T0 @X0 -> 4 `i s ]
+[i F2132
 :U ..
 "141
 -> -> 0 `i `uc
@@ -2427,7 +2434,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 141: unsigned char num[4]={0};
-[e = _num F2123 ]
+[e = _num F2132 ]
 [; ;ht1621.c: 142: num[1] = Dis_TAB[0];
 "142
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2449,8 +2456,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 154: {
 [e :U _err_Display ]
 [f ]
-[v F2126 `uc ~T0 @X0 -> 4 `i s ]
-[i F2126
+[v F2135 `uc ~T0 @X0 -> 4 `i s ]
+[i F2135
 :U ..
 "155
 -> -> 0 `i `uc
@@ -2458,7 +2465,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 155: unsigned char num[4]={0};
-[e = _num F2126 ]
+[e = _num F2135 ]
 [; ;ht1621.c: 156: num[1] = Dis_TAB[0x10];
 "156
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2480,8 +2487,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 168: {
 [e :U _time_Display ]
 [f ]
-[v F2129 `uc ~T0 @X0 -> 4 `i s ]
-[i F2129
+[v F2138 `uc ~T0 @X0 -> 4 `i s ]
+[i F2138
 :U ..
 "169
 -> -> 0 `i `uc
@@ -2489,7 +2496,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 169: unsigned char num[4]={0};
-[e = _num F2129 ]
+[e = _num F2138 ]
 [; ;ht1621.c: 170: Bq32k_Rtc_Read_Time(&rtc_tm);
 "170
 [e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]

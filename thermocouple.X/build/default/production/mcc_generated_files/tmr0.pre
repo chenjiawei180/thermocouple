@@ -2638,14 +2638,24 @@ bool SPI_HasWriteCollisionOccured(void);
 # 264
 void SPI_ClearWriteCollisionStatus(void);
 
-# 95 "mcc_generated_files/eusart.h"
+# 77 "mcc_generated_files/eusart.h"
+extern volatile uint8_t eusartTxBufferRemaining;
+extern volatile uint8_t eusartRxCount;
+
+# 106
 void EUSART_Initialize(void);
 
-# 115
+# 155
 uint8_t EUSART_Read(void);
 
-# 135
+# 180
 void EUSART_Write(uint8_t txData);
+
+# 201
+void EUSART_Transmit_ISR(void);
+
+# 222
+void EUSART_Receive_ISR(void);
 
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
@@ -2696,7 +2706,7 @@ void SYSTEM_Initialize(void);
 # 87
 void OSCILLATOR_Initialize(void);
 
-# 26 "mcc_generated_files/global.h"
+# 27 "mcc_generated_files/global.h"
 typedef struct bq32k_regs {
 uint8_t seconds;
 uint8_t minutes;
@@ -2707,7 +2717,7 @@ uint8_t month;
 uint8_t years;
 }bq32k_t;
 
-# 43
+# 50
 extern unsigned char uch_cr0;
 extern unsigned char uch_cr1;
 extern unsigned char uch_mask;
@@ -2740,6 +2750,11 @@ extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
 extern unsigned char Cur_temperature_time_ch1;
 extern unsigned char Cur_temperature_time_ch2;
+
+extern unsigned char Usart_Rx_Buff[32];
+extern unsigned char Usart_Rx_Cnt;
+
+extern unsigned char Set_time_cmd_flag;
 
 # 60 "mcc_generated_files/tmr0.c"
 volatile uint8_t timer0ReloadVal;
