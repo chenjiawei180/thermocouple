@@ -91,9 +91,9 @@ void Serach_Flash_Head(void)
   
 void Write_Flash_head(void)
 {
-    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+    FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
     Cur_Save_Index++;
-    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+    FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
     Cur_Save_Index++;
 }
 
@@ -105,9 +105,9 @@ void Write_Flash_head(void)
   
 void Write_Flash_finish(void)
 {
-    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+    FLASH_WriteWord(Cur_Save_Index, 0x5555);
     Cur_Save_Index++;
-    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+    FLASH_WriteWord(Cur_Save_Index, 0x5555);
     Cur_Save_Index++;
 }
 
@@ -223,11 +223,26 @@ unsigned char Calculate_Time(void)
   
 void Save_Write_word(unsigned int data)
 {
+    if(Cur_Save_Index % 32 == 0)    // erase next row 
+    {
+        if(Cur_Save_Index == END_FLASH - 32)
+        {
+            FLASH_EraseBlock(Record_Add);
+        }
+        else
+        {
+            FLASH_EraseBlock(Cur_Save_Index+32);
+        }
+    }
     if( (data & 0x3fff) == 0x3fff) 
-    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x3ffe);
+    FLASH_WriteWord(Cur_Save_Index, 0x3ffe);
     else
-    FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
+    FLASH_WriteWord(Cur_Save_Index, data);
     Cur_Save_Index++;
+    if( Cur_Save_Index == END_FLASH)    // set the index from tail to head.
+    {
+        Cur_Save_Index = Record_Add;    
+    }
 }
 
 /**

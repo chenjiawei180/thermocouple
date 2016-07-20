@@ -1,10 +1,14 @@
----- SWDTEN Matches (10 in 4 files) ----
-Key.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):                    SWDTEN = 0;
-Key.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):                    SWDTEN = 1;
-Main.c (e:\github\thermocouple\thermocouple.x):    SWDTEN = 0;
-Main.c (e:\github\thermocouple\thermocouple.x):    SWDTEN = 1;
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SWDTEN = 0;
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SWDTEN = 1;    //start wdt
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SWDTEN = 0;
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    SWDTEN = 1;    //start wdt
-Mcc.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#pragma config WDTE = SWDTEN    // Watchdog Timer Enable->WDT controlled by the SWDTEN bit in the WDTCON register
+---- FLASH_WriteWord Matches (13 in 5 files) ----
+Bq32k.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):        FLASH_WriteWord(Time_Add, temp, 1);
+Main.c (e:\github\thermocouple\thermocouple.x):    FLASH_WriteWord(0x1000,Flash_buff,0x1234);
+Memory.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word) {
+Memory.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) {
+Memory.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):        FLASH_WriteWord(flashAddr, Buf, writeData);
+Memory.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    //void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+Memory.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x3ffe);
+Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):    FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);

@@ -71,6 +71,7 @@ uint16_t FLASH_ReadWord(uint16_t flashAddr) {
     return ((PMDATH << 8) | PMDATL);
 }
 
+#if 0
 void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word) {
     uint16_t blockStartAddr = (uint16_t) (flashAddr & ((END_FLASH - 1) ^ (ERASE_FLASH_BLOCKSIZE - 1)));
     uint8_t offset = (uint8_t) (flashAddr & (ERASE_FLASH_BLOCKSIZE - 1));
@@ -86,6 +87,42 @@ void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word) {
 
     // Writes ramBuf to current block
     FLASH_WriteBlock(blockStartAddr, ramBuf);
+}
+#endif
+
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) {
+
+    uint8_t GIEBitValue = INTCONbits.GIE; // Save interrupt enable
+
+
+    INTCONbits.GIE = 0; // Disable interrupts
+
+
+    // Block write sequence
+    PMCON1bits.CFGS = 0; // Deselect Configuration space
+    PMCON1bits.WREN = 1; // Enable wrties
+    PMCON1bits.LWLO = 1; // Only load write latches
+
+    // Load lower 8 bits of write address
+    PMADRL = (flashAddr & 0xFF);
+    // Load upper 6 bits of write address
+    PMADRH = ((flashAddr & 0xFF00) >> 8);
+
+    // Load data in current address
+    PMDATL = word;
+    PMDATH = ((word & 0xFF00) >> 8);
+
+    // Start Flash program memory write
+    PMCON1bits.LWLO = 0;
+
+    PMCON2 = 0x55;
+    PMCON2 = 0xAA;
+    PMCON1bits.WR = 1;
+    NOP();
+    NOP();
+    
+    PMCON1bits.WREN = 0; // Disable writes
+    INTCONbits.GIE = GIEBitValue; // Restore interrupt enable
 }
 
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray) {

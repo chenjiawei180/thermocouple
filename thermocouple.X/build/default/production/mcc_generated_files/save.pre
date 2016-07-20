@@ -2642,8 +2642,8 @@ void EUSART_Receive_ISR(void);
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 
-# 128
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 129
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 
 # 164
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
@@ -2755,6 +2755,7 @@ extern unsigned char Usart_Rx_Buff[32];
 extern unsigned char Usart_Rx_Cnt;
 
 extern unsigned char Set_time_cmd_flag;
+extern unsigned char Usart_Run_Flag;
 
 # 19 "mcc_generated_files/save.h"
 void Set_start_flag(void);
@@ -2875,18 +2876,18 @@ count = 0;
 # 92
 void Write_Flash_head(void)
 {
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
 Cur_Save_Index++;
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
 Cur_Save_Index++;
 }
 
 # 106
 void Write_Flash_finish(void)
 {
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+FLASH_WriteWord(Cur_Save_Index, 0x5555);
 Cur_Save_Index++;
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+FLASH_WriteWord(Cur_Save_Index, 0x5555);
 Cur_Save_Index++;
 }
 
@@ -2987,14 +2988,29 @@ return 0;
 # 224
 void Save_Write_word(unsigned int data)
 {
-if( (data & 0x3fff) == 0x3fff)
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x3ffe);
+if(Cur_Save_Index % 32 == 0)
+{
+if(Cur_Save_Index == 16384 - 32)
+{
+FLASH_EraseBlock(0x2000);
+}
 else
-FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
+{
+FLASH_EraseBlock(Cur_Save_Index+32);
+}
+}
+if( (data & 0x3fff) == 0x3fff)
+FLASH_WriteWord(Cur_Save_Index, 0x3ffe);
+else
+FLASH_WriteWord(Cur_Save_Index, data);
 Cur_Save_Index++;
+if( Cur_Save_Index == 16384)
+{
+Cur_Save_Index = 0x2000;
+}
 }
 
-# 239
+# 254
 void Save_Write_time(void)
 {
 unsigned char i;

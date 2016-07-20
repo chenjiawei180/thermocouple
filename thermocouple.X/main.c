@@ -122,6 +122,7 @@ void main(void) {
     CH2_state = 0;
     Usart_Rx_Cnt = 0;
     Set_time_cmd_flag = 0;
+    Usart_Run_Flag = 0;
     bat_data = 0;
     Cur_Save_Index = Record_Add;
     Serach_Flash_Head();
@@ -192,7 +193,10 @@ void main(void) {
         Save_process();
         Com_Process();
 #if WDT_SLEEP
-        Sleep_process();
+        if(Usart_Run_Flag == 0)
+        {
+            Sleep_process();
+        }
 #endif
 
 

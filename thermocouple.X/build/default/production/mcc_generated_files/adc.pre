@@ -2667,8 +2667,8 @@ void EUSART_Receive_ISR(void);
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 
-# 128
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 129
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 
 # 164
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);

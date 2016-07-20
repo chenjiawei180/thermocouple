@@ -20,6 +20,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0_CallBack `(v ~T0 @X0 0 ef ]
 "66 mcc_generated_files/global.h
 [v _LongPressSec `uc ~T0 @X0 0 e ]
+"87
+[v _Usart_Run_Flag `uc ~T0 @X0 0 e ]
+"4625 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
+[v _SWDTEN `Vb ~T0 @X0 0 e@1208 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1895,7 +1899,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
 [; ;eusart.h: 222: void EUSART_Receive_ISR(void);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
@@ -1951,6 +1955,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
+[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
 "60 mcc_generated_files/tmr0.c
 [v _timer0ReloadVal `Vuc ~T0 @X0 1 e ]
 [; ;tmr0.c: 60: volatile uint8_t timer0ReloadVal;
@@ -2074,7 +2079,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 128: LongPressSec++;
 "128
 [e ++ _LongPressSec -> -> 1 `i `uc ]
-[; ;tmr0.c: 129: }
+[; ;tmr0.c: 129: if(Usart_Run_Flag > 0)
 "129
+[e $ ! > -> _Usart_Run_Flag `i -> 0 `i 241  ]
+[; ;tmr0.c: 130: {
+"130
+{
+[; ;tmr0.c: 131: Usart_Run_Flag--;
+"131
+[e -- _Usart_Run_Flag -> -> 1 `i `uc ]
+"132
+}
+[e :U 241 ]
+[; ;tmr0.c: 132: }
+[; ;tmr0.c: 134: if( Usart_Run_Flag == 0)
+"134
+[e $ ! == -> _Usart_Run_Flag `i -> 0 `i 242  ]
+[; ;tmr0.c: 135: {
+"135
+{
+[; ;tmr0.c: 136: SWDTEN = 1;
+"136
+[e = _SWDTEN -> -> 1 `i `b ]
+"137
+}
+[e :U 242 ]
+[; ;tmr0.c: 137: }
+[; ;tmr0.c: 138: }
+"138
 [e :UE 240 ]
 }

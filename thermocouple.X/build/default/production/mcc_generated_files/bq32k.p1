@@ -6,8 +6,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _FLASH_ReadWord `(ui ~T0 @X0 0 ef1`ui ]
 "28 mcc_generated_files/i2c.h
 [v _I2C_Send_Buffer `(uc ~T0 @X0 0 ef3`uc`*uc`uc ]
-"128 mcc_generated_files/memory.h
-[v _FLASH_WriteWord `(v ~T0 @X0 0 ef3`ui`*ui`ui ]
+"129 mcc_generated_files/memory.h
+[v _FLASH_WriteWord `(v ~T0 @X0 0 ef2`ui`ui ]
 "27 mcc_generated_files/i2c.h
 [v _I2C_Read_Buffer `(uc ~T0 @X0 0 ef3`uc`*uc`uc ]
 "42 mcc_generated_files/bq32k.h
@@ -1883,7 +1883,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
 [; ;eusart.h: 222: void EUSART_Receive_ISR(void);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
@@ -1945,6 +1945,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
+[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
@@ -2002,9 +2003,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;bq32k.c: 23: I2C_Send_Buffer(0, temp, 7);
 "23
 [e ( _I2C_Send_Buffer (3 , , -> -> 0 `i `uc &U _temp -> -> 7 `i `uc ]
-[; ;bq32k.c: 24: FLASH_WriteWord(0x1fff, temp, 1);
+[; ;bq32k.c: 24: FLASH_WriteWord(0x1fff, 0x00);
 "24
-[e ( _FLASH_WriteWord (3 , , -> -> 8191 `i `ui -> &U _temp `*ui -> -> 1 `i `ui ]
+[e ( _FLASH_WriteWord (2 , -> -> 8191 `i `ui -> -> 0 `i `ui ]
 "25
 }
 [e :U 235 ]

@@ -1935,7 +1935,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
 [; ;eusart.h: 222: void EUSART_Receive_ISR(void);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
@@ -1997,6 +1997,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
+[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);

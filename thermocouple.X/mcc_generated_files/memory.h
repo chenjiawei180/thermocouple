@@ -125,8 +125,8 @@ extern "C" {
         FLASH_WriteWord(flashAddr, Buf, writeData);
         </code>
      */
-    void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
-
+    //void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+    void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
     /**
       @Summary
         Writes data to complete block of Flash

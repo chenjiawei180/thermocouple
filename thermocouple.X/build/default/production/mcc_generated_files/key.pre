@@ -2642,8 +2642,8 @@ void EUSART_Receive_ISR(void);
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 
-# 128
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 129
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 
 # 164
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
@@ -2755,6 +2755,7 @@ extern unsigned char Usart_Rx_Buff[32];
 extern unsigned char Usart_Rx_Cnt;
 
 extern unsigned char Set_time_cmd_flag;
+extern unsigned char Usart_Run_Flag;
 
 # 21 "mcc_generated_files/key.h"
 unsigned char Key_Scan(void);
@@ -2854,7 +2855,8 @@ EUSART_Write(data_temp&0xff);
 
 }
 
-# 79
+SWDTEN = 1;
+
 asm("clrwdt");
 }
 

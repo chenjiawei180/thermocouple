@@ -2642,8 +2642,8 @@ void EUSART_Receive_ISR(void);
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 
-# 128
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 129
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 
 # 164
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
@@ -2755,6 +2755,7 @@ extern unsigned char Usart_Rx_Buff[32];
 extern unsigned char Usart_Rx_Cnt;
 
 extern unsigned char Set_time_cmd_flag;
+extern unsigned char Usart_Run_Flag;
 
 # 23 "mcc_generated_files/i2c.h"
 void I2C_Start(void);
@@ -2793,7 +2794,7 @@ unsigned char temp[10] = { 0x01,0x44,0x10,0x02,0x18,0x07,0x16 };
 if( FLASH_ReadWord(0x1fff) == 0x3fff )
 {
 I2C_Send_Buffer(0, temp, 7);
-FLASH_WriteWord(0x1fff, temp, 1);
+FLASH_WriteWord(0x1fff, 0x00);
 }
 }
 

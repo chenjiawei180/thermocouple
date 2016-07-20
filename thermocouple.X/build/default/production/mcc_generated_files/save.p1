@@ -9,11 +9,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Cur_Save_Index `ui ~T0 @X0 0 e ]
 "23 mcc_generated_files/save.h
 [v _Write_Flash_finish `(v ~T0 @X0 0 ef ]
-"128 mcc_generated_files/memory.h
-[v _FLASH_WriteWord `(v ~T0 @X0 0 ef3`ui`*ui`ui ]
-"71 mcc_generated_files/global.h
-[v _Flash_buff `ui ~T0 @X0 -> 0 `x e ]
-"63
+"129 mcc_generated_files/memory.h
+[v _FLASH_WriteWord `(v ~T0 @X0 0 ef2`ui`ui ]
+"63 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
 "80
 [v _Cur_temperature_time_ch1 `uc ~T0 @X0 0 e ]
@@ -47,6 +45,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p i ___builtin_memcpy ]
 "70 mcc_generated_files/global.h
 [v _rtc_save_ch2 `S233 ~T0 @X0 0 e ]
+"189 mcc_generated_files/memory.h
+[v _FLASH_EraseBlock `(v ~T0 @X0 0 ef1`ui ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1916,7 +1916,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
 [; ;eusart.h: 222: void EUSART_Receive_ISR(void);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
@@ -1978,6 +1978,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
+[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
 [; ;save.h: 19: void Set_start_flag(void);
 [; ;save.h: 20: void Set_finish_flag(void);
 [; ;save.h: 21: void Serach_Flash_Head(void);
@@ -2197,15 +2198,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;save.c: 93: {
 [e :U _Write_Flash_head ]
 [f ]
-[; ;save.c: 94: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+[; ;save.c: 94: FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
 "94
-[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> 43690 `ui ]
+[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> 43690 `ui ]
 [; ;save.c: 95: Cur_Save_Index++;
 "95
 [e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[; ;save.c: 96: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0xAAAA);
+[; ;save.c: 96: FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
 "96
-[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> 43690 `ui ]
+[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> 43690 `ui ]
 [; ;save.c: 97: Cur_Save_Index++;
 "97
 [e ++ _Cur_Save_Index -> -> 1 `i `ui ]
@@ -2221,15 +2222,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;save.c: 107: {
 [e :U _Write_Flash_finish ]
 [f ]
-[; ;save.c: 108: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+[; ;save.c: 108: FLASH_WriteWord(Cur_Save_Index, 0x5555);
 "108
-[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> -> 21845 `i `ui ]
+[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> -> 21845 `i `ui ]
 [; ;save.c: 109: Cur_Save_Index++;
 "109
 [e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[; ;save.c: 110: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x5555);
+[; ;save.c: 110: FLASH_WriteWord(Cur_Save_Index, 0x5555);
 "110
-[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> -> 21845 `i `ui ]
+[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> -> 21845 `i `ui ]
 [; ;save.c: 111: Cur_Save_Index++;
 "111
 [e ++ _Cur_Save_Index -> -> 1 `i `ui ]
@@ -2513,69 +2514,118 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _data `ui ~T0 @X0 1 r1 ]
 "225
 [f ]
-[; ;save.c: 226: if( (data & 0x3fff) == 0x3fff)
+[; ;save.c: 226: if(Cur_Save_Index % 32 == 0)
 "226
-[e $ ! == & _data -> -> 16383 `i `ui -> -> 16383 `i `ui 271  ]
-[; ;save.c: 227: FLASH_WriteWord(Cur_Save_Index, Flash_buff, 0x3ffe);
+[e $ ! == % _Cur_Save_Index -> -> 32 `i `ui -> -> 0 `i `ui 271  ]
+[; ;save.c: 227: {
 "227
-[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff -> -> 16382 `i `ui ]
-[e $U 272  ]
+{
+[; ;save.c: 228: if(Cur_Save_Index == 16384 - 32)
 "228
-[e :U 271 ]
-[; ;save.c: 228: else
-[; ;save.c: 229: FLASH_WriteWord(Cur_Save_Index, Flash_buff, data);
+[e $ ! == _Cur_Save_Index -> - -> 16384 `i -> 32 `i `ui 272  ]
+[; ;save.c: 229: {
 "229
-[e ( _FLASH_WriteWord (3 , , _Cur_Save_Index &U _Flash_buff _data ]
-[e :U 272 ]
-[; ;save.c: 230: Cur_Save_Index++;
+{
+[; ;save.c: 230: FLASH_EraseBlock(0x2000);
 "230
-[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[; ;save.c: 231: }
+[e ( _FLASH_EraseBlock (1 -> -> 8192 `i `ui ]
 "231
+}
+[; ;save.c: 231: }
+[e $U 273  ]
+"232
+[e :U 272 ]
+[; ;save.c: 232: else
+[; ;save.c: 233: {
+"233
+{
+[; ;save.c: 234: FLASH_EraseBlock(Cur_Save_Index+32);
+"234
+[e ( _FLASH_EraseBlock (1 + _Cur_Save_Index -> -> 32 `i `ui ]
+"235
+}
+[e :U 273 ]
+"236
+}
+[e :U 271 ]
+[; ;save.c: 235: }
+[; ;save.c: 236: }
+[; ;save.c: 237: if( (data & 0x3fff) == 0x3fff)
+"237
+[e $ ! == & _data -> -> 16383 `i `ui -> -> 16383 `i `ui 274  ]
+[; ;save.c: 238: FLASH_WriteWord(Cur_Save_Index, 0x3ffe);
+"238
+[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> -> 16382 `i `ui ]
+[e $U 275  ]
+"239
+[e :U 274 ]
+[; ;save.c: 239: else
+[; ;save.c: 240: FLASH_WriteWord(Cur_Save_Index, data);
+"240
+[e ( _FLASH_WriteWord (2 , _Cur_Save_Index _data ]
+[e :U 275 ]
+[; ;save.c: 241: Cur_Save_Index++;
+"241
+[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
+[; ;save.c: 242: if( Cur_Save_Index == 16384)
+"242
+[e $ ! == _Cur_Save_Index -> -> 16384 `i `ui 276  ]
+[; ;save.c: 243: {
+"243
+{
+[; ;save.c: 244: Cur_Save_Index = 0x2000;
+"244
+[e = _Cur_Save_Index -> -> 8192 `i `ui ]
+"245
+}
+[e :U 276 ]
+[; ;save.c: 245: }
+[; ;save.c: 246: }
+"246
 [e :UE 270 ]
 }
-"239
+"254
 [v _Save_Write_time `(v ~T0 @X0 1 ef ]
-"240
+"255
 {
-[; ;save.c: 239: void Save_Write_time(void)
-[; ;save.c: 240: {
+[; ;save.c: 254: void Save_Write_time(void)
+[; ;save.c: 255: {
 [e :U _Save_Write_time ]
 [f ]
-"241
+"256
 [v _i `uc ~T0 @X0 1 a ]
-[; ;save.c: 241: unsigned char i;
-[; ;save.c: 242: Bq32k_Rtc_Read_Time(&rtc_tm);
-"242
+[; ;save.c: 256: unsigned char i;
+[; ;save.c: 257: Bq32k_Rtc_Read_Time(&rtc_tm);
+"257
 [e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
-[; ;save.c: 243: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
-"243
+[; ;save.c: 258: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
+"258
 [e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch1 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 244: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
-"244
+[; ;save.c: 259: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
+"259
 [e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch2 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 245: Save_Write_word( rtc_tm.years);
-"245
+[; ;save.c: 260: Save_Write_word( rtc_tm.years);
+"260
 [e ( _Save_Write_word (1 -> . _rtc_tm 6 `ui ]
-[; ;save.c: 246: Save_Write_word( rtc_tm.month);
-"246
+[; ;save.c: 261: Save_Write_word( rtc_tm.month);
+"261
 [e ( _Save_Write_word (1 -> . _rtc_tm 5 `ui ]
-[; ;save.c: 247: Save_Write_word( rtc_tm.date);
-"247
+[; ;save.c: 262: Save_Write_word( rtc_tm.date);
+"262
 [e ( _Save_Write_word (1 -> . _rtc_tm 4 `ui ]
-[; ;save.c: 248: Save_Write_word( rtc_tm.hours);
-"248
+[; ;save.c: 263: Save_Write_word( rtc_tm.hours);
+"263
 [e ( _Save_Write_word (1 -> . _rtc_tm 2 `ui ]
-[; ;save.c: 249: Save_Write_word( rtc_tm.minutes);
-"249
+[; ;save.c: 264: Save_Write_word( rtc_tm.minutes);
+"264
 [e ( _Save_Write_word (1 -> . _rtc_tm 1 `ui ]
-[; ;save.c: 250: Save_Write_word( rtc_tm.seconds);
-"250
+[; ;save.c: 265: Save_Write_word( rtc_tm.seconds);
+"265
 [e ( _Save_Write_word (1 -> . _rtc_tm 0 `ui ]
-[; ;save.c: 251: Save_Write_word( rtc_tm.wday);
-"251
+[; ;save.c: 266: Save_Write_word( rtc_tm.wday);
+"266
 [e ( _Save_Write_word (1 -> . _rtc_tm 3 `ui ]
-[; ;save.c: 252: }
-"252
-[e :UE 273 ]
+[; ;save.c: 267: }
+"267
+[e :UE 277 ]
 }

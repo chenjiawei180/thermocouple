@@ -126,6 +126,15 @@ void TMR0_CallBack(void) {
     // Add your custom callback code here
     // this code executes every 50 TMR0 periods
     LongPressSec++;
+    if(Usart_Run_Flag > 0)
+    {
+        Usart_Run_Flag--;
+    }
+
+    if( Usart_Run_Flag == 0)
+    {
+        SWDTEN = 1;
+    }
 }
 /**
   End of File

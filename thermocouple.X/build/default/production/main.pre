@@ -2642,8 +2642,8 @@ void EUSART_Receive_ISR(void);
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 
-# 128
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 129
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 
 # 164
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
@@ -2755,6 +2755,7 @@ uint8_t years;
  unsigned char Usart_Rx_Cnt;
 
  unsigned char Set_time_cmd_flag;
+ unsigned char Usart_Run_Flag;
 
 # 82 "mcc_generated_files/max31856.h"
 void maxim_31856_init(void);
@@ -2981,18 +2982,21 @@ CH1_state = 0;
 CH2_state = 0;
 Usart_Rx_Cnt = 0;
 Set_time_cmd_flag = 0;
+Usart_Run_Flag = 0;
 bat_data = 0;
 Cur_Save_Index = 0x2000;
 Serach_Flash_Head();
 asm("clrwdt");
 
-# 156
+SWDTEN = 1;
+
+# 157
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 167
+# 168
 while (1)
 {
 
@@ -3021,7 +3025,12 @@ Key_Process();
 Save_process();
 Com_Process();
 
-# 282
+if(Usart_Run_Flag == 0)
+{
+Sleep_process();
+}
+
+# 286
 }
 }
 

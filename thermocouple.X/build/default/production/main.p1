@@ -28,10 +28,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 "4441
 [v _LATA3 `Vb ~T0 @X0 0 e@2147 ]
 "93 main.c
-[c E1896 30 31 11 .. ]
-[n E1896 . channel_Temp channel_FVR ADC  ]
+[c E1895 30 31 11 .. ]
+[n E1895 . channel_Temp channel_FVR ADC  ]
 "249 mcc_generated_files/adc.h
-[v _ADC_GetConversion `(ui ~T0 @X0 0 ef1`E1896 ]
+[v _ADC_GetConversion `(ui ~T0 @X0 0 ef1`E1895 ]
 "4723 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _TRISB3 `Vb ~T0 @X0 0 e@1131 ]
 "38 mcc_generated_files/bq32k.h
@@ -61,8 +61,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Key_Process `(v ~T0 @X0 0 ef ]
 "25 mcc_generated_files/save.h
 [v _Save_process `(v ~T0 @X0 0 ef ]
-"193 main.c
+"194 main.c
 [v _Com_Process `(i ~T0 @X0 0 ef ]
+"18 mcc_generated_files/power.h
+[v _Sleep_process `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1932,7 +1934,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
 [; ;eusart.h: 222: void EUSART_Receive_ISR(void);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
@@ -2058,6 +2060,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "86
 [v _Set_time_cmd_flag `uc ~T0 @X0 1 e ]
 [; ;global.h: 86: unsigned char Set_time_cmd_flag;
+"87
+[v _Usart_Run_Flag `uc ~T0 @X0 1 e ]
+[; ;global.h: 87: unsigned char Usart_Run_Flag;
 [; ;max31856.h: 82: void maxim_31856_init(void);
 [; ;max31856.h: 83: void maxim_stop_conversion(void);
 [; ;max31856.h: 84: void maxim_start_conversion(uint8_t uch_conversion_mode);
@@ -2248,7 +2253,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 {
 [; ;main.c: 93: bat_data = bat_data + ADC_GetConversion(ADC);
 "93
-[e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1896 2 ]
+[e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1895 2 ]
 "94
 }
 "91
@@ -2346,99 +2351,118 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 124: Set_time_cmd_flag = 0;
 "124
 [e = _Set_time_cmd_flag -> -> 0 `i `uc ]
-[; ;main.c: 125: bat_data = 0;
+[; ;main.c: 125: Usart_Run_Flag = 0;
 "125
-[e = _bat_data -> -> 0 `i `ui ]
-[; ;main.c: 126: Cur_Save_Index = 0x2000;
+[e = _Usart_Run_Flag -> -> 0 `i `uc ]
+[; ;main.c: 126: bat_data = 0;
 "126
-[e = _Cur_Save_Index -> -> 8192 `i `ui ]
-[; ;main.c: 127: Serach_Flash_Head();
+[e = _bat_data -> -> 0 `i `ui ]
+[; ;main.c: 127: Cur_Save_Index = 0x2000;
 "127
-[e ( _Serach_Flash_Head ..  ]
-[; ;main.c: 128: asm("clrwdt");
+[e = _Cur_Save_Index -> -> 8192 `i `ui ]
+[; ;main.c: 128: Serach_Flash_Head();
 "128
+[e ( _Serach_Flash_Head ..  ]
+[; ;main.c: 129: asm("clrwdt");
+"129
 [; <" clrwdt ;# ">
-[; ;main.c: 156: (INTCONbits.GIE = 1);
-"156
+[; ;main.c: 131: SWDTEN = 1;
+"131
+[e = _SWDTEN -> -> 1 `i `b ]
+[; ;main.c: 157: (INTCONbits.GIE = 1);
+"157
 [e = . . _INTCONbits 0 7 -> -> 1 `i `uc ]
-[; ;main.c: 159: (INTCONbits.PEIE = 1);
-"159
+[; ;main.c: 160: (INTCONbits.PEIE = 1);
+"160
 [e = . . _INTCONbits 0 6 -> -> 1 `i `uc ]
-[; ;main.c: 167: while (1)
-"167
-[e :U 261 ]
-[; ;main.c: 168: {
+[; ;main.c: 168: while (1)
 "168
+[e :U 261 ]
+[; ;main.c: 169: {
+"169
 {
-[; ;main.c: 173: bat_data = bat_data + ADC_GetConversion(ADC);
-"173
-[e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1896 2 ]
-[; ;main.c: 174: i++;
+[; ;main.c: 174: bat_data = bat_data + ADC_GetConversion(ADC);
 "174
-[e ++ _i -> -> 1 `i `uc ]
-[; ;main.c: 175: if(i == 16)
+[e = _bat_data + _bat_data ( _ADC_GetConversion (1 . `E1895 2 ]
+[; ;main.c: 175: i++;
 "175
-[e $ ! == -> _i `i -> 16 `i 263  ]
-[; ;main.c: 176: {
+[e ++ _i -> -> 1 `i `uc ]
+[; ;main.c: 176: if(i == 16)
 "176
-{
-[; ;main.c: 177: i = 0;
+[e $ ! == -> _i `i -> 16 `i 263  ]
+[; ;main.c: 177: {
 "177
-[e = _i -> -> 0 `i `uc ]
-[; ;main.c: 178: bat_data = bat_data>>4;
-"178
-[e = _bat_data >> _bat_data -> 4 `i ]
-[; ;main.c: 179: if( bat_data < 800)
-"179
-[e $ ! < _bat_data -> -> 800 `i `ui 264  ]
-[; ;main.c: 180: {
-"180
 {
-[; ;main.c: 181: do { LATA2 = 0; } while(0);
+[; ;main.c: 178: i = 0;
+"178
+[e = _i -> -> 0 `i `uc ]
+[; ;main.c: 179: bat_data = bat_data>>4;
+"179
+[e = _bat_data >> _bat_data -> 4 `i ]
+[; ;main.c: 180: if( bat_data < 800)
+"180
+[e $ ! < _bat_data -> -> 800 `i `ui 264  ]
+[; ;main.c: 181: {
 "181
+{
+[; ;main.c: 182: do { LATA2 = 0; } while(0);
+"182
 [e :U 267 ]
 {
 [e = _LATA2 -> -> 0 `i `b ]
 }
 [e :U 266 ]
-[; ;main.c: 182: while(1)asm("clrwdt");
-"182
+[; ;main.c: 183: while(1)asm("clrwdt");
+"183
 [e :U 269 ]
 [; <" clrwdt ;# ">
 [e :U 268 ]
 [e $U 269  ]
 [e :U 270 ]
-"183
+"184
 }
 [e :U 264 ]
-[; ;main.c: 183: }
-[; ;main.c: 184: bat_data = 0;
-"184
-[e = _bat_data -> -> 0 `i `ui ]
+[; ;main.c: 184: }
+[; ;main.c: 185: bat_data = 0;
 "185
+[e = _bat_data -> -> 0 `i `ui ]
+"186
 }
 [e :U 263 ]
-[; ;main.c: 185: }
-[; ;main.c: 190: temperature_process();
-"190
-[e ( _temperature_process ..  ]
-[; ;main.c: 191: Key_Process();
+[; ;main.c: 186: }
+[; ;main.c: 191: temperature_process();
 "191
-[e ( _Key_Process ..  ]
-[; ;main.c: 192: Save_process();
+[e ( _temperature_process ..  ]
+[; ;main.c: 192: Key_Process();
 "192
-[e ( _Save_process ..  ]
-[; ;main.c: 193: Com_Process();
+[e ( _Key_Process ..  ]
+[; ;main.c: 193: Save_process();
 "193
+[e ( _Save_process ..  ]
+[; ;main.c: 194: Com_Process();
+"194
 [e ( _Com_Process ..  ]
-"282
+[; ;main.c: 196: if(Usart_Run_Flag == 0)
+"196
+[e $ ! == -> _Usart_Run_Flag `i -> 0 `i 271  ]
+[; ;main.c: 197: {
+"197
+{
+[; ;main.c: 198: Sleep_process();
+"198
+[e ( _Sleep_process ..  ]
+"199
+}
+[e :U 271 ]
+"286
 }
 [e :U 260 ]
-"167
+"168
 [e $U 261  ]
 [e :U 262 ]
-[; ;main.c: 282: }
-[; ;main.c: 283: }
-"283
+[; ;main.c: 199: }
+[; ;main.c: 286: }
+[; ;main.c: 287: }
+"287
 [e :UE 235 ]
 }

@@ -21,7 +21,7 @@ void Bq32k_Time_Init(void)
     if( FLASH_ReadWord(Time_Add) == 0x3fff )
     {
         I2C_Send_Buffer(0, temp, 7);
-        FLASH_WriteWord(Time_Add, temp, 1);
+        FLASH_WriteWord(Time_Add, 0x00);
     }
 }
 

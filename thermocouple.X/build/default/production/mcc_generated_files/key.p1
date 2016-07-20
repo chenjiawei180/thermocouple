@@ -1916,7 +1916,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.h: 201: void EUSART_Transmit_ISR(void);
 [; ;eusart.h: 222: void EUSART_Receive_ISR(void);
 [; ;memory.h: 99: uint16_t FLASH_ReadWord(uint16_t flashAddr);
-[; ;memory.h: 128: void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+[; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
@@ -1978,6 +1978,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
+[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
 [; ;key.h: 21: unsigned char Key_Scan(void);
 [; ;key.h: 22: void Key_Process(void);
 [; ;ht1621.h: 22: extern unsigned char const Dis_TAB[];
@@ -2193,6 +2194,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "75
 }
 [; ;key.c: 75: }
+[; ;key.c: 77: SWDTEN = 1;
+"77
+[e = _SWDTEN -> -> 1 `i `b ]
 [; ;key.c: 79: asm("clrwdt");
 "79
 [; <" clrwdt ;# ">

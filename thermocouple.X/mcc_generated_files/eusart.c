@@ -177,6 +177,8 @@ void EUSART_Receive_ISR(void) {
     rx_tmp = RCREG;
     Usart_Rx_Buff[Usart_Rx_Cnt] = rx_tmp ;
     Usart_Rx_Cnt++;
+    Usart_Run_Flag = 10;
+    SWDTEN = 0;
 #if 0
     // buffer overruns are ignored
     eusartRxBuffer[eusartRxHead++] = RCREG;

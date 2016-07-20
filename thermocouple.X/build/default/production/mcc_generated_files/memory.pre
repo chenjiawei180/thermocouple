@@ -2590,8 +2590,8 @@ typedef uint16_t uintptr_t;
 # 99 "mcc_generated_files/memory.h"
 uint16_t FLASH_ReadWord(uint16_t flashAddr);
 
-# 128
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word);
+# 129
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 
 # 164
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
@@ -2616,21 +2616,40 @@ INTCONbits.GIE = GIEBitValue;
 return ((PMDATH << 8) | PMDATL);
 }
 
-void FLASH_WriteWord(uint16_t flashAddr, uint16_t *ramBuf, uint16_t word) {
-uint16_t blockStartAddr = (uint16_t) (flashAddr & ((16384 - 1) ^ (32 - 1)));
-uint8_t offset = (uint8_t) (flashAddr & (32 - 1));
-uint8_t i;
+# 93
+void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) {
+
+uint8_t GIEBitValue = INTCONbits.GIE;
 
 
-for (i = 0; i < 32; i++) {
-ramBuf[i] = FLASH_ReadWord((blockStartAddr + i));
-}
+INTCONbits.GIE = 0;
 
 
-ramBuf[offset] = word;
+
+PMCON1bits.CFGS = 0;
+PMCON1bits.WREN = 1;
+PMCON1bits.LWLO = 1;
 
 
-FLASH_WriteBlock(blockStartAddr, ramBuf);
+PMADRL = (flashAddr & 0xFF);
+
+PMADRH = ((flashAddr & 0xFF00) >> 8);
+
+
+PMDATL = word;
+PMDATH = ((word & 0xFF00) >> 8);
+
+
+PMCON1bits.LWLO = 0;
+
+PMCON2 = 0x55;
+PMCON2 = 0xAA;
+PMCON1bits.WR = 1;
+__nop();
+__nop();
+
+PMCON1bits.WREN = 0;
+INTCONbits.GIE = GIEBitValue;
 }
 
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray) {

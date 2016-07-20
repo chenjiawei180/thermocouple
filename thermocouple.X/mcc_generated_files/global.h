@@ -16,7 +16,7 @@ extern "C" {
     
 #define DEBUG 1
 #define P_check 1
-#define WDT_SLEEP 0
+#define WDT_SLEEP 1
 
 #ifdef OS_GLOBALS
 #define OS_EXT
@@ -84,6 +84,7 @@ OS_EXT unsigned char Usart_Rx_Buff[32];
 OS_EXT unsigned char Usart_Rx_Cnt;
 
 OS_EXT unsigned char Set_time_cmd_flag;
+OS_EXT unsigned char Usart_Run_Flag;
 
 #ifdef	__cplusplus
 }
