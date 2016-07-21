@@ -84,6 +84,7 @@ OS_EXT unsigned char Usart_Rx_Buff[32];
 OS_EXT unsigned char Usart_Rx_Cnt;
 
 OS_EXT unsigned char Set_time_cmd_flag;
+OS_EXT unsigned char Inf_cmd_flag;
 OS_EXT unsigned char Usart_Run_Flag;
 
 #ifdef	__cplusplus

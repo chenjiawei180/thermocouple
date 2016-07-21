@@ -3,6 +3,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Set_time_cmd_flag `uc ~T0 @X0 0 e ]
 "18 mcc_generated_files/com.h
 [v _Set_time_from_Com `(v ~T0 @X0 0 ef ]
+"87 mcc_generated_files/global.h
+[v _Inf_cmd_flag `uc ~T0 @X0 0 e ]
+"21 mcc_generated_files/com.h
+[v _Inf_to_Com `(v ~T0 @X0 0 ef ]
 "27 mcc_generated_files/global.h
 [s S233 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 `uc 1 ]
 [n S233 bq32k_regs seconds minutes hours wday date month years ]
@@ -16,10 +20,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Bq32k_Rtc_Read_Time `(v ~T0 @X0 0 ef1`*S233 ]
 "19 mcc_generated_files/com.h
 [v _Read_time_to_Com `(v ~T0 @X0 0 ef ]
-"23
+"24
 [v _CRC_cal `(ui ~T0 @X0 0 ef2`*uc`uc ]
 "180 mcc_generated_files/eusart.h
 [v _EUSART_Write `(v ~T0 @X0 0 ef1`uc ]
+"191 mcc_generated_files/memory.h
+[v _FLASH_readBlock `(v ~T0 @X0 0 ef3`*ui`ui`uc ]
+"71 mcc_generated_files/global.h
+[v _Flash_buff `ui ~T0 @X0 -> 0 `x e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -1892,6 +1900,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;memory.h: 191: void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
 [; ;adc.h: 86: typedef enum {
 [; ;adc.h: 87: channel_Temp = 0x1E,
@@ -1951,13 +1960,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
-[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
+[; ;global.h: 87: extern unsigned char Inf_cmd_flag;
+[; ;global.h: 88: extern unsigned char Usart_Run_Flag;
 [; ;com.h: 18: void Set_time_from_Com(void);
 [; ;com.h: 19: void Read_time_to_Com(void);
 [; ;com.h: 20: void Com_Process(void);
-[; ;com.h: 21: void Erase_from_Com(void);
-[; ;com.h: 22: bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len);
-[; ;com.h: 23: unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len);
+[; ;com.h: 21: void Inf_to_Com(void);
+[; ;com.h: 23: bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len);
+[; ;com.h: 24: unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len);
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
@@ -1969,323 +1979,477 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;bq32k.h: 40: void Bq32k_Rtc_Write_Time(bq32k_t *p);
 [; ;bq32k.h: 42: unsigned char bcd2bin(unsigned char val);
 [; ;bq32k.h: 43: unsigned char bin2bcd(unsigned char val);
-"18 mcc_generated_files/com.c
+[; ;string.h: 14: extern void * memcpy(void *, const void *, size_t);
+[; ;string.h: 15: extern void * memmove(void *, const void *, size_t);
+[; ;string.h: 16: extern void * memset(void *, int, size_t);
+[; ;string.h: 20: extern void * __builtin_memcpy(void *, const void *, size_t);
+[; ;string.h: 34: extern char * strcat(char *, const char *);
+[; ;string.h: 35: extern char * strcpy(char *, const char *);
+[; ;string.h: 36: extern char * strncat(char *, const char *, size_t);
+[; ;string.h: 37: extern char * strncpy(char *, const char *, size_t);
+[; ;string.h: 38: extern char * strdup(const char *);
+[; ;string.h: 39: extern char * strtok(char *, const char *);
+[; ;string.h: 42: extern int memcmp(const void *, const void *, size_t);
+[; ;string.h: 43: extern int strcmp(const char *, const char *);
+[; ;string.h: 44: extern int stricmp(const char *, const char *);
+[; ;string.h: 45: extern int strncmp(const char *, const char *, size_t);
+[; ;string.h: 46: extern int strnicmp(const char *, const char *, size_t);
+[; ;string.h: 47: extern void * memchr(const void *, int, size_t);
+[; ;string.h: 48: extern size_t strcspn(const char *, const char *);
+[; ;string.h: 49: extern char * strpbrk(const char *, const char *);
+[; ;string.h: 50: extern size_t strspn(const char *, const char *);
+[; ;string.h: 51: extern char * strstr(const char *, const char *);
+[; ;string.h: 52: extern char * stristr(const char *, const char *);
+[; ;string.h: 53: extern char * strerror(int);
+[; ;string.h: 54: extern size_t strlen(const char *);
+[; ;string.h: 55: extern char * strchr(const char *, int);
+[; ;string.h: 56: extern char * strichr(const char *, int);
+[; ;string.h: 57: extern char * strrchr(const char *, int);
+[; ;string.h: 58: extern char * strrichr(const char *, int);
+"19 mcc_generated_files/com.c
 [v _Com_Process `(v ~T0 @X0 1 ef ]
-"19
+"20
 {
-[; ;com.c: 18: void Com_Process(void)
-[; ;com.c: 19: {
+[; ;com.c: 19: void Com_Process(void)
+[; ;com.c: 20: {
 [e :U _Com_Process ]
 [f ]
-[; ;com.c: 20: if(Set_time_cmd_flag == 1)
-"20
-[e $ ! == -> _Set_time_cmd_flag `i -> 1 `i 235  ]
-[; ;com.c: 21: {
+[; ;com.c: 21: if(Set_time_cmd_flag == 1)
 "21
-{
-[; ;com.c: 22: Set_time_from_Com();
+[e $ ! == -> _Set_time_cmd_flag `i -> 1 `i 235  ]
+[; ;com.c: 22: {
 "22
-[e ( _Set_time_from_Com ..  ]
-[; ;com.c: 23: Set_time_cmd_flag = 0;
+{
+[; ;com.c: 23: Set_time_from_Com();
 "23
-[e = _Set_time_cmd_flag -> -> 0 `i `uc ]
+[e ( _Set_time_from_Com ..  ]
+[; ;com.c: 24: Set_time_cmd_flag = 0;
 "24
+[e = _Set_time_cmd_flag -> -> 0 `i `uc ]
+"25
 }
 [e :U 235 ]
-[; ;com.c: 24: }
 [; ;com.c: 25: }
-"25
+[; ;com.c: 26: if(Inf_cmd_flag == 1)
+"26
+[e $ ! == -> _Inf_cmd_flag `i -> 1 `i 236  ]
+[; ;com.c: 27: {
+"27
+{
+[; ;com.c: 28: Inf_to_Com();
+"28
+[e ( _Inf_to_Com ..  ]
+[; ;com.c: 29: Inf_cmd_flag = 0;
+"29
+[e = _Inf_cmd_flag -> -> 0 `i `uc ]
+"30
+}
+[e :U 236 ]
+[; ;com.c: 30: }
+[; ;com.c: 31: }
+"31
 [e :UE 234 ]
 }
-"33
+"39
 [v _Set_time_from_Com `(v ~T0 @X0 1 ef ]
-"34
+"40
 {
-[; ;com.c: 33: void Set_time_from_Com(void)
-[; ;com.c: 34: {
+[; ;com.c: 39: void Set_time_from_Com(void)
+[; ;com.c: 40: {
 [e :U _Set_time_from_Com ]
 [f ]
-[; ;com.c: 35: rtc_tm.years = Usart_Rx_Buff[4];
-"35
-[e = . _rtc_tm 6 *U + &U _Usart_Rx_Buff * -> -> -> 4 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
-[; ;com.c: 36: rtc_tm.month= Usart_Rx_Buff[5];
-"36
-[e = . _rtc_tm 5 *U + &U _Usart_Rx_Buff * -> -> -> 5 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
-[; ;com.c: 37: rtc_tm.date= Usart_Rx_Buff[6];
-"37
-[e = . _rtc_tm 4 *U + &U _Usart_Rx_Buff * -> -> -> 6 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
-[; ;com.c: 38: rtc_tm.hours= Usart_Rx_Buff[7];
-"38
-[e = . _rtc_tm 2 *U + &U _Usart_Rx_Buff * -> -> -> 7 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
-[; ;com.c: 39: rtc_tm.minutes= Usart_Rx_Buff[8];
-"39
-[e = . _rtc_tm 1 *U + &U _Usart_Rx_Buff * -> -> -> 8 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
-[; ;com.c: 40: rtc_tm.seconds= Usart_Rx_Buff[9];
-"40
-[e = . _rtc_tm 0 *U + &U _Usart_Rx_Buff * -> -> -> 9 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
-[; ;com.c: 41: rtc_tm.wday= Usart_Rx_Buff[10];
+[; ;com.c: 41: rtc_tm.years = Usart_Rx_Buff[4];
 "41
-[e = . _rtc_tm 3 *U + &U _Usart_Rx_Buff * -> -> -> 10 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
-[; ;com.c: 42: Bq32k_Rtc_Write_Time(&rtc_tm);
+[e = . _rtc_tm 6 *U + &U _Usart_Rx_Buff * -> -> -> 4 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 42: rtc_tm.month= Usart_Rx_Buff[5];
 "42
-[e ( _Bq32k_Rtc_Write_Time (1 &U _rtc_tm ]
-[; ;com.c: 43: Bq32k_Rtc_Read_Time(&rtc_tm);
+[e = . _rtc_tm 5 *U + &U _Usart_Rx_Buff * -> -> -> 5 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 43: rtc_tm.date= Usart_Rx_Buff[6];
 "43
-[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
-[; ;com.c: 44: Read_time_to_Com();
+[e = . _rtc_tm 4 *U + &U _Usart_Rx_Buff * -> -> -> 6 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 44: rtc_tm.hours= Usart_Rx_Buff[7];
 "44
-[e ( _Read_time_to_Com ..  ]
-[; ;com.c: 45: }
+[e = . _rtc_tm 2 *U + &U _Usart_Rx_Buff * -> -> -> 7 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 45: rtc_tm.minutes= Usart_Rx_Buff[8];
 "45
-[e :UE 236 ]
-}
-"53
-[v _Read_time_to_Com `(v ~T0 @X0 1 ef ]
-"54
-{
-[; ;com.c: 53: void Read_time_to_Com(void)
-[; ;com.c: 54: {
-[e :U _Read_time_to_Com ]
-[f ]
-"55
-[v _crc_tmp `ui ~T0 @X0 1 a ]
-[; ;com.c: 55: unsigned int crc_tmp=0;
-[e = _crc_tmp -> -> 0 `i `ui ]
-"56
-[v _tmp_buf `uc ~T0 @X0 -> 16 `i a ]
-"57
-[v _i `uc ~T0 @X0 1 a ]
-[; ;com.c: 56: unsigned char tmp_buf[16];
-[; ;com.c: 57: unsigned char i;
-[; ;com.c: 58: tmp_buf[0] = 0xfe;
-"58
-[e = *U + &U _tmp_buf * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 254 `i `uc ]
-[; ;com.c: 59: tmp_buf[1] = 0xfe;
-"59
-[e = *U + &U _tmp_buf * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 254 `i `uc ]
-[; ;com.c: 60: tmp_buf[2] = 0X02;
-"60
-[e = *U + &U _tmp_buf * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 2 `i `uc ]
-[; ;com.c: 61: tmp_buf[3] = 0x07;
-"61
-[e = *U + &U _tmp_buf * -> -> -> 3 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 7 `i `uc ]
-[; ;com.c: 62: tmp_buf[4] = rtc_tm.years;
-"62
-[e = *U + &U _tmp_buf * -> -> -> 4 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 6 ]
-[; ;com.c: 63: tmp_buf[5] = rtc_tm.month;
-"63
-[e = *U + &U _tmp_buf * -> -> -> 5 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 5 ]
-[; ;com.c: 64: tmp_buf[6] = rtc_tm.date;
-"64
-[e = *U + &U _tmp_buf * -> -> -> 6 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 4 ]
-[; ;com.c: 65: tmp_buf[7] = rtc_tm.hours;
-"65
-[e = *U + &U _tmp_buf * -> -> -> 7 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 2 ]
-[; ;com.c: 66: tmp_buf[8] = rtc_tm.minutes;
-"66
-[e = *U + &U _tmp_buf * -> -> -> 8 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 1 ]
-[; ;com.c: 67: tmp_buf[9] = rtc_tm.seconds;
-"67
-[e = *U + &U _tmp_buf * -> -> -> 9 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 0 ]
-[; ;com.c: 68: tmp_buf[10] = rtc_tm.wday;
-"68
-[e = *U + &U _tmp_buf * -> -> -> 10 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 3 ]
-[; ;com.c: 69: crc_tmp = CRC_cal(tmp_buf,14);
-"69
-[e = _crc_tmp ( _CRC_cal (2 , &U _tmp_buf -> -> 14 `i `uc ]
-[; ;com.c: 70: tmp_buf[11] = crc_tmp >>8;
-"70
-[e = *U + &U _tmp_buf * -> -> -> 11 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> _crc_tmp -> 8 `i `uc ]
-[; ;com.c: 71: tmp_buf[12] = crc_tmp & 0xff;
-"71
-[e = *U + &U _tmp_buf * -> -> -> 12 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & _crc_tmp -> -> 255 `i `ui `uc ]
-[; ;com.c: 72: tmp_buf[13] = 0xbb;
-"72
-[e = *U + &U _tmp_buf * -> -> -> 13 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 187 `i `uc ]
-[; ;com.c: 73: for(i=0;i<14;i++)
-"73
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 14 `i 238  ]
-[e $U 239  ]
-"74
-[e :U 238 ]
-[; ;com.c: 74: {
-{
-[; ;com.c: 75: EUSART_Write(tmp_buf[i]);
-"75
-[e ( _EUSART_Write (1 *U + &U _tmp_buf * -> _i `ux -> -> # *U &U _tmp_buf `ui `ux ]
-"76
-}
-"73
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 14 `i 238  ]
-[e :U 239 ]
-"76
-}
-[; ;com.c: 76: }
-[; ;com.c: 77: }
-"77
+[e = . _rtc_tm 1 *U + &U _Usart_Rx_Buff * -> -> -> 8 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 46: rtc_tm.seconds= Usart_Rx_Buff[9];
+"46
+[e = . _rtc_tm 0 *U + &U _Usart_Rx_Buff * -> -> -> 9 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 47: rtc_tm.wday= Usart_Rx_Buff[10];
+"47
+[e = . _rtc_tm 3 *U + &U _Usart_Rx_Buff * -> -> -> 10 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 48: Bq32k_Rtc_Write_Time(&rtc_tm);
+"48
+[e ( _Bq32k_Rtc_Write_Time (1 &U _rtc_tm ]
+[; ;com.c: 49: Bq32k_Rtc_Read_Time(&rtc_tm);
+"49
+[e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
+[; ;com.c: 50: Read_time_to_Com();
+"50
+[e ( _Read_time_to_Com ..  ]
+[; ;com.c: 51: }
+"51
 [e :UE 237 ]
 }
-"85
-[v _RxFrameCheck `(uc ~T0 @X0 1 ef2`*uc`uc ]
-"86
+"59
+[v _Read_time_to_Com `(v ~T0 @X0 1 ef ]
+"60
 {
-[; ;com.c: 85: bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len)
-[; ;com.c: 86: {
-[e :U _RxFrameCheck ]
-"85
-[v _rx_arr `*uc ~T0 @X0 1 r1 ]
-[v _frame_len `uc ~T0 @X0 1 r2 ]
-"86
+[; ;com.c: 59: void Read_time_to_Com(void)
+[; ;com.c: 60: {
+[e :U _Read_time_to_Com ]
 [f ]
-"87
+"61
+[v _crc_tmp `ui ~T0 @X0 1 a ]
+[; ;com.c: 61: unsigned int crc_tmp=0;
+[e = _crc_tmp -> -> 0 `i `ui ]
+"62
+[v _tmp_buf `uc ~T0 @X0 -> 16 `i a ]
+"63
 [v _i `uc ~T0 @X0 1 a ]
-[; ;com.c: 87: unsigned char i = 0;
-[e = _i -> -> 0 `i `uc ]
-"88
-[v _remainder `ui ~T0 @X0 1 a ]
-[; ;com.c: 88: unsigned int remainder = 0;
-[e = _remainder -> -> 0 `i `ui ]
-"89
-[v _tmp_crc `ui ~T0 @X0 1 a ]
-[; ;com.c: 89: unsigned int tmp_crc = 0;
-[e = _tmp_crc -> -> 0 `i `ui ]
-[; ;com.c: 91: for(i = 2; i < frame_len - 3; i++)
-"91
+[; ;com.c: 62: unsigned char tmp_buf[16];
+[; ;com.c: 63: unsigned char i;
+[; ;com.c: 64: tmp_buf[0] = 0xfe;
+"64
+[e = *U + &U _tmp_buf * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 254 `i `uc ]
+[; ;com.c: 65: tmp_buf[1] = 0xfe;
+"65
+[e = *U + &U _tmp_buf * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 254 `i `uc ]
+[; ;com.c: 66: tmp_buf[2] = 0X02;
+"66
+[e = *U + &U _tmp_buf * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 2 `i `uc ]
+[; ;com.c: 67: tmp_buf[3] = 0x07;
+"67
+[e = *U + &U _tmp_buf * -> -> -> 3 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 7 `i `uc ]
+[; ;com.c: 68: tmp_buf[4] = rtc_tm.years;
+"68
+[e = *U + &U _tmp_buf * -> -> -> 4 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 6 ]
+[; ;com.c: 69: tmp_buf[5] = rtc_tm.month;
+"69
+[e = *U + &U _tmp_buf * -> -> -> 5 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 5 ]
+[; ;com.c: 70: tmp_buf[6] = rtc_tm.date;
+"70
+[e = *U + &U _tmp_buf * -> -> -> 6 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 4 ]
+[; ;com.c: 71: tmp_buf[7] = rtc_tm.hours;
+"71
+[e = *U + &U _tmp_buf * -> -> -> 7 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 2 ]
+[; ;com.c: 72: tmp_buf[8] = rtc_tm.minutes;
+"72
+[e = *U + &U _tmp_buf * -> -> -> 8 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 1 ]
+[; ;com.c: 73: tmp_buf[9] = rtc_tm.seconds;
+"73
+[e = *U + &U _tmp_buf * -> -> -> 9 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 0 ]
+[; ;com.c: 74: tmp_buf[10] = rtc_tm.wday;
+"74
+[e = *U + &U _tmp_buf * -> -> -> 10 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux . _rtc_tm 3 ]
+[; ;com.c: 75: crc_tmp = CRC_cal(tmp_buf,14);
+"75
+[e = _crc_tmp ( _CRC_cal (2 , &U _tmp_buf -> -> 14 `i `uc ]
+[; ;com.c: 76: tmp_buf[11] = crc_tmp >>8;
+"76
+[e = *U + &U _tmp_buf * -> -> -> 11 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> _crc_tmp -> 8 `i `uc ]
+[; ;com.c: 77: tmp_buf[12] = crc_tmp & 0xff;
+"77
+[e = *U + &U _tmp_buf * -> -> -> 12 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & _crc_tmp -> -> 255 `i `ui `uc ]
+[; ;com.c: 78: tmp_buf[13] = 0xbb;
+"78
+[e = *U + &U _tmp_buf * -> -> -> 13 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 187 `i `uc ]
+[; ;com.c: 79: for(i=0;i<14;i++)
+"79
 {
-[e = _i -> -> 2 `i `uc ]
-[e $U 245  ]
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 14 `i 239  ]
+[e $U 240  ]
+"80
+[e :U 239 ]
+[; ;com.c: 80: {
+{
+[; ;com.c: 81: EUSART_Write(tmp_buf[i]);
+"81
+[e ( _EUSART_Write (1 *U + &U _tmp_buf * -> _i `ux -> -> # *U &U _tmp_buf `ui `ux ]
+"82
+}
+"79
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 14 `i 239  ]
+[e :U 240 ]
+"82
+}
+[; ;com.c: 82: }
+[; ;com.c: 83: }
+"83
+[e :UE 238 ]
+}
+"91
+[v _Inf_to_Com `(v ~T0 @X0 1 ef ]
 "92
-[e :U 242 ]
+{
+[; ;com.c: 91: void Inf_to_Com(void)
 [; ;com.c: 92: {
-{
-[; ;com.c: 93: remainder = (unsigned int)((remainder >> 8) | (remainder << 8));
+[e :U _Inf_to_Com ]
+[f ]
 "93
-[e = _remainder | >> _remainder -> 8 `i << _remainder -> 8 `i ]
-[; ;com.c: 94: remainder ^= rx_arr[i];
+[v _add_tmp `ui ~T0 @X0 1 a ]
+[; ;com.c: 93: unsigned int add_tmp=0;
+[e = _add_tmp -> -> 0 `i `ui ]
 "94
-[e =^ _remainder -> *U + _rx_arr * -> _i `ux -> -> # *U _rx_arr `ui `ux `ui ]
-[; ;com.c: 95: remainder ^= (unsigned int)((remainder & 0xFF) >> 4);
+[v _count_tmp `uc ~T0 @X0 1 a ]
+[; ;com.c: 94: unsigned char count_tmp = 0;
+[e = _count_tmp -> -> 0 `i `uc ]
 "95
-[e =^ _remainder >> & _remainder -> -> 255 `i `ui -> 4 `i ]
-[; ;com.c: 96: remainder ^= (unsigned int)((remainder << 8) << 4);
+[v _crc_tmp `ui ~T0 @X0 1 a ]
+[; ;com.c: 95: unsigned int crc_tmp=0;
+[e = _crc_tmp -> -> 0 `i `ui ]
 "96
-[e =^ _remainder << << _remainder -> 8 `i -> 4 `i ]
-[; ;com.c: 97: remainder ^= (unsigned int)(((remainder & 0xFF) << 4) << 1);
+[v _tmp_buf `uc ~T0 @X0 -> 72 `i a ]
 "97
-[e =^ _remainder << << & _remainder -> -> 255 `i `ui -> 4 `i -> 1 `i ]
+[v _i `uc ~T0 @X0 1 a ]
+[; ;com.c: 96: unsigned char tmp_buf[72];
+[; ;com.c: 97: unsigned char i=0;
+[e = _i -> -> 0 `i `uc ]
+[; ;com.c: 98: add_tmp = (Usart_Rx_Buff[4]<<8) | Usart_Rx_Buff[5];
 "98
-}
-"91
-[e ++ _i -> -> 1 `i `uc ]
-[e :U 245 ]
-[e $ < -> _i `i - -> _frame_len `i -> 3 `i 242  ]
-[e :U 243 ]
-"98
-}
-[; ;com.c: 98: }
-[; ;com.c: 100: tmp_crc = rx_arr[frame_len - 2];
+[e = _add_tmp -> | << -> *U + &U _Usart_Rx_Buff * -> -> -> 4 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux `i -> 8 `i -> *U + &U _Usart_Rx_Buff * -> -> -> 5 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux `i `ui ]
+[; ;com.c: 99: count_tmp = Usart_Rx_Buff[6];
+"99
+[e = _count_tmp *U + &U _Usart_Rx_Buff * -> -> -> 6 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux ]
+[; ;com.c: 100: FLASH_readBlock(Flash_buff, add_tmp, count_tmp);
 "100
-[e = _tmp_crc -> *U + _rx_arr * -> - -> _frame_len `i -> 2 `i `x -> -> # *U _rx_arr `i `x `ui ]
-[; ;com.c: 101: tmp_crc<<=8;
+[e ( _FLASH_readBlock (3 , , &U _Flash_buff _add_tmp _count_tmp ]
+[; ;com.c: 101: tmp_buf[0] = 0xfe;
 "101
-[e =<< _tmp_crc -> 8 `i ]
-[; ;com.c: 102: tmp_crc|=rx_arr[frame_len - 3];
+[e = *U + &U _tmp_buf * -> -> -> 0 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 254 `i `uc ]
+[; ;com.c: 102: tmp_buf[1] = 0xfe;
 "102
-[e =| _tmp_crc -> *U + _rx_arr * -> - -> _frame_len `i -> 3 `i `x -> -> # *U _rx_arr `i `x `ui ]
-[; ;com.c: 108: if(remainder == tmp_crc)
+[e = *U + &U _tmp_buf * -> -> -> 1 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 254 `i `uc ]
+[; ;com.c: 103: tmp_buf[2] = 0x01;
+"103
+[e = *U + &U _tmp_buf * -> -> -> 2 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 1 `i `uc ]
+[; ;com.c: 104: tmp_buf[3] = count_tmp;
+"104
+[e = *U + &U _tmp_buf * -> -> -> 3 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux _count_tmp ]
+[; ;com.c: 105: for(i=0;i<count_tmp;i++)
+"105
+{
+[e = _i -> -> 0 `i `uc ]
+[e $U 246  ]
+"106
+[e :U 243 ]
+[; ;com.c: 106: {
+{
+[; ;com.c: 107: tmp_buf[4+i*2] = Flash_buff[i] >> 8 ;
+"107
+[e = *U + &U _tmp_buf * -> -> + -> 4 `i * -> _i `i -> 2 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> *U + &U _Flash_buff * -> _i `ux -> -> # *U &U _Flash_buff `ui `ux -> 8 `i `uc ]
+[; ;com.c: 108: tmp_buf[5+i*2] = Flash_buff[i] & 0xff ;
 "108
-[e $ ! == _remainder _tmp_crc 246  ]
-[; ;com.c: 109: {
+[e = *U + &U _tmp_buf * -> -> + -> 5 `i * -> _i `i -> 2 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & *U + &U _Flash_buff * -> _i `ux -> -> # *U &U _Flash_buff `ui `ux -> -> 255 `i `ui `uc ]
 "109
-{
-[; ;com.c: 110: return 1;
-"110
-[e ) -> -> 1 `i `uc ]
-[e $UE 241  ]
-"111
 }
-[; ;com.c: 111: }
-[e $U 247  ]
-"112
+"105
+[e ++ _i -> -> 1 `i `uc ]
 [e :U 246 ]
-[; ;com.c: 112: else
-[; ;com.c: 113: {
+[e $ < -> _i `i -> _count_tmp `i 243  ]
+[e :U 244 ]
+"109
+}
+[; ;com.c: 109: }
+[; ;com.c: 110: crc_tmp = CRC_cal(tmp_buf,count_tmp+7);
+"110
+[e = _crc_tmp ( _CRC_cal (2 , &U _tmp_buf -> + -> _count_tmp `i -> 7 `i `uc ]
+[; ;com.c: 111: tmp_buf[count_tmp*2 + 4] = crc_tmp >>8;
+"111
+[e = *U + &U _tmp_buf * -> -> + * -> _count_tmp `i -> 2 `i -> 4 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> _crc_tmp -> 8 `i `uc ]
+[; ;com.c: 112: tmp_buf[count_tmp*2 + 5] = crc_tmp & 0xff;
+"112
+[e = *U + &U _tmp_buf * -> -> + * -> _count_tmp `i -> 2 `i -> 5 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & _crc_tmp -> -> 255 `i `ui `uc ]
+[; ;com.c: 113: tmp_buf[count_tmp*2 + 6] = 0xbb;
 "113
-{
-[; ;com.c: 114: return 0;
+[e = *U + &U _tmp_buf * -> -> + * -> _count_tmp `i -> 2 `i -> 6 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 187 `i `uc ]
+[; ;com.c: 114: for(i=0;i<(count_tmp*2+7);i++)
 "114
-[e ) -> -> 0 `i `uc ]
-[e $UE 241  ]
-"115
-}
-[e :U 247 ]
-[; ;com.c: 115: }
-[; ;com.c: 116: }
-"116
-[e :UE 241 ]
-}
-"124
-[v _CRC_cal `(ui ~T0 @X0 1 ef2`*uc`uc ]
-"125
 {
-[; ;com.c: 124: unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len)
-[; ;com.c: 125: {
-[e :U _CRC_cal ]
-"124
+[e = _i -> -> 0 `i `uc ]
+[e $U 250  ]
+"115
+[e :U 247 ]
+[; ;com.c: 115: {
+{
+[; ;com.c: 116: EUSART_Write(tmp_buf[i]);
+"116
+[e ( _EUSART_Write (1 *U + &U _tmp_buf * -> _i `ux -> -> # *U &U _tmp_buf `ui `ux ]
+"117
+}
+"114
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 250 ]
+[e $ < -> _i `i + * -> _count_tmp `i -> 2 `i -> 7 `i 247  ]
+[e :U 248 ]
+"117
+}
+[; ;com.c: 117: }
+[; ;com.c: 118: }
+"118
+[e :UE 242 ]
+}
+"126
+[v _RxFrameCheck `(uc ~T0 @X0 1 ef2`*uc`uc ]
+"127
+{
+[; ;com.c: 126: bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len)
+[; ;com.c: 127: {
+[e :U _RxFrameCheck ]
+"126
 [v _rx_arr `*uc ~T0 @X0 1 r1 ]
 [v _frame_len `uc ~T0 @X0 1 r2 ]
-"125
-[f ]
-"126
-[v _i `uc ~T0 @X0 1 a ]
-[; ;com.c: 126: unsigned char i = 0;
-[e = _i -> -> 0 `i `uc ]
 "127
-[v _remainder `ui ~T0 @X0 1 a ]
-[; ;com.c: 127: unsigned int remainder = 0;
-[e = _remainder -> -> 0 `i `ui ]
-[; ;com.c: 129: for(i = 2; i < frame_len - 3; i++)
+[f ]
+"128
+[v _i `uc ~T0 @X0 1 a ]
+[; ;com.c: 128: unsigned char i = 0;
+[e = _i -> -> 0 `i `uc ]
 "129
+[v _remainder `ui ~T0 @X0 1 a ]
+[; ;com.c: 129: unsigned int remainder = 0;
+[e = _remainder -> -> 0 `i `ui ]
+"130
+[v _tmp_crc `ui ~T0 @X0 1 a ]
+[; ;com.c: 130: unsigned int tmp_crc = 0;
+[e = _tmp_crc -> -> 0 `i `ui ]
+[; ;com.c: 132: for(i = 2; i < frame_len - 3; i++)
+"132
 {
 [e = _i -> -> 2 `i `uc ]
-[e $U 252  ]
-"130
-[e :U 249 ]
-[; ;com.c: 130: {
-{
-[; ;com.c: 131: remainder = (unsigned int)((remainder >> 8) | (remainder << 8));
-"131
-[e = _remainder | >> _remainder -> 8 `i << _remainder -> 8 `i ]
-[; ;com.c: 132: remainder ^= rx_arr[i];
-"132
-[e =^ _remainder -> *U + _rx_arr * -> _i `ux -> -> # *U _rx_arr `ui `ux `ui ]
-[; ;com.c: 133: remainder ^= (unsigned int)((remainder & 0xFF) >> 4);
+[e $U 255  ]
 "133
-[e =^ _remainder >> & _remainder -> -> 255 `i `ui -> 4 `i ]
-[; ;com.c: 134: remainder ^= (unsigned int)((remainder << 8) << 4);
-"134
-[e =^ _remainder << << _remainder -> 8 `i -> 4 `i ]
-[; ;com.c: 135: remainder ^= (unsigned int)(((remainder & 0xFF) << 4) << 1);
-"135
-[e =^ _remainder << << & _remainder -> -> 255 `i `ui -> 4 `i -> 1 `i ]
-"136
-}
-"129
-[e ++ _i -> -> 1 `i `uc ]
 [e :U 252 ]
-[e $ < -> _i `i - -> _frame_len `i -> 3 `i 249  ]
-[e :U 250 ]
+[; ;com.c: 133: {
+{
+[; ;com.c: 134: remainder = (unsigned int)((remainder >> 8) | (remainder << 8));
+"134
+[e = _remainder | >> _remainder -> 8 `i << _remainder -> 8 `i ]
+[; ;com.c: 135: remainder ^= rx_arr[i];
+"135
+[e =^ _remainder -> *U + _rx_arr * -> _i `ux -> -> # *U _rx_arr `ui `ux `ui ]
+[; ;com.c: 136: remainder ^= (unsigned int)((remainder & 0xFF) >> 4);
 "136
-}
-[; ;com.c: 136: }
-[; ;com.c: 137: return remainder;
+[e =^ _remainder >> & _remainder -> -> 255 `i `ui -> 4 `i ]
+[; ;com.c: 137: remainder ^= (unsigned int)((remainder << 8) << 4);
 "137
-[e ) _remainder ]
-[e $UE 248  ]
-[; ;com.c: 138: }
+[e =^ _remainder << << _remainder -> 8 `i -> 4 `i ]
+[; ;com.c: 138: remainder ^= (unsigned int)(((remainder & 0xFF) << 4) << 1);
 "138
-[e :UE 248 ]
+[e =^ _remainder << << & _remainder -> -> 255 `i `ui -> 4 `i -> 1 `i ]
+"139
+}
+"132
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 255 ]
+[e $ < -> _i `i - -> _frame_len `i -> 3 `i 252  ]
+[e :U 253 ]
+"139
+}
+[; ;com.c: 139: }
+[; ;com.c: 141: tmp_crc = rx_arr[frame_len - 2];
+"141
+[e = _tmp_crc -> *U + _rx_arr * -> - -> _frame_len `i -> 2 `i `x -> -> # *U _rx_arr `i `x `ui ]
+[; ;com.c: 142: tmp_crc<<=8;
+"142
+[e =<< _tmp_crc -> 8 `i ]
+[; ;com.c: 143: tmp_crc|=rx_arr[frame_len - 3];
+"143
+[e =| _tmp_crc -> *U + _rx_arr * -> - -> _frame_len `i -> 3 `i `x -> -> # *U _rx_arr `i `x `ui ]
+[; ;com.c: 149: if(remainder == tmp_crc)
+"149
+[e $ ! == _remainder _tmp_crc 256  ]
+[; ;com.c: 150: {
+"150
+{
+[; ;com.c: 151: return 1;
+"151
+[e ) -> -> 1 `i `uc ]
+[e $UE 251  ]
+"152
+}
+[; ;com.c: 152: }
+[e $U 257  ]
+"153
+[e :U 256 ]
+[; ;com.c: 153: else
+[; ;com.c: 154: {
+"154
+{
+[; ;com.c: 155: return 0;
+"155
+[e ) -> -> 0 `i `uc ]
+[e $UE 251  ]
+"156
+}
+[e :U 257 ]
+[; ;com.c: 156: }
+[; ;com.c: 157: }
+"157
+[e :UE 251 ]
+}
+"165
+[v _CRC_cal `(ui ~T0 @X0 1 ef2`*uc`uc ]
+"166
+{
+[; ;com.c: 165: unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len)
+[; ;com.c: 166: {
+[e :U _CRC_cal ]
+"165
+[v _rx_arr `*uc ~T0 @X0 1 r1 ]
+[v _frame_len `uc ~T0 @X0 1 r2 ]
+"166
+[f ]
+"167
+[v _i `uc ~T0 @X0 1 a ]
+[; ;com.c: 167: unsigned char i = 0;
+[e = _i -> -> 0 `i `uc ]
+"168
+[v _remainder `ui ~T0 @X0 1 a ]
+[; ;com.c: 168: unsigned int remainder = 0;
+[e = _remainder -> -> 0 `i `ui ]
+[; ;com.c: 170: for(i = 2; i < frame_len - 3; i++)
+"170
+{
+[e = _i -> -> 2 `i `uc ]
+[e $U 262  ]
+"171
+[e :U 259 ]
+[; ;com.c: 171: {
+{
+[; ;com.c: 172: remainder = (unsigned int)((remainder >> 8) | (remainder << 8));
+"172
+[e = _remainder | >> _remainder -> 8 `i << _remainder -> 8 `i ]
+[; ;com.c: 173: remainder ^= rx_arr[i];
+"173
+[e =^ _remainder -> *U + _rx_arr * -> _i `ux -> -> # *U _rx_arr `ui `ux `ui ]
+[; ;com.c: 174: remainder ^= (unsigned int)((remainder & 0xFF) >> 4);
+"174
+[e =^ _remainder >> & _remainder -> -> 255 `i `ui -> 4 `i ]
+[; ;com.c: 175: remainder ^= (unsigned int)((remainder << 8) << 4);
+"175
+[e =^ _remainder << << _remainder -> 8 `i -> 4 `i ]
+[; ;com.c: 176: remainder ^= (unsigned int)(((remainder & 0xFF) << 4) << 1);
+"176
+[e =^ _remainder << << & _remainder -> -> 255 `i `ui -> 4 `i -> 1 `i ]
+"177
+}
+"170
+[e ++ _i -> -> 1 `i `uc ]
+[e :U 262 ]
+[e $ < -> _i `i - -> _frame_len `i -> 3 `i 259  ]
+[e :U 260 ]
+"177
+}
+[; ;com.c: 177: }
+[; ;com.c: 178: return remainder;
+"178
+[e ) _remainder ]
+[e $UE 258  ]
+[; ;com.c: 179: }
+"179
+[e :UE 258 ]
 }

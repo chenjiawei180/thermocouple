@@ -1904,6 +1904,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;memory.h: 191: void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
 [; ;adc.h: 86: typedef enum {
 [; ;adc.h: 87: channel_Temp = 0x1E,

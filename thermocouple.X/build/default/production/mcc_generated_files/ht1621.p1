@@ -1907,6 +1907,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;memory.h: 191: void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
 [; ;adc.h: 86: typedef enum {
 [; ;adc.h: 87: channel_Temp = 0x1E,
@@ -1993,7 +1994,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
-[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
+[; ;global.h: 87: extern unsigned char Inf_cmd_flag;
+[; ;global.h: 88: extern unsigned char Usart_Run_Flag;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
@@ -2426,8 +2428,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _number `uc ~T0 @X0 1 r1 ]
 "140
 [f ]
-[v F2132 `uc ~T0 @X0 -> 4 `i s ]
-[i F2132
+[v F2137 `uc ~T0 @X0 -> 4 `i s ]
+[i F2137
 :U ..
 "141
 -> -> 0 `i `uc
@@ -2435,7 +2437,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 141: unsigned char num[4]={0};
-[e = _num F2132 ]
+[e = _num F2137 ]
 [; ;ht1621.c: 142: num[1] = Dis_TAB[0];
 "142
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 0 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2457,8 +2459,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 154: {
 [e :U _err_Display ]
 [f ]
-[v F2135 `uc ~T0 @X0 -> 4 `i s ]
-[i F2135
+[v F2140 `uc ~T0 @X0 -> 4 `i s ]
+[i F2140
 :U ..
 "155
 -> -> 0 `i `uc
@@ -2466,7 +2468,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 155: unsigned char num[4]={0};
-[e = _num F2135 ]
+[e = _num F2140 ]
 [; ;ht1621.c: 156: num[1] = Dis_TAB[0x10];
 "156
 [e = *U + &U _num * -> -> -> 1 `i `ui `ux -> -> # *U &U _num `ui `ux *U + &U _Dis_TAB * -> -> -> 16 `i `ui `ux -> -> # *U &U _Dis_TAB `ui `ux ]
@@ -2488,8 +2490,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;ht1621.c: 168: {
 [e :U _time_Display ]
 [f ]
-[v F2138 `uc ~T0 @X0 -> 4 `i s ]
-[i F2138
+[v F2143 `uc ~T0 @X0 -> 4 `i s ]
+[i F2143
 :U ..
 "169
 -> -> 0 `i `uc
@@ -2497,7 +2499,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 ]
 [v _num `uc ~T0 @X0 -> 4 `i a ]
 [; ;ht1621.c: 169: unsigned char num[4]={0};
-[e = _num F2138 ]
+[e = _num F2143 ]
 [; ;ht1621.c: 170: Bq32k_Rtc_Read_Time(&rtc_tm);
 "170
 [e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]

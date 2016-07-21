@@ -8,6 +8,7 @@
 #include "com.h"
 #include "i2c.h"
 #include "bq32k.h"
+#include "string.h"
 
 /**
   * @brief  This function is Com_Process.
@@ -21,6 +22,11 @@ void Com_Process(void)
     {
         Set_time_from_Com();
         Set_time_cmd_flag = 0;
+    }
+    if(Inf_cmd_flag == 1)
+    {
+        Inf_to_Com();
+        Inf_cmd_flag = 0;
     }
 }
 
@@ -73,6 +79,41 @@ void Read_time_to_Com(void)
     for(i=0;i<14;i++)
     {
         EUSART_Write(tmp_buf[i]);   
+    }
+}
+
+/**
+  * @brief  This function is Set_time_from_Com.
+  * @param  None .
+  * @retval None
+  */
+  
+void Inf_to_Com(void)
+{
+    unsigned int add_tmp=0;
+    unsigned char count_tmp = 0;
+    unsigned int crc_tmp=0;
+    unsigned char tmp_buf[72];
+    unsigned char i=0;
+    add_tmp = (Usart_Rx_Buff[4]<<8) | Usart_Rx_Buff[5];
+    count_tmp = Usart_Rx_Buff[6];
+    FLASH_readBlock(Flash_buff, add_tmp, count_tmp);
+    tmp_buf[0] = 0xfe;
+    tmp_buf[1] = 0xfe;
+    tmp_buf[2] = INF_CMD;
+    tmp_buf[3] = count_tmp;
+    for(i=0;i<count_tmp;i++)
+    {
+        tmp_buf[4+i*2] = Flash_buff[i] >> 8 ;
+        tmp_buf[5+i*2] = Flash_buff[i] & 0xff ;
+    }
+    crc_tmp = CRC_cal(tmp_buf,count_tmp+7);    //cal the number of CRC check
+    tmp_buf[count_tmp*2 + 4] = crc_tmp >>8;
+    tmp_buf[count_tmp*2 + 5] = crc_tmp & 0xff;
+    tmp_buf[count_tmp*2 + 6] = 0xbb;
+    for(i=0;i<(count_tmp*2+7);i++)
+    {
+        EUSART_Write(tmp_buf[i]);
     }
 }
 

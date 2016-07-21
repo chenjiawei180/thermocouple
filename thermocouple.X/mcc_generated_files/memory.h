@@ -188,6 +188,8 @@ extern "C" {
      */
     void FLASH_EraseBlock(uint16_t startAddr);
 
+    void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
 }

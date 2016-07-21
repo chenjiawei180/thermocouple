@@ -2651,6 +2651,8 @@ int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 # 189
 void FLASH_EraseBlock(uint16_t startAddr);
 
+void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
+
 # 72 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
 
@@ -2755,13 +2757,15 @@ extern unsigned char Usart_Rx_Buff[32];
 extern unsigned char Usart_Rx_Cnt;
 
 extern unsigned char Set_time_cmd_flag;
+extern unsigned char Inf_cmd_flag;
 extern unsigned char Usart_Run_Flag;
 
 # 18 "mcc_generated_files/com.h"
 void Set_time_from_Com(void);
 void Read_time_to_Com(void);
 void Com_Process(void);
-void Erase_from_Com(void);
+void Inf_to_Com(void);
+
 bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len);
 unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len);
 
@@ -2781,7 +2785,44 @@ void Bq32k_Rtc_Write_Time(bq32k_t *p);
 unsigned char bcd2bin(unsigned char val);
 unsigned char bin2bcd(unsigned char val);
 
-# 18 "mcc_generated_files/com.c"
+# 14 "D:\Program Files (x86)\Microchip\xc8\v1.37\include\string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
+
+
+
+extern void * __builtin_memcpy(void *, const void *, size_t);
+#pragma intrinsic(__builtin_memcpy)
+
+# 34
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
+
+
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
+
+# 19 "mcc_generated_files/com.c"
 void Com_Process(void)
 {
 if(Set_time_cmd_flag == 1)
@@ -2789,9 +2830,14 @@ if(Set_time_cmd_flag == 1)
 Set_time_from_Com();
 Set_time_cmd_flag = 0;
 }
+if(Inf_cmd_flag == 1)
+{
+Inf_to_Com();
+Inf_cmd_flag = 0;
+}
 }
 
-# 33
+# 39
 void Set_time_from_Com(void)
 {
 rtc_tm.years = Usart_Rx_Buff[4];
@@ -2806,7 +2852,7 @@ Bq32k_Rtc_Read_Time(&rtc_tm);
 Read_time_to_Com();
 }
 
-# 53
+# 59
 void Read_time_to_Com(void)
 {
 unsigned int crc_tmp=0;
@@ -2833,7 +2879,37 @@ EUSART_Write(tmp_buf[i]);
 }
 }
 
-# 85
+# 91
+void Inf_to_Com(void)
+{
+unsigned int add_tmp=0;
+unsigned char count_tmp = 0;
+unsigned int crc_tmp=0;
+unsigned char tmp_buf[72];
+unsigned char i=0;
+add_tmp = (Usart_Rx_Buff[4]<<8) | Usart_Rx_Buff[5];
+count_tmp = Usart_Rx_Buff[6];
+FLASH_readBlock(Flash_buff, add_tmp, count_tmp);
+tmp_buf[0] = 0xfe;
+tmp_buf[1] = 0xfe;
+tmp_buf[2] = 0x01;
+tmp_buf[3] = count_tmp;
+for(i=0;i<count_tmp;i++)
+{
+tmp_buf[4+i*2] = Flash_buff[i] >> 8 ;
+tmp_buf[5+i*2] = Flash_buff[i] & 0xff ;
+}
+crc_tmp = CRC_cal(tmp_buf,count_tmp+7);
+tmp_buf[count_tmp*2 + 4] = crc_tmp >>8;
+tmp_buf[count_tmp*2 + 5] = crc_tmp & 0xff;
+tmp_buf[count_tmp*2 + 6] = 0xbb;
+for(i=0;i<(count_tmp*2+7);i++)
+{
+EUSART_Write(tmp_buf[i]);
+}
+}
+
+# 126
 bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len)
 {
 unsigned char i = 0;
@@ -2853,7 +2929,7 @@ tmp_crc = rx_arr[frame_len - 2];
 tmp_crc<<=8;
 tmp_crc|=rx_arr[frame_len - 3];
 
-# 108
+# 149
 if(remainder == tmp_crc)
 {
 return 1;
@@ -2864,7 +2940,7 @@ return 0;
 }
 }
 
-# 124
+# 165
 unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len)
 {
 unsigned char i = 0;

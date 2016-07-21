@@ -220,7 +220,7 @@ void EUSART_Receive_ISR(void) {
         {
             switch( Usart_Rx_Buff[2] )
             {
-                case INF_CMD:
+                case INF_CMD:    Inf_cmd_flag = 1;
                     break;
                 case SET_TIME_CMD:    Set_time_cmd_flag = 1;
                     break;

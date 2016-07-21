@@ -2651,6 +2651,8 @@ int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 # 189
 void FLASH_EraseBlock(uint16_t startAddr);
 
+void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
+
 # 72 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
 

@@ -2651,6 +2651,8 @@ int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 # 189
 void FLASH_EraseBlock(uint16_t startAddr);
 
+void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
+
 # 72 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
 
@@ -2755,6 +2757,7 @@ uint8_t years;
  unsigned char Usart_Rx_Cnt;
 
  unsigned char Set_time_cmd_flag;
+ unsigned char Inf_cmd_flag;
  unsigned char Usart_Run_Flag;
 
 # 82 "mcc_generated_files/max31856.h"
@@ -2983,6 +2986,7 @@ CH2_state = 0;
 Usart_Rx_Cnt = 0;
 Set_time_cmd_flag = 0;
 Usart_Run_Flag = 0;
+Inf_cmd_flag = 0;
 bat_data = 0;
 Cur_Save_Index = 0x2000;
 Serach_Flash_Head();
@@ -2990,13 +2994,13 @@ asm("clrwdt");
 
 SWDTEN = 1;
 
-# 157
+# 158
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 168
+# 169
 while (1)
 {
 
@@ -3030,7 +3034,7 @@ if(Usart_Run_Flag == 0)
 Sleep_process();
 }
 
-# 286
+# 287
 }
 }
 

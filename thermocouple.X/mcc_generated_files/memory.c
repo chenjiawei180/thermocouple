@@ -200,6 +200,16 @@ void FLASH_EraseBlock(uint16_t startAddr) {
     PMCON1bits.WREN = 0; // Disable writes
     INTCONbits.GIE = GIEBitValue; // Restore interrupt enable
 }
+
+void FLASH_readBlock (unsigned *buffer, unsigned address, char count)
+{
+    while (count > 0)
+    {
+        *buffer++ = FLASH_ReadWord (address++);
+        count--;
+    }
+}//FLASH_readBLock
+
 /**
  End of File
  */

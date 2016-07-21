@@ -1887,6 +1887,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;memory.h: 191: void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
 "58 mcc_generated_files/memory.c
 [v _FLASH_ReadWord `(ui ~T0 @X0 1 ef1`ui ]
 {
@@ -2165,4 +2166,41 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.c: 202: }
 "202
 [e :UE 241 ]
+}
+"204
+[v _FLASH_readBlock `(v ~T0 @X0 1 ef3`*ui`ui`uc ]
+"205
+{
+[; ;memory.c: 204: void FLASH_readBlock (unsigned *buffer, unsigned address, char count)
+[; ;memory.c: 205: {
+[e :U _FLASH_readBlock ]
+"204
+[v _buffer `*ui ~T0 @X0 1 r1 ]
+[v _address `ui ~T0 @X0 1 r2 ]
+[v _count `uc ~T0 @X0 1 r3 ]
+"205
+[f ]
+[; ;memory.c: 206: while (count > 0)
+"206
+[e $U 243  ]
+[e :U 244 ]
+[; ;memory.c: 207: {
+"207
+{
+[; ;memory.c: 208: *buffer++ = FLASH_ReadWord (address++);
+"208
+[e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ( _FLASH_ReadWord (1 ++ _address -> -> 1 `i `ui ]
+[; ;memory.c: 209: count--;
+"209
+[e -- _count -> -> 1 `i `uc ]
+"210
+}
+[e :U 243 ]
+"206
+[e $ > -> _count `i -> 0 `i 244  ]
+[e :U 245 ]
+[; ;memory.c: 210: }
+[; ;memory.c: 211: }
+"211
+[e :UE 242 ]
 }

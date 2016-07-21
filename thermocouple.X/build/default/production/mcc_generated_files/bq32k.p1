@@ -1886,6 +1886,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;memory.h: 191: void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
 [; ;adc.h: 86: typedef enum {
 [; ;adc.h: 87: channel_Temp = 0x1E,
@@ -1945,7 +1946,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
-[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
+[; ;global.h: 87: extern unsigned char Inf_cmd_flag;
+[; ;global.h: 88: extern unsigned char Usart_Run_Flag;
 [; ;i2c.h: 23: void I2C_Start(void);
 [; ;i2c.h: 24: unsigned char I2C_Send_Byte(unsigned char Data);
 [; ;i2c.h: 25: unsigned char I2C_Receive_Byte(void);
@@ -1977,8 +1979,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [f ]
 "19
 [v _time `S233 ~T0 @X0 1 a ]
-[v F2027 `uc ~T0 @X0 -> 10 `i s ]
-[i F2027
+[v F2032 `uc ~T0 @X0 -> 10 `i s ]
+[i F2032
 :U ..
 "20
 -> -> 1 `i `uc
@@ -1993,7 +1995,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _temp `uc ~T0 @X0 -> 10 `i a ]
 [; ;bq32k.c: 19: bq32k_t time;
 [; ;bq32k.c: 20: unsigned char temp[10] = { 0x01,0x44,0x10,0x02,0x18,0x07,0x16 };
-[e = _temp F2027 ]
+[e = _temp F2032 ]
 [; ;bq32k.c: 21: if( FLASH_ReadWord(0x1fff) == 0x3fff )
 "21
 [e $ ! == ( _FLASH_ReadWord (1 -> -> 8191 `i `ui -> -> 16383 `i `ui 235  ]

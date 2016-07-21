@@ -20,7 +20,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR0_CallBack `(v ~T0 @X0 0 ef ]
 "66 mcc_generated_files/global.h
 [v _LongPressSec `uc ~T0 @X0 0 e ]
-"87
+"88
 [v _Usart_Run_Flag `uc ~T0 @X0 0 e ]
 "4625 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _SWDTEN `Vb ~T0 @X0 0 e@1208 ]
@@ -1902,6 +1902,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;memory.h: 129: void FLASH_WriteWord(uint16_t flashAddr, uint16_t word) ;
 [; ;memory.h: 164: int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 [; ;memory.h: 189: void FLASH_EraseBlock(uint16_t startAddr);
+[; ;memory.h: 191: void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
 [; ;adc.h: 72: typedef uint16_t adc_result_t;
 [; ;adc.h: 86: typedef enum {
 [; ;adc.h: 87: channel_Temp = 0x1E,
@@ -1955,7 +1956,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
 [; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
 [; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
-[; ;global.h: 87: extern unsigned char Usart_Run_Flag;
+[; ;global.h: 87: extern unsigned char Inf_cmd_flag;
+[; ;global.h: 88: extern unsigned char Usart_Run_Flag;
 "60 mcc_generated_files/tmr0.c
 [v _timer0ReloadVal `Vuc ~T0 @X0 1 e ]
 [; ;tmr0.c: 60: volatile uint8_t timer0ReloadVal;
@@ -2038,8 +2040,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U _TMR0_ISR ]
 [f ]
 "104
-[v F1981 `Vui ~T0 @X0 1 s CountCallBack ]
-[i F1981
+[v F1986 `Vui ~T0 @X0 1 s CountCallBack ]
+[i F1986
 -> -> 0 `i `ui
 ]
 [; ;tmr0.c: 104: static volatile unsigned int CountCallBack = 0;
@@ -2054,14 +2056,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ++ _MAX31856Sec -> -> 1 `i `uc ]
 [; ;tmr0.c: 114: if (++CountCallBack >= 100) {
 "114
-[e $ ! >= =+ F1981 -> -> 1 `i `ui -> -> 100 `i `ui 239  ]
+[e $ ! >= =+ F1986 -> -> 1 `i `ui -> -> 100 `i `ui 239  ]
 {
 [; ;tmr0.c: 116: TMR0_CallBack();
 "116
 [e ( _TMR0_CallBack ..  ]
 [; ;tmr0.c: 119: CountCallBack = 0;
 "119
-[e = F1981 -> -> 0 `i `ui ]
+[e = F1986 -> -> 0 `i `ui ]
 "120
 }
 [e :U 239 ]

@@ -18,7 +18,8 @@ extern "C" {
 void Set_time_from_Com(void);
 void Read_time_to_Com(void);
 void Com_Process(void);
-void Erase_from_Com(void);
+void Inf_to_Com(void);
+
 bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len);
 unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len);
 

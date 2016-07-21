@@ -2599,6 +2599,8 @@ int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 # 189
 void FLASH_EraseBlock(uint16_t startAddr);
 
+void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
+
 # 58 "mcc_generated_files/memory.c"
 uint16_t FLASH_ReadWord(uint16_t flashAddr) {
 uint8_t GIEBitValue = INTCONbits.GIE;
@@ -2726,5 +2728,14 @@ __nop();
 
 PMCON1bits.WREN = 0;
 INTCONbits.GIE = GIEBitValue;
+}
+
+void FLASH_readBlock (unsigned *buffer, unsigned address, char count)
+{
+while (count > 0)
+{
+*buffer++ = FLASH_ReadWord (address++);
+count--;
+}
 }
 

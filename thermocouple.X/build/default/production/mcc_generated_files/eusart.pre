@@ -2651,6 +2651,8 @@ int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray);
 # 189
 void FLASH_EraseBlock(uint16_t startAddr);
 
+void FLASH_readBlock (unsigned *buffer, unsigned address, char count);
+
 # 72 "mcc_generated_files/adc.h"
 typedef uint16_t adc_result_t;
 
@@ -2755,13 +2757,15 @@ extern unsigned char Usart_Rx_Buff[32];
 extern unsigned char Usart_Rx_Cnt;
 
 extern unsigned char Set_time_cmd_flag;
+extern unsigned char Inf_cmd_flag;
 extern unsigned char Usart_Run_Flag;
 
 # 18 "mcc_generated_files/com.h"
 void Set_time_from_Com(void);
 void Read_time_to_Com(void);
 void Com_Process(void);
-void Erase_from_Com(void);
+void Inf_to_Com(void);
+
 bool RxFrameCheck(unsigned char *rx_arr, unsigned char frame_len);
 unsigned int CRC_cal(unsigned char *rx_arr, unsigned char frame_len);
 
@@ -2903,7 +2907,7 @@ if(RxFrameCheck(Usart_Rx_Buff,Usart_Rx_Cnt))
 {
 switch( Usart_Rx_Buff[2] )
 {
-case 0x01:
+case 0x01: Inf_cmd_flag = 1;
 break;
 case 0X02: Set_time_cmd_flag = 1;
 break;
