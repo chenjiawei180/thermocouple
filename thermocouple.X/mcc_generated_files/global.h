@@ -77,6 +77,7 @@ OS_EXT unsigned int CH1_temperature;
 OS_EXT unsigned int CH2_temperature;
 OS_EXT unsigned int Cur_temperature;
 OS_EXT unsigned int Cur_Save_Index;
+OS_EXT unsigned int Cur_Save_Index_Bak;
 OS_EXT unsigned char Cur_temperature_time_ch1;
 OS_EXT unsigned char Cur_temperature_time_ch2;
 

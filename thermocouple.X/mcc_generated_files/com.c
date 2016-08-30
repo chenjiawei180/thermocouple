@@ -73,8 +73,8 @@ void Read_time_to_Com(void)
     tmp_buf[9] = rtc_tm.seconds;
     tmp_buf[10] = rtc_tm.wday;
     crc_tmp = CRC_cal(tmp_buf,14);
-    tmp_buf[11] = crc_tmp >>8;
-    tmp_buf[12] = crc_tmp & 0xff;
+    tmp_buf[11] = crc_tmp & 0xff;
+    tmp_buf[12] = crc_tmp >>8;
     tmp_buf[13] = 0xbb;
     for(i=0;i<14;i++)
     {
@@ -108,8 +108,8 @@ void Inf_to_Com(void)
         tmp_buf[5+i*2] = Flash_buff[i] & 0xff ;
     }
     crc_tmp = CRC_cal(tmp_buf,count_tmp+7);    //cal the number of CRC check
-    tmp_buf[count_tmp*2 + 4] = crc_tmp >>8;
-    tmp_buf[count_tmp*2 + 5] = crc_tmp & 0xff;
+    tmp_buf[count_tmp*2 + 4] = crc_tmp & 0xff;
+    tmp_buf[count_tmp*2 + 5] = crc_tmp >>8;
     tmp_buf[count_tmp*2 + 6] = 0xbb;
     for(i=0;i<(count_tmp*2+7);i++)
     {

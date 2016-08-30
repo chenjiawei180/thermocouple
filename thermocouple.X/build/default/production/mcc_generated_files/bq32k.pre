@@ -2750,6 +2750,7 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
+extern unsigned int Cur_Save_Index_Bak;
 extern unsigned char Cur_temperature_time_ch1;
 extern unsigned char Cur_temperature_time_ch2;
 
@@ -2793,15 +2794,16 @@ void time_Display(void);
 void Bq32k_Time_Init(void)
 {
 bq32k_t time;
-unsigned char temp[10] = { 0x01,0x44,0x10,0x02,0x18,0x07,0x16 };
-if( FLASH_ReadWord(0x1fff) == 0x3fff )
-{
-I2C_Send_Buffer(0, temp, 7);
-FLASH_WriteWord(0x1fff, 0x00);
-}
+
+unsigned char temp[2] = { 0xb0,0xe5 };
+
+
+I2C_Send_Buffer(8, temp, 2);
+
+
 }
 
-# 34
+# 35
 void Bq32k_Rtc_Read_Time(bq32k_t *p)
 {
 unsigned char temp[10] ;
@@ -2815,7 +2817,7 @@ p->month = bcd2bin(temp[5]);
 p->years= bcd2bin(temp[6]);
 }
 
-# 53
+# 54
 void Bq32k_Rtc_Write_Time(bq32k_t *p)
 {
 unsigned char temp[10] ;
@@ -2829,13 +2831,13 @@ temp[6] = bin2bcd(p->years);
 I2C_Send_Buffer( 0 , temp , 7);
 }
 
-# 72
+# 73
 unsigned char bcd2bin(unsigned char val)
 {
 return (val & 0x0f) + (val >> 4) * 10;
 }
 
-# 83
+# 84
 unsigned char bin2bcd(unsigned char val)
 {
 return ((val / 10) << 4) + val % 10;

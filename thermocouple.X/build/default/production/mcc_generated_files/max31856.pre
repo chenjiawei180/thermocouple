@@ -2750,6 +2750,7 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
+extern unsigned int Cur_Save_Index_Bak;
 extern unsigned char Cur_temperature_time_ch1;
 extern unsigned char Cur_temperature_time_ch2;
 
@@ -2926,9 +2927,7 @@ if( CH1_temperature & 0x2000 != temperature_temp & 0x2000)
 var_time = Calculate_Time();
 var_time |= 0x100;
 if(CH1_state == 1) var_time |= 0x400;
-
 var_time |= 0x2000;
-
 Save_Write_word(var_time);
 Save_Write_word(temperature_value);
 Cur_temperature_time_ch1 = 0;
@@ -2940,14 +2939,13 @@ if(CH1_temperature & 0x2000) CH1_temperature=0x3FFF-CH1_temperature + 1 ;
 if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ;
 if( temperature_temp > CH1_temperature ) temperature_absolute = temperature_temp - CH1_temperature;
 else temperature_absolute = CH1_temperature - temperature_temp;
-if( temperature_absolute > 4)
+
+if( temperature_absolute > 0)
 {
 var_time = Calculate_Time();
 var_time |= 0x100;
 if(CH1_state == 1) var_time |= 0x400;
-
 var_time |= 0x2000;
-
 Save_Write_word(var_time);
 Save_Write_word(temperature_value);
 Cur_temperature_time_ch1 = 0;
@@ -2968,9 +2966,7 @@ if( CH2_temperature & 0x2000 != temperature_temp & 0x2000)
 var_time = Calculate_Time();
 var_time |= 0x200;
 if(CH2_state == 1) var_time |= 0x800;
-
 var_time |= 0x2000;
-
 Save_Write_word(var_time);
 Save_Write_word(temperature_value);
 Cur_temperature_time_ch2 = 0;
@@ -2982,14 +2978,13 @@ if(CH2_temperature & 0x2000) CH2_temperature=0x3FFF-CH2_temperature + 1 ;
 if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ;
 if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;
 else temperature_absolute = CH2_temperature - temperature_temp;
-if( temperature_absolute > 4)
+
+if( temperature_absolute > 0)
 {
 var_time = Calculate_Time();
 var_time |= 0x200;
 if(CH2_state == 1) var_time |= 0x800;
-
 var_time |= 0x2000;
-
 Save_Write_word(var_time);
 Save_Write_word(temperature_value);
 Cur_temperature_time_ch2 = 0;
@@ -3024,7 +3019,7 @@ if((temperature_decimal == 4 || temperature_decimal == 8) && (temperature_int & 
 }
 }
 
-# 292
+# 286
 void one_temperature_trans(void)
 {
 maxim_start_conversion((uint8_t) 0x40);
@@ -3036,7 +3031,7 @@ if( MAX31856Sec > 30)
 uch_sr = 0x01;
 }
 
-# 328
+# 322
 else
 {
 maxim_31856_read_nregisters(0x0A, uch_reg,6);
@@ -3046,7 +3041,7 @@ uch_sr=uch_reg[5];
 }
 }
 
-# 343
+# 337
 void temperature_display(void)
 {
 if(uch_sr==(uint8_t)0x00)
@@ -3079,7 +3074,7 @@ maxim_31856_write_register(0x82, 0x00);
 }
 }
 
-# 381
+# 375
 void temperature_process(void)
 {
 switch(time_count)

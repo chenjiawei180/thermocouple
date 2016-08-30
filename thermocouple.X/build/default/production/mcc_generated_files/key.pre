@@ -2750,6 +2750,7 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
+extern unsigned int Cur_Save_Index_Bak;
 extern unsigned char Cur_temperature_time_ch1;
 extern unsigned char Cur_temperature_time_ch2;
 
@@ -2871,7 +2872,10 @@ if(LongPressSec > 2)
 {
 if(Record_flag == 0)
 {
+if( Cur_Save_Index > 16384 - 32) FLASH_EraseBlock(0x2000);
+else FLASH_EraseBlock(Cur_Save_Index+32);
 Set_start_flag();
+Cur_Save_Index_Bak = Cur_Save_Index;
 Write_Flash_head();
 Save_Write_time();
 Cur_temperature_time_ch1 = 0;

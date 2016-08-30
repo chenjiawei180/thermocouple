@@ -185,9 +185,7 @@ void tc_temperature_trans(void)
             var_time = Calculate_Time();
             var_time |= 0x100; //add number of channel 1
             if(CH1_state == 1)    var_time |= 0x400;
-#if DEBUG
             var_time |= 0x2000;
-#endif
             Save_Write_word(var_time);
             Save_Write_word(temperature_value);    //save original value
             Cur_temperature_time_ch1 = 0;
@@ -199,14 +197,13 @@ void tc_temperature_trans(void)
             if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
             if( temperature_temp > CH1_temperature ) temperature_absolute = temperature_temp - CH1_temperature;    //calculate the absolute of temperature
             else temperature_absolute = CH1_temperature - temperature_temp;
-            if( temperature_absolute > 4) // 4*0.125
+            //if( temperature_absolute > 3) // 4*0.125
+            if( temperature_absolute > 0) // 1*0.125  
             {
                 var_time = Calculate_Time();
                 var_time |= 0x100; //add number of channel 1
                 if(CH1_state == 1)    var_time |= 0x400;
-#if DEBUG
                 var_time |= 0x2000;
-#endif
                 Save_Write_word(var_time);
                 Save_Write_word(temperature_value);    //save original value
                 Cur_temperature_time_ch1 = 0;
@@ -227,9 +224,7 @@ void tc_temperature_trans(void)
             var_time = Calculate_Time();
             var_time |= 0x200; //add number of channel 2
             if(CH2_state == 1)    var_time |= 0x800;
-#if DEBUG
             var_time |= 0x2000;
-#endif
             Save_Write_word(var_time);
             Save_Write_word(temperature_value);
             Cur_temperature_time_ch2 = 0;
@@ -241,14 +236,13 @@ void tc_temperature_trans(void)
             if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
             if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;    //calculate the absolute of temperature
             else temperature_absolute = CH2_temperature - temperature_temp;
-            if( temperature_absolute > 4) // 4*0.125
+            //if( temperature_absolute > 4) // 4*0.125
+            if( temperature_absolute > 0) // 1*0.125  
             {
                 var_time = Calculate_Time();
                 var_time |= 0x200; //add number of channel 1
                 if(CH2_state == 1)    var_time |= 0x800;
-#if DEBUG
                 var_time |= 0x2000;
-#endif
                 Save_Write_word(var_time);
                 Save_Write_word(temperature_value);
                 Cur_temperature_time_ch2 = 0;

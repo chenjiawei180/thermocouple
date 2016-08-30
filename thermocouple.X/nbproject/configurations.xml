@@ -15,6 +15,16 @@
         <itemPath>mcc_generated_files/tmr0.h</itemPath>
         <itemPath>mcc_generated_files/interrupt_manager.h</itemPath>
       </logicalFolder>
+      <itemPath>mcc_generated_files/bq32k.h</itemPath>
+      <itemPath>mcc_generated_files/com.h</itemPath>
+      <itemPath>mcc_generated_files/debug.h</itemPath>
+      <itemPath>mcc_generated_files/ht1621.h</itemPath>
+      <itemPath>mcc_generated_files/i2c.h</itemPath>
+      <itemPath>mcc_generated_files/key.h</itemPath>
+      <itemPath>mcc_generated_files/max31856.h</itemPath>
+      <itemPath>mcc_generated_files/global.h</itemPath>
+      <itemPath>mcc_generated_files/power.h</itemPath>
+      <itemPath>mcc_generated_files/save.h</itemPath>
     </logicalFolder>
     <logicalFolder name="SourceFiles" displayName="源文件" projectFiles="true">
       <logicalFolder name="mcc_generated_files"
@@ -31,23 +41,14 @@
         <itemPath>mcc_generated_files/interrupt_manager.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
-      <itemPath>mcc_generated_files/max31856.h</itemPath>
       <itemPath>mcc_generated_files/max31856.c</itemPath>
       <itemPath>mcc_generated_files/debug.c</itemPath>
-      <itemPath>mcc_generated_files/debug.h</itemPath>
-      <itemPath>mcc_generated_files/ht1621.h</itemPath>
       <itemPath>mcc_generated_files/ht1621.c</itemPath>
       <itemPath>mcc_generated_files/i2c.c</itemPath>
-      <itemPath>mcc_generated_files/i2c.h</itemPath>
-      <itemPath>mcc_generated_files/key.h</itemPath>
       <itemPath>mcc_generated_files/key.c</itemPath>
       <itemPath>mcc_generated_files/bq32k.c</itemPath>
-      <itemPath>mcc_generated_files/bq32k.h</itemPath>
       <itemPath>mcc_generated_files/save.c</itemPath>
-      <itemPath>mcc_generated_files/save.h</itemPath>
-      <itemPath>mcc_generated_files/power.h</itemPath>
       <itemPath>mcc_generated_files/power.c</itemPath>
-      <itemPath>mcc_generated_files/com.h</itemPath>
       <itemPath>mcc_generated_files/com.c</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript" displayName="链接器文件" projectFiles="true">
@@ -56,7 +57,6 @@
       <itemPath>Makefile</itemPath>
       <itemPath>device_config.mcc</itemPath>
     </logicalFolder>
-    <itemPath>mcc_generated_files/global.h</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>mcc_generated_files</Elem>
@@ -165,7 +165,6 @@
         <property key="ToolFirmwareFilePath"
                   value="Press to browse for a specific firmware version"/>
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
-        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
@@ -183,7 +182,7 @@
         <property key="memories.programmemory.partition2.start"
                   value="${memories.programmemory.partition2.start.value}"/>
         <property key="memories.programmemory.start" value="0x0"/>
-        <property key="poweroptions.powerenable" value="false"/>
+        <property key="poweroptions.powerenable" value="true"/>
         <property key="programmertogo.imagename" value=""/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>

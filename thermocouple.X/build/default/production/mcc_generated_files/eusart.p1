@@ -40,19 +40,19 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RCSTAbits `VS144 ~T0 @X0 0 e@413 ]
 "2458
 [v _RCREG `Vuc ~T0 @X0 0 e@409 ]
-"83 mcc_generated_files/global.h
+"84 mcc_generated_files/global.h
 [v _Usart_Rx_Buff `uc ~T0 @X0 -> 0 `x e ]
-"84
+"85
 [v _Usart_Rx_Cnt `uc ~T0 @X0 0 e ]
-"88
+"89
 [v _Usart_Run_Flag `uc ~T0 @X0 0 e ]
 "4625 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _SWDTEN `Vb ~T0 @X0 0 e@1208 ]
 "23 mcc_generated_files/com.h
 [v _RxFrameCheck `(uc ~T0 @X0 0 ef2`*uc`uc ]
-"87 mcc_generated_files/global.h
+"88 mcc_generated_files/global.h
 [v _Inf_cmd_flag `uc ~T0 @X0 0 e ]
-"86
+"87
 [v _Set_time_cmd_flag `uc ~T0 @X0 0 e ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
@@ -1981,13 +1981,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 77: extern unsigned int CH2_temperature;
 [; ;global.h: 78: extern unsigned int Cur_temperature;
 [; ;global.h: 79: extern unsigned int Cur_Save_Index;
-[; ;global.h: 80: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 81: extern unsigned char Cur_temperature_time_ch2;
-[; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
-[; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
-[; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
-[; ;global.h: 87: extern unsigned char Inf_cmd_flag;
-[; ;global.h: 88: extern unsigned char Usart_Run_Flag;
+[; ;global.h: 80: extern unsigned int Cur_Save_Index_Bak;
+[; ;global.h: 81: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 82: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 84: extern unsigned char Usart_Rx_Buff[32];
+[; ;global.h: 85: extern unsigned char Usart_Rx_Cnt;
+[; ;global.h: 87: extern unsigned char Set_time_cmd_flag;
+[; ;global.h: 88: extern unsigned char Inf_cmd_flag;
+[; ;global.h: 89: extern unsigned char Usart_Run_Flag;
 [; ;com.h: 18: void Set_time_from_Com(void);
 [; ;com.h: 19: void Read_time_to_Com(void);
 [; ;com.h: 20: void Com_Process(void);

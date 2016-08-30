@@ -1,17 +1,6 @@
----- DEBUG Matches (16 in 7 files) ----
-Debug.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#ifdef DEBUG
-Debug.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#endif /* DEBUG */
-Debug.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#ifndef DEBUG_H
-Debug.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#define	DEBUG_H
-Debug.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#endif	/* DEBUG_H */
-Global.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#define DEBUG 1
-Key.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#if DEBUG
-Key.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#if DEBUG
-Main.c (e:\github\thermocouple\thermocouple.x):#ifdef DEBUG
-Main.c (e:\github\thermocouple\thermocouple.x):#ifdef DEBUG
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#if DEBUG
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#if DEBUG
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#if DEBUG
-Max31856.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#if DEBUG
-Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#if DEBUG
-Save.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):#if DEBUG
+---- Cur_Save_Index_Bak Matches (6 in 3 files) ----
+Global.h (e:\github\thermocouple\thermocouple.x\mcc_generated_files):OS_EXT unsigned int Cur_Save_Index_Bak;
+Key.c (e:\github\thermocouple\thermocouple.x\mcc_generated_files):                        Cur_Save_Index_Bak = Cur_Save_Index;
+Main.c (e:\github\thermocouple\thermocouple.x):    Cur_Save_Index_Bak = 0;
+Main.c (e:\github\thermocouple\thermocouple.x):            if( (Cur_Save_Index_Bak - Record_Add < 16) )    // safety record  index bak is in head.
+Main.c (e:\github\thermocouple\thermocouple.x):                if(  (Cur_Save_Index_Bak > Cur_Save_Index) &&  (Cur_Save_Index_Bak - Cur_Save_Index < 16) )

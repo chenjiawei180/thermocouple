@@ -2750,6 +2750,7 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
+extern unsigned int Cur_Save_Index_Bak;
 extern unsigned char Cur_temperature_time_ch1;
 extern unsigned char Cur_temperature_time_ch2;
 

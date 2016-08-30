@@ -92,9 +92,11 @@ void Serach_Flash_Head(void)
 void Write_Flash_head(void)
 {
     FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-    Cur_Save_Index++;
+    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
+    else Cur_Save_Index++;
     FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-    Cur_Save_Index++;
+    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
+    else Cur_Save_Index++;
 }
 
 /**
@@ -106,9 +108,11 @@ void Write_Flash_head(void)
 void Write_Flash_finish(void)
 {
     FLASH_WriteWord(Cur_Save_Index, 0x5555);
-    Cur_Save_Index++;
+    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
+    else Cur_Save_Index++;
     FLASH_WriteWord(Cur_Save_Index, 0x5555);
-    Cur_Save_Index++;
+    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
+    else Cur_Save_Index++;
 }
 
 /**
@@ -127,9 +131,7 @@ void Save_process(void)
             var_time = Calculate_Time();
             var_time |= 0x100; //add number of channel 1
             if(CH1_state == 1)    var_time |= 0x400;    //error
-#if DEBUG
             var_time |= 0x1000;
-#endif
             Save_Write_word(var_time);
             Save_Write_word(CH1_temperature);
             //CH1_temperature = temperature_value;
@@ -143,9 +145,7 @@ void Save_process(void)
             var_time = Calculate_Time();
             var_time |= 0x200; //add number of channel 2
             if(CH2_state == 1)    var_time |= 0x800;    //error
-#if DEBUG
             var_time |= 0x1000;
-#endif
             Save_Write_word(var_time);
             Save_Write_word(CH2_temperature);
             //CH2_temperature = temperature_value;
@@ -227,11 +227,17 @@ void Save_Write_word(unsigned int data)
     {
         if(Cur_Save_Index == END_FLASH - 32)
         {
-            FLASH_EraseBlock(Record_Add);
+            if( (Cur_Save_Index_Bak - Record_Add >32) )    // safety record  index bak is in head.
+            {
+                FLASH_EraseBlock(Record_Add);
+            }
         }
         else
         {
-            FLASH_EraseBlock(Cur_Save_Index+32);
+            if( (Cur_Save_Index_Bak < Cur_Save_Index) ||(Cur_Save_Index_Bak - Cur_Save_Index > 64) )    // safety record  index bak is in head.
+            {
+                FLASH_EraseBlock(Cur_Save_Index+32);
+            }
         }
     }
     if( (data & 0x3fff) == 0x3fff) 

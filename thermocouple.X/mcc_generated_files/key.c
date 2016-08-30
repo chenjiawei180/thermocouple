@@ -87,7 +87,10 @@ void Key_Process(void)
                 {
                     if(Record_flag == 0) 
                     {
+                        if( Cur_Save_Index > END_FLASH - 32) FLASH_EraseBlock(Record_Add); //erase the next block when every start record. if the index is end_flash.erase the first block.
+                        else FLASH_EraseBlock(Cur_Save_Index+32);
                         Set_start_flag();
+                        Cur_Save_Index_Bak = Cur_Save_Index;
                         Write_Flash_head();
                         Save_Write_time();
                         Cur_temperature_time_ch1 = 0;

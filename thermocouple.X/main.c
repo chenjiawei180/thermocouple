@@ -104,7 +104,7 @@ void main(void) {
     //LED2_SetLow();
     //maxim_31856_init();
     DRDY_SetDigitalInput();
-    Bq32k_Time_Init();
+    //Bq32k_Time_Init();
     SendCmd_1621(BIAS);		//设置偏压和占空比 1/3  4 com
     SendCmd_1621(0X28);    //    XTAL 32K
     SendCmd_1621(SYSEN);	//打开系统振荡器
@@ -124,6 +124,7 @@ void main(void) {
     Set_time_cmd_flag = 0;
     Usart_Run_Flag = 0;
     Inf_cmd_flag = 0;
+    Cur_Save_Index_Bak = 0;
     bat_data = 0;
     Cur_Save_Index = Record_Add;
     Serach_Flash_Head();
@@ -193,6 +194,26 @@ void main(void) {
         Key_Process();
         Save_process();
         Com_Process();
+        if(Record_flag == 1)
+        {
+            if( (Cur_Save_Index_Bak - Record_Add < 16) )    // safety record  index bak is in head.
+            {
+                if( END_FLASH - Cur_Save_Index <16 )
+                {
+                    Set_finish_flag();
+                    Write_Flash_finish();
+                }
+            }
+            else
+            {
+                if(  (Cur_Save_Index_Bak > Cur_Save_Index) &&  (Cur_Save_Index_Bak - Cur_Save_Index < 16) )
+                {
+                    Set_finish_flag();
+                    Write_Flash_finish();
+                }
+            }
+        }
+
 #if WDT_SLEEP
         if(Usart_Run_Flag == 0)
         {

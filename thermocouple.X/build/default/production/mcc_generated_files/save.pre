@@ -2750,6 +2750,7 @@ extern unsigned int CH1_temperature;
 extern unsigned int CH2_temperature;
 extern unsigned int Cur_temperature;
 extern unsigned int Cur_Save_Index;
+extern unsigned int Cur_Save_Index_Bak;
 extern unsigned char Cur_temperature_time_ch1;
 extern unsigned char Cur_temperature_time_ch2;
 
@@ -2880,21 +2881,25 @@ count = 0;
 void Write_Flash_head(void)
 {
 FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-Cur_Save_Index++;
+if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
+else Cur_Save_Index++;
 FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-Cur_Save_Index++;
+if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
+else Cur_Save_Index++;
 }
 
-# 106
+# 108
 void Write_Flash_finish(void)
 {
 FLASH_WriteWord(Cur_Save_Index, 0x5555);
-Cur_Save_Index++;
+if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
+else Cur_Save_Index++;
 FLASH_WriteWord(Cur_Save_Index, 0x5555);
-Cur_Save_Index++;
+if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
+else Cur_Save_Index++;
 }
 
-# 120
+# 124
 void Save_process(void)
 {
 unsigned int var_time=0;
@@ -2905,9 +2910,7 @@ if(Cur_temperature_time_ch1 > 120)
 var_time = Calculate_Time();
 var_time |= 0x100;
 if(CH1_state == 1) var_time |= 0x400;
-
 var_time |= 0x1000;
-
 Save_Write_word(var_time);
 Save_Write_word(CH1_temperature);
 
@@ -2921,9 +2924,7 @@ if(Cur_temperature_time_ch2 > 120)
 var_time = Calculate_Time();
 var_time |= 0x200;
 if(CH2_state == 1) var_time |= 0x800;
-
 var_time |= 0x1000;
-
 Save_Write_word(var_time);
 Save_Write_word(CH2_temperature);
 
@@ -2995,11 +2996,17 @@ if(Cur_Save_Index % 32 == 0)
 {
 if(Cur_Save_Index == 16384 - 32)
 {
+if( (Cur_Save_Index_Bak - 0x2000 >32) )
+{
 FLASH_EraseBlock(0x2000);
+}
 }
 else
 {
+if( (Cur_Save_Index_Bak < Cur_Save_Index) ||(Cur_Save_Index_Bak - Cur_Save_Index > 64) )
+{
 FLASH_EraseBlock(Cur_Save_Index+32);
+}
 }
 }
 if( (data & 0x3fff) == 0x3fff)
@@ -3013,7 +3020,7 @@ Cur_Save_Index = 0x2000;
 }
 }
 
-# 254
+# 260
 void Save_Write_time(void)
 {
 unsigned char i;

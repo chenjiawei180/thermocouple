@@ -2750,6 +2750,7 @@ uint8_t years;
  unsigned int CH2_temperature;
  unsigned int Cur_temperature;
  unsigned int Cur_Save_Index;
+ unsigned int Cur_Save_Index_Bak;
  unsigned char Cur_temperature_time_ch1;
  unsigned char Cur_temperature_time_ch2;
 
@@ -2967,7 +2968,7 @@ bat_data = 0 ;
 
 
 do { TRISB3 = 1; } while(0);
-Bq32k_Time_Init();
+
 SendCmd_1621(0x52);
 SendCmd_1621(0X28);
 SendCmd_1621(0x02);
@@ -2987,6 +2988,7 @@ Usart_Rx_Cnt = 0;
 Set_time_cmd_flag = 0;
 Usart_Run_Flag = 0;
 Inf_cmd_flag = 0;
+Cur_Save_Index_Bak = 0;
 bat_data = 0;
 Cur_Save_Index = 0x2000;
 Serach_Flash_Head();
@@ -2994,13 +2996,13 @@ asm("clrwdt");
 
 SWDTEN = 1;
 
-# 158
+# 159
 (INTCONbits.GIE = 1);
 
 
 (INTCONbits.PEIE = 1);
 
-# 169
+# 170
 while (1)
 {
 
@@ -3028,13 +3030,33 @@ temperature_process();
 Key_Process();
 Save_process();
 Com_Process();
+if(Record_flag == 1)
+{
+if( (Cur_Save_Index_Bak - 0x2000 < 16) )
+{
+if( 16384 - Cur_Save_Index <16 )
+{
+Set_finish_flag();
+Write_Flash_finish();
+}
+}
+else
+{
+if( (Cur_Save_Index_Bak > Cur_Save_Index) && (Cur_Save_Index_Bak - Cur_Save_Index < 16) )
+{
+Set_finish_flag();
+Write_Flash_finish();
+}
+}
+}
+
 
 if(Usart_Run_Flag == 0)
 {
 Sleep_process();
 }
 
-# 287
+# 308
 }
 }
 

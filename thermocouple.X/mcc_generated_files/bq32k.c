@@ -17,12 +17,13 @@
 void Bq32k_Time_Init(void)
 {
     bq32k_t time;
-    unsigned char temp[10] = { 0x01,0x44,0x10,0x02,0x18,0x07,0x16 }; //2016 07 18  monday 09:14:01
-    if( FLASH_ReadWord(Time_Add) == 0x3fff )
-    {
-        I2C_Send_Buffer(0, temp, 7);
-        FLASH_WriteWord(Time_Add, 0x00);
-    }
+    //unsigned char temp[2] = {0X20,0X05 }; //2016 07 18  monday 09:14:01 
+    unsigned char temp[2] = { 0xb0,0xe5 }; //
+    //if( FLASH_ReadWord(Time_Add) == 0x3fff )
+    //{
+        I2C_Send_Buffer(8, temp, 2);    //close the trickle charge
+    //    FLASH_WriteWord(Time_Add, 0x00);
+    //}
 }
 
 /**
@@ -30,7 +31,7 @@ void Bq32k_Time_Init(void)
   * @param  bq32k_t *p
   * @retval None
   */
-  
+
 void Bq32k_Rtc_Read_Time(bq32k_t *p)
 {
     unsigned char temp[10] ;

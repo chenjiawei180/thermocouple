@@ -1,9 +1,9 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"86 mcc_generated_files/global.h
+"87 mcc_generated_files/global.h
 [v _Set_time_cmd_flag `uc ~T0 @X0 0 e ]
 "18 mcc_generated_files/com.h
 [v _Set_time_from_Com `(v ~T0 @X0 0 ef ]
-"87 mcc_generated_files/global.h
+"88 mcc_generated_files/global.h
 [v _Inf_cmd_flag `uc ~T0 @X0 0 e ]
 "21 mcc_generated_files/com.h
 [v _Inf_to_Com `(v ~T0 @X0 0 ef ]
@@ -12,7 +12,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S233 bq32k_regs seconds minutes hours wday date month years ]
 "68
 [v _rtc_tm `S233 ~T0 @X0 0 e ]
-"83
+"84
 [v _Usart_Rx_Buff `uc ~T0 @X0 -> 0 `x e ]
 "40 mcc_generated_files/bq32k.h
 [v _Bq32k_Rtc_Write_Time `(v ~T0 @X0 0 ef1`*S233 ]
@@ -1955,13 +1955,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;global.h: 77: extern unsigned int CH2_temperature;
 [; ;global.h: 78: extern unsigned int Cur_temperature;
 [; ;global.h: 79: extern unsigned int Cur_Save_Index;
-[; ;global.h: 80: extern unsigned char Cur_temperature_time_ch1;
-[; ;global.h: 81: extern unsigned char Cur_temperature_time_ch2;
-[; ;global.h: 83: extern unsigned char Usart_Rx_Buff[32];
-[; ;global.h: 84: extern unsigned char Usart_Rx_Cnt;
-[; ;global.h: 86: extern unsigned char Set_time_cmd_flag;
-[; ;global.h: 87: extern unsigned char Inf_cmd_flag;
-[; ;global.h: 88: extern unsigned char Usart_Run_Flag;
+[; ;global.h: 80: extern unsigned int Cur_Save_Index_Bak;
+[; ;global.h: 81: extern unsigned char Cur_temperature_time_ch1;
+[; ;global.h: 82: extern unsigned char Cur_temperature_time_ch2;
+[; ;global.h: 84: extern unsigned char Usart_Rx_Buff[32];
+[; ;global.h: 85: extern unsigned char Usart_Rx_Cnt;
+[; ;global.h: 87: extern unsigned char Set_time_cmd_flag;
+[; ;global.h: 88: extern unsigned char Inf_cmd_flag;
+[; ;global.h: 89: extern unsigned char Usart_Run_Flag;
 [; ;com.h: 18: void Set_time_from_Com(void);
 [; ;com.h: 19: void Read_time_to_Com(void);
 [; ;com.h: 20: void Com_Process(void);
@@ -2146,12 +2147,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;com.c: 75: crc_tmp = CRC_cal(tmp_buf,14);
 "75
 [e = _crc_tmp ( _CRC_cal (2 , &U _tmp_buf -> -> 14 `i `uc ]
-[; ;com.c: 76: tmp_buf[11] = crc_tmp >>8;
+[; ;com.c: 76: tmp_buf[11] = crc_tmp & 0xff;
 "76
-[e = *U + &U _tmp_buf * -> -> -> 11 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> _crc_tmp -> 8 `i `uc ]
-[; ;com.c: 77: tmp_buf[12] = crc_tmp & 0xff;
+[e = *U + &U _tmp_buf * -> -> -> 11 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & _crc_tmp -> -> 255 `i `ui `uc ]
+[; ;com.c: 77: tmp_buf[12] = crc_tmp >>8;
 "77
-[e = *U + &U _tmp_buf * -> -> -> 12 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & _crc_tmp -> -> 255 `i `ui `uc ]
+[e = *U + &U _tmp_buf * -> -> -> 12 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> _crc_tmp -> 8 `i `uc ]
 [; ;com.c: 78: tmp_buf[13] = 0xbb;
 "78
 [e = *U + &U _tmp_buf * -> -> -> 13 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 187 `i `uc ]
@@ -2257,12 +2258,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;com.c: 110: crc_tmp = CRC_cal(tmp_buf,count_tmp+7);
 "110
 [e = _crc_tmp ( _CRC_cal (2 , &U _tmp_buf -> + -> _count_tmp `i -> 7 `i `uc ]
-[; ;com.c: 111: tmp_buf[count_tmp*2 + 4] = crc_tmp >>8;
+[; ;com.c: 111: tmp_buf[count_tmp*2 + 4] = crc_tmp & 0xff;
 "111
-[e = *U + &U _tmp_buf * -> -> + * -> _count_tmp `i -> 2 `i -> 4 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> _crc_tmp -> 8 `i `uc ]
-[; ;com.c: 112: tmp_buf[count_tmp*2 + 5] = crc_tmp & 0xff;
+[e = *U + &U _tmp_buf * -> -> + * -> _count_tmp `i -> 2 `i -> 4 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & _crc_tmp -> -> 255 `i `ui `uc ]
+[; ;com.c: 112: tmp_buf[count_tmp*2 + 5] = crc_tmp >>8;
 "112
-[e = *U + &U _tmp_buf * -> -> + * -> _count_tmp `i -> 2 `i -> 5 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> & _crc_tmp -> -> 255 `i `ui `uc ]
+[e = *U + &U _tmp_buf * -> -> + * -> _count_tmp `i -> 2 `i -> 5 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> >> _crc_tmp -> 8 `i `uc ]
 [; ;com.c: 113: tmp_buf[count_tmp*2 + 6] = 0xbb;
 "113
 [e = *U + &U _tmp_buf * -> -> + * -> _count_tmp `i -> 2 `i -> 6 `i `ui `ux -> -> # *U &U _tmp_buf `ui `ux -> -> 187 `i `uc ]
