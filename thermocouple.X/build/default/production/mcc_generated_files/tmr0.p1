@@ -24,6 +24,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Usart_Run_Flag `uc ~T0 @X0 0 e ]
 "4625 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _SWDTEN `Vb ~T0 @X0 0 e@1208 ]
+"4771
+[v _WDTPS0 `Vb ~T0 @X0 0 e@1209 ]
+"4773
+[v _WDTPS1 `Vb ~T0 @X0 0 e@1210 ]
+"4775
+[v _WDTPS2 `Vb ~T0 @X0 0 e@1211 ]
+"4777
+[v _WDTPS3 `Vb ~T0 @X0 0 e@1212 ]
+"4779
+[v _WDTPS4 `Vb ~T0 @X0 0 e@1213 ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2101,14 +2111,35 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;tmr0.c: 135: {
 "135
 {
-[; ;tmr0.c: 136: SWDTEN = 1;
+[; ;tmr0.c: 136: SWDTEN = 0;
 "136
-[e = _SWDTEN -> -> 1 `i `b ]
+[e = _SWDTEN -> -> 0 `i `b ]
+[; ;tmr0.c: 137: WDTPS0 = 1;
 "137
+[e = _WDTPS0 -> -> 1 `i `b ]
+[; ;tmr0.c: 138: WDTPS1 = 0;
+"138
+[e = _WDTPS1 -> -> 0 `i `b ]
+[; ;tmr0.c: 139: WDTPS2 = 0;
+"139
+[e = _WDTPS2 -> -> 0 `i `b ]
+[; ;tmr0.c: 140: WDTPS3 = 1;
+"140
+[e = _WDTPS3 -> -> 1 `i `b ]
+[; ;tmr0.c: 141: WDTPS4 = 0;
+"141
+[e = _WDTPS4 -> -> 0 `i `b ]
+[; ;tmr0.c: 142: asm("clrwdt");
+"142
+[; <" clrwdt ;# ">
+[; ;tmr0.c: 143: SWDTEN = 1;
+"143
+[e = _SWDTEN -> -> 1 `i `b ]
+"144
 }
 [e :U 242 ]
-[; ;tmr0.c: 137: }
-[; ;tmr0.c: 138: }
-"138
+[; ;tmr0.c: 144: }
+[; ;tmr0.c: 145: }
+"145
 [e :UE 240 ]
 }

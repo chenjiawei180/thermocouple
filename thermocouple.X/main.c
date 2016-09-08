@@ -70,6 +70,7 @@ void main(void) {
     //a[0]=0x51;a[1]=0x00;a[2]=0x00;a[3]=0x00;a[4]=0x00;
     unsigned int  bat_data = 0;
     unsigned int  data_temp = 0;
+    Usart_Run_Flag = 20;
     SWDTEN = 0;
     WDTPS0 = 1;
     WDTPS1 = 0;
@@ -131,6 +132,7 @@ void main(void) {
     CLRWDT();
 #if WDT_SLEEP
     SWDTEN = 1;
+    while(KEY_GetValue() == 0) CLRWDT();
 #endif
     //EUSART_Write(Cur_Save_Index>>8);
     //EUSART_Write(Cur_Save_Index&0XFF);
@@ -196,9 +198,9 @@ void main(void) {
         Com_Process();
         if(Record_flag == 1)
         {
-            if( (Cur_Save_Index_Bak - Record_Add < 16) )    // safety record  index bak is in head.
+            if( (Cur_Save_Index_Bak - Record_Add < 32) )    // safety record  index bak is in head.
             {
-                if( END_FLASH - Cur_Save_Index <16 )
+                if( END_FLASH - Cur_Save_Index < 32)
                 {
                     Set_finish_flag();
                     Write_Flash_finish();
@@ -206,13 +208,14 @@ void main(void) {
             }
             else
             {
-                if(  (Cur_Save_Index_Bak > Cur_Save_Index) &&  (Cur_Save_Index_Bak - Cur_Save_Index < 16) )
+                if(  (Cur_Save_Index_Bak > Cur_Save_Index) &&  (Cur_Save_Index_Bak - Cur_Save_Index < 32) )
                 {
                     Set_finish_flag();
                     Write_Flash_finish();
                 }
             }
         }
+        
 
 #if WDT_SLEEP
         if(Usart_Run_Flag == 0)

@@ -2846,7 +2846,7 @@ void Serach_Flash_Head(void)
 unsigned int i=0;
 unsigned int data=0;
 unsigned char count =0;
-for(i = 0x2000; i<16384;i++ )
+for(i = 0x2000; i<0x3fff;i++ )
 {
 data = FLASH_ReadWord(i);
 
@@ -2873,33 +2873,25 @@ count = 0;
 }
 }
 
-# 83
+# 84
 }
 }
 
-# 92
+# 93
 void Write_Flash_head(void)
 {
-FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
-else Cur_Save_Index++;
-FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
-else Cur_Save_Index++;
+Save_Write_word(0xAAAA);
+Save_Write_word(0xAAAA);
 }
 
-# 108
+# 105
 void Write_Flash_finish(void)
 {
-FLASH_WriteWord(Cur_Save_Index, 0x5555);
-if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
-else Cur_Save_Index++;
-FLASH_WriteWord(Cur_Save_Index, 0x5555);
-if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
-else Cur_Save_Index++;
+Save_Write_word(0x5555);
+Save_Write_word(0x5555);
 }
 
-# 124
+# 117
 void Save_process(void)
 {
 unsigned int var_time=0;
@@ -2933,7 +2925,7 @@ Cur_temperature_time_ch2 = 0;
 }
 }
 
-# 163
+# 156
 unsigned char Calculate_Time(void)
 {
 unsigned long temp = 0 ;
@@ -2989,38 +2981,57 @@ return temp;
 return 0;
 }
 
-# 224
+# 217
 void Save_Write_word(unsigned int data)
 {
-if(Cur_Save_Index % 32 == 0)
+if( Cur_Save_Index % 32 == 0 || Cur_Save_Index % 32 == 16 )
 {
-if(Cur_Save_Index == 16384 - 32)
+if(Cur_Save_Index == 0x3fff - 32)
 {
 if( (Cur_Save_Index_Bak - 0x2000 >32) )
 {
+if(Cur_Save_Index % 32 == 0)
+{
 FLASH_EraseBlock(0x2000);
+}
+else
+{
+if( FLASH_ReadWord (0x2000 + 16 ) != 0x3fff)
+{
+FLASH_EraseBlock(0x2000);
+}
+}
 }
 }
 else
 {
 if( (Cur_Save_Index_Bak < Cur_Save_Index) ||(Cur_Save_Index_Bak - Cur_Save_Index > 64) )
 {
+if(Cur_Save_Index % 32 == 0)
+{
 FLASH_EraseBlock(Cur_Save_Index+32);
 }
+else
+{
+if( FLASH_ReadWord (Cur_Save_Index + 32) != 0x3fff)
+{
+FLASH_EraseBlock(Cur_Save_Index + 16);
 }
 }
+}
+}
+}
+
 if( (data & 0x3fff) == 0x3fff)
 FLASH_WriteWord(Cur_Save_Index, 0x3ffe);
 else
 FLASH_WriteWord(Cur_Save_Index, data);
-Cur_Save_Index++;
-if( Cur_Save_Index == 16384)
-{
-Cur_Save_Index = 0x2000;
-}
+
+if(Cur_Save_Index == 0x3fff ) Cur_Save_Index = 0x2000 ;
+else Cur_Save_Index++;
 }
 
-# 260
+# 272
 void Save_Write_time(void)
 {
 unsigned char i;
@@ -3033,6 +3044,7 @@ Save_Write_word( rtc_tm.date);
 Save_Write_word( rtc_tm.hours);
 Save_Write_word( rtc_tm.minutes);
 Save_Write_word( rtc_tm.seconds);
+Save_Write_word( rtc_tm.wday);
 Save_Write_word( rtc_tm.wday);
 }
 

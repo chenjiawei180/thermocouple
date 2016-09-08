@@ -2835,6 +2835,13 @@ Usart_Run_Flag--;
 
 if( Usart_Run_Flag == 0)
 {
+SWDTEN = 0;
+WDTPS0 = 1;
+WDTPS1 = 0;
+WDTPS2 = 0;
+WDTPS3 = 1;
+WDTPS4 = 0;
+asm("clrwdt");
 SWDTEN = 1;
 }
 }

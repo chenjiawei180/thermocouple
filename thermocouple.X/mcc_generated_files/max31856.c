@@ -197,8 +197,8 @@ void tc_temperature_trans(void)
             if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
             if( temperature_temp > CH1_temperature ) temperature_absolute = temperature_temp - CH1_temperature;    //calculate the absolute of temperature
             else temperature_absolute = CH1_temperature - temperature_temp;
-            //if( temperature_absolute > 3) // 4*0.125
-            if( temperature_absolute > 0) // 1*0.125  
+            if( temperature_absolute > 3) // 4*0.125
+            //if( temperature_absolute > 0) // 1*0.125  
             {
                 var_time = Calculate_Time();
                 var_time |= 0x100; //add number of channel 1
@@ -236,8 +236,8 @@ void tc_temperature_trans(void)
             if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ; 
             if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;    //calculate the absolute of temperature
             else temperature_absolute = CH2_temperature - temperature_temp;
-            //if( temperature_absolute > 4) // 4*0.125
-            if( temperature_absolute > 0) // 1*0.125  
+            if( temperature_absolute > 3) // 4*0.125
+            //if( temperature_absolute > 0) // 1*0.125  
             {
                 var_time = Calculate_Time();
                 var_time |= 0x200; //add number of channel 1

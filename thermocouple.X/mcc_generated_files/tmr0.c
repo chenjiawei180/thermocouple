@@ -133,7 +133,14 @@ void TMR0_CallBack(void) {
 
     if( Usart_Run_Flag == 0)
     {
-        SWDTEN = 1;
+        SWDTEN = 0;
+        WDTPS0 = 1;
+        WDTPS1 = 0;
+        WDTPS2 = 0;
+        WDTPS3 = 1;
+        WDTPS4 = 0;    //512ms
+        CLRWDT();    //clear the watch dog timer 
+        SWDTEN = 1;    //start wdt
     }
 }
 /**

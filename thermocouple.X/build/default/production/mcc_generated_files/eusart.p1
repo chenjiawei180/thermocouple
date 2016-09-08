@@ -48,6 +48,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Usart_Run_Flag `uc ~T0 @X0 0 e ]
 "4625 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
 [v _SWDTEN `Vb ~T0 @X0 0 e@1208 ]
+"4771
+[v _WDTPS0 `Vb ~T0 @X0 0 e@1209 ]
+"4773
+[v _WDTPS1 `Vb ~T0 @X0 0 e@1210 ]
+"4775
+[v _WDTPS2 `Vb ~T0 @X0 0 e@1211 ]
+"4777
+[v _WDTPS3 `Vb ~T0 @X0 0 e@1212 ]
+"4779
+[v _WDTPS4 `Vb ~T0 @X0 0 e@1213 ]
 "23 mcc_generated_files/com.h
 [v _RxFrameCheck `(uc ~T0 @X0 0 ef2`*uc`uc ]
 "88 mcc_generated_files/global.h
@@ -2248,161 +2258,192 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eusart.c: 179: Usart_Rx_Cnt++;
 "179
 [e ++ _Usart_Rx_Cnt -> -> 1 `i `uc ]
-[; ;eusart.c: 180: Usart_Run_Flag = 10;
-"180
-[e = _Usart_Run_Flag -> -> 10 `i `uc ]
-[; ;eusart.c: 181: SWDTEN = 0;
-"181
-[e = _SWDTEN -> -> 0 `i `b ]
-[; ;eusart.c: 192: if( Usart_Rx_Cnt == 1)
-"192
+[; ;eusart.c: 191: if( Usart_Rx_Cnt == 1)
+"191
 [e $ ! == -> _Usart_Rx_Cnt `i -> 1 `i 250  ]
-[; ;eusart.c: 193: {
+[; ;eusart.c: 192: {
+"192
+{
+[; ;eusart.c: 193: if( rx_tmp != 0xfe)
 "193
-{
-[; ;eusart.c: 194: if( rx_tmp != 0xfe)
-"194
 [e $ ! != -> _rx_tmp `i -> 254 `i 251  ]
-[; ;eusart.c: 195: {
+[; ;eusart.c: 194: {
+"194
+{
+[; ;eusart.c: 195: Usart_Rx_Cnt = 0;
 "195
-{
-[; ;eusart.c: 196: Usart_Rx_Cnt = 0;
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
 "196
-[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
-"197
 }
-[e :U 251 ]
-"198
-}
-[; ;eusart.c: 197: }
-[; ;eusart.c: 198: }
+[; ;eusart.c: 196: }
 [e $U 252  ]
+"197
+[e :U 251 ]
+[; ;eusart.c: 197: else
+[; ;eusart.c: 198: {
+"198
+{
+[; ;eusart.c: 199: Usart_Run_Flag = 10;
 "199
-[e :U 250 ]
-[; ;eusart.c: 199: else if( Usart_Rx_Cnt == 2)
-[e $ ! == -> _Usart_Rx_Cnt `i -> 2 `i 253  ]
-[; ;eusart.c: 200: {
+[e = _Usart_Run_Flag -> -> 10 `i `uc ]
+[; ;eusart.c: 200: SWDTEN = 0;
 "200
-{
-[; ;eusart.c: 201: if( rx_tmp != 0xfe)
+[e = _SWDTEN -> -> 0 `i `b ]
+[; ;eusart.c: 201: WDTPS0 = 0;
 "201
-[e $ ! != -> _rx_tmp `i -> 254 `i 254  ]
-[; ;eusart.c: 202: {
+[e = _WDTPS0 -> -> 0 `i `b ]
+[; ;eusart.c: 202: WDTPS1 = 1;
 "202
-{
-[; ;eusart.c: 203: Usart_Rx_Cnt = 0;
+[e = _WDTPS1 -> -> 1 `i `b ]
+[; ;eusart.c: 203: WDTPS2 = 1;
 "203
-[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+[e = _WDTPS2 -> -> 1 `i `b ]
+[; ;eusart.c: 204: WDTPS3 = 1;
 "204
-}
-[e :U 254 ]
+[e = _WDTPS3 -> -> 1 `i `b ]
+[; ;eusart.c: 205: WDTPS4 = 0;
 "205
-}
-[; ;eusart.c: 204: }
-[; ;eusart.c: 205: }
-[e $U 255  ]
+[e = _WDTPS4 -> -> 0 `i `b ]
+[; ;eusart.c: 206: asm("clrwdt");
 "206
-[e :U 253 ]
-[; ;eusart.c: 206: else if( Usart_Rx_Cnt == 4)
-[e $ ! == -> _Usart_Rx_Cnt `i -> 4 `i 256  ]
-[; ;eusart.c: 207: {
+[; <" clrwdt ;# ">
+[; ;eusart.c: 207: SWDTEN = 1;
 "207
-{
-[; ;eusart.c: 208: if( rx_tmp > 7)
+[e = _SWDTEN -> -> 1 `i `b ]
 "208
-[e $ ! > -> _rx_tmp `i -> 7 `i 257  ]
-[; ;eusart.c: 209: {
+}
+[e :U 252 ]
 "209
-{
-[; ;eusart.c: 210: Usart_Rx_Cnt = 0;
+}
+[; ;eusart.c: 208: }
+[; ;eusart.c: 209: }
+[e $U 253  ]
 "210
-[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+[e :U 250 ]
+[; ;eusart.c: 210: else if( Usart_Rx_Cnt == 2)
+[e $ ! == -> _Usart_Rx_Cnt `i -> 2 `i 254  ]
+[; ;eusart.c: 211: {
 "211
-}
-[e :U 257 ]
-"212
-}
-[; ;eusart.c: 211: }
-[; ;eusart.c: 212: }
-[e $U 258  ]
-"213
-[e :U 256 ]
-[; ;eusart.c: 213: else if( Usart_Rx_Cnt > 14)
-[e $ ! > -> _Usart_Rx_Cnt `i -> 14 `i 259  ]
-[; ;eusart.c: 214: {
-"214
 {
-[; ;eusart.c: 215: Usart_Rx_Cnt = 0;
-"215
+[; ;eusart.c: 212: if( rx_tmp != 0xfe)
+"212
+[e $ ! != -> _rx_tmp `i -> 254 `i 255  ]
+[; ;eusart.c: 213: {
+"213
+{
+[; ;eusart.c: 214: Usart_Rx_Cnt = 0;
+"214
 [e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+"215
+}
+[e :U 255 ]
 "216
 }
+[; ;eusart.c: 215: }
 [; ;eusart.c: 216: }
-[e $U 260  ]
+[e $U 256  ]
 "217
-[e :U 259 ]
-[; ;eusart.c: 217: else if( (Usart_Rx_Cnt == (Usart_Rx_Buff[3]+7)) && ( rx_tmp == 0Xbb) )
-[e $ ! && == -> _Usart_Rx_Cnt `i + -> *U + &U _Usart_Rx_Buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux `i -> 7 `i == -> _rx_tmp `i -> 187 `i 261  ]
+[e :U 254 ]
+[; ;eusart.c: 217: else if( Usart_Rx_Cnt == 4)
+[e $ ! == -> _Usart_Rx_Cnt `i -> 4 `i 257  ]
 [; ;eusart.c: 218: {
 "218
 {
-[; ;eusart.c: 219: if(RxFrameCheck(Usart_Rx_Buff,Usart_Rx_Cnt))
+[; ;eusart.c: 219: if( rx_tmp > 7)
 "219
-[e $ ! != -> ( _RxFrameCheck (2 , &U _Usart_Rx_Buff _Usart_Rx_Cnt `i -> -> -> 0 `i `uc `i 262  ]
+[e $ ! > -> _rx_tmp `i -> 7 `i 258  ]
 [; ;eusart.c: 220: {
 "220
 {
-[; ;eusart.c: 221: switch( Usart_Rx_Buff[2] )
+[; ;eusart.c: 221: Usart_Rx_Cnt = 0;
 "221
-[e $U 264  ]
-[; ;eusart.c: 222: {
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
 "222
-{
-[; ;eusart.c: 223: case 0x01: Inf_cmd_flag = 1;
-"223
-[e :U 265 ]
-[e = _Inf_cmd_flag -> -> 1 `i `uc ]
-[; ;eusart.c: 224: break;
-"224
-[e $U 263  ]
-[; ;eusart.c: 225: case 0X02: Set_time_cmd_flag = 1;
-"225
-[e :U 266 ]
-[e = _Set_time_cmd_flag -> -> 1 `i `uc ]
-[; ;eusart.c: 226: break;
-"226
-[e $U 263  ]
-[; ;eusart.c: 227: default:break;
-"227
-[e :U 267 ]
-[e $U 263  ]
-"228
 }
-[; ;eusart.c: 228: }
-[e $U 263  ]
-"221
-[e :U 264 ]
-[e [\ *U + &U _Usart_Rx_Buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux , $ -> -> 1 `i `uc 265
- , $ -> -> 2 `i `uc 266
- 267 ]
+[e :U 258 ]
+"223
+}
+[; ;eusart.c: 222: }
+[; ;eusart.c: 223: }
+[e $U 259  ]
+"224
+[e :U 257 ]
+[; ;eusart.c: 224: else if( Usart_Rx_Cnt > 14)
+[e $ ! > -> _Usart_Rx_Cnt `i -> 14 `i 260  ]
+[; ;eusart.c: 225: {
+"225
+{
+[; ;eusart.c: 226: Usart_Rx_Cnt = 0;
+"226
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+"227
+}
+[; ;eusart.c: 227: }
+[e $U 261  ]
 "228
-[e :U 263 ]
+[e :U 260 ]
+[; ;eusart.c: 228: else if( (Usart_Rx_Cnt == (Usart_Rx_Buff[3]+7)) && ( rx_tmp == 0Xbb) )
+[e $ ! && == -> _Usart_Rx_Cnt `i + -> *U + &U _Usart_Rx_Buff * -> -> -> 3 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux `i -> 7 `i == -> _rx_tmp `i -> 187 `i 262  ]
+[; ;eusart.c: 229: {
 "229
+{
+[; ;eusart.c: 230: if(RxFrameCheck(Usart_Rx_Buff,Usart_Rx_Cnt))
+"230
+[e $ ! != -> ( _RxFrameCheck (2 , &U _Usart_Rx_Buff _Usart_Rx_Cnt `i -> -> -> 0 `i `uc `i 263  ]
+[; ;eusart.c: 231: {
+"231
+{
+[; ;eusart.c: 232: switch( Usart_Rx_Buff[2] )
+"232
+[e $U 265  ]
+[; ;eusart.c: 233: {
+"233
+{
+[; ;eusart.c: 234: case 0x01: Inf_cmd_flag = 1;
+"234
+[e :U 266 ]
+[e = _Inf_cmd_flag -> -> 1 `i `uc ]
+[; ;eusart.c: 235: break;
+"235
+[e $U 264  ]
+[; ;eusart.c: 236: case 0X02: Set_time_cmd_flag = 1;
+"236
+[e :U 267 ]
+[e = _Set_time_cmd_flag -> -> 1 `i `uc ]
+[; ;eusart.c: 237: break;
+"237
+[e $U 264  ]
+[; ;eusart.c: 238: default:break;
+"238
+[e :U 268 ]
+[e $U 264  ]
+"239
+}
+[; ;eusart.c: 239: }
+[e $U 264  ]
+"232
+[e :U 265 ]
+[e [\ *U + &U _Usart_Rx_Buff * -> -> -> 2 `i `ui `ux -> -> # *U &U _Usart_Rx_Buff `ui `ux , $ -> -> 1 `i `uc 266
+ , $ -> -> 2 `i `uc 267
+ 268 ]
+"239
+[e :U 264 ]
+"240
+}
+[e :U 263 ]
+[; ;eusart.c: 240: }
+[; ;eusart.c: 241: Usart_Rx_Cnt = 0;
+"241
+[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
+"242
 }
 [e :U 262 ]
-[; ;eusart.c: 229: }
-[; ;eusart.c: 230: Usart_Rx_Cnt = 0;
-"230
-[e = _Usart_Rx_Cnt -> -> 0 `i `uc ]
-"231
-}
+"244
 [e :U 261 ]
-"233
-[e :U 260 ]
-[e :U 258 ]
-[e :U 255 ]
-[e :U 252 ]
-[; ;eusart.c: 231: }
-[; ;eusart.c: 233: }
+[e :U 259 ]
+[e :U 256 ]
+[e :U 253 ]
+[; ;eusart.c: 242: }
+[; ;eusart.c: 244: }
 [e :UE 248 ]
 }

@@ -2828,9 +2828,7 @@ void Key_Process(void)
 {
 unsigned char gKeyValue=0;
 
-unsigned int i;
-unsigned int data_temp;
-
+# 49
 LongPressSec = 0;
 gKeyValue=Key_Scan();
 if(gKeyValue)
@@ -2848,22 +2846,6 @@ do { LATA3 = 1; } while(0);
 SendCmd_1621(0x04);
 }
 
-else
-{
-SWDTEN = 0;
-for(i=0x2000;i<0x2000+1000;i++)
-{
-data_temp = FLASH_ReadWord(i);
-EUSART_Write(data_temp>>8);
-EUSART_Write(data_temp&0xff);
-
-}
-
-SWDTEN = 1;
-
-asm("clrwdt");
-}
-
 while(RB5 == 0) asm("clrwdt");
 break;
 case 0x02:
@@ -2872,7 +2854,7 @@ if(LongPressSec > 2)
 {
 if(Record_flag == 0)
 {
-if( Cur_Save_Index > 16384 - 32) FLASH_EraseBlock(0x2000);
+if( Cur_Save_Index > 0x3fff - 32) FLASH_EraseBlock(0x2000);
 else FLASH_EraseBlock(Cur_Save_Index+32);
 Set_start_flag();
 Cur_Save_Index_Bak = Cur_Save_Index;

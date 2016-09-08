@@ -66,7 +66,7 @@ extern "C" {
 
 #define WRITE_FLASH_BLOCKSIZE    32
 #define ERASE_FLASH_BLOCKSIZE    32
-#define END_FLASH                16384
+#define END_FLASH                0x3fff
 
     /**
       Section: Flash Module APIs

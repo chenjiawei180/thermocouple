@@ -2939,8 +2939,8 @@ if(CH1_temperature & 0x2000) CH1_temperature=0x3FFF-CH1_temperature + 1 ;
 if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ;
 if( temperature_temp > CH1_temperature ) temperature_absolute = temperature_temp - CH1_temperature;
 else temperature_absolute = CH1_temperature - temperature_temp;
+if( temperature_absolute > 3)
 
-if( temperature_absolute > 0)
 {
 var_time = Calculate_Time();
 var_time |= 0x100;
@@ -2978,8 +2978,8 @@ if(CH2_temperature & 0x2000) CH2_temperature=0x3FFF-CH2_temperature + 1 ;
 if(temperature_temp & 0x2000) temperature_temp=0x3FFF-temperature_temp + 1 ;
 if( temperature_temp > CH2_temperature ) temperature_absolute = temperature_temp - CH2_temperature;
 else temperature_absolute = CH2_temperature - temperature_temp;
+if( temperature_absolute > 3)
 
-if( temperature_absolute > 0)
 {
 var_time = Calculate_Time();
 var_time |= 0x200;

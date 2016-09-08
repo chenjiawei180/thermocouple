@@ -9,12 +9,6 @@ channel_Temp 30
 channel_FVR 31
 ADC 11
 ]
-"93 E:\Github\thermocouple\thermocouple.X\main.c
-[e E1899 . `uc
-channel_Temp 30
-channel_FVR 31
-ADC 11
-]
 "6 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
 "6 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\awmod.c
@@ -39,8 +33,6 @@ ADC 11
 [v _main main `(v  1 e 1 0 ]
 "65 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
 [v _ADC_Initialize ADC_Initialize `(v  1 e 1 0 ]
-"106
-[v _ADC_GetConversion ADC_GetConversion `(ui  1 e 2 0 ]
 "35 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/bq32k.c
 [v _Bq32k_Rtc_Read_Time Bq32k_Rtc_Read_Time `(v  1 e 1 0 ]
 "54
@@ -147,17 +139,17 @@ ADC 11
 [v _Set_finish_flag Set_finish_flag `(v  1 e 1 0 ]
 "42
 [v _Serach_Flash_Head Serach_Flash_Head `(v  1 e 1 0 ]
-"92
+"93
 [v _Write_Flash_head Write_Flash_head `(v  1 e 1 0 ]
-"108
+"105
 [v _Write_Flash_finish Write_Flash_finish `(v  1 e 1 0 ]
-"124
+"117
 [v _Save_process Save_process `(v  1 e 1 0 ]
-"163
+"156
 [v _Calculate_Time Calculate_Time `(uc  1 e 1 0 ]
-"224
+"217
 [v _Save_Write_word Save_Write_word `(v  1 e 1 0 ]
-"260
+"272
 [v _Save_Write_time Save_Write_time `(v  1 e 1 0 ]
 "64 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/spi.c
 [v _SPI_Initialize SPI_Initialize `(v  1 e 1 0 ]
@@ -171,7 +163,7 @@ ADC 11
 [v _TMR0_ISR TMR0_ISR `(v  1 e 1 0 ]
 "125
 [v _TMR0_CallBack TMR0_CallBack `(v  1 e 1 0 ]
-[s S303 . 1 `uc 1 IOCIF 1 0 :1:0 
+[s S308 . 1 `uc 1 IOCIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 IOCIE 1 0 :1:3 
@@ -181,13 +173,13 @@ ADC 11
 `uc 1 GIE 1 0 :1:7 
 ]
 "360 D:\Program Files (x86)\Microchip\xc8\v1.37\include\pic16f1518.h
-[s S312 . 1 `uc 1 . 1 0 :2:0 
+[s S317 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 T0IE 1 0 :1:5 
 ]
-[u S317 . 1 `S303 1 . 1 0 `S312 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES317  1 e 1 @11 ]
+[u S322 . 1 `S308 1 . 1 0 `S317 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES322  1 e 1 @11 ]
 [s S204 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -249,12 +241,12 @@ ADC 11
 [v _ADRESH ADRESH `VEuc  1 e 1 @156 ]
 "1664
 [v _ADCON0 ADCON0 `VEuc  1 e 1 @157 ]
-[s S409 . 1 `uc 1 ADON 1 0 :1:0 
+[s S414 . 1 `uc 1 ADON 1 0 :1:0 
 `uc 1 GO_nDONE 1 0 :1:1 
 `uc 1 CHS 1 0 :5:2 
 ]
 "1689
-[s S413 . 1 `uc 1 . 1 0 :1:0 
+[s S418 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 ADGO 1 0 :1:1 
 `uc 1 CHS0 1 0 :1:2 
 `uc 1 CHS1 1 0 :1:3 
@@ -262,11 +254,11 @@ ADC 11
 `uc 1 CHS3 1 0 :1:5 
 `uc 1 CHS4 1 0 :1:6 
 ]
-[s S421 . 1 `uc 1 . 1 0 :1:0 
+[s S426 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 GO 1 0 :1:1 
 ]
-[u S424 . 1 `S409 1 . 1 0 `S413 1 . 1 0 `S421 1 . 1 0 ]
-[v _ADCON0bits ADCON0bits `VES424  1 e 1 @157 ]
+[u S429 . 1 `S414 1 . 1 0 `S418 1 . 1 0 `S426 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES429  1 e 1 @157 ]
 "1743
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @158 ]
 "1808
@@ -277,7 +269,7 @@ ADC 11
 [v _LATC LATC `VEuc  1 e 1 @270 ]
 "2023
 [v _FVRCON FVRCON `VEuc  1 e 1 @279 ]
-[s S461 . 1 `uc 1 ADFVR 1 0 :2:0 
+[s S466 . 1 `uc 1 ADFVR 1 0 :2:0 
 `uc 1 . 1 0 :2:2 
 `uc 1 TSRNG 1 0 :1:4 
 `uc 1 TSEN 1 0 :1:5 
@@ -285,11 +277,11 @@ ADC 11
 `uc 1 FVREN 1 0 :1:7 
 ]
 "2042
-[s S468 . 1 `uc 1 ADFVR0 1 0 :1:0 
+[s S473 . 1 `uc 1 ADFVR0 1 0 :1:0 
 `uc 1 ADFVR1 1 0 :1:1 
 ]
-[u S471 . 1 `S461 1 . 1 0 `S468 1 . 1 0 ]
-[v _FVRCONbits FVRCONbits `VES471  1 e 1 @279 ]
+[u S476 . 1 `S466 1 . 1 0 `S473 1 . 1 0 ]
+[v _FVRCONbits FVRCONbits `VES476  1 e 1 @279 ]
 "2081
 [v _APFCON APFCON `VEuc  1 e 1 @285 ]
 "2106
@@ -306,7 +298,7 @@ ADC 11
 [v _PMDATL PMDATL `VEuc  1 e 1 @403 ]
 "2345
 [v _PMDATH PMDATH `VEuc  1 e 1 @404 ]
-[s S337 . 1 `uc 1 RD 1 0 :1:0 
+[s S342 . 1 `uc 1 RD 1 0 :1:0 
 `uc 1 WR 1 0 :1:1 
 `uc 1 WREN 1 0 :1:2 
 `uc 1 WRERR 1 0 :1:3 
@@ -315,8 +307,8 @@ ADC 11
 `uc 1 CFGS 1 0 :1:6 
 ]
 "2380
-[u S345 . 1 `S337 1 . 1 0 ]
-[v _PMCON1bits PMCON1bits `VES345  1 e 1 @405 ]
+[u S350 . 1 `S342 1 . 1 0 ]
+[v _PMCON1bits PMCON1bits `VES350  1 e 1 @405 ]
 "2419
 [v _PMCON2 PMCON2 `VEuc  1 e 1 @406 ]
 "2458
@@ -477,13 +469,13 @@ ADC 11
 [v _LongPressSec LongPressSec `uc  1 e 1 0 ]
 "67
 [v _MAX31856Sec MAX31856Sec `uc  1 e 1 0 ]
-[s S581 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
+[s S591 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
 "68
-[v _rtc_tm rtc_tm `S581  1 e 7 0 ]
+[v _rtc_tm rtc_tm `S591  1 e 7 0 ]
 "69
-[v _rtc_save_ch1 rtc_save_ch1 `S581  1 e 7 0 ]
+[v _rtc_save_ch1 rtc_save_ch1 `S591  1 e 7 0 ]
 "70
-[v _rtc_save_ch2 rtc_save_ch2 `S581  1 e 7 0 ]
+[v _rtc_save_ch2 rtc_save_ch2 `S591  1 e 7 0 ]
 "71
 [v _Flash_buff Flash_buff `[32]ui  1 e 64 0 ]
 "73
@@ -527,7 +519,7 @@ ADC 11
 [v main@data_temp data_temp `ui  1 a 2 0 ]
 "69
 [v main@i i `uc  1 a 1 2 ]
-"309
+"312
 } 0
 "17 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/power.c
 [v _Sleep_process Sleep_process `(v  1 e 1 0 ]
@@ -543,19 +535,19 @@ ADC 11
 [v _Serach_Flash_Head Serach_Flash_Head `(v  1 e 1 0 ]
 {
 "44
-[v Serach_Flash_Head@i i `ui  1 a 2 10 ]
+[v Serach_Flash_Head@i i `ui  1 a 2 16 ]
 "45
-[v Serach_Flash_Head@data data `ui  1 a 2 8 ]
+[v Serach_Flash_Head@data data `ui  1 a 2 14 ]
 "46
-[v Serach_Flash_Head@count count `uc  1 a 1 7 ]
-"84
+[v Serach_Flash_Head@count count `uc  1 a 1 13 ]
+"85
 } 0
-"124
+"117
 [v _Save_process Save_process `(v  1 e 1 0 ]
 {
-"126
+"119
 [v Save_process@var_time var_time `ui  1 a 2 48 ]
-"155
+"148
 } 0
 "70 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/mcc.c
 [v _SYSTEM_Initialize SYSTEM_Initialize `(v  1 e 1 0 ]
@@ -600,13 +592,9 @@ ADC 11
 "42 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/key.c
 [v _Key_Process Key_Process `(v  1 e 1 0 ]
 {
-"46
-[v Key_Process@i i `ui  1 a 2 63 ]
-"47
-[v Key_Process@data_temp data_temp `ui  1 a 2 60 ]
 "44
-[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 62 ]
-"118
+[v Key_Process@gKeyValue gKeyValue `uc  1 a 1 60 ]
+"102
 } 0
 "375 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/max31856.c
 [v _temperature_process temperature_process `(v  1 e 1 0 ]
@@ -640,16 +628,16 @@ ADC 11
 [v tc_temperature_trans@temperature_back temperature_back `ui  1 a 2 50 ]
 "278
 } 0
-"163 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
+"156 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
 [v _Calculate_Time Calculate_Time `(uc  1 e 1 0 ]
 {
-"167
+"160
 [v Calculate_Time@temp2 temp2 `ul  1 a 4 42 ]
-"166
+"159
 [v Calculate_Time@temp1 temp1 `ul  1 a 4 38 ]
-"165
+"158
 [v Calculate_Time@temp temp `ul  1 a 4 34 ]
-"216
+"209
 } 0
 "15 D:\Program Files (x86)\Microchip\xc8\v1.37\sources\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -661,26 +649,26 @@ ADC 11
 [v ___wmul@multiplicand multiplicand `ui  1 p 2 3 ]
 "53
 } 0
-"92 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
+"93 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/save.c
 [v _Write_Flash_head Write_Flash_head `(v  1 e 1 0 ]
 {
-"100
+"97
 } 0
-"108
+"105
 [v _Write_Flash_finish Write_Flash_finish `(v  1 e 1 0 ]
 {
-"116
+"109
 } 0
-"260
+"272
 [v _Save_Write_time Save_Write_time `(v  1 e 1 0 ]
 {
-"273
+"286
 } 0
-"224
+"217
 [v _Save_Write_word Save_Write_word `(v  1 e 1 0 ]
 {
 [v Save_Write_word@data data `ui  1 p 2 6 ]
-"252
+"264
 } 0
 "93 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/memory.c
 [v _FLASH_WriteWord FLASH_WriteWord `(v  1 e 1 0 ]
@@ -932,15 +920,15 @@ ADC 11
 "54 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/bq32k.c
 [v _Bq32k_Rtc_Write_Time Bq32k_Rtc_Write_Time `(v  1 e 1 0 ]
 {
-[s S581 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
-[v Bq32k_Rtc_Write_Time@p p `*.5S581  1 a 1 wreg ]
+[s S591 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
+[v Bq32k_Rtc_Write_Time@p p `*.5S591  1 a 1 wreg ]
 "56
 [v Bq32k_Rtc_Write_Time@temp temp `[10]uc  1 a 10 20 ]
 "54
-[v Bq32k_Rtc_Write_Time@p p `*.5S581  1 a 1 wreg ]
+[v Bq32k_Rtc_Write_Time@p p `*.5S591  1 a 1 wreg ]
 "57
 "54
-[v Bq32k_Rtc_Write_Time@p p `*.5S581  1 a 1 30 ]
+[v Bq32k_Rtc_Write_Time@p p `*.5S591  1 a 1 30 ]
 "65
 } 0
 "84
@@ -995,15 +983,15 @@ ADC 11
 "35 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/bq32k.c
 [v _Bq32k_Rtc_Read_Time Bq32k_Rtc_Read_Time `(v  1 e 1 0 ]
 {
-[s S581 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
-[v Bq32k_Rtc_Read_Time@p p `*.5S581  1 a 1 wreg ]
+[s S591 bq32k_regs 7 `uc 1 seconds 1 0 `uc 1 minutes 1 1 `uc 1 hours 1 2 `uc 1 wday 1 3 `uc 1 date 1 4 `uc 1 month 1 5 `uc 1 years 1 6 ]
+[v Bq32k_Rtc_Read_Time@p p `*.5S591  1 a 1 wreg ]
 "37
 [v Bq32k_Rtc_Read_Time@temp temp `[10]uc  1 a 10 11 ]
 "35
-[v Bq32k_Rtc_Read_Time@p p `*.5S581  1 a 1 wreg ]
+[v Bq32k_Rtc_Read_Time@p p `*.5S591  1 a 1 wreg ]
 "38
 "35
-[v Bq32k_Rtc_Read_Time@p p `*.5S581  1 a 1 21 ]
+[v Bq32k_Rtc_Read_Time@p p `*.5S591  1 a 1 21 ]
 "46
 } 0
 "73
@@ -1130,15 +1118,6 @@ ADC 11
 [v CRC_cal@rx_arr rx_arr `*.4uc  1 a 1 7 ]
 "179
 } 0
-"106 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/adc.c
-[v _ADC_GetConversion ADC_GetConversion `(ui  1 e 2 0 ]
-{
-[v ADC_GetConversion@channel channel `E1850  1 a 1 wreg ]
-[v ADC_GetConversion@channel channel `E1850  1 a 1 wreg ]
-"108
-[v ADC_GetConversion@channel channel `E1850  1 a 1 4 ]
-"125
-} 0
 "52 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/interrupt_manager.c
 [v _INTERRUPT_InterruptManager INTERRUPT_InterruptManager `II(v  1 e 1 0 ]
 {
@@ -1154,7 +1133,7 @@ ADC 11
 "125
 [v _TMR0_CallBack TMR0_CallBack `(v  1 e 1 0 ]
 {
-"138
+"145
 } 0
 "155 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/eusart.c
 [v _EUSART_Transmit_ISR EUSART_Transmit_ISR `(v  1 e 1 0 ]
@@ -1166,7 +1145,7 @@ ADC 11
 {
 "170
 [v EUSART_Receive_ISR@rx_tmp rx_tmp `uc  1 a 1 13 ]
-"233
+"244
 } 0
 "126 E:\Github\thermocouple\thermocouple.X\mcc_generated_files/com.c
 [v _RxFrameCheck RxFrameCheck `(uc  1 e 1 0 ]

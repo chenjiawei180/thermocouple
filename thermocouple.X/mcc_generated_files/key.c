@@ -62,23 +62,7 @@ void Key_Process(void)
                     LED1_SetHigh(); //off led  off lcd
                     SendCmd_1621(LCDOFF);
                 }
-#if DEBUG
-                else
-                {
-                    SWDTEN = 0;
-                    for(i=Record_Add;i<Record_Add+1000;i++)
-                    {
-                        data_temp = FLASH_ReadWord(i);
-                        EUSART_Write(data_temp>>8);
-                        EUSART_Write(data_temp&0xff);
-                        
-                    }
-#if WDT_SLEEP
-                    SWDTEN = 1;
-#endif
-                    CLRWDT();
-                }
-#endif
+
                 while(KEY_GetValue() == 0) CLRWDT();
                 break;
             case KEY2:

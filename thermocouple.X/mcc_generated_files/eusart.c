@@ -177,8 +177,7 @@ void EUSART_Receive_ISR(void) {
     rx_tmp = RCREG;
     Usart_Rx_Buff[Usart_Rx_Cnt] = rx_tmp ;
     Usart_Rx_Cnt++;
-    Usart_Run_Flag = 10;
-    SWDTEN = 0;
+
 #if 0
     // buffer overruns are ignored
     eusartRxBuffer[eusartRxHead++] = RCREG;
@@ -194,6 +193,18 @@ void EUSART_Receive_ISR(void) {
         if( rx_tmp != HEAD_FLAG)
         {
             Usart_Rx_Cnt = 0;
+        }
+        else
+        {
+            Usart_Run_Flag = 10;
+            SWDTEN = 0;
+            WDTPS0 = 0;
+            WDTPS1 = 1;
+            WDTPS2 = 1;
+            WDTPS3 = 1;
+            WDTPS4 = 0;    //16s
+            CLRWDT();    //clear the watch dog timer 
+            SWDTEN = 1;    //start wdt
         }
     }
     else if( Usart_Rx_Cnt == 2)

@@ -9,8 +9,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Cur_Save_Index `ui ~T0 @X0 0 e ]
 "23 mcc_generated_files/save.h
 [v _Write_Flash_finish `(v ~T0 @X0 0 ef ]
-"129 mcc_generated_files/memory.h
-[v _FLASH_WriteWord `(v ~T0 @X0 0 ef2`ui`ui ]
+"27
+[v _Save_Write_word `(v ~T0 @X0 0 ef1`ui ]
 "63 mcc_generated_files/global.h
 [v _time_count `uc ~T0 @X0 0 e ]
 "81
@@ -19,9 +19,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Calculate_Time `(uc ~T0 @X0 0 ef ]
 "74 mcc_generated_files/global.h
 [v _CH1_state `uc ~T0 @X0 0 e ]
-"27 mcc_generated_files/save.h
-[v _Save_Write_word `(v ~T0 @X0 0 ef1`ui ]
-"76 mcc_generated_files/global.h
+"76
 [v _CH1_temperature `ui ~T0 @X0 0 e ]
 "82
 [v _Cur_temperature_time_ch2 `uc ~T0 @X0 0 e ]
@@ -49,6 +47,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _Cur_Save_Index_Bak `ui ~T0 @X0 0 e ]
 "189 mcc_generated_files/memory.h
 [v _FLASH_EraseBlock `(v ~T0 @X0 0 ef1`ui ]
+"129
+[v _FLASH_WriteWord `(v ~T0 @X0 0 ef2`ui`ui ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -2096,11 +2096,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _count `uc ~T0 @X0 1 a ]
 [; ;save.c: 46: unsigned char count =0;
 [e = _count -> -> 0 `i `uc ]
-[; ;save.c: 47: for(i = 0x2000; i<16384;i++ )
+[; ;save.c: 47: for(i = 0x2000; i<0x3fff;i++ )
 "47
 {
 [e = _i -> -> 8192 `i `ui ]
-[e $ < _i -> -> 16384 `i `ui 243  ]
+[e $ < _i -> -> 16383 `i `ui 243  ]
 [e $U 244  ]
 "48
 [e :U 243 ]
@@ -2180,505 +2180,528 @@ Version 3.2 HI-TECH Software Intermediate Code
 "72
 }
 [e :U 247 ]
-"83
+"84
 }
 "47
 [e ++ _i -> -> 1 `i `ui ]
-[e $ < _i -> -> 16384 `i `ui 243  ]
+[e $ < _i -> -> 16383 `i `ui 243  ]
 [e :U 244 ]
-"83
+"84
 }
 [; ;save.c: 71: }
 [; ;save.c: 72: }
-[; ;save.c: 83: }
 [; ;save.c: 84: }
-"84
+[; ;save.c: 85: }
+"85
 [e :UE 242 ]
 }
-"92
-[v _Write_Flash_head `(v ~T0 @X0 1 ef ]
 "93
+[v _Write_Flash_head `(v ~T0 @X0 1 ef ]
+"94
 {
-[; ;save.c: 92: void Write_Flash_head(void)
-[; ;save.c: 93: {
+[; ;save.c: 93: void Write_Flash_head(void)
+[; ;save.c: 94: {
 [e :U _Write_Flash_head ]
 [f ]
-[; ;save.c: 94: FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-"94
-[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> 43690 `ui ]
-[; ;save.c: 95: if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
+[; ;save.c: 95: Save_Write_word(0xAAAA);
 "95
-[e $ ! == _Cur_Save_Index -> -> 16384 `i `ui 253  ]
-[e = _Cur_Save_Index -> -> 8192 `i `ui ]
-[e $U 254  ]
+[e ( _Save_Write_word (1 -> 43690 `ui ]
+[; ;save.c: 96: Save_Write_word(0xAAAA);
 "96
-[e :U 253 ]
-[; ;save.c: 96: else Cur_Save_Index++;
-[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[e :U 254 ]
-[; ;save.c: 97: FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
+[e ( _Save_Write_word (1 -> 43690 `ui ]
+[; ;save.c: 97: }
 "97
-[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> 43690 `ui ]
-[; ;save.c: 98: if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
-"98
-[e $ ! == _Cur_Save_Index -> -> 16384 `i `ui 255  ]
-[e = _Cur_Save_Index -> -> 8192 `i `ui ]
-[e $U 256  ]
-"99
-[e :U 255 ]
-[; ;save.c: 99: else Cur_Save_Index++;
-[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[e :U 256 ]
-[; ;save.c: 100: }
-"100
 [e :UE 252 ]
 }
-"108
+"105
 [v _Write_Flash_finish `(v ~T0 @X0 1 ef ]
-"109
+"106
 {
-[; ;save.c: 108: void Write_Flash_finish(void)
-[; ;save.c: 109: {
+[; ;save.c: 105: void Write_Flash_finish(void)
+[; ;save.c: 106: {
 [e :U _Write_Flash_finish ]
 [f ]
-[; ;save.c: 110: FLASH_WriteWord(Cur_Save_Index, 0x5555);
-"110
-[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> -> 21845 `i `ui ]
-[; ;save.c: 111: if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
-"111
-[e $ ! == _Cur_Save_Index -> -> 16384 `i `ui 258  ]
-[e = _Cur_Save_Index -> -> 8192 `i `ui ]
-[e $U 259  ]
-"112
-[e :U 258 ]
-[; ;save.c: 112: else Cur_Save_Index++;
-[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[e :U 259 ]
-[; ;save.c: 113: FLASH_WriteWord(Cur_Save_Index, 0x5555);
-"113
-[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> -> 21845 `i `ui ]
-[; ;save.c: 114: if(Cur_Save_Index == 16384 ) Cur_Save_Index = 0x2000 ;
-"114
-[e $ ! == _Cur_Save_Index -> -> 16384 `i `ui 260  ]
-[e = _Cur_Save_Index -> -> 8192 `i `ui ]
-[e $U 261  ]
-"115
-[e :U 260 ]
-[; ;save.c: 115: else Cur_Save_Index++;
-[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[e :U 261 ]
-[; ;save.c: 116: }
-"116
-[e :UE 257 ]
+[; ;save.c: 107: Save_Write_word(0x5555);
+"107
+[e ( _Save_Write_word (1 -> -> 21845 `i `ui ]
+[; ;save.c: 108: Save_Write_word(0x5555);
+"108
+[e ( _Save_Write_word (1 -> -> 21845 `i `ui ]
+[; ;save.c: 109: }
+"109
+[e :UE 253 ]
 }
-"124
+"117
 [v _Save_process `(v ~T0 @X0 1 ef ]
-"125
+"118
 {
-[; ;save.c: 124: void Save_process(void)
-[; ;save.c: 125: {
+[; ;save.c: 117: void Save_process(void)
+[; ;save.c: 118: {
 [e :U _Save_process ]
 [f ]
-"126
+"119
 [v _var_time `ui ~T0 @X0 1 a ]
-[; ;save.c: 126: unsigned int var_time=0;
+[; ;save.c: 119: unsigned int var_time=0;
 [e = _var_time -> -> 0 `i `ui ]
-[; ;save.c: 127: if( time_count == 1 && Record_flag == 1 )
-"127
-[e $ ! && == -> _time_count `i -> 1 `i == -> _Record_flag `i -> 1 `i 263  ]
-[; ;save.c: 128: {
-"128
+[; ;save.c: 120: if( time_count == 1 && Record_flag == 1 )
+"120
+[e $ ! && == -> _time_count `i -> 1 `i == -> _Record_flag `i -> 1 `i 255  ]
+[; ;save.c: 121: {
+"121
 {
-[; ;save.c: 129: if(Cur_temperature_time_ch1 > 120)
-"129
-[e $ ! > -> _Cur_temperature_time_ch1 `i -> 120 `i 264  ]
-[; ;save.c: 130: {
-"130
+[; ;save.c: 122: if(Cur_temperature_time_ch1 > 120)
+"122
+[e $ ! > -> _Cur_temperature_time_ch1 `i -> 120 `i 256  ]
+[; ;save.c: 123: {
+"123
 {
-[; ;save.c: 131: var_time = Calculate_Time();
-"131
+[; ;save.c: 124: var_time = Calculate_Time();
+"124
 [e = _var_time -> ( _Calculate_Time ..  `ui ]
-[; ;save.c: 132: var_time |= 0x100;
-"132
+[; ;save.c: 125: var_time |= 0x100;
+"125
 [e =| _var_time -> -> 256 `i `ui ]
-[; ;save.c: 133: if(CH1_state == 1) var_time |= 0x400;
-"133
-[e $ ! == -> _CH1_state `i -> 1 `i 265  ]
+[; ;save.c: 126: if(CH1_state == 1) var_time |= 0x400;
+"126
+[e $ ! == -> _CH1_state `i -> 1 `i 257  ]
 [e =| _var_time -> -> 1024 `i `ui ]
-[e :U 265 ]
-[; ;save.c: 134: var_time |= 0x1000;
-"134
+[e :U 257 ]
+[; ;save.c: 127: var_time |= 0x1000;
+"127
 [e =| _var_time -> -> 4096 `i `ui ]
-[; ;save.c: 135: Save_Write_word(var_time);
-"135
+[; ;save.c: 128: Save_Write_word(var_time);
+"128
 [e ( _Save_Write_word (1 _var_time ]
-[; ;save.c: 136: Save_Write_word(CH1_temperature);
-"136
+[; ;save.c: 129: Save_Write_word(CH1_temperature);
+"129
 [e ( _Save_Write_word (1 _CH1_temperature ]
-[; ;save.c: 138: Cur_temperature_time_ch1 = 0;
-"138
+[; ;save.c: 131: Cur_temperature_time_ch1 = 0;
+"131
 [e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
-"139
+"132
 }
-[e :U 264 ]
-"140
+[e :U 256 ]
+"133
 }
-[; ;save.c: 139: }
-[; ;save.c: 140: }
-[e $U 266  ]
-"141
-[e :U 263 ]
-[; ;save.c: 141: else if(time_count == 3 && Record_flag == 1)
-[e $ ! && == -> _time_count `i -> 3 `i == -> _Record_flag `i -> 1 `i 267  ]
-[; ;save.c: 142: {
-"142
+[; ;save.c: 132: }
+[; ;save.c: 133: }
+[e $U 258  ]
+"134
+[e :U 255 ]
+[; ;save.c: 134: else if(time_count == 3 && Record_flag == 1)
+[e $ ! && == -> _time_count `i -> 3 `i == -> _Record_flag `i -> 1 `i 259  ]
+[; ;save.c: 135: {
+"135
 {
-[; ;save.c: 143: if(Cur_temperature_time_ch2 > 120)
-"143
-[e $ ! > -> _Cur_temperature_time_ch2 `i -> 120 `i 268  ]
-[; ;save.c: 144: {
-"144
+[; ;save.c: 136: if(Cur_temperature_time_ch2 > 120)
+"136
+[e $ ! > -> _Cur_temperature_time_ch2 `i -> 120 `i 260  ]
+[; ;save.c: 137: {
+"137
 {
-[; ;save.c: 145: var_time = Calculate_Time();
-"145
+[; ;save.c: 138: var_time = Calculate_Time();
+"138
 [e = _var_time -> ( _Calculate_Time ..  `ui ]
-[; ;save.c: 146: var_time |= 0x200;
-"146
+[; ;save.c: 139: var_time |= 0x200;
+"139
 [e =| _var_time -> -> 512 `i `ui ]
-[; ;save.c: 147: if(CH2_state == 1) var_time |= 0x800;
-"147
-[e $ ! == -> _CH2_state `i -> 1 `i 269  ]
+[; ;save.c: 140: if(CH2_state == 1) var_time |= 0x800;
+"140
+[e $ ! == -> _CH2_state `i -> 1 `i 261  ]
 [e =| _var_time -> -> 2048 `i `ui ]
-[e :U 269 ]
-[; ;save.c: 148: var_time |= 0x1000;
-"148
+[e :U 261 ]
+[; ;save.c: 141: var_time |= 0x1000;
+"141
 [e =| _var_time -> -> 4096 `i `ui ]
-[; ;save.c: 149: Save_Write_word(var_time);
-"149
+[; ;save.c: 142: Save_Write_word(var_time);
+"142
 [e ( _Save_Write_word (1 _var_time ]
-[; ;save.c: 150: Save_Write_word(CH2_temperature);
-"150
+[; ;save.c: 143: Save_Write_word(CH2_temperature);
+"143
 [e ( _Save_Write_word (1 _CH2_temperature ]
-[; ;save.c: 152: Cur_temperature_time_ch2 = 0;
-"152
+[; ;save.c: 145: Cur_temperature_time_ch2 = 0;
+"145
 [e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
-"153
+"146
 }
-[e :U 268 ]
-"154
+[e :U 260 ]
+"147
 }
-[e :U 267 ]
-"155
-[e :U 266 ]
-[; ;save.c: 153: }
-[; ;save.c: 154: }
-[; ;save.c: 155: }
-[e :UE 262 ]
+[e :U 259 ]
+"148
+[e :U 258 ]
+[; ;save.c: 146: }
+[; ;save.c: 147: }
+[; ;save.c: 148: }
+[e :UE 254 ]
 }
-"163
+"156
 [v _Calculate_Time `(uc ~T0 @X0 1 ef ]
-"164
+"157
 {
-[; ;save.c: 163: unsigned char Calculate_Time(void)
-[; ;save.c: 164: {
+[; ;save.c: 156: unsigned char Calculate_Time(void)
+[; ;save.c: 157: {
 [e :U _Calculate_Time ]
 [f ]
-"165
+"158
 [v _temp `ul ~T0 @X0 1 a ]
-[; ;save.c: 165: unsigned long temp = 0 ;
+[; ;save.c: 158: unsigned long temp = 0 ;
 [e = _temp -> -> -> 0 `i `l `ul ]
-"166
+"159
 [v _temp1 `ul ~T0 @X0 1 a ]
-[; ;save.c: 166: unsigned long temp1 = 0 ;
+[; ;save.c: 159: unsigned long temp1 = 0 ;
 [e = _temp1 -> -> -> 0 `i `l `ul ]
-"167
+"160
 [v _temp2 `ul ~T0 @X0 1 a ]
-[; ;save.c: 167: unsigned long temp2 = 0 ;
+[; ;save.c: 160: unsigned long temp2 = 0 ;
 [e = _temp2 -> -> -> 0 `i `l `ul ]
-[; ;save.c: 168: Bq32k_Rtc_Read_Time(&rtc_tm);
-"168
+[; ;save.c: 161: Bq32k_Rtc_Read_Time(&rtc_tm);
+"161
 [e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
-[; ;save.c: 169: if( time_count == 1 )
+[; ;save.c: 162: if( time_count == 1 )
+"162
+[e $ ! == -> _time_count `i -> 1 `i 263  ]
+[; ;save.c: 163: {
+"163
+{
+[; ;save.c: 164: if(rtc_tm.date != rtc_save_ch1.date)
+"164
+[e $ ! != -> . _rtc_tm 4 `i -> . _rtc_save_ch1 4 `i 264  ]
+[; ;save.c: 165: {
+"165
+{
+[; ;save.c: 167: Write_Flash_finish();
+"167
+[e ( _Write_Flash_finish ..  ]
+[; ;save.c: 168: Write_Flash_head();
+"168
+[e ( _Write_Flash_head ..  ]
+[; ;save.c: 169: Save_Write_time();
 "169
-[e $ ! == -> _time_count `i -> 1 `i 271  ]
-[; ;save.c: 170: {
+[e ( _Save_Write_time ..  ]
+[; ;save.c: 170: Cur_temperature_time_ch1 = 0;
 "170
-{
-[; ;save.c: 171: if(rtc_tm.date != rtc_save_ch1.date)
+[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
+[; ;save.c: 171: Cur_temperature_time_ch2 = 0;
 "171
-[e $ ! != -> . _rtc_tm 4 `i -> . _rtc_save_ch1 4 `i 272  ]
-[; ;save.c: 172: {
-"172
-{
-[; ;save.c: 174: Write_Flash_finish();
+[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
+[; ;save.c: 174: time_count = 0;
 "174
-[e ( _Write_Flash_finish ..  ]
-[; ;save.c: 175: Write_Flash_head();
+[e = _time_count -> -> 0 `i `uc ]
 "175
-[e ( _Write_Flash_head ..  ]
-[; ;save.c: 176: Save_Write_time();
+}
+[; ;save.c: 175: }
+[e $U 265  ]
 "176
-[e ( _Save_Write_time ..  ]
-[; ;save.c: 177: Cur_temperature_time_ch1 = 0;
+[e :U 264 ]
+[; ;save.c: 176: else
+[; ;save.c: 177: {
 "177
-[e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
-[; ;save.c: 178: Cur_temperature_time_ch2 = 0;
+{
+[; ;save.c: 178: temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
 "178
-[e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
-[; ;save.c: 181: time_count = 0;
-"181
-[e = _time_count -> -> 0 `i `uc ]
-"182
-}
-[; ;save.c: 182: }
-[e $U 273  ]
-"183
-[e :U 272 ]
-[; ;save.c: 183: else
-[; ;save.c: 184: {
-"184
-{
-[; ;save.c: 185: temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
-"185
 [e = _temp1 -> -> + + * -> . _rtc_tm 2 `i -> 3600 `i * -> . _rtc_tm 1 `i -> 60 `i -> . _rtc_tm 0 `i `l `ul ]
-[; ;save.c: 186: temp2 = rtc_save_ch1.hours*3600+rtc_save_ch1.minutes*60+rtc_save_ch1.seconds;
-"186
+[; ;save.c: 179: temp2 = rtc_save_ch1.hours*3600+rtc_save_ch1.minutes*60+rtc_save_ch1.seconds;
+"179
 [e = _temp2 -> -> + + * -> . _rtc_save_ch1 2 `i -> 3600 `i * -> . _rtc_save_ch1 1 `i -> 60 `i -> . _rtc_save_ch1 0 `i `l `ul ]
-[; ;save.c: 187: temp = temp1 - temp2;
-"187
+[; ;save.c: 180: temp = temp1 - temp2;
+"180
 [e = _temp - _temp1 _temp2 ]
-[; ;save.c: 188: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
-"188
+[; ;save.c: 181: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
+"181
 [e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch1 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 189: return temp;
-"189
+[; ;save.c: 182: return temp;
+"182
 [e ) -> _temp `uc ]
-[e $UE 270  ]
+[e $UE 262  ]
+"183
+}
+[e :U 265 ]
+"184
+}
+[; ;save.c: 183: }
+[; ;save.c: 184: }
+[e $U 266  ]
+"185
+[e :U 263 ]
+[; ;save.c: 185: else if( time_count == 3 )
+[e $ ! == -> _time_count `i -> 3 `i 267  ]
+[; ;save.c: 186: {
+"186
+{
+[; ;save.c: 187: if(rtc_tm.date != rtc_save_ch2.date)
+"187
+[e $ ! != -> . _rtc_tm 4 `i -> . _rtc_save_ch2 4 `i 268  ]
+[; ;save.c: 188: {
+"188
+{
+[; ;save.c: 190: Write_Flash_finish();
 "190
-}
-[e :U 273 ]
-"191
-}
-[; ;save.c: 190: }
-[; ;save.c: 191: }
-[e $U 274  ]
-"192
-[e :U 271 ]
-[; ;save.c: 192: else if( time_count == 3 )
-[e $ ! == -> _time_count `i -> 3 `i 275  ]
-[; ;save.c: 193: {
-"193
-{
-[; ;save.c: 194: if(rtc_tm.date != rtc_save_ch2.date)
-"194
-[e $ ! != -> . _rtc_tm 4 `i -> . _rtc_save_ch2 4 `i 276  ]
-[; ;save.c: 195: {
-"195
-{
-[; ;save.c: 197: Write_Flash_finish();
-"197
 [e ( _Write_Flash_finish ..  ]
-[; ;save.c: 198: Write_Flash_head();
-"198
+[; ;save.c: 191: Write_Flash_head();
+"191
 [e ( _Write_Flash_head ..  ]
-[; ;save.c: 199: Save_Write_time();
-"199
+[; ;save.c: 192: Save_Write_time();
+"192
 [e ( _Save_Write_time ..  ]
-[; ;save.c: 200: Cur_temperature_time_ch1 = 0;
-"200
+[; ;save.c: 193: Cur_temperature_time_ch1 = 0;
+"193
 [e = _Cur_temperature_time_ch1 -> -> 0 `i `uc ]
-[; ;save.c: 201: Cur_temperature_time_ch2 = 0;
-"201
+[; ;save.c: 194: Cur_temperature_time_ch2 = 0;
+"194
 [e = _Cur_temperature_time_ch2 -> -> 0 `i `uc ]
-[; ;save.c: 204: time_count = 0;
-"204
+[; ;save.c: 197: time_count = 0;
+"197
 [e = _time_count -> -> 0 `i `uc ]
-"205
+"198
 }
-[; ;save.c: 205: }
-[e $U 277  ]
-"206
-[e :U 276 ]
-[; ;save.c: 206: else
-[; ;save.c: 207: {
-"207
+[; ;save.c: 198: }
+[e $U 269  ]
+"199
+[e :U 268 ]
+[; ;save.c: 199: else
+[; ;save.c: 200: {
+"200
 {
-[; ;save.c: 208: temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
-"208
+[; ;save.c: 201: temp1 = rtc_tm.hours*3600+rtc_tm.minutes*60+rtc_tm.seconds;
+"201
 [e = _temp1 -> -> + + * -> . _rtc_tm 2 `i -> 3600 `i * -> . _rtc_tm 1 `i -> 60 `i -> . _rtc_tm 0 `i `l `ul ]
-[; ;save.c: 209: temp2 = rtc_save_ch2.hours*3600+rtc_save_ch2.minutes*60+rtc_save_ch2.seconds;
-"209
+[; ;save.c: 202: temp2 = rtc_save_ch2.hours*3600+rtc_save_ch2.minutes*60+rtc_save_ch2.seconds;
+"202
 [e = _temp2 -> -> + + * -> . _rtc_save_ch2 2 `i -> 3600 `i * -> . _rtc_save_ch2 1 `i -> 60 `i -> . _rtc_save_ch2 0 `i `l `ul ]
-[; ;save.c: 210: temp = temp1 - temp2;
-"210
+[; ;save.c: 203: temp = temp1 - temp2;
+"203
 [e = _temp - _temp1 _temp2 ]
-[; ;save.c: 211: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
-"211
+[; ;save.c: 204: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
+"204
 [e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch2 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 212: return temp;
-"212
+[; ;save.c: 205: return temp;
+"205
 [e ) -> _temp `uc ]
-[e $UE 270  ]
-"213
+[e $UE 262  ]
+"206
 }
-[e :U 277 ]
-"214
+[e :U 269 ]
+"207
 }
-[e :U 275 ]
-"215
-[e :U 274 ]
-[; ;save.c: 213: }
-[; ;save.c: 214: }
-[; ;save.c: 215: return 0;
+[e :U 267 ]
+"208
+[e :U 266 ]
+[; ;save.c: 206: }
+[; ;save.c: 207: }
+[; ;save.c: 208: return 0;
 [e ) -> -> 0 `i `uc ]
-[e $UE 270  ]
-[; ;save.c: 216: }
-"216
-[e :UE 270 ]
+[e $UE 262  ]
+[; ;save.c: 209: }
+"209
+[e :UE 262 ]
 }
-"224
+"217
 [v _Save_Write_word `(v ~T0 @X0 1 ef1`ui ]
-"225
+"218
 {
-[; ;save.c: 224: void Save_Write_word(unsigned int data)
-[; ;save.c: 225: {
+[; ;save.c: 217: void Save_Write_word(unsigned int data)
+[; ;save.c: 218: {
 [e :U _Save_Write_word ]
-"224
+"217
 [v _data `ui ~T0 @X0 1 r1 ]
-"225
+"218
 [f ]
-[; ;save.c: 226: if(Cur_Save_Index % 32 == 0)
+[; ;save.c: 219: if( Cur_Save_Index % 32 == 0 || Cur_Save_Index % 32 == 16 )
+"219
+[e $ ! || == % _Cur_Save_Index -> -> 32 `i `ui -> -> 0 `i `ui == % _Cur_Save_Index -> -> 32 `i `ui -> -> 16 `i `ui 271  ]
+[; ;save.c: 220: {
+"220
+{
+[; ;save.c: 221: if(Cur_Save_Index == 0x3fff - 32)
+"221
+[e $ ! == _Cur_Save_Index -> - -> 16383 `i -> 32 `i `ui 272  ]
+[; ;save.c: 222: {
+"222
+{
+[; ;save.c: 223: if( (Cur_Save_Index_Bak - 0x2000 >32) )
+"223
+[e $ ! > - _Cur_Save_Index_Bak -> -> 8192 `i `ui -> -> 32 `i `ui 273  ]
+[; ;save.c: 224: {
+"224
+{
+[; ;save.c: 225: if(Cur_Save_Index % 32 == 0)
+"225
+[e $ ! == % _Cur_Save_Index -> -> 32 `i `ui -> -> 0 `i `ui 274  ]
+[; ;save.c: 226: {
 "226
-[e $ ! == % _Cur_Save_Index -> -> 32 `i `ui -> -> 0 `i `ui 279  ]
-[; ;save.c: 227: {
+{
+[; ;save.c: 227: FLASH_EraseBlock(0x2000);
 "227
-{
-[; ;save.c: 228: if(Cur_Save_Index == 16384 - 32)
-"228
-[e $ ! == _Cur_Save_Index -> - -> 16384 `i -> 32 `i `ui 280  ]
-[; ;save.c: 229: {
-"229
-{
-[; ;save.c: 230: if( (Cur_Save_Index_Bak - 0x2000 >32) )
-"230
-[e $ ! > - _Cur_Save_Index_Bak -> -> 8192 `i `ui -> -> 32 `i `ui 281  ]
-[; ;save.c: 231: {
-"231
-{
-[; ;save.c: 232: FLASH_EraseBlock(0x2000);
-"232
 [e ( _FLASH_EraseBlock (1 -> -> 8192 `i `ui ]
-"233
+"228
 }
-[e :U 281 ]
+[; ;save.c: 228: }
+[e $U 275  ]
+"229
+[e :U 274 ]
+[; ;save.c: 229: else
+[; ;save.c: 230: {
+"230
+{
+[; ;save.c: 231: if( FLASH_ReadWord (0x2000 + 16 ) != 0x3fff)
+"231
+[e $ ! != ( _FLASH_ReadWord (1 -> + -> 8192 `i -> 16 `i `ui -> -> 16383 `i `ui 276  ]
+[; ;save.c: 232: {
+"232
+{
+[; ;save.c: 233: FLASH_EraseBlock(0x2000);
+"233
+[e ( _FLASH_EraseBlock (1 -> -> 8192 `i `ui ]
 "234
 }
-[; ;save.c: 233: }
-[; ;save.c: 234: }
-[e $U 282  ]
+[e :U 276 ]
 "235
-[e :U 280 ]
-[; ;save.c: 235: else
-[; ;save.c: 236: {
+}
+[e :U 275 ]
 "236
-{
-[; ;save.c: 237: if( (Cur_Save_Index_Bak < Cur_Save_Index) ||(Cur_Save_Index_Bak - Cur_Save_Index > 64) )
+}
+[e :U 273 ]
 "237
-[e $ ! || < _Cur_Save_Index_Bak _Cur_Save_Index > - _Cur_Save_Index_Bak _Cur_Save_Index -> -> 64 `i `ui 283  ]
-[; ;save.c: 238: {
+}
+[; ;save.c: 234: }
+[; ;save.c: 235: }
+[; ;save.c: 236: }
+[; ;save.c: 237: }
+[e $U 277  ]
 "238
-{
-[; ;save.c: 239: FLASH_EraseBlock(Cur_Save_Index+32);
+[e :U 272 ]
+[; ;save.c: 238: else
+[; ;save.c: 239: {
 "239
-[e ( _FLASH_EraseBlock (1 + _Cur_Save_Index -> -> 32 `i `ui ]
+{
+[; ;save.c: 240: if( (Cur_Save_Index_Bak < Cur_Save_Index) ||(Cur_Save_Index_Bak - Cur_Save_Index > 64) )
 "240
-}
-[e :U 283 ]
+[e $ ! || < _Cur_Save_Index_Bak _Cur_Save_Index > - _Cur_Save_Index_Bak _Cur_Save_Index -> -> 64 `i `ui 278  ]
+[; ;save.c: 241: {
 "241
-}
-[e :U 282 ]
+{
+[; ;save.c: 242: if(Cur_Save_Index % 32 == 0)
 "242
-}
-[e :U 279 ]
-[; ;save.c: 240: }
-[; ;save.c: 241: }
-[; ;save.c: 242: }
-[; ;save.c: 243: if( (data & 0x3fff) == 0x3fff)
+[e $ ! == % _Cur_Save_Index -> -> 32 `i `ui -> -> 0 `i `ui 279  ]
+[; ;save.c: 243: {
 "243
-[e $ ! == & _data -> -> 16383 `i `ui -> -> 16383 `i `ui 284  ]
-[; ;save.c: 244: FLASH_WriteWord(Cur_Save_Index, 0x3ffe);
+{
+[; ;save.c: 244: FLASH_EraseBlock(Cur_Save_Index+32);
 "244
-[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> -> 16382 `i `ui ]
-[e $U 285  ]
+[e ( _FLASH_EraseBlock (1 + _Cur_Save_Index -> -> 32 `i `ui ]
 "245
-[e :U 284 ]
-[; ;save.c: 245: else
-[; ;save.c: 246: FLASH_WriteWord(Cur_Save_Index, data);
+}
+[; ;save.c: 245: }
+[e $U 280  ]
 "246
-[e ( _FLASH_WriteWord (2 , _Cur_Save_Index _data ]
-[e :U 285 ]
-[; ;save.c: 247: Cur_Save_Index++;
+[e :U 279 ]
+[; ;save.c: 246: else
+[; ;save.c: 247: {
 "247
-[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
-[; ;save.c: 248: if( Cur_Save_Index == 16384)
+{
+[; ;save.c: 248: if( FLASH_ReadWord (Cur_Save_Index + 32) != 0x3fff)
 "248
-[e $ ! == _Cur_Save_Index -> -> 16384 `i `ui 286  ]
+[e $ ! != ( _FLASH_ReadWord (1 + _Cur_Save_Index -> -> 32 `i `ui -> -> 16383 `i `ui 281  ]
 [; ;save.c: 249: {
 "249
 {
-[; ;save.c: 250: Cur_Save_Index = 0x2000;
+[; ;save.c: 250: FLASH_EraseBlock(Cur_Save_Index + 16);
 "250
-[e = _Cur_Save_Index -> -> 8192 `i `ui ]
+[e ( _FLASH_EraseBlock (1 + _Cur_Save_Index -> -> 16 `i `ui ]
 "251
 }
-[e :U 286 ]
+[e :U 281 ]
+"252
+}
+[e :U 280 ]
+"253
+}
+[e :U 278 ]
+"254
+}
+[e :U 277 ]
+"255
+}
+[e :U 271 ]
 [; ;save.c: 251: }
 [; ;save.c: 252: }
-"252
-[e :UE 278 ]
-}
+[; ;save.c: 253: }
+[; ;save.c: 254: }
+[; ;save.c: 255: }
+[; ;save.c: 257: if( (data & 0x3fff) == 0x3fff)
+"257
+[e $ ! == & _data -> -> 16383 `i `ui -> -> 16383 `i `ui 282  ]
+[; ;save.c: 258: FLASH_WriteWord(Cur_Save_Index, 0x3ffe);
+"258
+[e ( _FLASH_WriteWord (2 , _Cur_Save_Index -> -> 16382 `i `ui ]
+[e $U 283  ]
+"259
+[e :U 282 ]
+[; ;save.c: 259: else
+[; ;save.c: 260: FLASH_WriteWord(Cur_Save_Index, data);
 "260
+[e ( _FLASH_WriteWord (2 , _Cur_Save_Index _data ]
+[e :U 283 ]
+[; ;save.c: 262: if(Cur_Save_Index == 0x3fff ) Cur_Save_Index = 0x2000 ;
+"262
+[e $ ! == _Cur_Save_Index -> -> 16383 `i `ui 284  ]
+[e = _Cur_Save_Index -> -> 8192 `i `ui ]
+[e $U 285  ]
+"263
+[e :U 284 ]
+[; ;save.c: 263: else Cur_Save_Index++;
+[e ++ _Cur_Save_Index -> -> 1 `i `ui ]
+[e :U 285 ]
+[; ;save.c: 264: }
+"264
+[e :UE 270 ]
+}
+"272
 [v _Save_Write_time `(v ~T0 @X0 1 ef ]
-"261
+"273
 {
-[; ;save.c: 260: void Save_Write_time(void)
-[; ;save.c: 261: {
+[; ;save.c: 272: void Save_Write_time(void)
+[; ;save.c: 273: {
 [e :U _Save_Write_time ]
 [f ]
-"262
+"274
 [v _i `uc ~T0 @X0 1 a ]
-[; ;save.c: 262: unsigned char i;
-[; ;save.c: 263: Bq32k_Rtc_Read_Time(&rtc_tm);
-"263
+[; ;save.c: 274: unsigned char i;
+[; ;save.c: 275: Bq32k_Rtc_Read_Time(&rtc_tm);
+"275
 [e ( _Bq32k_Rtc_Read_Time (1 &U _rtc_tm ]
-[; ;save.c: 264: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
-"264
+[; ;save.c: 276: __builtin_memcpy(&rtc_save_ch1,&rtc_tm,7);
+"276
 [e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch1 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 265: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
-"265
+[; ;save.c: 277: __builtin_memcpy(&rtc_save_ch2,&rtc_tm,7);
+"277
 [e ( ___builtin_memcpy (3 , , -> &U _rtc_save_ch2 `*v -> &U _rtc_tm `*Cv -> -> 7 `i `ui ]
-[; ;save.c: 266: Save_Write_word( rtc_tm.years);
-"266
+[; ;save.c: 278: Save_Write_word( rtc_tm.years);
+"278
 [e ( _Save_Write_word (1 -> . _rtc_tm 6 `ui ]
-[; ;save.c: 267: Save_Write_word( rtc_tm.month);
-"267
+[; ;save.c: 279: Save_Write_word( rtc_tm.month);
+"279
 [e ( _Save_Write_word (1 -> . _rtc_tm 5 `ui ]
-[; ;save.c: 268: Save_Write_word( rtc_tm.date);
-"268
+[; ;save.c: 280: Save_Write_word( rtc_tm.date);
+"280
 [e ( _Save_Write_word (1 -> . _rtc_tm 4 `ui ]
-[; ;save.c: 269: Save_Write_word( rtc_tm.hours);
-"269
+[; ;save.c: 281: Save_Write_word( rtc_tm.hours);
+"281
 [e ( _Save_Write_word (1 -> . _rtc_tm 2 `ui ]
-[; ;save.c: 270: Save_Write_word( rtc_tm.minutes);
-"270
+[; ;save.c: 282: Save_Write_word( rtc_tm.minutes);
+"282
 [e ( _Save_Write_word (1 -> . _rtc_tm 1 `ui ]
-[; ;save.c: 271: Save_Write_word( rtc_tm.seconds);
-"271
+[; ;save.c: 283: Save_Write_word( rtc_tm.seconds);
+"283
 [e ( _Save_Write_word (1 -> . _rtc_tm 0 `ui ]
-[; ;save.c: 272: Save_Write_word( rtc_tm.wday);
-"272
+[; ;save.c: 284: Save_Write_word( rtc_tm.wday);
+"284
 [e ( _Save_Write_word (1 -> . _rtc_tm 3 `ui ]
-[; ;save.c: 273: }
-"273
-[e :UE 287 ]
+[; ;save.c: 285: Save_Write_word( rtc_tm.wday);
+"285
+[e ( _Save_Write_word (1 -> . _rtc_tm 3 `ui ]
+[; ;save.c: 286: }
+"286
+[e :UE 286 ]
 }

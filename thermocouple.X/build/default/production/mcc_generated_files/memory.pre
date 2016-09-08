@@ -2655,7 +2655,7 @@ INTCONbits.GIE = GIEBitValue;
 }
 
 int8_t FLASH_WriteBlock(uint16_t writeAddr, uint16_t *flashWordArray) {
-uint16_t blockStartAddr = (uint16_t) (writeAddr & ((16384 - 1) ^ (32 - 1)));
+uint16_t blockStartAddr = (uint16_t) (writeAddr & ((0x3fff - 1) ^ (32 - 1)));
 uint8_t GIEBitValue = INTCONbits.GIE;
 uint8_t i;
 

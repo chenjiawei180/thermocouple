@@ -70,6 +70,7 @@ void Serach_Flash_Head(void)
                 count = 0;
             }
         }
+        // if i = END_FLASH , add the error process.
 #endif
 
 #if 0
@@ -91,12 +92,8 @@ void Serach_Flash_Head(void)
   
 void Write_Flash_head(void)
 {
-    FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
-    else Cur_Save_Index++;
-    FLASH_WriteWord(Cur_Save_Index, 0xAAAA);
-    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
-    else Cur_Save_Index++;
+    Save_Write_word(0xAAAA);
+    Save_Write_word(0xAAAA);
 }
 
 /**
@@ -107,12 +104,8 @@ void Write_Flash_head(void)
   
 void Write_Flash_finish(void)
 {
-    FLASH_WriteWord(Cur_Save_Index, 0x5555);
-    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
-    else Cur_Save_Index++;
-    FLASH_WriteWord(Cur_Save_Index, 0x5555);
-    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
-    else Cur_Save_Index++;
+    Save_Write_word(0x5555);
+    Save_Write_word(0x5555);
 }
 
 /**
@@ -223,32 +216,51 @@ unsigned char Calculate_Time(void)
   
 void Save_Write_word(unsigned int data)
 {
-    if(Cur_Save_Index % 32 == 0)    // erase next row 
+    if( Cur_Save_Index % 32 == 0  || Cur_Save_Index % 32 == 16 )    // erase next row 
     {
         if(Cur_Save_Index == END_FLASH - 32)
         {
             if( (Cur_Save_Index_Bak - Record_Add >32) )    // safety record  index bak is in head.
             {
-                FLASH_EraseBlock(Record_Add);
+                if(Cur_Save_Index % 32 == 0)
+                {
+                    FLASH_EraseBlock(Record_Add);
+                }
+                else    //ensure the next block is erase
+                {
+                    if( FLASH_ReadWord (Record_Add + 16 ) != 0x3fff)    // safety record  index bak is in head.
+                    {
+                        FLASH_EraseBlock(Record_Add);
+                    }
+                }
             }
         }
         else
         {
-            if( (Cur_Save_Index_Bak < Cur_Save_Index) ||(Cur_Save_Index_Bak - Cur_Save_Index > 64) )    // safety record  index bak is in head.
+            if( (Cur_Save_Index_Bak < Cur_Save_Index) ||(Cur_Save_Index_Bak - Cur_Save_Index > 64) )    // safety record  index bak is not in head.
             {
-                FLASH_EraseBlock(Cur_Save_Index+32);
+                if(Cur_Save_Index % 32 == 0)
+                {
+                    FLASH_EraseBlock(Cur_Save_Index+32);
+                }
+                else    //ensure the next block is erase
+                {
+                    if( FLASH_ReadWord (Cur_Save_Index + 32) != 0x3fff)    // safety record  index bak is not in head.
+                    {
+                        FLASH_EraseBlock(Cur_Save_Index + 16);
+                    }
+                }
             }
         }
     }
+
     if( (data & 0x3fff) == 0x3fff) 
     FLASH_WriteWord(Cur_Save_Index, 0x3ffe);
     else
     FLASH_WriteWord(Cur_Save_Index, data);
-    Cur_Save_Index++;
-    if( Cur_Save_Index == END_FLASH)    // set the index from tail to head.
-    {
-        Cur_Save_Index = Record_Add;    
-    }
+
+    if(Cur_Save_Index == END_FLASH )  Cur_Save_Index = Record_Add ;
+    else Cur_Save_Index++;
 }
 
 /**
@@ -269,6 +281,7 @@ void Save_Write_time(void)
     Save_Write_word( rtc_tm.hours);
     Save_Write_word( rtc_tm.minutes);
     Save_Write_word( rtc_tm.seconds);
+    Save_Write_word( rtc_tm.wday);
     Save_Write_word( rtc_tm.wday);
 }
 

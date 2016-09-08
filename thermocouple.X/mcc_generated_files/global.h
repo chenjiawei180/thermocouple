@@ -14,7 +14,7 @@ extern "C" {
 
 #include "mcc.h"
     
-#define DEBUG 1
+#define DEBUG 0
 #define P_check 1
 #define WDT_SLEEP 1
 

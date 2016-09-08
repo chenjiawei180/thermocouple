@@ -2435,9 +2435,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;max31856.c: 199: else temperature_absolute = CH1_temperature - temperature_temp;
 [e = _temperature_absolute - _CH1_temperature _temperature_temp ]
 [e :U 270 ]
-[; ;max31856.c: 201: if( temperature_absolute > 0)
-"201
-[e $ ! > _temperature_absolute -> -> 0 `i `ui 271  ]
+[; ;max31856.c: 200: if( temperature_absolute > 3)
+"200
+[e $ ! > _temperature_absolute -> -> 3 `i `ui 271  ]
 [; ;max31856.c: 202: {
 "202
 {
@@ -2564,9 +2564,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;max31856.c: 238: else temperature_absolute = CH2_temperature - temperature_temp;
 [e = _temperature_absolute - _CH2_temperature _temperature_temp ]
 [e :U 282 ]
-[; ;max31856.c: 240: if( temperature_absolute > 0)
-"240
-[e $ ! > _temperature_absolute -> -> 0 `i `ui 283  ]
+[; ;max31856.c: 239: if( temperature_absolute > 3)
+"239
+[e $ ! > _temperature_absolute -> -> 3 `i `ui 283  ]
 [; ;max31856.c: 241: {
 "241
 {

@@ -2873,15 +2873,25 @@ RCSTAbits.CREN = 1;
 rx_tmp = RCREG;
 Usart_Rx_Buff[Usart_Rx_Cnt] = rx_tmp ;
 Usart_Rx_Cnt++;
-Usart_Run_Flag = 10;
-SWDTEN = 0;
 
-# 192
+# 191
 if( Usart_Rx_Cnt == 1)
 {
 if( rx_tmp != 0xfe)
 {
 Usart_Rx_Cnt = 0;
+}
+else
+{
+Usart_Run_Flag = 10;
+SWDTEN = 0;
+WDTPS0 = 0;
+WDTPS1 = 1;
+WDTPS2 = 1;
+WDTPS3 = 1;
+WDTPS4 = 0;
+asm("clrwdt");
+SWDTEN = 1;
 }
 }
 else if( Usart_Rx_Cnt == 2)
